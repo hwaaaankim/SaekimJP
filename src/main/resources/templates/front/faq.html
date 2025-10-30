@@ -1,0 +1,205 @@
+<html id="hamHtml" lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/front/common :: commonHead"></head>
+
+<body id="hamBody" class="" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
+	<div id="container">
+		<th:block th:replace="~{fragments/front/common :: commonHeader(white=${false}, dark=${true})}"></th:block>
+		<main id="main">
+			<div class="main-wrap">
+				<section class="bsc_container">
+					<section class="subtit-wrap">
+						<div class="inner w1280 mt-3">
+							<p class="title">FAQ</p>
+							<span class="sub-txt">이용시 자주 묻는 질문을 확인해보세요.</span><br>
+						</div>
+					</section>
+
+					<section class="default-wrap">
+						<div class="inner w1280">
+							<div class="total-searchBox">
+								<div class="total">
+									<p class="total-txt">Total <span class="total-num">XX</span></p>
+								</div>
+								<form name="searchForm" id="searchForm" method="post">
+									<div class="search">
+										<div class="inputBox">
+											<input type="text" title="검색어" class="input-txt" placeholder="검색어를 입력하세요.">
+											<button type="submit" value="검색" class="searchBtn"></button>
+										</div>
+									</div>
+								</form>
+							</div>
+							<form name="viewForm" id="viewForm" method="post">
+								<div class="faq-list__wrap">
+									<ul class="faq-list">
+										<!-- 1 -->
+										<li class="faq-list__item">
+											<a class="faq-question" id="Q1" role="button" aria-expanded="false"
+												aria-controls="A1" onclick="getFaqViewAnw(1);">
+												<span class="faq-question__icon">Q<em class="blind">질문</em></span>
+												<strong class="faq-question__text">
+													<span class="tag-category md">샘플</span> 첫 번째 질문 샘플 텍스트입니다.
+												</strong>
+												<span class="faq-open-close"><s></s></span>
+											</a>
+											<div class="faq-answer" id="A1" style="display: none;">
+												<div class="faq-answer__wrap">
+													<span class="faq-answer__icon">A<em class="blind">답변</em></span>
+													<div class="faq-answer__box">
+														첫 번째 답변 샘플 텍스트 영역입니다. 이 영역에는 상세 설명을 자유롭게 넣을 수 있습니다.<br>
+														필요 시 관련 페이지로 연결할 수 있습니다.
+														<br><br>
+														<a href="javascript:void(0)">* 샘플 링크</a>
+													</div>
+												</div>
+											</div>
+										</li>
+
+										<!-- 2 -->
+										<li class="faq-list__item">
+											<a class="faq-question" id="Q2" role="button" aria-expanded="false"
+												aria-controls="A2" onclick="getFaqViewAnw(2);">
+												<span class="faq-question__icon">Q<em class="blind">질문</em></span>
+												<strong class="faq-question__text">
+													<span class="tag-category md">샘플</span> 두 번째 질문 샘플 텍스트입니다.
+												</strong>
+												<span class="faq-open-close"><s></s></span>
+											</a>
+											<div class="faq-answer" id="A2" style="display: none;">
+												<div class="faq-answer__wrap">
+													<span class="faq-answer__icon">A<em class="blind">답변</em></span>
+													<div class="faq-answer__box">
+														두 번째 답변 샘플 텍스트 영역입니다. 줄바꿈과 강조, 링크 등을 포함할 수 있습니다.
+														<br><br>
+														<a href="javascript:void(0)">* 샘플 링크</a>
+													</div>
+												</div>
+											</div>
+										</li>
+
+										<!-- 3 -->
+										<li class="faq-list__item">
+											<a class="faq-question" id="Q3" role="button" aria-expanded="false"
+												aria-controls="A3" onclick="getFaqViewAnw(3);">
+												<span class="faq-question__icon">Q<em class="blind">질문</em></span>
+												<strong class="faq-question__text">
+													<span class="tag-category md">샘플</span> 세 번째 질문 샘플 텍스트입니다.
+												</strong>
+												<span class="faq-open-close"><s></s></span>
+											</a>
+											<div class="faq-answer" id="A3" style="display: none;">
+												<div class="faq-answer__wrap">
+													<span class="faq-answer__icon">A<em class="blind">답변</em></span>
+													<div class="faq-answer__box">
+														세 번째 답변 샘플 텍스트 영역입니다. 필요한 안내 문구를 입력하세요.
+													</div>
+												</div>
+											</div>
+										</li>
+
+										<!-- 4 -->
+										<li class="faq-list__item">
+											<a class="faq-question" id="Q4" role="button" aria-expanded="false"
+												aria-controls="A4" onclick="getFaqViewAnw(4);">
+												<span class="faq-question__icon">Q<em class="blind">질문</em></span>
+												<strong class="faq-question__text">
+													<span class="tag-category md">샘플</span> 네 번째 질문 샘플 텍스트입니다.
+												</strong>
+												<span class="faq-open-close"><s></s></span>
+											</a>
+											<div class="faq-answer" id="A4" style="display: none;">
+												<div class="faq-answer__wrap">
+													<span class="faq-answer__icon">A<em class="blind">답변</em></span>
+													<div class="faq-answer__box">
+														네 번째 답변 샘플 텍스트 영역입니다. 안내/주의/예외 사항 등을 넣을 수 있습니다.
+													</div>
+												</div>
+											</div>
+										</li>
+
+										<!-- 5 -->
+										<li class="faq-list__item">
+											<a class="faq-question" id="Q5" role="button" aria-expanded="false"
+												aria-controls="A5" onclick="getFaqViewAnw(5);">
+												<span class="faq-question__icon">Q<em class="blind">질문</em></span>
+												<strong class="faq-question__text">
+													<span class="tag-category md">샘플</span> 다섯 번째 질문 샘플 텍스트입니다.
+												</strong>
+												<span class="faq-open-close"><s></s></span>
+											</a>
+											<div class="faq-answer" id="A5" style="display: none;">
+												<div class="faq-answer__wrap">
+													<span class="faq-answer__icon">A<em class="blind">답변</em></span>
+													<div class="faq-answer__box">
+														다섯 번째 답변 샘플 텍스트 영역입니다.
+													</div>
+												</div>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</form>
+							<ul class="list-pagination">
+								<span class="arrow">
+									<a href="#" class="first"><em class="blind">처음페이지</em></a>
+									<a href="#" class="prev"><em class="blind">이전페이지</em></a>
+								</span>
+								<ul class="num-list">
+									<li class="current on"><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+								</ul>
+								<span class="arrow">
+									<a href="#" class="next"><em class="blind">다음페이지</em></a>
+									<a href="" class="last"><em class="blind">마지막페이지</em></a>
+								</span>
+							</ul>
+						</div>
+					</section>
+				</section>
+			</div>
+		</main>
+
+		<footer th:replace="fragments/front/common :: commonFooter"></footer>
+	</div>
+	<th:block th:replace="fragments/front/common :: commonScript"></th:block>
+	<script>
+		function syncAria($q, expanded) {
+			$q.attr('aria-expanded', expanded ? 'true' : 'false');
+		}
+
+		function getFaqViewAnw(indexNum) {
+			var $q = $("#Q" + indexNum);
+			var $a = $("#A" + indexNum);
+
+			if ($q.length === 0 || $a.length === 0) {
+				// 대응되는 아이디가 없으면 아무 동작도 하지 않음 (안전장치)
+				return;
+			}
+
+			// 이미 열린 상태면 -> 닫기만 하고 종료
+			if ($q.hasClass("active")) {
+				$q.removeClass("active");
+				syncAria($q, false);
+				$a.stop(true, true).slideUp();
+				return;
+			}
+
+			// 다른 모든 항목 닫기
+			$(".faq-question.active").each(function () {
+				$(this).removeClass("active");
+				syncAria($(this), false);
+			});
+			$(".faq-answer").stop(true, true).slideUp();
+
+			// 대상 열기
+			$q.addClass("active");
+			syncAria($q, true);
+			$a.stop(true, true).slideDown();
+		}
+	</script>
+</body>
+
+</html>

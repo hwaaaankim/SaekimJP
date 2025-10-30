@@ -1,9 +1,3 @@
-/**
-   * 탭 클릭 핸들러 (일반화, 6개 탭 대응)
-   * - _type === 'suup' : #li_systab{n}, #sysTab{n} 제어 (1..6)
-   *   - AOS: .subSTit.part{n}1 / .subTit.part{n}2 / .subTxt.part{n}3 / .img_wrap.part{n}4
-   * - _type === 'level' : 기존 3개 탭 로직 유지(#li_certiTab{1..3}, #certiTab{1..3})
-   */
 function systab_Click(_type, _numb) {
 	if (_type === "suup") {
 		const max = 6;

@@ -1,0 +1,981 @@
+/* 컨테이너 기본 */
+.about-swiper {
+	position: relative;
+	width: 100%;
+}
+
+/* 프로그레스바 */
+.about-swiper .about-swiper-pagination {
+	position: static;
+	height: 4px;
+	margin-top: 18px;
+	background: rgba(0, 0, 0, 0.08);
+	border-radius: 999px;
+	overflow: hidden;
+}
+
+.about-swiper .swiper-pagination-progressbar-fill {
+	background: #094bad;
+}
+
+/* 원형 네비게이션 버튼 */
+.about-swiper .about-swiper-button {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.95);
+	border: 1px solid rgba(0, 0, 0, 0.08);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+	transition: transform .3s ease, box-shadow .3s ease, background-color .3s ease, border-color .3s ease;
+}
+
+.about-swiper .about-swiper-button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+	background: #fff;
+	border-color: rgba(0, 0, 0, 0.12);
+}
+
+/* 화살표 아이콘 (Swiper 기본 after 아이콘 사용) */
+.about-swiper .swiper-button-prev::after,
+.about-swiper .swiper-button-next::after {
+	font-size: 18px;
+	color: #094bad;
+	font-weight: 700;
+}
+
+/* 버튼 위치 */
+.about-swiper .swiper-button-prev {
+	left: -8px;
+}
+
+.about-swiper .swiper-button-next {
+	right: -8px;
+}
+
+@media (max-width: 767.98px) {
+	.about-swiper .swiper-button-prev {
+		left: 4px;
+	}
+
+	.about-swiper .swiper-button-next {
+		right: 4px;
+	}
+}
+
+/* 슬라이드 정렬(필요 시) */
+.about-swiper .edu-list.swiper-wrapper {
+	align-items: stretch;
+}
+
+/* 이미지 반응형 보정(이미 있으시면 생략 가능) */
+.about-swiper .edu-list .imgBox img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+/* === Swiper 충돌 방지: about- 네임스페이스에 한정 === */
+.about-swiper {
+	position: relative;
+	overflow: hidden;
+	/* 부모가 overflow 보장 */
+}
+
+/* wrapper 강제: Swiper가 flex로 계산하도록 */
+.about-swiper .edu-list.swiper-wrapper {
+	display: flex !important;
+	flex-wrap: nowrap !important;
+	align-items: stretch;
+	/* 일부 테마가 transform을 초기화하는 경우가 있어 보정 */
+	transform: translate3d(0, 0, 0);
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none;
+}
+
+/* slide 강제: 너비/수축 방지 (기존 width:50% 등 무시) */
+.about-swiper .edu-list_item.swiper-slide {
+	flex-shrink: 0 !important;
+	width: auto !important;
+	/* Swiper가 브레이크포인트에 따라 width를 계산 */
+	box-sizing: border-box;
+}
+
+/* 이미지가 부모를 넘치지 않도록 */
+.about-swiper .edu-list .imgBox img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+/* 네비게이션 버튼이 다른 요소에 가리지 않도록 */
+.about-swiper .swiper-button-prev,
+.about-swiper .swiper-button-next {
+	z-index: 5;
+}
+
+/* ===== 카드 하단 버튼 ===== */
+.about-doctor-card {
+	position: relative;
+}
+
+.about-doctor-more {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+	padding: 8px 12px;
+	font-size: 14px;
+	line-height: 1;
+	border-radius: 999px;
+	border: 1px solid rgba(0, 0, 0, .12);
+	background: rgba(255, 255, 255, .9);
+	color: #0b4bad;
+	cursor: pointer;
+	transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease, color .25s ease, border-color .25s ease;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+}
+
+.about-doctor-more:hover {
+	transform: translateY(-2px);
+	background: #0b4bad;
+	color: #fff;
+	border-color: #0b4bad;
+	box-shadow: 0 8px 18px rgba(11, 75, 173, .25);
+}
+
+/* ===== 오버레이 ===== */
+.about-doctor-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0, 0, 0, .3);
+	backdrop-filter: blur(1px);
+	z-index: 1000;
+	opacity: 0;
+	transition: opacity .25s ease;
+}
+
+.about-doctor-overlay.is-show {
+	opacity: 1;
+}
+
+/* ===== 모달(500x700) ===== */
+.about-doctor-modal {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	width: 500px;
+	height: 700px;
+	transform: translate(-50%, -50%) scale(.98);
+	background: #000;
+	/* 로딩 중 테두리 감춤용 */
+	border-radius: 16px;
+	overflow: hidden;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, .35);
+	z-index: 1001;
+	opacity: 0;
+	transition: opacity .25s ease, transform .25s ease;
+}
+
+.about-doctor-modal.is-show {
+	opacity: 1;
+	transform: translate(-50%, -50%) scale(1);
+}
+
+/* 반응형: 작은 화면에서는 최대치 제한 */
+@media (max-width: 560px) {
+	.about-doctor-modal {
+		width: min(92vw, 500px);
+		height: min(88vh, 700px);
+	}
+}
+
+/* 닫기 버튼 */
+.about-doctor-close {
+	position: absolute;
+	right: 14px;
+	top: 10px;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: rgba(0, 0, 0, .35);
+	color: #fff;
+	border: 0;
+	cursor: pointer;
+	z-index: 2;
+	font-size: 22px;
+	line-height: 40px;
+	text-align: center;
+	transition: background-color .2s ease, transform .2s ease;
+}
+
+.about-doctor-close:hover {
+	background: rgba(0, 0, 0, .55);
+	transform: scale(1.05);
+}
+
+/* 본문 이미지 + 하단 글래스 영역 */
+.about-doctor-figure {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.about-doctor-photo {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+/* 하단 반투명 텍스트 박스 */
+.about-doctor-glass {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, .6);
+	color: #fff;
+	padding: 16px 18px 18px;
+}
+
+.about-doctor-title {
+	font-size: 18px;
+	margin: 0 0 10px;
+	font-weight: 700;
+}
+
+.about-doctor-list {
+	margin: 0;
+	padding-left: 18px;
+	max-height: 240px;
+	overflow: auto;
+}
+
+.about-doctor-list li {
+	line-height: 1.6;
+}
+
+/* 스크롤바 살짝 미려하게 */
+.about-doctor-list::-webkit-scrollbar {
+	height: 8px;
+	width: 8px;
+}
+
+.about-doctor-list::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, .35);
+	border-radius: 8px;
+}
+
+.mt-3 {
+	margin-top: 3rem !important;
+}
+
+/* 열린 아이템만 살짝 하이라이트 (기존 디자인 침범 최소화) */
+.notice-list-active {
+	box-shadow: 0 6px 20px rgba(0, 0, 0, .06);
+	border-radius: 12px;
+	transition: box-shadow .25s ease;
+}
+
+/* UL 하위에 재사용되는 '외부' 패널(형제 li) */
+.notice-list-flypanel {
+	list-style: none;
+	margin: 8px 0 16px;
+	padding: 0;
+	overflow: hidden;
+	height: 0;
+	transition: height .36s ease;
+}
+
+.notice-list-panel__inner {
+	border: 1px solid #e7eaf0;
+	border-radius: 12px;
+	background: #fff;
+	padding: 16px 18px 20px;
+}
+
+.notice-list-image {
+	width: 100%;
+	height: auto;
+	display: block;
+	border-radius: 10px;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, .06);
+	margin-bottom: 14px;
+}
+
+.notice-list-meta {
+	display: flex;
+	gap: 14px;
+	flex-wrap: wrap;
+	font-size: 13px;
+	color: #5f6c7b;
+	margin-bottom: 6px;
+}
+
+.notice-list-panel__title {
+	font-size: 17px;
+	font-weight: 700;
+	color: #0e1a2b;
+	margin: 6px 0 8px;
+}
+
+.notice-list-panel__content {
+	font-size: 15px;
+	line-height: 1.8;
+	color: #26313f;
+}
+
+.notice-list-panel__content p+p {
+	margin-top: 8px;
+}
+
+.notice-text-wrap {
+	padding-left: 20px;
+}
+
+@media (max-width: 768px) {
+	.notice-list-panel__inner {
+		padding: 12px 14px 16px;
+		border-radius: 10px;
+	}
+
+	.notice-list-panel__title {
+		font-size: 16px;
+	}
+
+	.notice-list-panel__content {
+		font-size: 14px;
+	}
+}
+
+/* 슬라이드 아이템을 기준점으로 사용 (구조 변경 없이 CSS만 추가) */
+.book-preivew__item {
+	position: relative;
+}
+
+/* 중앙 원형 버튼 */
+.surgery-eye-center-btn {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 200px;
+	height: 200px;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	background: rgba(0, 0, 0, 0.7);
+	color: #fff;
+	font-weight: 700;
+	font-size: 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	letter-spacing: -0.3px;
+	opacity: 0;
+	pointer-events: none;
+	/* 기본은 클릭 막음(보이지 않을 때) */
+	transition: opacity .25s ease-in-out;
+	user-select: none;
+	text-decoration: none;
+	z-index: 3;
+}
+
+/* hover 시 페이드 인 */
+.book-preivew__item:hover .surgery-eye-center-btn {
+	opacity: 1;
+	pointer-events: auto;
+	/* 보일 때만 클릭 허용 */
+}
+
+/* 모바일(hover가 없는 환경) 보완: 탭 시 JS가 .-touch-show 클래스를 토글 */
+.book-preivew__item.surgery-eye-touch-show .surgery-eye-center-btn {
+	opacity: 1;
+	pointer-events: auto;
+}
+
+/* 모달 오버레이 */
+.surgery-eye-modal {
+	position: fixed;
+	inset: 0;
+	display: none;
+	z-index: 9999;
+}
+
+.surgery-eye-modal.is-open {
+	display: block;
+}
+
+.surgery-eye-modal__overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.3);
+}
+
+.surgery-eye-modal__content {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+	pointer-events: none;
+	/* 내부 요소 외 클릭은 오버레이로 빠지도록 */
+}
+
+.surgery-eye-modal__box {
+	position: relative;
+	max-width: 90vw;
+	max-height: 90vh;
+	pointer-events: auto;
+	/* 박스 내부는 클릭 가능 */
+}
+
+.surgery-eye-modal__img {
+	display: block;
+	max-width: 90vw;
+	max-height: 90vh;
+	width: auto;
+	height: auto;
+	border-radius: 8px;
+	box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+	background: #000;
+	/* 로딩 중 경계감 */
+}
+
+.surgery-eye-modal__close {
+	position: absolute;
+	right: -12px;
+	top: -12px;
+	width: 40px;
+	height: 40px;
+	border: none;
+	border-radius: 999px;
+	background: rgba(0, 0, 0, 0.7);
+	color: #fff;
+	font-size: 0;
+	cursor: pointer;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	outline: none;
+}
+
+.surgery-eye-modal__close::before,
+.surgery-eye-modal__close::after {
+	content: "";
+	position: absolute;
+	width: 18px;
+	height: 2px;
+	background: #fff;
+	border-radius: 1px;
+}
+
+.surgery-eye-modal__close::before {
+	transform: rotate(45deg);
+}
+
+.surgery-eye-modal__close::after {
+	transform: rotate(-45deg);
+}
+
+/* 접근성용 포커스 표시 */
+.surgery-eye-center-btn:focus-visible,
+.surgery-eye-modal__close:focus-visible {
+	outline: 2px solid #fff;
+	outline-offset: 3px;
+}
+
+/* curiCont-wrap을 기준점으로 (기존에 position 지정 없었다면) */
+
+/* 균등 분할 그리드: JS로 --count를 설정합니다. */
+.surgery-detail-grid {
+	display: grid;
+	grid-template-columns: repeat(var(--surgery-detail-count, 5), 1fr);
+	gap: 16px;
+	align-items: start;
+}
+
+.surgery-detail-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	/* 배경/원형 등은 제공 이미지가 대체하므로 없음 */
+}
+
+.surgery-detail-icon {
+	width: 56px;
+	height: 56px;
+	display: block;
+	object-fit: contain;
+	margin-bottom: 8px;
+}
+
+.surgery-detail-title {
+	font-size: 12px;
+	color: #6b7684;
+	/* 회색 톤 */
+	line-height: 1.2;
+	margin: 0;
+	letter-spacing: -0.2px;
+}
+
+.surgery-detail-desc {
+	font-size: 13px;
+	font-weight: 600;
+	color: #222;
+	line-height: 1.2;
+	margin: 4px 0 0 0;
+	letter-spacing: -0.2px;
+}
+
+/* 반응형 보정(좁은 화면에서 텍스트 겹침 방지) */
+@media (max-width: 480px) {
+	.surgery-detail-icon {
+		width: 48px;
+		height: 48px;
+	}
+
+	.surgery-detail-title {
+		font-size: 11px;
+	}
+
+	.surgery-detail-desc {
+		font-size: 12px;
+	}
+
+	.surgery-detail-grid {
+		gap: 12px;
+	}
+}
+
+.curriculum_bsc .curiInfo_item {
+	display: flex;
+	align-items: flex-start;
+	/* 그대로 둠 */
+	gap: 12px;
+	/* 선택: 좌우 간격 */
+}
+
+/* 기본 p 마진이 정렬에 영향 주지 않도록 제거 권장 */
+.curriculum_bsc .curiInfo-head,
+.curriculum_bsc .curiInfo-body {
+	margin: 0;
+}
+
+/* head만 개별 중앙정렬 */
+.curriculum_bsc .curiInfo-head {
+	align-self: center;
+	/* 선택: 너비 고정이 필요하면
+  width: 80px;
+  text-align: left;
+  */
+}
+
+/* 탭 리스트(기존 ul.inner에 JS로 클래스 부여) */
+.surgery-detail-tabs {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 8px;
+	padding: 0;
+	margin: 12px 0 16px 0;
+	list-style: none;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: thin;
+}
+
+.surgery-detail-tabs>li {
+	flex: 0 0 auto;
+}
+
+.surgery-detail-tabbtn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 88px;
+	height: 36px;
+	padding: 0 14px;
+	border-radius: 999px;
+	border: 1px solid #d7dbe2;
+	background: #fff;
+	color: #333;
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: -0.2px;
+	cursor: pointer;
+	user-select: none;
+	white-space: nowrap;
+	transition: background .2s, color .2s, border-color .2s, box-shadow .2s;
+}
+
+.surgery-detail-tabbtn:hover {
+	border-color: #b8c0cc;
+}
+
+.surgery-detail-tabbtn[aria-selected="true"] {
+	background: #0b5ed7;
+	color: #fff;
+	border-color: #0b5ed7;
+	box-shadow: 0 2px 8px rgba(11, 94, 215, .25);
+}
+
+/* 탭 패널 컨테이너 */
+.surgery-detail-panels {
+	position: relative;
+}
+
+.surgery-detail-panel {
+	display: none;
+	animation: surgery-detail-fade .18s ease-out;
+}
+
+.surgery-detail-panel.is-active {
+	display: block;
+}
+
+@keyframes surgery-detail-fade {
+	from {
+		opacity: 0;
+		transform: translateY(4px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* curiInfo 내부 기본 정리(겹침 방지) */
+.surgery-detail-panel .curiInfo-wrap {
+	margin-top: 10px;
+}
+
+.surgery-detail-panel .curiInfo_item {
+	display: flex;
+	gap: 12px;
+}
+
+.surgery-detail-panel .curiInfo-head,
+.surgery-detail-panel .curiInfo-body {
+	margin: 0;
+}
+
+.surgery-detail-panel .curiInfo-head {
+	align-self: center;
+	font-weight: 700;
+	white-space: nowrap;
+}
+
+/* 모바일 최적화 */
+@media (max-width: 480px) {
+	.surgery-detail-tabbtn {
+		min-width: 72px;
+		height: 34px;
+		font-size: 13px;
+		padding: 0 12px;
+	}
+
+	.surgery-detail-panel .curiInfo_item {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	.surgery-detail-panel .curiInfo-head {
+		align-self: flex-start;
+	}
+}
+
+.surgery-detail-icons {
+	position: relative;
+}
+
+/* 균등 분할 그리드 */
+.surgery-detail-grid {
+	display: grid;
+	grid-template-columns: repeat(var(--surgery-detail-count, 5), 1fr);
+	gap: 16px;
+	align-items: start;
+}
+
+.surgery-detail-item {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+}
+
+.surgery-detail-icon {
+	width: 56px;
+	height: 56px;
+	display: block;
+	object-fit: contain;
+	margin-bottom: 8px;
+}
+
+.surgery-detail-title {
+	font-size: 12px;
+	color: #6b7684;
+	line-height: 1.2;
+	margin: 0;
+	letter-spacing: -0.2px;
+}
+
+.surgery-detail-desc {
+	font-size: 13px;
+	font-weight: 600;
+	color: #222;
+	line-height: 1.2;
+	margin: 4px 0 0 0;
+	letter-spacing: -0.2px;
+}
+
+@media (max-width:480px) {
+	.surgery-detail-icon {
+		width: 48px;
+		height: 48px;
+	}
+
+	.surgery-detail-title {
+		font-size: 11px;
+	}
+
+	.surgery-detail-desc {
+		font-size: 12px;
+	}
+
+	.surgery-detail-grid {
+		gap: 12px;
+	}
+}
+
+/* curiInfo - head 제거 전제 */
+.curriculum_bsc .curiInfo_item {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+}
+
+.curriculum_bsc .curiInfo-body {
+	margin: 0;
+}
+
+/* 탭 */
+.surgery-detail-tabs {
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 8px;
+	padding: 0;
+	margin: 12px 0 16px 0;
+	list-style: none;
+	overflow-x: auto;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-width: thin;
+}
+
+.surgery-detail-tabs>li {
+	flex: 0 0 auto;
+}
+
+.surgery-detail-tabbtn {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 88px;
+	height: 36px;
+	padding: 0 14px;
+	border-radius: 999px;
+	border: 1px solid #d7dbe2;
+	background: #fff;
+	color: #333;
+	font-size: 14px;
+	font-weight: 600;
+	letter-spacing: -0.2px;
+	cursor: pointer;
+	user-select: none;
+	white-space: nowrap;
+	transition: background .2s, color .2s, border-color .2s, box-shadow .2s;
+}
+
+.surgery-detail-tabbtn:hover {
+	border-color: #b8c0cc;
+}
+
+.surgery-detail-tabbtn[aria-selected="true"] {
+	background: #0b5ed7;
+	color: #fff;
+	border-color: #0b5ed7;
+	box-shadow: 0 2px 8px rgba(11, 94, 215, .25);
+}
+
+/* 패널 */
+.surgery-detail-panels {
+	position: relative;
+}
+
+.surgery-detail-panel {
+	display: none;
+	animation: surgery-detail-fade .18s ease-out;
+}
+
+.surgery-detail-panel.is-active {
+	display: block;
+}
+
+@keyframes surgery-detail-fade {
+	from {
+		opacity: 0;
+		transform: translateY(4px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.surgery-detail-panel .curiInfo-wrap {
+	margin-top: 10px;
+}
+
+.surgery-detail-panel .curiInfo_item {
+	display: flex;
+	gap: 12px;
+}
+
+.surgery-detail-panel .curiInfo-body {
+	margin: 0;
+}
+
+/* 모바일 탭 보정 */
+@media (max-width:480px) {
+	.surgery-detail-tabbtn {
+		min-width: 72px;
+		height: 34px;
+		font-size: 13px;
+		padding: 0 12px;
+	}
+
+	.surgery-detail-panel .curiInfo_item {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+
+/* ===== 미리보기 버튼/모달(간단 스타일 가정) ===== */
+.book-preivew__item {
+	position: relative;
+}
+
+.surgery-eye-center-btn {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 16px;
+	border-radius: 999px;
+	background: #0b5ed7;
+	color: #fff;
+	font-weight: 600;
+}
+
+.surgery-eye-modal {
+	display: none;
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
+}
+
+.surgery-eye-modal.is-open {
+	display: block;
+}
+
+.surgery-eye-modal__overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, .5);
+}
+
+.surgery-eye-modal__content {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+}
+
+.surgery-eye-modal__box {
+	position: relative;
+	max-width: min(1000px, 90vw);
+	max-height: 90vh;
+}
+
+.surgery-eye-modal__img {
+	width: 100%;
+	height: auto;
+	display: block;
+}
+
+.surgery-eye-modal__close {
+	position: absolute;
+	right: -8px;
+	top: -8px;
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	background: #fff;
+	border: 1px solid #ddd;
+	cursor: pointer;
+}
+
+/* 1) 카드 컨테이너를 세로 플렉스 컨테이너로 */
+.curiCont-wrap {
+	display: flex;
+	flex-direction: column;
+	/* 기존 스타일 유지 필요 시 position이나 padding은 그대로 두셔도 됩니다 */
+	min-height: 460px;
+	/* 디자인에 맞게 조절 (예: 480~640px) */
+}
+
+/* 2) 탭/패널 영역이 남는 공간을 먹도록 */
+.curiCont-wrap .surgery-detail-panels {
+	flex: 1 1 auto;
+	display: flex;
+	flex-direction: column;
+}
+
+/* 3) 활성 패널만 표시 (기존 규칙 유지) */
+.curiCont-wrap .surgery-detail-panel.is-active {
+	display: flex;
+	/* 패널도 세로 플렉스 */
+	flex-direction: column;
+	flex: 1 1 auto;
+}
+
+/* 4) 아이콘 바를 '아래로 밀착' */
+.curiCont-wrap .surgery-detail-panel.is-active .surgery-detail-icons {
+	margin-top: auto;
+	/* 핵심! */
+	padding-top: 12px;
+	/* 위 콘텐츠와 간격 */
+	/* 필요시 아래 여백 */
+	margin-bottom: 20px;
+	/* 하단 20px 확보 */
+}
+.contact-textarea{
+	display: inline-block;
+    width: 100%;
+    height: 120px;
+    padding: 0 15px;
+    font-size: 16px;
+    color: #111;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-weight: 400;
+	
+}

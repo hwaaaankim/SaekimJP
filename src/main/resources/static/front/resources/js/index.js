@@ -8,7 +8,7 @@ const AUTOPLAY_DELAY = 5000; // 5초
 const SPEED_MS = 800;  // 페이드 전환 속도
 
 // ===== Swiper 초기화 =====
-const swiper = new Swiper('.mySwiper', {
+const mySwiper = new Swiper('.mySwiper', {
 	slidesPerView: 1,
 	spaceBetween: 30,
 	centeredSlides: true,
@@ -65,11 +65,6 @@ function resetAllKB(s) {
 	});
 }
 
-// 상단바: 0~1
-function updateTopbar(ratio01) {
-	if (!topbarFill) return;
-	topbarFill.style.width = (ratio01 * 100).toFixed(2) + '%';
-}
 
 // 원형: 0~1 (시계방향 채움)
 function updateCircular(ratio01) {
@@ -85,6 +80,12 @@ function updateCountUp(elapsedMs) {
 	// 0ms~999ms => 1, 1000ms~1999ms => 2, ..., 4000ms~ => 5
 	const sec = Math.min(5, Math.max(1, 1 + Math.floor(elapsedMs / 1000)));
 	progressContent.textContent = String(sec);
+}
+
+// 상단바: 0~1
+function updateTopbar(ratio01) {
+	if (!topbarFill) return;
+	topbarFill.style.width = (ratio01 * 100).toFixed(2) + '%';
 }
 
 (function() {
@@ -107,85 +108,75 @@ function updateCountUp(elapsedMs) {
 	// 3) 혹시 모를 누락 대비(스크롤 이벤트로도 한 번 더 동기화)
 	window.addEventListener('scroll', syncTopbarVisibility, { passive: true });
 })();
+
+/* ===== 기존 변수/로직 유지 ===== */
 var control = document.getElementById('control');
 var bar = document.querySelector('.bar');
 var value = document.querySelector('.value');
-var order = 0;
 
 var RADIUS = 170;
 var CIRCUMFERENCE = 2 * Math.PI * RADIUS;
 
+/* 진행률 갱신 */
 function progress(per) {
 	var progress = per / 100;
 	var dashoffset = CIRCUMFERENCE * (1 - progress);
 
+	/* 우측 배경: 기존 클래스 로직 보존 + 페이드용 data-stage 동기화 */
 	if (per == 1) {
-		$(".bg-list_item").removeClass("tl-bg2 tl-bg3 tl-bg4 tl-bg5");
+		$(".bg-list_item").removeClass("tl-bg2 tl-bg3 tl-bg4 tl-bg5").attr("data-stage", "1");
 		value.innerHTML = "담당의 상담";
 	} else if (per == 20) {
-		$(".bg-list_item").addClass("tl-bg2");
+		$(".bg-list_item").addClass("tl-bg2").attr("data-stage", "2");
 		value.innerHTML = "맞춤 전략수립";
 	} else if (per == 40) {
-		$(".bg-list_item").addClass("tl-bg3");
+		$(".bg-list_item").addClass("tl-bg3").attr("data-stage", "3");
 		value.innerHTML = "수술 진행";
 	} else if (per == 60) {
-		$(".bg-list_item").addClass("tl-bg4");
+		$(".bg-list_item").addClass("tl-bg4").attr("data-stage", "4");
 		value.innerHTML = "회복 관리";
 	} else if (per == 80) {
-		$(".bg-list_item").addClass("tl-bg5");
+		$(".bg-list_item").addClass("tl-bg5").attr("data-stage", "5");
 		value.innerHTML = "사후 관리";
 	}
+
 	bar.style.strokeDashoffset = dashoffset;
 }
 
-control.addEventListener('input', function(event) {
-	progress(event.target.valueAsNumber);
-});
-control.addEventListener('change', function(event) {
-	progress(event.target.valueAsNumber);
-});
+/* range 이벤트 (표시는 숨김 상태) */
+control.addEventListener('input', e => progress(e.target.valueAsNumber));
+control.addEventListener('change', e => progress(e.target.valueAsNumber));
 
+/* 초기 설정 */
 bar.style.strokeDasharray = CIRCUMFERENCE;
 progress(0);
 move();
 
+/* 자동 순환 */
 var dayStudy = setInterval(move, 9000);
 function handleVisibilityChange() {
-	if (document.hidden) {
-		clearInterval(dayStudy);
-		return;
-	}
-};
+	if (document.hidden) { clearInterval(dayStudy); return; }
+}
+document.addEventListener("visibilitychange", handleVisibilityChange, false);
 
 function move() {
-	var start = 0;
-	var end = 100;
-	var id = setInterval(frame, 80);
-
-	function frame() {
-		if (start >= end) {
-			clearInterval(id);
-		} else {
-
-			if (document.hidden) {
-				return;
-			}
-
+	var start = 0, end = 100;
+	var id = setInterval(function frame() {
+		if (start >= end) { clearInterval(id); }
+		else {
+			if (document.hidden) return;
 			start += 1;
 			progress(start);
 		}
-	}
+	}, 80);
 }
 
-document.addEventListener("visibilitychange", handleVisibilityChange, false);
-function sampleMessage() {
-	alert('연결 페이지를 지정할 수 있습니다.');
-}
+/* 원본에 있던 도우미 함수들 필요 시 그대로 사용 */
+function sampleMessage() { alert('연결 페이지를 지정할 수 있습니다.'); }
 
 document.querySelectorAll('.index-morebtn').forEach($btn => {
 	$btn.addEventListener('click', () => {
 		const key = $btn.getAttribute('data-target');
-		// 예: 페이지 이동 규칙
 		const map = {
 			eyes: '/front/service/eyes',
 			contour: '/front/service/contour',

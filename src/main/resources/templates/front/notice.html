@@ -1,0 +1,264 @@
+<html id="hamHtml" lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/front/common :: commonHead"></head>
+
+<body id="hamBody" class="" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
+	<div id="container">
+		<th:block th:replace="~{fragments/front/common :: commonHeader(white=${false}, dark=${true})}"></th:block>
+		<main id="main">
+			<div class="main-wrap">
+				<section class="bsc_container">
+					<section class="subtit-wrap">
+						<div class="inner w1280 mt-3">
+							<p class="title">공지사항</p>
+							<span class="sub-txt">잉글루의 새로운 소식을 확인해보세요.</span>
+						</div>
+					</section>
+
+					<section class="default-wrap">
+						<div class="inner w1280">
+							<div class="total-searchBox">
+								<div class="total">
+									<p class="total-txt">Total <span class="total-num">XX</span></p>
+								</div>
+								<form name="searchForm" id="searchForm" method="post">
+									<div class="search">
+										<div class="inputBox">
+											<input type="text" name="searchText" id="searchText" title="검색어"
+												class="input-txt" placeholder="검색어를 입력해주세요." value="">
+											<button type="submit" value="검색" class="searchBtn"></button>
+										</div>
+									</div>
+								</form>
+							</div>
+
+							<div class="notice-list__wrap">
+								<ul class="notice-list" id="noticeList"><!-- data-panel-position="above" 로 위쪽 오픈 가능 -->
+									<li class="notice-list__item">
+										<p class="notice-num">XX</p>
+										<div class="notice-con">
+											<a href="#" class="notice-title">NOTICE TITLE AREA. </a>
+											<time class="notice-date">2025-01-01 DATE AREA</time>
+										</div>
+									</li>
+									<li class="notice-list__item">
+										<p class="notice-num">XX</p>
+										<div class="notice-con">
+											<a href="#" class="notice-title">NOTICE TITLE AREA. </a>
+											<time class="notice-date">2025-01-01 DATE AREA</time>
+										</div>
+									</li>
+									<li class="notice-list__item">
+										<p class="notice-num">XX</p>
+										<div class="notice-con">
+											<a href="#" class="notice-title">NOTICE TITLE AREA. </a>
+											<time class="notice-date">2025-01-01 DATE AREA</time>
+										</div>
+									</li>
+									<li class="notice-list__item">
+										<p class="notice-num">XX</p>
+										<div class="notice-con">
+											<a href="#" class="notice-title">NOTICE TITLE AREA. </a>
+											<time class="notice-date">2025-01-01 DATE AREA</time>
+										</div>
+									</li>
+									<li class="notice-list__item">
+										<p class="notice-num">XX</p>
+										<div class="notice-con">
+											<a href="#" class="notice-title">NOTICE TITLE AREA. </a>
+											<time class="notice-date">2025-01-01 DATE AREA</time>
+										</div>
+									</li>
+									<li class="notice-list__item">
+										<p class="notice-num">XX</p>
+										<div class="notice-con">
+											<a href="#" class="notice-title">NOTICE TITLE AREA. </a>
+											<time class="notice-date">2025-01-01 DATE AREA</time>
+										</div>
+									</li>
+									<li class="notice-list__item">
+										<p class="notice-num">XX</p>
+										<div class="notice-con">
+											<a href="#" class="notice-title">NOTICE TITLE AREA. </a>
+											<time class="notice-date">2025-01-01 DATE AREA</time>
+										</div>
+									</li>
+									<li class="notice-list__item">
+										<p class="notice-num">XX</p>
+										<div class="notice-con">
+											<a href="#" class="notice-title">NOTICE TITLE AREA. </a>
+											<time class="notice-date">2025-01-01 DATE AREA</time>
+										</div>
+									</li>
+									<li class="notice-list__item">
+										<p class="notice-num">XX</p>
+										<div class="notice-con">
+											<a href="#" class="notice-title">NOTICE TITLE AREA. </a>
+											<time class="notice-date">2025-01-01 DATE AREA</time>
+										</div>
+									</li>
+									<li class="notice-list__item">
+										<p class="notice-num">XX</p>
+										<div class="notice-con">
+											<a href="#" class="notice-title">NOTICE TITLE AREA. </a>
+											<time class="notice-date">2025-01-01 DATE AREA</time>
+										</div>
+									</li>
+								</ul>
+							</div>
+
+							<ul class="list-pagination">
+								<span class="arrow">
+									<a href="#" class="first"><em class="blind">처음페이지</em></a>
+									<a href="#" class="prev"><em class="blind">이전페이지</em></a>
+								</span>
+								<ul class="num-list">
+									<li class="current on"><a href="#">1</a></li>
+									<li><a href="#">2</a></li>
+									<li><a href="#">3</a></li>
+									<li><a href="#">4</a></li>
+								</ul>
+								<span class="arrow">
+									<a href="#" class="next"><em class="blind">다음페이지</em></a>
+									<a href="" class="last"><em class="blind">마지막페이지</em></a>
+								</span>
+							</ul>
+						</div>
+					</section>
+				</section>
+			</div>
+		</main>
+
+		<footer th:replace="fragments/front/common :: commonFooter"></footer>
+	</div>
+	<th:block th:replace="fragments/front/common :: commonScript"></th:block>
+	<script>
+		(function () {
+			const UL = document.getElementById('noticeList');
+			if (!UL) return;
+
+			// 패널을 '아래'가 아니라 '위'로 열고 싶으면 UL에 data-panel-position="above" 추가
+			const OPEN_ABOVE = UL.dataset.panelPosition === 'above';
+
+			let animating = false;
+			let hostLi = null; // 현재 패널의 기준 li
+
+			// 단일 플라이 패널(형제 li)을 생성해 재사용
+			const fly = document.createElement('li');
+			fly.className = 'notice-list-flypanel';
+			fly.setAttribute('aria-hidden', 'true');
+			fly.innerHTML = `
+        <div class="notice-list-panel__inner">
+          <img class="notice-list-image" src="/front/sample/900-400.png" alt="공지 이미지">
+          <div class="notice-text-wrap">
+	          <div class="notice-list-meta">
+	            <span class="notice-list-meta__author">작성자 : <span data-field="author">운영팀</span></span> | 
+	            <span class="notice-list-meta__date">등록일 : <span data-field="date">-</span></span> | 
+	            <span class="notice-list-meta__date">조회수 : <span> 30 회.</span></span>
+	          </div>
+	          <h3 class="notice-list-panel__title" data-field="title">제목</h3>
+	          <div class="notice-list-panel__content" data-field="content">
+	            <p>샘플 내용입니다. 공지 상세 텍스트가 이 영역에 표시됩니다. 시스템 점검, 기능 추가, 약관 변경 등 공지 성격에 맞는 안내 문구를 배치하세요.</p>
+	            <p>- 예시 1: 점검 일정 및 영향 범위<br>- 예시 2: 신규 기능 소개와 사용 방법</p>
+	          </div>
+          </div>
+        </div>
+      `;
+			UL.appendChild(fly); // 초기에는 리스트 끝에 부착
+
+			function setPanelData({title, date, author}) {
+				fly.querySelector('[data-field="title"]').textContent = title || '';
+				fly.querySelector('[data-field="date"]').textContent = date || '';
+				fly.querySelector('[data-field="author"]').textContent = author || '운영팀';
+			}
+
+			function placePanel(refLi) {
+				if (OPEN_ABOVE) {
+					UL.insertBefore(fly, refLi); // 위쪽으로
+				} else {
+					refLi.after(fly); // 아래쪽으로
+				}
+			}
+
+			function openPanel(refLi) {
+				// 데이터 채우기
+				const a = refLi.querySelector('.notice-title');
+				const t = refLi.querySelector('.notice-date');
+				const titleText = a ? a.textContent.trim() : '';
+				const dateText = t ? (t.textContent.trim() || t.getAttribute('datetime') || '') : '';
+				setPanelData({title: titleText, date: dateText, author: '운영팀'});
+
+				// 위치 붙이기
+				placePanel(refLi);
+				hostLi = refLi;
+				hostLi.classList.add('notice-list-active');
+
+				// 슬라이드 오픈
+				fly.style.height = 'auto';
+				const target = fly.scrollHeight;
+				fly.style.height = '0px';
+				fly.getBoundingClientRect(); // reflow
+				fly.setAttribute('aria-hidden', 'false');
+				requestAnimationFrame(() => {fly.style.height = target + 'px';});
+
+				fly.addEventListener('transitionend', function handler() {
+					fly.removeEventListener('transitionend', handler);
+					fly.style.height = 'auto'; // 열린 상태 유지
+					animating = false;
+				}, {once: true});
+			}
+
+			function closePanel() {
+				if (!hostLi) return;
+				hostLi.classList.remove('notice-list-active');
+
+				const current = fly.scrollHeight;
+				fly.style.height = current + 'px';
+				fly.getBoundingClientRect(); // reflow
+				requestAnimationFrame(() => {fly.style.height = '0px';});
+				fly.setAttribute('aria-hidden', 'true');
+
+				fly.addEventListener('transitionend', function handler() {
+					fly.removeEventListener('transitionend', handler);
+					animating = false;
+					hostLi = null;
+				}, {once: true});
+			}
+
+			UL.addEventListener('click', (e) => {
+				const li = e.target.closest('.notice-list__item');
+				if (!li || !UL.contains(li)) return;
+
+				// 제목 링크 기본동작 방지 (토글 전용)
+				if (e.target.closest('.notice-title')) {
+					e.preventDefault();
+				}
+
+				if (animating) return;
+				animating = true;
+
+				// 이미 같은 li 기준으로 열려 있으면 닫기
+				if (hostLi === li && fly.getAttribute('aria-hidden') === 'false') {
+					closePanel();
+					return;
+				}
+
+				// 다른 li에서 열려 있으면 먼저 닫고, 닫힘 끝난 뒤 새로 열기
+				if (hostLi && fly.getAttribute('aria-hidden') === 'false') {
+					fly.addEventListener('transitionend', function afterClose() {
+						fly.removeEventListener('transitionend', afterClose);
+						animating = true; // 다음 애니메이션
+						openPanel(li);
+					}, {once: true});
+					closePanel();
+					return;
+				}
+
+				// 아무 것도 안 열려 있으면 바로 열기
+				openPanel(li);
+			});
+		})();
+	</script>
+</body>
+
+</html>

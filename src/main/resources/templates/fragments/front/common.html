@@ -16,8 +16,8 @@
 	<link rel="stylesheet" type="text/css" href="/front/resources/css/common.css">
 	<link rel="stylesheet" type="text/css" href="/front/resources/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/front/resources/css/sub.css">
-	<link rel="stylesheet" type="text/css" href="/front/resources/css/index.css" >
-
+	<link rel="stylesheet" type="text/css" href="/front/resources/css/index.css">
+	<link rel="stylesheet" type="text/css" href="/front/resources/css/add.css">
 	<link rel="stylesheet" href="/front/common/css/swiper-bundle.min.css">
 	<link rel="stylesheet" href="/front/common/css/aos.css">
 </head>
@@ -26,8 +26,9 @@
 
 
 	<div id="container">
-		<th:block th:fragment="commonHeader">
-			<header id="header" class="">
+		<th:block th:fragment="commonHeader(white, dark)">
+			<header id="header" class=""
+          	th:classappend="${dark} ? ' header--dark' : (${white} ? ' header--white' : '')">
 				<section class="header-inner">
 					<h1 class="header-logo"><a href="/"></a></h1>
 					<nav class="header-gnb">
@@ -36,22 +37,22 @@
 								<a class="gnb-menu_link" href="/" title="#"><span>TITLE</span></a>
 								<ul class="snb-menu">
 									<li class="snb-menu_item"><a class="snb-menu_link" href="/index" title="#">index</a></li>
-									<li class="snb-menu_item"><a class="snb-menu_link" href="/surgery" title="#">surgery</a></li>
-									<li class="snb-menu_item"><a class="snb-menu_link" href="/community" title="#">community</a></li>
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/surgerySimple" title="#">surgerySimple</a></li>
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/notice" title="#">notice</a></li>
 								</ul>
 							</li>
 							<li class="gnb-menu_item">
 								<a class="gnb-menu_link" href="/" title="#"><span>TITLE</span></a>
 								<ul class="snb-menu">
-									<li class="snb-menu_item"><a class="snb-menu_link" href="/system" title="#">system</a></li>
-									<li class="snb-menu_item"><a class="snb-menu_link" href="#" title="#">MENU</a></li>
-									<li class="snb-menu_item"><a class="snb-menu_link" href="#" title="#">MENU</a></li>
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/surgeryDetail" title="#">surgeryDetail</a></li>
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/about" title="#">about</a></li>
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/faq" title="#">faq</a></li>
 								</ul>
 							</li>
 							<li class="gnb-menu_item">
 								<a class="gnb-menu_link" href="/" title="#"><span>TITLE</span></a>
 								<ul class="snb-menu">
-									<li class="snb-menu_item"><a class="snb-menu_link" href="#" title="#">MENU</a></li>
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/contact" title="#">contact</a></li>
 									<li class="snb-menu_item"><a class="snb-menu_link" href="#" title="#">MENU</a></li>
 									<li class="snb-menu_item"><a class="snb-menu_link" href="#" title="#">MENU</a></li>
 								</ul>

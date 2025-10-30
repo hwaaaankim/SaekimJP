@@ -1,20 +1,11 @@
-/**********************************
-@ common
-**********************************/
 var common = {
 
-	stageData: { _y: 0, _w: 0, _h: 0 },			// page information data
-	agent: null,										// check media(true:PC & false:MOBILE)
-	btnTopFlag: false,										// button top flag
-
-
-	//common init
+	stageData: { _y: 0, _w: 0, _h: 0 },
+	agent: null,
+	btnTopFlag: false,
 	init: function() {
-		//$('header , #header , #footer , #history').css({'opacity':0});
 
 		common.agent = common.checkMedia();
-
-
 		//서브메뉴 드롭다운
 		$("#title_dept1").on("click", function() {
 			if ($(this).hasClass('on')) {
@@ -1894,3 +1885,26 @@ $(document).on("click", ".faq_Open", function() {
 		_target.next().css('display', 'block');
 	}
 });
+
+
+
+(function() {
+	const headerEl = document.querySelector('header');
+	const topbarEl = document.querySelector('#main .mainv_container .progress-topbar');
+	if (!headerEl || !topbarEl) return;
+
+	function syncTopbarVisibility() {
+		const hide = headerEl.classList.contains('scroll');
+		topbarEl.classList.toggle('is-hidden', hide);
+	}
+
+	// 1) 초기 상태 반영
+	syncTopbarVisibility();
+
+	// 2) header class 변경 감시 (가장 정확)
+	const mo = new MutationObserver(syncTopbarVisibility);
+	mo.observe(headerEl, { attributes: true, attributeFilter: ['class'] });
+
+	// 3) 혹시 모를 누락 대비(스크롤 이벤트로도 한 번 더 동기화)
+	window.addEventListener('scroll', syncTopbarVisibility, { passive: true });
+})();

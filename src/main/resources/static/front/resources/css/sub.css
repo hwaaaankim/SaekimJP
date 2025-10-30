@@ -117,7 +117,7 @@
   text-align: center;
   display: flex;
   justify-content: center;
-  padding: 100px 0;
+  padding: 100px 0 60px 0;
 }
 .subtit-wrap .title {
   color: #151515;
@@ -167,7 +167,7 @@
   margin: 0 15px;
 }
 .subtit-wrap .btag-list.phonics .btag-list__item > span {
-  color: #ec0974;
+  color: #094bad;
 }
 .subtit-wrap .btag-list.orange .btag-list__item > span {
   color: #f25822;
@@ -278,7 +278,7 @@
 }
 
 .series > a.phonics {
-  background-color: #ec0974;
+  background-color: #094bad;
   pointer-events: none;
   padding-left: 60px;
 }
@@ -477,7 +477,7 @@
   padding-top: 120px;
 }
 .default-wrap__type--dt.whizKid {
-  background: #f6c200;
+  background: transparent;
 }
 .default-wrap__type--dt.ace {
   background: #feac06;
@@ -512,7 +512,7 @@
   position: absolute;
   right: -1px;
   top: 0;
-  background-color: #fff;
+  background-color: #000;
   transition: all 0.5s;
   opacity: 0.3;
 }
@@ -538,21 +538,21 @@
   height: 20%;
 }
 .dtcon-wrap .dtconBox .txtBox {
-  margin-right: -75px;
+  margin-right: -120px;
   display: flex;
   flex-direction: column;
-  text-align: end;
+  text-align: center;
   white-space: nowrap;
 }
 .dtcon-wrap .dtconBox:nth-child(2n) .txtBox {
-  margin-left: -75px;
-  text-align: start;
+  margin-left: -120px;
+  text-align: center;
 }
 .dtcon-wrap .dtconBox .txtBox > span {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 34px;
+  color: #000;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
   letter-spacing: -0.02em;
 }
 .dtcon-wrap .dtconBox .txtBox > span.subtxt {
@@ -560,8 +560,9 @@
   line-height: 1.4;
 }
 .dtcon-wrap .dtconBox .imgBox {
-  max-width: 550px;
-  width: 22vw;
+  max-width: 620px;
+  width: 25vw;
+  box-shadow: -7px 10px 7px 3px rgba(0, 0, 0, 0.15);
 }
 
 .dtcon-wrap .dtconBox .unit {
@@ -1976,13 +1977,15 @@ input[type="checkbox"] {
   border-radius: 20px;
 }
 .power-list_item .imgBox {
-  width: 33%;
+  width: 40%;
+  padding:10px;
 }
 .powerTBox {
   text-align: left;
   display: flex;
   flex-direction: column;
   width: 67%;
+  padding-left:10px;
 }
 .powerTBox .tit {
   font-size: 22px;
@@ -2101,13 +2104,13 @@ input[type="checkbox"] {
   margin-top: 0;
 }
 .successCon-wrap .title-wrap.sub {
-  margin-bottom: 80px;
+  margin-bottom: 20px;
 }
 
 .textF-wrap {
   position: relative;
   width: 100%;
-  height: 645px;
+  height: 640px;
   display: flex;
   flex-direction: column;
 }
@@ -2147,12 +2150,9 @@ input[type="checkbox"] {
 }
 .textF-track.left {
   animation: rollingleft 20000s linear infinite;
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/fra/bookA_img1.png)
+  background: url(/front/sample/1920-640.png)
     left repeat-x;
 }
-/*.textF-track.right {animation: rollingright 20000s linear infinite; background:url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/fra/bookA_img2.png) right repeat-x;}
-.textF-track.left1 {background:url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/fra/bookA_img1.png) left repeat-x;}
-.textF-track.left2 {background:url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/fra/bookA_img3.png) left repeat-x;}*/
 
 @keyframes rollingleft {
   0% {
@@ -2205,22 +2205,10 @@ input[type="checkbox"] {
   justify-content: space-between;
   align-items: center;
   padding-top: 50px;
+  gap:10px;
 }
 .cs-list_item {
   position: relative;
-}
-.cs-list_item:after {
-  content: "";
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/fra/cs_dot.png)
-    no-repeat;
-  width: 92px;
-  height: 16px;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  margin-right: -180px;
-  margin-top: -8px;
-  transform: rotate(180deg);
 }
 .cs-list_item:first-child:after {
   transform: rotate(0deg);
@@ -2239,13 +2227,18 @@ input[type="checkbox"] {
   position: absolute;
   top: -50px;
 }
-.cs-list_item:first-child:before {
-  content: "본사";
+.cs-list_item:first-child::before {
+  content: "상담실";
   background: #00b8e4;
-  left: calc(50% - 27.5px);
+  left: calc(50% - 34px);
 }
-.cs-list_item:last-child:before {
-  content: "캠퍼스";
+.cs-list_item:nth-child(2)::before {
+  content: "수술실";
+  background: rgb(0, 128, 255);
+  left: calc(50% - 34px);
+}
+.cs-list_item:last-child::before {
+  content: "회복실";
   background: #ff7a00;
   left: calc(50% - 34px);
 }

@@ -119,6 +119,10 @@ html {
 	color: #fff;
 }
 
+#header.header--dark .gnb-menu_link>span {
+	color: #000;
+}
+
 #header .gnb-menu_link.active>span {
 	color: #ff7a00 !important;
 }
@@ -676,7 +680,7 @@ input[type="radio"]:checked {
 }
 
 .bsc_container .title-wrap {
-	max-width: 80%;
+	max-width: 100%;
 }
 
 .bsc_container .title {
@@ -745,77 +749,58 @@ input[type="radio"]:checked {
 	/*animation: ani-delay 2s ease-out;*/
 }
 
-/*.system_bsc .system_cnt01 .syc-list_item:nth-child(1):after {animation-delay: 0.1s;}
-.system_bsc .system_cnt01 .syc-list_item:nth-child(2):after {animation-delay: 1s;}
-.system_bsc .system_cnt01 .syc-list_item:nth-child(3):after {animation-delay: 2s;}
-.system_bsc .system_cnt01 .syc-list_item:nth-child(4):after {animation-delay: 3s;}
-.system_bsc .system_cnt01 .syc-list_item:nth-child(5):after {animation-delay: 4s;}
-.system_bsc .system_cnt01 .syc-list_item:nth-child(6):after {animation-delay: 5s;}
-
-@-webkit-keyframes ani-delay {
-  0% {
-    opacity:0;
-  }
-  100% {
-    opacity:1;
-  }
-}*/
-
-.system_bsc .system_cnt02 {
-	background-color: #fff1e7;
-}
-
-.system_bsc .system_cnt02 .timeline-wrap {
+/* ===== 레이아웃/텍스트(기존 유지) ===== */
+.system_cnt02 .timeline-wrap {
 	height: 100%;
 	max-height: 710px;
 	overflow: hidden;
 }
 
-.system_bsc .system_cnt02 .timeline-list {
+.system_cnt02 .timeline-list {
 	display: flex;
 	justify-content: space-between;
 }
 
-.system_bsc .system_cnt02 .timeline-list_item {
+.system_cnt02 .timeline-list_item {
 	width: 49%;
 	min-height: 710px;
-	border-radius: 0px;
+	border-radius: 0;
 }
 
-.system_bsc .system_cnt02 .timeline-list_item.tl-info {
+.system_cnt02 .timeline-list_item.tl-info {
 	background: #094bad;
-	justify-content: center;
-	align-items: center;
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	padding: 60px 45px;
 }
 
-.system_bsc .system_cnt02 .timeline-list_item.tl-info .info-box {
+.system_cnt02 .timeline-list_item.tl-info .info-box {
 	text-align: center;
 }
 
-.system_bsc .system_cnt02 .timeline-list_item.tl-info .info-box>p {
+.system_cnt02 .timeline-list_item.tl-info .info-box>p {
 	font-weight: 600;
 	font-size: 20px;
 	line-height: 32px;
 	color: rgba(255, 255, 255, 0.9);
 }
 
-.system_bsc .system_cnt02 .timeline-list_item.tl-info .info-box>h4 {
+.system_cnt02 .timeline-list_item.tl-info .info-box>h4 {
 	font-weight: 700;
 	font-size: 50px;
 	color: #fff;
 	margin: 20px 0 35px;
 }
 
-.system_bsc .system_cnt02 .timeline-list_item.tl-info .info-box>h4>span.txtBg {
+.system_cnt02 .timeline-list_item.tl-info .info-box>h4>span.txtBg {
 	color: #151515;
 	position: relative;
 	z-index: 1;
 }
 
-.system_bsc .system_cnt02 .timeline-list_item.tl-info .info-box>h4>span.txtBg:before {
+.system_cnt02 .timeline-list_item.tl-info .info-box>h4>span.txtBg:before {
 	content: "";
 	position: absolute;
 	top: 50%;
@@ -827,47 +812,72 @@ input[type="radio"]:checked {
 	transform: translate(-50%, -50%);
 }
 
-.system_bsc .system_cnt02 .bg-list {
+/* ===== 우측 배경(페이드 전환) ===== */
+.system_cnt02 .bg-list {
 	height: 100%;
 	overflow: hidden;
-	border-radius: 0px;
+	border-radius: 0;
 }
 
-.system_bsc .system_cnt02 .bg-list_item {
+.system_cnt02 .bg-list_item {
 	height: 100%;
+	position: relative;
 }
 
-.system_bsc .system_cnt02 .bg-list_item.tl-bg1 {
-	background: url(/front/sample/715-710.png) no-repeat;
+/* 겹쳐지는 레이어: opacity로 페이드 */
+.system_cnt02 .bg-list_item .bg-pic {
+	position: absolute;
+	inset: 0;
+	background-repeat: no-repeat;
 	background-size: cover;
-	animation: ani-delay 0.7s ease-in-out;
+	background-position: center;
+	opacity: 0;
+	transition: opacity 600ms ease;
 }
 
-.system_bsc .system_cnt02 .bg-list_item.tl-bg2 {
-	background: url(/front/sample/715-710.png) no-repeat;
-	background-size: cover;
-	animation: ani-delay 0.7s ease-in-out;
+/* 실제 이미지 경로 (필요시 각각 교체) */
+.system_cnt02 .bg-list_item .pic1 {
+	background-image: url(/front/sample/715-710.png);
 }
 
-.system_bsc .system_cnt02 .bg-list_item.tl-bg3 {
-	background: url(/front/sample/715-710.png) no-repeat;
-	background-size: cover;
-	animation: ani-delay 0.7s ease-in-out;
+.system_cnt02 .bg-list_item .pic2 {
+	background-image: url(/front/sample/715-710.png);
 }
 
-.system_bsc .system_cnt02 .bg-list_item.tl-bg4 {
-	background: url(/front/sample/715-710.png) no-repeat;
-	background-size: cover;
-	animation: ani-delay 0.7s ease-in-out;
+.system_cnt02 .bg-list_item .pic3 {
+	background-image: url(/front/sample/715-710.png);
 }
 
-.system_bsc .system_cnt02 .bg-list_item.tl-bg5 {
-	background: url(/front/sample/715-710.png) no-repeat;
-	background-size: cover;
-	animation: ani-delay 0.7s ease-in-out;
+.system_cnt02 .bg-list_item .pic4 {
+	background-image: url(/front/sample/715-710.png);
 }
 
-/*서클 프로그레스바*/
+.system_cnt02 .bg-list_item .pic5 {
+	background-image: url(/front/sample/715-710.png);
+}
+
+/* data-stage 값에 맞는 레이어만 표시 */
+.system_cnt02 .bg-list_item[data-stage="1"] .pic1 {
+	opacity: 1;
+}
+
+.system_cnt02 .bg-list_item[data-stage="2"] .pic2 {
+	opacity: 1;
+}
+
+.system_cnt02 .bg-list_item[data-stage="3"] .pic3 {
+	opacity: 1;
+}
+
+.system_cnt02 .bg-list_item[data-stage="4"] .pic4 {
+	opacity: 1;
+}
+
+.system_cnt02 .bg-list_item[data-stage="5"] .pic5 {
+	opacity: 1;
+}
+
+/* ===== 원형 프로그레스바 ===== */
 .circle_progress_wrap {
 	position: relative;
 	width: 400px;
@@ -893,7 +903,9 @@ input[type="radio"]:checked {
 	stroke-width: 55px;
 }
 
-.bar {
+/* ★단색 강제 오버라이드: gradient 클래스가 있더라도 이 값이 우선되도록 !important */
+.circle_progress .bar {
+	stroke: rgb(129, 179, 254) !important;
 	stroke-linecap: round;
 	cx: 200px;
 	cy: 200px;
@@ -903,11 +915,8 @@ input[type="radio"]:checked {
 
 .value {
 	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	top: 0;
-	color: rgba(255, 255, 255);
+	inset: 0;
+	color: #fff;
 	font-size: 40px;
 	line-height: 46px;
 	font-weight: 700;
@@ -915,6 +924,8 @@ input[type="radio"]:checked {
 	justify-content: center;
 	align-items: center;
 }
+
+/* 기존 tl-bg1~5 클래스는 호환을 위해 유지(이미지/애니메이션 지정 없음) */
 
 .system_bsc .system_cnt03 .il-list {
 	display: flex;
@@ -1211,7 +1222,7 @@ input[type="radio"]:checked {
 .system_bsc .system_cnt05 .iceMImg-wrap {
 	min-height: 100px;
 	max-height: 200px;
-	padding:0px 10px 0px 10px;
+	padding: 0px 10px 0px 10px;
 	overflow: hidden;
 }
 
@@ -1240,27 +1251,35 @@ input[type="radio"]:checked {
 }
 
 .curriculum_bsc .curi-list_item.curiItem1 {
-	background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/curiCont_bg1.png) left top no-repeat;
+	background: url(/front/sample/1060-568.png) left top no-repeat;
 }
 
 .curriculum_bsc .curi-list_item.curiItem2 {
-	background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/curiCont_bg2.png) left top no-repeat;
+	background: url(/front/sample/1060-568.png) left top no-repeat;
 }
 
 .curriculum_bsc .curi-list_item.curiItem3 {
-	background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/curiCont_bg3.png) left top no-repeat;
+	background: url(/front/sample/1060-568.png) left top no-repeat;
 }
 
 .curriculum_bsc .curi-list_item.curiItem4 {
-	background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/curiCont_bg4.png) left top no-repeat;
+	background: url(/front/sample/1060-568.png) left top no-repeat;
+}
+
+.curriculum_bsc .curi-list_item.curiItem5 {
+	background: url(/front/sample/1060-568.png) left top no-repeat;
+}
+
+.curriculum_bsc .curi-list_item.curiItem6 {
+	background: url(/front/sample/1060-568.png) left top no-repeat;
 }
 
 .curriculum_bsc .curiCont-wrap {
-	width: 680px;
-	height: 100%;
+	width: 880px;
+	height: 460px;
 	border-radius: 20px;
 	background: #fff;
-	padding: 64px 60px;
+	padding: 24px 30px;
 	position: absolute;
 }
 
@@ -1269,27 +1288,27 @@ input[type="radio"]:checked {
 }
 
 .curriculum_bsc .curiCont-wrap.right {
-	right: 0;
+	right: -250px;
 	box-shadow: -14px 20px 15px 7px rgba(0, 0, 0, 0.15);
 }
 
 .curriculum_bsc .curiCont-wrap.left {
-	left: 0;
+	left: -250px;
 	box-shadow: 14px 20px 15px 7px rgba(0, 0, 0, 0.15);
 }
 
 .curriculum_bsc .curiCont-tit {
 	font-weight: 900;
-	font-size: 40px;
-	color: #151515;
+	font-size: 32px;
+	color: #000;
 }
 
 .curriculum_bsc .curiCont-txt {
 	font-weight: 400;
-	font-size: 18px;
-	line-height: 32px;
+	font-size: 16px;
+	line-height: 20px;
 	color: #494b4a;
-	padding: 28px 0 20px;
+	padding: 14px 0 20px;
 }
 
 .curriculum_bsc .curiInfo_item {
@@ -1304,9 +1323,9 @@ input[type="radio"]:checked {
 .curriculum_bsc .curiInfo_item .curiInfo-head {
 	width: 88px;
 	height: 30px;
-	border-radius: 30px;
-	font-weight: 600;
-	font-size: 15px;
+	border-radius: 5px;
+	font-weight: 500;
+	font-size: 14px;
 	color: #fff;
 	line-height: 30px;
 	text-align: center;
@@ -1338,6 +1357,14 @@ input[type="radio"]:checked {
 
 .curriculum_bsc .curi-list_item.curiItem4 .curiInfo-head {
 	background: #1ab9d0;
+}
+
+.curriculum_bsc .curi-list_item.curiItem5 .curiInfo-head {
+	background: rgb(0, 128, 192);
+}
+
+.curriculum_bsc .curi-list_item.curiItem6 .curiInfo-head {
+	background: rgb(0, 0, 160);
 }
 
 .certification_bsc .certi_cnt01 {
@@ -2411,8 +2438,16 @@ footer .footer2 .family .family-box .family-list__link:hover>s {
 		margin-left: 0;
 	}
 
+	.curriculum_bsc .curiCont-wrap.right {
+		right: 0px;
+	}
+
+	.curriculum_bsc .curiCont-wrap.left {
+		left: 0px;
+	}
+
 	.curriculum_bsc .curiCont-wrap {
-		width: 75%;
+		width: 95%;
 		padding: 30px 25px;
 	}
 

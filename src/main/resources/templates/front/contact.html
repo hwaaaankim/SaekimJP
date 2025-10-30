@@ -1,0 +1,238 @@
+<html id="hamHtml" lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/front/common :: commonHead"></head>
+
+<body id="hamBody" class="" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
+	<div id="container">
+		<th:block th:replace="~{fragments/front/common :: commonHeader(white=${false}, dark=${true})}"></th:block>
+		<main id="main">
+			<div class="main-wrap">
+				<section class="bsc_container">
+					<section class="subtit-wrap">
+						<div class="inner w1280 mt-3">
+							<p class="title">수술 상담 문의</p>
+							<span class="sub-txt">신청 양식을 작성하여 주시면 빠른 시일에 연락 드리겠습니다.</span>
+						</div>
+					</section>
+
+					<section class="default-wrap">
+						<div class="inner w1280">
+							<form name="regiForm" id="regiForm" method="post">
+								<input type="hidden" id="jointype" name="jointype" value="_eng009">
+								<section class="consulting-wrap">
+									<div class="consulting-cont">
+										<div class="cs-infoBox">
+											<strong>개인정보</strong>
+											<p><span class="essential">*</span>는 필수 입력 항목입니다.</p>
+										</div>
+										<div class="cs-formBox">
+											<div class="form">
+												<div class="form-item">
+													<dl class="clone">
+														<dt><label for="name">이름<span class="essential">*</span></label>
+														</dt>
+														<dd>
+															<div class="input-area">
+																<input type="text" title="이름을 입력하세요."
+																	placeholder="이름을 입력하세요.">
+															</div>
+														</dd>
+													</dl>
+													<dl class="clone">
+														<dt><label for="tel">연락처<span class="essential">*</span></label>
+														</dt>
+														<dd>
+															<div class="input-area">
+																<input type="text" title="연락처를 입력하세요."
+																	placeholder="연락처를 입력하세요.">
+															</div>
+														</dd>
+													</dl>
+												</div>
+												<div class="form-item">
+													<dl class="clone">
+														<dt><label for="time">상담 희망 일시<span
+																	class="essential">*</span></label></dt>
+														<dd>
+															<div class="select-area half">
+																<select name="" id="day">
+																	<option value="">희망일자</option>
+																	<option value="상시">상시</option>
+																	<option value="2025-10-30">2025-10-30(목)</option>
+																	<option value="2025-10-31">2025-10-31(금)</option>
+																	<option value="2025-11-03">2025-11-03(월)</option>
+																	<option value="2025-11-04">2025-11-04(화)</option>
+																	<option value="2025-11-05">2025-11-05(수)</option>
+																	<option value="2025-11-06">2025-11-06(목)</option>
+																	<option value="2025-11-07">2025-11-07(금)</option>
+																</select>
+															</div>
+															<div class="select-area half">
+																<select name="" id="hour">
+																	<option value="">희망시간</option>
+																	<option value="09">9시</option>
+																	<option value="10">10시</option>
+																	<option value="11">11시</option>
+																	<option value="12">12시</option>
+																	<option value="13">13시</option>
+																	<option value="14">14시</option>
+																	<option value="15">15시</option>
+																	<option value="16">16시</option>
+																	<option value="17">17시</option>
+																	<option value="18">18시</option>
+																</select>
+															</div>
+														</dd>
+													</dl>
+													<dl class="clone">
+														<dt><label for="tel">이메일</label></dt>
+														<dd>
+															<div class="input-area">
+																<input type="email" title="이메일을 입력하세요."
+																	placeholder="이메일을 입력하세요.">
+															</div>
+														</dd>
+													</dl>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="consulting-cont">
+										<div class="cs-infoBox">
+											<strong>기타정보</strong>
+											<p><span class="essential">*</span>는 필수 입력 항목입니다.</p>
+										</div>
+										<div class="cs-formBox">
+											<div class="form">
+												<div class="form-item">
+													<dl class="clone">
+														<dt><label for="name">수술 경험</label></dt>
+														<dd>
+															<div class="radio-wrap">
+																<div class="radio-area">
+																	<input type="radio" id="teaExpY" name="teaExp"
+																		value="y" class="chk_radio" checked="checked">
+																	<label for="teaExpY">있다</label>
+																</div>
+																<div class="radio-area">
+																	<input type="radio" id="teaExpN" name="teaExp"
+																		value="n" class="chk_radio">
+																	<label for="teaExpN">없다</label>
+																</div>
+															</div>
+														</dd>
+													</dl>
+													<dl class="clone">
+														<dt><label for="name">재수술 여부</label></dt>
+														<dd>
+															<div class="radio-wrap">
+																<div class="radio-area">
+																	<input type="radio" id="openExpY" name="openExp"
+																		value="y" class="chk_radio" checked="checked">
+																	<label for="openExpY">있다</label>
+																</div>
+																<div class="radio-area">
+																	<input type="radio" id="openExpN" name="openExp"
+																		value="n" class="chk_radio">
+																	<label for="openExpN">없다</label>
+																</div>
+															</div>
+														</dd>
+													</dl>
+												</div>
+											</div>
+											<div class="form">
+												<div class="form-item">
+													<dl class="clone" style="width:100%;">
+														<dt><label for="tel">연락처<span class="essential">*</span></label>
+														</dt>
+														<dd>
+															<textarea class="contact-textarea" placeholder="기타 메모를 입력하세요."></textarea>
+														</dd>
+													</dl>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div class="agree-cont">
+										<ul class="cs-checkBox">
+											<li class="check-item">
+												<div class="checkbox-wrap">
+													<div class="checkbox-area">
+														<input type="checkbox" id="agree_1" name="agree_1">
+														<label for="agree_1">개인정보수집 및 이용 동의 (필수) <span
+																class="essential">*</span></label>
+													</div>
+													<a href="javascript:void(0);" title="내용 열기"
+														onclick="openPrivate('one')"><s></s></a>
+												</div>
+												<div class="checkbox-cont" style="display:none;">
+													<span>※ 개인정보 수집 및 이용에 동의하지 않을 수 있으며, 동의를 거부할 경우 상담이 제한될 수
+														있습니다.​</span>
+													<strong>수집 목적</strong>
+													<strong>수집 항목</strong>
+													<strong>보유 및 이용기간</strong>
+												</div>
+											</li>
+											<li class="check-item">
+												<div class="checkbox-wrap">
+													<div class="checkbox-area">
+														<input type="checkbox" id="agree_2" name="agree_2">
+														<label for="agree_2">개인정보 제 3자 제공 동의 (필수) <span
+																class="essential">*</span></label>
+													</div>
+													<a href="javascript:void(0);" title="내용 열기"
+														onclick="openPrivate('two')"><s></s></a>
+												</div>
+												<div class="checkbox-cont" style="display:none">
+													<span>※ 개인정보 제 3자 제공에 동의하지 않을 수 있으며, 동의를 거부 할 경우 상담이 제한될 수
+														있습니다.</span>
+													<strong>제공받는 자</strong>
+													<strong>이용 목적</strong>
+													<strong>제공 정보</strong>
+													<strong>보유 및 이용 기간</strong>
+												</div>
+											</li>
+											<li class="check-item">
+												<div class="checkbox-wrap">
+													<div class="checkbox-area">
+														<input type="checkbox" id="agree_3" name="agree_3">
+														<label for="agree_3">개인정보수집 및 이용 동의 (선택)</label>
+													</div>
+													<a href="javascript:void(0);" title="내용 열기"
+														onclick="openPrivate('three')"><s></s></a>
+												</div>
+												<div class="checkbox-cont" style="display:none">
+													<span>※ 수집 및 이용에 동의하지 않으실 수 있으며, 동의를 거부하셔도 서비스를 이용할 수 있습니다. </span>
+													<strong>수집 목적</strong>
+													<strong>수집 항목</strong>
+													<strong>보유 및 이용 기간</strong>
+												</div>
+											</li>
+										</ul>
+									</div>
+
+									<div class="goBtn_wrap">
+										<div class="goBtn goBtn--blue">
+											<a onclick="javascript:goRegi()">
+												<span>상담 신청하기</span>
+												<i></i>
+											</a>
+										</div>
+									</div>
+								</section>
+							</form>
+						</div>
+					</section>
+				</section>
+			</div>
+		</main>
+
+		<footer th:replace="fragments/front/common :: commonFooter"></footer>
+	</div>
+	<th:block th:replace="fragments/front/common :: commonScript"></th:block>
+</body>
+
+</html>

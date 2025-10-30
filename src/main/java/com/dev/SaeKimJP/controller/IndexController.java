@@ -12,21 +12,39 @@ public class IndexController {
 		return "front/index";
 	}
 	
-	@GetMapping("/surgery")
-	public String surgery() {
+	@GetMapping("/surgerySimple")
+	public String surgerySimple() {
 		
-		return "front/surgery";
+		return "front/surgerySimple";
 	}
 	
-	@GetMapping("/community")
-	public String community() {
+	@GetMapping("/surgeryDetail")
+	public String surgeryDetail() {
 		
-		return "front/community";
+		return "front/surgeryDetail";
+	}
+
+	@GetMapping("/notice")
+	public String notice() {
+		
+		return "front/notice";
 	}
 	
-	@GetMapping("/system")
-	public String system() {
+	@GetMapping("/faq")
+	public String faq() {
 		
-		return "front/system";
+		return "front/faq";
+	}
+	
+	@GetMapping("/contact")
+	public String contact() {
+		
+		return "front/contact";
+	}
+	
+	@GetMapping("/about")
+	public String about() {
+		
+		return "front/about";
 	}
 }

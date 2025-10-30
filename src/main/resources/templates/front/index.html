@@ -1,10 +1,10 @@
 <html id="hamHtml" lang="ko" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="fragments/front/common :: commonHead"></head>
+<head th:replace="~{fragments/front/common :: commonHead}"></head>
 
 <body id="hamBody" class="" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
 	<div id="container">
-		<th:block th:replace="fragments/front/common :: commonHeader"></th:block>
+		<th:block th:replace="~{fragments/front/common :: commonHeader(white=${true}, dark=${false})}"></th:block>
 		<main id="main">
 			<div class="main-wrap">
 				<section class="mainv_container">
@@ -94,21 +94,22 @@
 									<ul class="timeline-list">
 										<li class="timeline-list_item tl-info">
 											<div class="info-box">
-												<p>눈성형-코성형-안면윤곽-동안리프팅-가슴성형-체형성형-쁘띠성형-마취<br> 각 분야의 전문가가 한 곳에 모여
-													안전하고 알맞은 수술을 제공합니다.
+												<p>
+													눈성형-코성형-안면윤곽-동안리프팅-가슴성형-체형성형-쁘띠성형-마취<br>
+													각 분야의 전문가가 한 곳에 모여 안전하고 알맞은 수술을 제공합니다.
 												</p>
 												<h4>새김성형외과의 <span class="txtBg">안전수술</span></h4>
 											</div>
+
 											<div class="tl-circle">
 												<div class="circle_progress_wrap">
 													<svg class="circle_progress" viewBox="0 0 400 400">
+														<!-- 기존 gradient 정의는 보존(구조 변경 X). CSS에서 강제 단색 오버라이드 -->
 														<defs>
 															<style>
 																.gradient-circle {
-																	stroke: url('#gradient-circle')
+																	stroke: url('#gradient-circle');
 																}
-
-																;
 															</style>
 															<linearGradient id="gradient-circle">
 																<stop offset="0%" stop-color="#FFE500"></stop>
@@ -127,15 +128,25 @@
 												</div>
 											</div>
 										</li>
+
 										<li class="timeline-list_item tl-bg">
 											<ul class="bg-list">
-												<li class="bg-list_item tl-bg1 tl-bg2 tl-bg3 tl-bg4 tl-bg5"></li>
+												<!-- 부모 클래스/구조 유지. 페이드를 위해 내부 레이어만 추가 -->
+												<li class="bg-list_item tl-bg1 tl-bg2 tl-bg3 tl-bg4 tl-bg5"
+													data-stage="1">
+													<div class="bg-pic pic1" aria-hidden="false"></div>
+													<div class="bg-pic pic2" aria-hidden="true"></div>
+													<div class="bg-pic pic3" aria-hidden="true"></div>
+													<div class="bg-pic pic4" aria-hidden="true"></div>
+													<div class="bg-pic pic5" aria-hidden="true"></div>
+												</li>
 											</ul>
 										</li>
 									</ul>
 								</div>
 							</div>
 						</div>
+
 						<div class="system_cnt03 bsc_ly">
 							<div class="inner">
 								<div class="title-wrap">
@@ -277,13 +288,13 @@
 									<div class="img_wrap">
 										<ul class="imgBox-list">
 											<li class="imgBox-list_item">
-												<p class="comment">테스트 교재</p>
+												<p class="comment">안심마취 시스템</p>
 											</li>
 											<li class="imgBox-list_item">
-												<p class="comment">종합교재</p>
+												<p class="comment">첨단 수술설비</p>
 											</li>
 											<li class="imgBox-list_item">
-												<p class="comment">Story/Reading</p>
+												<p class="comment">4단계 멸균소독시스템</p>
 											</li>
 										</ul>
 									</div>
@@ -294,8 +305,8 @@
 							<div class="inner">
 								<div class="title-wrap">
 									<p class="title color03">새김성형외과의 독보적 비수술 치료법</p>
-									<span class="sub-txt">수술이 두렵거나 불필요한 분들에게 자연스러운 치료법을 통해, <br
-											class="pc_show">비 수술 치료 및 시술을 통하여 자연스러운 아름다움을 선물합니다.</span>
+									<span class="sub-txt">수술이 두렵거나 불필요한 분들에게 자연스러운 치료법을 통해, <br class="pc_show">비 수술 치료
+										및 시술을 통하여 자연스러운 아름다움을 선물합니다.</span>
 								</div>
 								<div class="article-wrap">
 									<a href="javascript:void(0);" class="iceM-go">비수술치료 자세히 보기<s></s></a>
@@ -335,8 +346,7 @@
 										</li>
 										<li class="iceM-list_item">
 											<a href="javascript:void(0);">
-												<p class="iceMImg-wrap"><img
-														src="/front/sample/300-200.png">
+												<p class="iceMImg-wrap"><img src="/front/sample/300-200.png">
 												</p>
 												<div class="iceMImg-txt">
 													<p>뼈수술 없이</p>
@@ -346,8 +356,7 @@
 										</li>
 										<li class="iceM-list_item">
 											<a href="javascript:void(0);">
-												<p class="iceMImg-wrap"><img
-														src="/front/sample/300-200.png">
+												<p class="iceMImg-wrap"><img src="/front/sample/300-200.png">
 												</p>
 												<div class="iceMImg-txt">
 													<p>꺼진 볼살과 늘어진 볼을</p>
@@ -368,7 +377,7 @@
 									<p class="title">새김성형외과는 <span class="txtBg">아름다움은 물론</span></p>
 									<p class="title"><span class="txtBg">환자의 안전까지</span> 준비합니다.</p>
 									<span class="sub-txt">기간이 지날수록 자연스럽게 유지되는 아름다움과,<br class="pc_show">부작용을 최소화하는
-									 안전한 수술만을 제공합니다.</span>
+										안전한 수술만을 제공합니다.</span>
 								</div>
 							</div>
 						</div>
@@ -377,9 +386,9 @@
 			</div>
 		</main>
 
-		<footer th:replace="fragments/front/common :: commonFooter"></footer>
+		<footer th:replace="~{fragments/front/common :: commonFooter}"></footer>
 	</div>
-	<th:block th:replace="fragments/front/common :: commonScript"></th:block>
+	<th:block th:replace="~{fragments/front/common :: commonScript}"></th:block>
 	<script type="module">
 		import Swiper from '/front/common/js/swiper-bundle.esm.browser.min.js'
 	</script>
