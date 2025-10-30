@@ -1,0 +1,68 @@
+.il-list_item .img {
+	padding: 0px 20px 30px 20px;
+}
+
+/* 카드에 절대배치 버튼이 들어갈 수 있도록 기준 설정 */
+.il-list_item.index-card {
+	position: relative;
+	/* 버튼 absolute 기준 */
+	overflow: hidden;
+	/* 필요 시 깔끔하게 */
+}
+
+/* 우하단 ‘자세히보기 →’ 버튼 */
+.index-morebtn {
+	position: absolute;
+	right: 30px;
+	bottom: 20px;
+	display: inline-block;
+	text-decoration: none;
+	cursor: pointer;
+
+	/* 초기 상태: 회색 */
+	color: #999;
+	font-size: 14px;
+	line-height: 1;
+	z-index: 2;
+	/* 카드 내용 위로 */
+}
+
+.index-morebtn__wrap {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	transition: transform 0.3s ease, color 0.3s ease;
+	/* 이동 + 색상 */
+}
+
+.index-morebtn__label {
+	transition: color 0.3s ease;
+}
+
+.index-morebtn__icon {
+	display: inline-block;
+	transform: translateX(0);
+	transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* 호버/포커스 시: 오른쪽으로 살짝 이동, 색상 검정으로 */
+.index-card:hover .index-morebtn__wrap,
+.index-morebtn:focus-visible .index-morebtn__wrap {
+	transform: translateX(4px);
+}
+
+.index-card:hover .index-morebtn,
+.index-morebtn:focus-visible {
+	color: #000;
+	/* 글자/아이콘 색 모두 상속으로 검정 */
+}
+
+/* 접근성: 키보드 포커스 링 */
+.index-morebtn:focus-visible {
+	outline: 2px solid rgba(9, 75, 173, 0.5);
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+/* 터치 디바이스에서 탭 피드백을 원할 경우(선택) */
+/* .index-morebtn:active .index-morebtn__wrap { transform: translateX(6px); } */
