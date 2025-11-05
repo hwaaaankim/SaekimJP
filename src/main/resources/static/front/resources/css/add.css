@@ -877,7 +877,6 @@
 	justify-content: center;
 	padding: 10px 16px;
 	border-radius: 999px;
-	background: #0b5ed7;
 	color: #fff;
 	font-weight: 600;
 }
@@ -928,8 +927,6 @@
 	width: 36px;
 	height: 36px;
 	border-radius: 50%;
-	background: #fff;
-	border: 1px solid #ddd;
 	cursor: pointer;
 }
 
