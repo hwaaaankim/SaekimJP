@@ -964,15 +964,376 @@
 	margin-bottom: 20px;
 	/* 하단 20px 확보 */
 }
-.contact-textarea{
+
+.contact-textarea {
 	display: inline-block;
-    width: 100%;
-    height: 120px;
-    padding: 0 15px;
-    font-size: 16px;
-    color: #111;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-weight: 400;
-	
+	width: 100%;
+	height: 120px;
+	padding: 0 15px;
+	font-size: 16px;
+	color: #111;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-weight: 400;
+
+}
+
+/* ===== 스코프: 팝업 전용 ===== */
+#common-popup-root .common-popup-overlay {
+	position: fixed !important;
+	inset: 0 !important;
+	background: rgba(0, 0, 0, 0.4) !important;
+	z-index: 9998 !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
+	transition: opacity .25s ease !important;
+}
+
+#common-popup-root .common-popup-wrap {
+	position: fixed !important;
+	inset: 0 !important;
+	z-index: 9999 !important;
+	display: grid !important;
+	place-items: center !important;
+	opacity: 0 !important;
+	pointer-events: none !important;
+	transition: opacity .25s ease !important;
+}
+
+#common-popup-root .common-popup-inner {
+	position: relative !important;
+	width: 450px !important;
+	height: 700px !important;
+	background: #fff !important;
+	border-radius: 16px !important;
+	box-shadow: 0 20px 60px rgba(0, 0, 0, .25) !important;
+	overflow: hidden !important;
+	display: flex !important;
+	flex-direction: column !important;
+}
+
+/* 열림/닫힘 */
+#common-popup-root .common-popup-overlay.is-open,
+#common-popup-root .common-popup-wrap.is-open {
+	opacity: 1 !important;
+	pointer-events: auto !important;
+}
+
+#common-popup-root .common-popup-overlay.is-hiding,
+#common-popup-root .common-popup-wrap.is-hiding {
+	opacity: 0 !important;
+	pointer-events: none !important;
+}
+
+/* ===== 공통 아이콘 크기 ===== */
+#common-popup-root .common-popup-icon {
+	--icon-size: 18px;
+	width: var(--icon-size);
+	height: var(--icon-size);
+	display: block;
+	/* 라인박스 제거 */
+}
+
+/* ===== 닫기(X) - SVG 중앙 정렬 ===== */
+#common-popup-root .common-popup-close {
+	position: absolute !important;
+	top: 10px !important;
+	right: 10px !important;
+	width: 36px !important;
+	height: 36px !important;
+	border: 0 !important;
+	border-radius: 50% !important;
+	background: rgba(0, 0, 0, 0.55) !important;
+	color: #fff !important;
+	display: grid !important;
+	place-items: center !important;
+	/* 정중앙 */
+	line-height: 0 !important;
+	/* 폰트 라인 영향 제거 */
+	cursor: pointer !important;
+	z-index: 3 !important;
+	transition: transform .15s ease, background .15s ease !important;
+}
+
+#common-popup-root .common-popup-close:hover {
+	transform: scale(1.05) !important;
+	background: rgba(0, 0, 0, 0.7) !important;
+}
+
+/* ===== Swiper 영역 ===== */
+#common-popup-root .common-popup-swiper {
+	position: relative !important;
+	width: 100% !important;
+	flex: 1 1 auto !important;
+	min-height: 0 !important;
+	background: #000 !important;
+}
+
+#common-popup-root .common-popup-swiper .swiper-slide {
+	display: grid !important;
+	place-items: center !important;
+	background: #000 !important;
+}
+
+#common-popup-root .common-popup-swiper .swiper-slide img {
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover !important;
+}
+
+/* 스와이퍼 기본 아이콘 제거 */
+#common-popup-root .common-popup-swiper .swiper-button-prev::after,
+#common-popup-root .common-popup-swiper .swiper-button-next::after {
+	content: "" !important;
+}
+
+/* ===== 네비게이션(원형 + SVG 중앙 정렬) ===== */
+#common-popup-root .common-popup-nav {
+	--btn-size: 44px;
+	position: absolute !important;
+	top: 50% !important;
+	transform: translateY(-50%) !important;
+	width: var(--btn-size) !important;
+	height: var(--btn-size) !important;
+	border: none !important;
+	border-radius: 50% !important;
+	background: #111 !important;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .35) !important;
+	display: grid !important;
+	place-items: center !important;
+	/* 아이콘 정중앙 */
+	line-height: 0 !important;
+	/* 라인박스 제거 */
+	cursor: pointer !important;
+	z-index: 4 !important;
+}
+
+#common-popup-root .common-popup-prev {
+	left: 12px !important;
+}
+
+#common-popup-root .common-popup-next {
+	right: 12px !important;
+}
+
+/* 페이지네이션 */
+#common-popup-root .common-popup-pagination {
+	position: absolute !important;
+	left: 0 !important;
+	right: 0 !important;
+	bottom: 10px !important;
+	z-index: 2 !important;
+}
+
+#common-popup-root .common-popup-pagination .swiper-pagination-bullet {
+	width: 8px !important;
+	height: 8px !important;
+	background: rgba(255, 255, 255, 0.75) !important;
+	opacity: .5 !important;
+}
+
+#common-popup-root .common-popup-pagination .swiper-pagination-bullet-active {
+	opacity: 1 !important;
+	background: #fff !important;
+}
+
+/* ===== 컨트롤(체크박스 + 버튼) ===== */
+#common-popup-root .common-popup-controls {
+	position: relative !important;
+	padding: 12px 14px 16px !important;
+	background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, .95)) !important;
+	border-top: 1px solid #eee !important;
+	z-index: 5 !important;
+}
+
+/* 전역 커스텀 체크박스 무효화 + 기본 체크박스 보이게 */
+#common-popup-root .common-popup-check::before,
+#common-popup-root .common-popup-check::after {
+	content: none !important;
+}
+
+#common-popup-root .common-popup-check input {
+	appearance: checkbox !important;
+	-webkit-appearance: checkbox !important;
+	display: inline-block !important;
+	position: static !important;
+	opacity: 1 !important;
+	width: 16px !important;
+	height: 16px !important;
+	margin: 0 !important;
+	padding: 0 !important;
+}
+
+#common-popup-root .common-popup-check {
+	display: inline-flex !important;
+	align-items: center !important;
+	gap: 8px !important;
+	font-size: 14px !important;
+	color: #333 !important;
+	margin-bottom: 10px !important;
+}
+
+#common-popup-root .common-popup-actions {
+	display: grid !important;
+	grid-template-columns: 1fr 1fr !important;
+	gap: 10px !important;
+}
+
+#common-popup-root .common-popup-btn {
+	height: 46px !important;
+	border-radius: 12px !important;
+	border: 1px solid transparent !important;
+	font-size: 16px !important;
+	font-weight: 700 !important;
+	cursor: pointer !important;
+}
+
+#common-popup-root .common-popup-btn--ghost {
+	background: #fff !important;
+	color: #111827 !important;
+	border-color: #e5e7eb !important;
+}
+
+#common-popup-root .common-popup-btn--ghost:hover {
+	background: #f9fafb !important;
+}
+
+#common-popup-root .common-popup-btn--primary {
+	background: #0b0d12 !important;
+	color: #fff !important;
+}
+
+#common-popup-root .common-popup-btn--primary:hover {
+	background: #05070a !important;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 520px) {
+	#common-popup-root .common-popup-inner {
+		width: min(92vw, 450px) !important;
+		height: min(92svh, 700px) !important;
+		border-radius: 14px !important;
+	}
+
+	#common-popup-root .common-popup-close {
+		top: 8px !important;
+		right: 8px !important;
+	}
+
+	#common-popup-root .common-popup-nav {
+		--btn-size: 40px;
+	}
+
+	#common-popup-root .common-popup-actions {
+		gap: 8px !important;
+	}
+
+	#common-popup-root .common-popup-btn {
+		height: 44px !important;
+		font-size: 15px !important;
+	}
+}
+
+/* ====== 중앙정렬 픽스: 원형 버튼 아이콘 절대중앙 ====== */
+#common-popup-root .common-popup-nav {
+	position: absolute !important;
+	/* 이미 absolute지만 확실히 고정 */
+	top: 50% !important;
+	transform: translateY(-50%) !important;
+	left: auto !important;
+	right: auto !important;
+	/* Swiper 기본값 영향 제거 */
+	padding: 0 !important;
+	/* 내부 여백 제거 */
+	border: 0 !important;
+	line-height: 0 !important;
+	/* 인라인 라인박스 영향 제거 */
+	display: block !important;
+	/* grid 정렬 대신 절대 중앙 사용 */
+	border-radius: 9999px !important;
+	width: 44px !important;
+	height: 44px !important;
+	background: #111 !important;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, .35) !important;
+	z-index: 4 !important;
+}
+
+/* 좌/우 위치 재지정 */
+#common-popup-root .common-popup-prev {
+	left: 12px !important;
+}
+
+#common-popup-root .common-popup-next {
+	right: 12px !important;
+}
+
+/* Swiper 기본 가상요소 제거(겹침 방지) */
+#common-popup-root .common-popup-swiper .swiper-button-prev::after,
+#common-popup-root .common-popup-swiper .swiper-button-next::after {
+	content: "" !important;
+}
+
+/* ====== SVG 아이콘을 버튼 안에서 절대 중앙 고정 ====== */
+#common-popup-root .common-popup-nav .common-popup-icon {
+	--icon-size: 22px;
+	/* 화살표 크기 키움 (원 안 비율 맞춤) */
+	position: absolute !important;
+	top: 50% !important;
+	left: 50% !important;
+	transform: translate(-50%, -50%) !important;
+	/* 정확한 수직/수평 중앙 */
+	width: var(--icon-size) !important;
+	height: var(--icon-size) !important;
+	display: block !important;
+	pointer-events: none !important;
+	/* 클릭 영역은 버튼에만 */
+	shape-rendering: geometricPrecision;
+	/* 경계가 선명하게 보이도록 */
+}
+
+/* 닫기(X) 버튼도 동일하게 중앙 고정 */
+#common-popup-root .common-popup-close {
+	position: absolute !important;
+	top: 10px !important;
+	right: 10px !important;
+	width: 36px !important;
+	height: 36px !important;
+	padding: 0 !important;
+	border: 0 !important;
+	line-height: 0 !important;
+	display: block !important;
+	border-radius: 9999px !important;
+	background: rgba(0, 0, 0, 0.55) !important;
+}
+
+#common-popup-root .common-popup-close .common-popup-icon {
+	--icon-size: 18px;
+	position: absolute !important;
+	top: 50% !important;
+	left: 50% !important;
+	transform: translate(-50%, -50%) !important;
+	width: var(--icon-size) !important;
+	height: var(--icon-size) !important;
+	pointer-events: none !important;
+}
+
+/* 모바일에서 버튼/아이콘 비율 유지 */
+@media (max-width: 520px) {
+	#common-popup-root .common-popup-nav {
+		width: 40px !important;
+		height: 40px !important;
+	}
+
+	#common-popup-root .common-popup-nav .common-popup-icon {
+		--icon-size: 20px;
+	}
+
+	#common-popup-root .common-popup-close {
+		width: 34px !important;
+		height: 34px !important;
+	}
+
+	#common-popup-root .common-popup-close .common-popup-icon {
+		--icon-size: 16px;
+	}
 }

@@ -393,6 +393,144 @@
 		import Swiper from '/front/common/js/swiper-bundle.esm.browser.min.js'
 	</script>
 	<script src="/front/resources/js/index.js"></script>
+	<div id="common-popup-root">
+		<!-- Overlay -->
+		<div class="common-popup-overlay" id="common-popup-overlay" aria-hidden="true"></div>
+
+		<!-- Popup -->
+		<div class="common-popup-wrap" id="common-popup-wrap" role="dialog" aria-modal="true" aria-hidden="true">
+			<div class="common-popup-inner">
+				<!-- 닫기(X) - SVG 아이콘으로 중앙정렬 정확히 -->
+				<button type="button" class="common-popup-close" id="common-popup-close" aria-label="팝업 닫기">
+					<svg class="common-popup-icon" viewBox="0 0 24 24" aria-hidden="true">
+						<path d="M6 6 L18 18 M18 6 L6 18" stroke="#fff" stroke-width="2.5" stroke-linecap="round" />
+					</svg>
+				</button>
+
+				<!-- 슬라이더 -->
+				<div class="common-popup-swiper swiper" id="common-popup-swiper" aria-label="프로모션 이미지 슬라이더">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide"><img src="/front/sample/450-700.png" alt="프로모션 이미지 1"></div>
+						<div class="swiper-slide"><img src="/front/sample/450-700.png" alt="프로모션 이미지 2"></div>
+						<div class="swiper-slide"><img src="/front/sample/450-700.png" alt="프로모션 이미지 3"></div>
+					</div>
+
+					<!-- 좌/우 네비게이션 - SVG 아이콘으로 정확히 중앙 -->
+					<button class="common-popup-nav common-popup-prev swiper-button-prev" aria-label="이전 슬라이드"
+						type="button">
+						<svg class="common-popup-icon" viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M15 6 L9 12 L15 18" stroke="#fff" stroke-width="3" stroke-linecap="round"
+								stroke-linejoin="round" fill="none" />
+						</svg>
+					</button>
+					<button class="common-popup-nav common-popup-next swiper-button-next" aria-label="다음 슬라이드"
+						type="button">
+						<svg class="common-popup-icon" viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M9 6 L15 12 L9 18" stroke="#fff" stroke-width="3" stroke-linecap="round"
+								stroke-linejoin="round" fill="none" />
+						</svg>
+					</button>
+
+					<!-- 페이지네이션 -->
+					<div class="common-popup-pagination swiper-pagination" aria-hidden="true"></div>
+				</div>
+
+				<!-- 컨트롤 -->
+				<div class="common-popup-controls">
+					<label class="common-popup-check" for="common-popup-hide-7">
+						<input type="checkbox" id="common-popup-hide-7">
+						<span>7일간 보지 않기</span>
+					</label>
+
+					<div class="common-popup-actions">
+						<button type="button" class="common-popup-btn common-popup-btn--ghost"
+							id="common-popup-btn-close">닫기</button>
+						<button type="button" class="common-popup-btn common-popup-btn--primary"
+							id="common-popup-btn-link" data-link="/event">링크이동</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="module">
+		// import Swiper from '/front/common/js/swiper-bundle.esm.browser.min.js'  // 이미 포함됨
+
+		const commonPopupCookieKey = 'common_popup_hidden_until';
+
+		function setCookieDays(key, days) {
+			const d = new Date();
+			d.setDate(d.getDate() + days);
+			document.cookie = `${key}=${encodeURIComponent(d.toISOString())}; path=/; expires=${d.toUTCString()}`;
+		}
+		function getCookie(key) {
+			return document.cookie
+				.split('; ')
+				.map(v => v.split('='))
+				.reduce((acc, [k, v]) => (acc[k] = v, acc), {})[key];
+		}
+		function isHiddenByCookie() {
+			const v = getCookie(commonPopupCookieKey);
+			if (!v) return false;
+			try {return Date.now() < new Date(decodeURIComponent(v)).getTime();}
+			catch {return false;}
+		}
+
+		const overlay = document.getElementById('common-popup-overlay');
+		const wrap = document.getElementById('common-popup-wrap');
+		const btnX = document.getElementById('common-popup-close');
+		const btnClose = document.getElementById('common-popup-btn-close');
+		const btnLink = document.getElementById('common-popup-btn-link');
+		const hide7 = document.getElementById('common-popup-hide-7');
+
+		function openPopup() {
+			overlay.classList.remove('is-hiding'); wrap.classList.remove('is-hiding');
+			overlay.classList.add('is-open'); wrap.classList.add('is-open');
+			overlay.setAttribute('aria-hidden', 'false');
+			wrap.setAttribute('aria-hidden', 'false');
+		}
+		function closePopup(withCookie = false) {
+			if (withCookie || hide7.checked) setCookieDays(commonPopupCookieKey, 7);
+			overlay.classList.remove('is-open'); wrap.classList.remove('is-open');
+			overlay.classList.add('is-hiding'); wrap.classList.add('is-hiding');
+			overlay.setAttribute('aria-hidden', 'true');
+			wrap.setAttribute('aria-hidden', 'true');
+		}
+
+		overlay.addEventListener('click', () => closePopup(false));
+		btnX.addEventListener('click', () => closePopup(false));
+		btnClose.addEventListener('click', () => closePopup(false));
+		btnLink.addEventListener('click', () => {
+			if (hide7.checked) setCookieDays(commonPopupCookieKey, 7);
+			const href = btnLink.dataset.link || '/';
+			window.location.href = href;
+		});
+
+		let commonPopupSwiper = null;
+		function initSwiper() {
+			const el = document.getElementById('common-popup-swiper');
+			if (!el) return;
+			commonPopupSwiper = new Swiper(el, {
+				loop: true,
+				speed: 500,
+				slidesPerView: 1,
+				spaceBetween: 0,
+				pagination: {el: el.querySelector('.common-popup-pagination'), clickable: true},
+				navigation: {nextEl: el.querySelector('.common-popup-next'), prevEl: el.querySelector('.common-popup-prev')},
+				autoplay: {delay: 3000, disableOnInteraction: false},
+				a11y: {enabled: true},
+			});
+			window.commonPopupSwiper = commonPopupSwiper;
+		}
+
+		document.addEventListener('DOMContentLoaded', () => {
+			if (!isHiddenByCookie()) {
+				initSwiper();
+				setTimeout(openPopup, 10);
+			}
+		});
+	</script>
+
 </body>
 
 </html>
