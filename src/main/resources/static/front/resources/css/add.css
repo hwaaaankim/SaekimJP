@@ -1238,7 +1238,7 @@
 #common-popup-root .common-popup-nav {
 	position: absolute !important;
 	/* 이미 absolute지만 확실히 고정 */
-	top: 50% !important;
+	top: calc(50% + 70px) !important;
 	transform: translateY(-50%) !important;
 	left: auto !important;
 	right: auto !important;
@@ -1251,9 +1251,9 @@
 	display: block !important;
 	/* grid 정렬 대신 절대 중앙 사용 */
 	border-radius: 9999px !important;
-	width: 44px !important;
-	height: 44px !important;
-	background: #111 !important;
+	width: 30px !important;
+	height: 30px !important;
+	background: rgba(0,0,0,0.7) !important;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, .35) !important;
 	z-index: 4 !important;
 }
@@ -1296,14 +1296,14 @@
 	position: absolute !important;
 	top: 10px !important;
 	right: 10px !important;
-	width: 36px !important;
-	height: 36px !important;
+	width: 30px !important;
+	height: 30px !important;
 	padding: 0 !important;
 	border: 0 !important;
 	line-height: 0 !important;
 	display: block !important;
 	border-radius: 9999px !important;
-	background: rgba(0, 0, 0, 0.55) !important;
+	background: rgba(0, 0, 0, 0.7) !important;
 }
 
 #common-popup-root .common-popup-close .common-popup-icon {
