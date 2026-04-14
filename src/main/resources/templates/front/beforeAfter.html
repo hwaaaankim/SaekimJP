@@ -1,0 +1,718 @@
+<html id="hamHtml" lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/front/common :: commonHead"></head>
+
+<body id="hamBody" class="" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
+	<div id="container">
+		<th:block th:replace="~{fragments/front/common :: commonHeader(white=${false}, dark=${true})}"></th:block>
+
+		<main id="main">
+			<div class="main-wrap">
+				<section class="bsc_container">
+					<section class="subtit-wrap">
+						<div class="inner w1280 mt-3">
+							<p class="title">Before&amp;After</p>
+							<span class="sub-txt">전후사진을 통해 새김성형외과의 신뢰를 확인하세요.</span><br>
+						</div>
+					</section>
+
+					<section class="before-after-page-section">
+						<div class="inner w1280">
+							<div class="before-after-filter-wrap">
+								<div class="before-after-filter-title-wrap">
+									<p class="before-after-filter-title">수술종류 필터</p>
+									<p class="before-after-filter-desc">원하시는 수술 카테고리를 선택하여 전후사진을 확인하실 수 있습니다.</p>
+								</div>
+
+								<div class="before-after-filter-pills" id="before-after-filter-pills">
+									<label class="before-after-filter-pill">
+										<input type="radio" name="before-after-category" value="all" checked>
+										<span>전체</span>
+									</label>
+									<label class="before-after-filter-pill">
+										<input type="radio" name="before-after-category" value="eye">
+										<span>눈</span>
+									</label>
+									<label class="before-after-filter-pill">
+										<input type="radio" name="before-after-category" value="young">
+										<span>동안</span>
+									</label>
+									<label class="before-after-filter-pill">
+										<input type="radio" name="before-after-category" value="contour">
+										<span>안면윤곽</span>
+									</label>
+									<label class="before-after-filter-pill">
+										<input type="radio" name="before-after-category" value="nose">
+										<span>코</span>
+									</label>
+								</div>
+
+								<div class="before-after-meta-row">
+									<div class="before-after-meta-left">
+										<span class="before-after-meta-badge">기본 20개 노출</span>
+										<span class="before-after-meta-text" id="before-after-total-count">총 0건</span>
+									</div>
+									<div class="before-after-meta-right">
+										<span class="before-after-meta-scroll-guide">스크롤 또는 하단 버튼으로 다음 목록 확인</span>
+									</div>
+								</div>
+							</div>
+
+							<div class="before-after-divider"></div>
+
+							<div class="before-after-grid-wrap">
+								<div class="row g-4" id="before-after-grid"></div>
+							</div>
+
+							<div class="before-after-load-more-wrap">
+								<button type="button" id="before-after-load-more-btn"
+									class="before-after-load-more-btn">
+									다음 전후사진 더 보기
+								</button>
+							</div>
+
+							<div id="before-after-scroll-sentinel" class="before-after-scroll-sentinel"
+								aria-hidden="true"></div>
+						</div>
+					</section>
+				</section>
+			</div>
+		</main>
+
+		<footer th:replace="fragments/front/common :: commonFooter"></footer>
+	</div>
+
+	<style>
+		.before-after-page-section {
+			padding: 22px 0 110px 0 !important;
+			background: linear-gradient(180deg, #ffffff 0%, #fcfcfc 100%) !important;
+		}
+
+		.before-after-filter-wrap {
+			position: relative !important;
+			padding: 34px 0 18px 0 !important;
+		}
+
+		.before-after-filter-title-wrap {
+			text-align: center !important;
+			margin-bottom: 24px !important;
+		}
+
+		.before-after-filter-title {
+			margin: 0 0 8px 0 !important;
+			font-size: 28px !important;
+			font-weight: 700 !important;
+			line-height: 1.3 !important;
+			color: #111111 !important;
+			letter-spacing: -0.03em !important;
+		}
+
+		.before-after-filter-desc {
+			margin: 0 !important;
+			font-size: 15px !important;
+			line-height: 1.7 !important;
+			color: #666666 !important;
+		}
+
+		.before-after-filter-pills {
+			display: flex !important;
+			flex-wrap: wrap !important;
+			justify-content: center !important;
+			align-items: center !important;
+			gap: 12px !important;
+			margin-bottom: 24px !important;
+		}
+
+		.before-after-filter-pill {
+			margin: 0 !important;
+			cursor: pointer !important;
+		}
+
+		.before-after-filter-pill input {
+			display: none !important;
+		}
+
+		.before-after-filter-pill span {
+			min-width: 92px !important;
+			height: 48px !important;
+			padding: 0 24px !important;
+			display: inline-flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			border: 1px solid #dcdcdc !important;
+			border-radius: 999px !important;
+			background: #ffffff !important;
+			color: #222222 !important;
+			font-size: 15px !important;
+			font-weight: 600 !important;
+			transition: all 0.28s ease !important;
+			box-shadow: 0 8px 18px rgba(17, 17, 17, 0.04) !important;
+		}
+
+		.before-after-filter-pill input:checked+span {
+			background: #111111 !important;
+			color: #ffffff !important;
+			border-color: #111111 !important;
+			transform: translateY(-1px) !important;
+			box-shadow: 0 14px 28px rgba(17, 17, 17, 0.16) !important;
+		}
+
+		.before-after-meta-row {
+			display: flex !important;
+			align-items: center !important;
+			justify-content: space-between !important;
+			gap: 18px !important;
+			flex-wrap: wrap !important;
+		}
+
+		.before-after-meta-left,
+		.before-after-meta-right {
+			display: flex !important;
+			align-items: center !important;
+			gap: 10px !important;
+			flex-wrap: wrap !important;
+		}
+
+		.before-after-meta-badge {
+			display: inline-flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			height: 34px !important;
+			padding: 0 14px !important;
+			border-radius: 999px !important;
+			background: #f3f5f7 !important;
+			color: #111111 !important;
+			font-size: 13px !important;
+			font-weight: 700 !important;
+		}
+
+		.before-after-meta-text,
+		.before-after-meta-scroll-guide {
+			font-size: 14px !important;
+			color: #6d6d6d !important;
+			line-height: 1.6 !important;
+		}
+
+		.before-after-divider {
+			width: 100% !important;
+			height: 2px !important;
+			margin: 8px 0 34px 0 !important;
+			background: linear-gradient(90deg, #111111 0%, #cfcfcf 100%) !important;
+			border-radius: 999px !important;
+		}
+
+		.before-after-grid-wrap {
+			position: relative !important;
+		}
+
+		.before-after-col {
+			display: flex !important;
+		}
+
+		.before-after-card {
+			position: relative !important;
+			width: 100% !important;
+			height: 100% !important;
+			display: flex !important;
+			flex-direction: column !important;
+			border-radius: 26px !important;
+			background: #ffffff !important;
+			overflow: hidden !important;
+			box-shadow: 0 14px 34px rgba(17, 17, 17, 0.08) !important;
+			border: 1px solid rgba(17, 17, 17, 0.06) !important;
+			transform: translateY(18px) !important;
+			opacity: 0 !important;
+			transition: transform 0.55s ease, opacity 0.55s ease, box-shadow 0.3s ease !important;
+		}
+
+		.before-after-card.before-after-visible {
+			transform: translateY(0) !important;
+			opacity: 1 !important;
+		}
+
+		.before-after-card:hover {
+			transform: translateY(-6px) !important;
+			box-shadow: 0 20px 42px rgba(17, 17, 17, 0.13) !important;
+		}
+
+		.before-after-card-media {
+			position: relative !important;
+			padding: 14px !important;
+			padding-bottom: 0 !important;
+		}
+
+		.before-after-card-toggle-wrap {
+			position: absolute !important;
+			top: 26px !important;
+			right: 26px !important;
+			z-index: 4 !important;
+		}
+
+		.before-after-card-toggle {
+			position: relative !important;
+			width: 112px !important;
+			height: 40px !important;
+			padding: 4px !important;
+			display: flex !important;
+			align-items: center !important;
+			border: none !important;
+			border-radius: 999px !important;
+			background: rgba(255, 255, 255, 0.92) !important;
+			backdrop-filter: blur(8px) !important;
+			box-shadow: 0 10px 22px rgba(17, 17, 17, 0.14) !important;
+			cursor: pointer !important;
+			overflow: hidden !important;
+		}
+
+		.before-after-card-toggle-indicator {
+			position: absolute !important;
+			top: 4px !important;
+			left: 4px !important;
+			width: 50px !important;
+			height: 32px !important;
+			border-radius: 999px !important;
+			background: #111111 !important;
+			transition: transform 0.34s cubic-bezier(0.4, 0, 0.2, 1) !important;
+		}
+
+		.before-after-card-toggle.is-after .before-after-card-toggle-indicator {
+			transform: translateX(54px) !important;
+		}
+
+		.before-after-card-toggle-text {
+			position: relative !important;
+			z-index: 1 !important;
+			width: 50% !important;
+			height: 100% !important;
+			display: inline-flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			font-size: 11px !important;
+			font-weight: 800 !important;
+			letter-spacing: 0.04em !important;
+			text-transform: uppercase !important;
+			color: #555555 !important;
+			transition: color 0.28s ease !important;
+		}
+
+		.before-after-card-toggle.is-before .before-after-card-toggle-text.before-after-before-label,
+		.before-after-card-toggle.is-after .before-after-card-toggle-text.before-after-after-label {
+			color: #ffffff !important;
+		}
+
+		.before-after-card-viewport {
+			position: relative !important;
+			width: 100% !important;
+			aspect-ratio: 7 / 5 !important;
+			border-radius: 20px !important;
+			overflow: hidden !important;
+			background: #f4f4f4 !important;
+		}
+
+		.before-after-card-track {
+			width: 200% !important;
+			height: 100% !important;
+			display: flex !important;
+			transition: transform 0.48s cubic-bezier(0.4, 0, 0.2, 1) !important;
+			will-change: transform !important;
+		}
+
+		.before-after-card-track.is-after {
+			transform: translateX(-50%) !important;
+		}
+
+		.before-after-card-panel {
+			position: relative !important;
+			width: 50% !important;
+			height: 100% !important;
+			overflow: hidden !important;
+		}
+
+		.before-after-card-panel img {
+			width: 100% !important;
+			height: 100% !important;
+			object-fit: cover !important;
+			display: block !important;
+			transition: transform 0.6s ease !important;
+		}
+
+		.before-after-card:hover .before-after-card-panel img {
+			transform: scale(1.05) !important;
+		}
+
+		.before-after-card-panel::after {
+			content: "" !important;
+			position: absolute !important;
+			inset: 0 !important;
+			background: linear-gradient(180deg, rgba(17, 17, 17, 0.06) 0%, rgba(17, 17, 17, 0.14) 100%) !important;
+			pointer-events: none !important;
+		}
+
+		.before-after-card-label {
+			position: absolute !important;
+			left: 18px !important;
+			bottom: 18px !important;
+			z-index: 2 !important;
+			display: inline-flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			min-width: 78px !important;
+			height: 34px !important;
+			padding: 0 14px !important;
+			border-radius: 999px !important;
+			background: rgba(255, 255, 255, 0.92) !important;
+			backdrop-filter: blur(8px) !important;
+			color: #111111 !important;
+			font-size: 12px !important;
+			font-weight: 800 !important;
+			letter-spacing: 0.08em !important;
+		}
+
+		.before-after-card-body {
+			display: flex !important;
+			flex-direction: column !important;
+			align-items: center !important;
+			justify-content: center !important;
+			text-align: center !important;
+			padding: 22px 20px 24px 20px !important;
+			min-height: 126px !important;
+			flex: 1 1 auto !important;
+		}
+
+		.before-after-card-category {
+			display: inline-flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			height: 30px !important;
+			padding: 0 12px !important;
+			border-radius: 999px !important;
+			background: #f5f7f9 !important;
+			color: #666666 !important;
+			font-size: 12px !important;
+			font-weight: 700 !important;
+			margin-bottom: 10px !important;
+		}
+
+		.before-after-card-title {
+			margin: 0 0 6px 0 !important;
+			font-size: 20px !important;
+			line-height: 1.45 !important;
+			font-weight: 700 !important;
+			color: #111111 !important;
+			letter-spacing: -0.03em !important;
+		}
+
+		.before-after-card-sub {
+			margin: 0 !important;
+			font-size: 14px !important;
+			line-height: 1.6 !important;
+			color: #7a7a7a !important;
+		}
+
+		.before-after-load-more-wrap {
+			margin-top: 38px !important;
+		}
+
+		.before-after-load-more-btn {
+			width: 100% !important;
+			min-height: 100px !important;
+			border: none !important;
+			border-radius: 26px !important;
+			background: linear-gradient(135deg, #141414 0%, #2a2a2a 100%) !important;
+			color: #ffffff !important;
+			font-size: 20px !important;
+			font-weight: 700 !important;
+			letter-spacing: -0.02em !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			text-align: center !important;
+			box-shadow: 0 16px 34px rgba(17, 17, 17, 0.16) !important;
+			transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease !important;
+		}
+
+		.before-after-load-more-btn:hover {
+			transform: translateY(-3px) !important;
+			box-shadow: 0 22px 40px rgba(17, 17, 17, 0.22) !important;
+		}
+
+		.before-after-load-more-btn:disabled {
+			opacity: 0.45 !important;
+			cursor: default !important;
+			transform: none !important;
+			box-shadow: 0 12px 24px rgba(17, 17, 17, 0.10) !important;
+		}
+
+		.before-after-scroll-sentinel {
+			width: 100% !important;
+			height: 1px !important;
+		}
+
+		@media (max-width: 991.98px) {
+			.before-after-page-section {
+				padding-bottom: 90px !important;
+			}
+
+			.before-after-filter-title {
+				font-size: 24px !important;
+			}
+
+			.before-after-card-title {
+				font-size: 18px !important;
+			}
+
+			.before-after-load-more-btn {
+				min-height: 90px !important;
+				font-size: 18px !important;
+			}
+		}
+
+		@media (max-width: 767.98px) {
+			.before-after-filter-wrap {
+				padding-top: 20px !important;
+			}
+
+			.before-after-filter-title {
+				font-size: 21px !important;
+			}
+
+			.before-after-filter-desc {
+				font-size: 14px !important;
+			}
+
+			.before-after-filter-pill span {
+				min-width: 76px !important;
+				height: 44px !important;
+				padding: 0 16px !important;
+				font-size: 14px !important;
+			}
+
+			.before-after-meta-row {
+				justify-content: center !important;
+				text-align: center !important;
+			}
+
+			.before-after-card-toggle-wrap {
+				top: 22px !important;
+				right: 22px !important;
+			}
+
+			.before-after-card-body {
+				min-height: 114px !important;
+				padding: 18px 16px 22px 16px !important;
+			}
+
+			.before-after-card-title {
+				font-size: 17px !important;
+			}
+
+			.before-after-load-more-btn {
+				min-height: 84px !important;
+				border-radius: 22px !important;
+				font-size: 17px !important;
+			}
+		}
+	</style>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			const beforeAfterImage = '/front/sample/700-500.png';
+			const beforeAfterPageSize = 20;
+			const beforeAfterAppendSize = 8;
+
+			const beforeAfterCategoryMap = {
+				all: '전체',
+				eye: '눈',
+				young: '동안',
+				contour: '안면윤곽',
+				nose: '코'
+			};
+
+			const beforeAfterTitlePool = {
+				eye: ['자연유착 쌍꺼풀', '눈매교정', '앞트임', '뒤트임', '상안검', '하안검'],
+				young: ['리프팅', '눈밑지방재배치', '이마거상', '실리프팅', '하안검', '미니거상'],
+				contour: ['광대축소', '사각턱', '턱끝성형', '윤곽 3종', '미니 V라인', '비대칭교정'],
+				nose: ['자연코성형', '복코교정', '매부리코', '코재수술', '콧대성형', '코끝성형']
+			};
+
+			const beforeAfterGrid = document.getElementById('before-after-grid');
+			const beforeAfterCountEl = document.getElementById('before-after-total-count');
+			const beforeAfterLoadMoreBtn = document.getElementById('before-after-load-more-btn');
+			const beforeAfterSentinel = document.getElementById('before-after-scroll-sentinel');
+			const beforeAfterFilterInputs = document.querySelectorAll('input[name="before-after-category"]');
+
+			let beforeAfterCurrentFilter = 'all';
+			let beforeAfterVisibleCount = beforeAfterPageSize;
+			let beforeAfterRenderKey = 0;
+
+			const beforeAfterItems = [];
+			let beforeAfterId = 1;
+
+			['eye', 'young', 'contour', 'nose'].forEach(function (categoryKey) {
+				for (let i = 0; i < 9; i++) {
+					const titleList = beforeAfterTitlePool[categoryKey];
+					const title = titleList[i % titleList.length];
+					beforeAfterItems.push({
+						id: beforeAfterId,
+						category: categoryKey,
+						categoryLabel: beforeAfterCategoryMap[categoryKey],
+						title: title,
+						subText: 'Before & After Case ' + String(beforeAfterId).padStart(2, '0'),
+						beforeImage: beforeAfterImage,
+						afterImage: beforeAfterImage,
+						defaultState: (beforeAfterId % 2 === 0) ? 'after' : 'before'
+					});
+					beforeAfterId++;
+				}
+			});
+
+			function beforeAfterGetFilteredItems() {
+				if (beforeAfterCurrentFilter === 'all') {
+					return beforeAfterItems;
+				}
+				return beforeAfterItems.filter(function (item) {
+					return item.category === beforeAfterCurrentFilter;
+				});
+			}
+
+			function beforeAfterCreateCard(item) {
+				const col = document.createElement('div');
+				col.className = 'col-12 col-sm-6 col-lg-3 before-after-col';
+
+				const isAfter = item.defaultState === 'after';
+
+				col.innerHTML = `
+					<article class="before-after-card before-after-observe">
+						<div class="before-after-card-media">
+							<div class="before-after-card-toggle-wrap">
+								<button type="button" class="before-after-card-toggle ${isAfter ? 'is-after' : 'is-before'}" aria-label="전후사진 전환">
+									<span class="before-after-card-toggle-indicator"></span>
+									<span class="before-after-card-toggle-text before-after-before-label">Before</span>
+									<span class="before-after-card-toggle-text before-after-after-label">After</span>
+								</button>
+							</div>
+
+							<div class="before-after-card-viewport">
+								<div class="before-after-card-track ${isAfter ? 'is-after' : ''}">
+									<div class="before-after-card-panel before-after-card-panel-before">
+										<img src="${item.beforeImage}" alt="${item.title} Before">
+										<span class="before-after-card-label">BEFORE</span>
+									</div>
+									<div class="before-after-card-panel before-after-card-panel-after">
+										<img src="${item.afterImage}" alt="${item.title} After">
+										<span class="before-after-card-label">AFTER</span>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="before-after-card-body">
+							<span class="before-after-card-category">${item.categoryLabel}</span>
+							<h3 class="before-after-card-title">${item.title}</h3>
+							<p class="before-after-card-sub">${item.subText}</p>
+						</div>
+					</article>
+				`;
+
+				const toggleBtn = col.querySelector('.before-after-card-toggle');
+				const track = col.querySelector('.before-after-card-track');
+
+				toggleBtn.addEventListener('click', function () {
+					const isNowAfter = track.classList.toggle('is-after');
+					toggleBtn.classList.toggle('is-after', isNowAfter);
+					toggleBtn.classList.toggle('is-before', !isNowAfter);
+				});
+
+				return col;
+			}
+
+			function beforeAfterBindReveal() {
+				const targetCards = document.querySelectorAll('.before-after-observe');
+
+				const observer = new IntersectionObserver(function (entries) {
+					entries.forEach(function (entry) {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('before-after-visible');
+							observer.unobserve(entry.target);
+						}
+					});
+				}, {
+					threshold: 0.12
+				});
+
+				targetCards.forEach(function (card) {
+					observer.observe(card);
+				});
+			}
+
+			function beforeAfterUpdateButton(filteredItems) {
+				const remain = filteredItems.length - beforeAfterVisibleCount;
+				if (remain > 0) {
+					beforeAfterLoadMoreBtn.disabled = false;
+					beforeAfterLoadMoreBtn.textContent = '다음 전후사진 더 보기 (' + remain + '건 남음)';
+				} else {
+					beforeAfterLoadMoreBtn.disabled = true;
+					beforeAfterLoadMoreBtn.textContent = '모든 전후사진을 확인하셨습니다';
+				}
+			}
+
+			function beforeAfterRender(reset) {
+				const filteredItems = beforeAfterGetFilteredItems();
+				if (reset) {
+					beforeAfterVisibleCount = beforeAfterPageSize;
+					beforeAfterGrid.innerHTML = '';
+				}
+
+				const visibleItems = filteredItems.slice(0, beforeAfterVisibleCount);
+				beforeAfterGrid.innerHTML = '';
+				visibleItems.forEach(function (item) {
+					beforeAfterGrid.appendChild(beforeAfterCreateCard(item));
+				});
+
+				beforeAfterCountEl.textContent = '총 ' + filteredItems.length + '건';
+				beforeAfterUpdateButton(filteredItems);
+				beforeAfterBindReveal();
+				beforeAfterRenderKey++;
+			}
+
+			function beforeAfterLoadMore() {
+				const filteredItems = beforeAfterGetFilteredItems();
+				if (beforeAfterVisibleCount >= filteredItems.length) {
+					beforeAfterUpdateButton(filteredItems);
+					return;
+				}
+				beforeAfterVisibleCount += beforeAfterAppendSize;
+				beforeAfterRender(false);
+			}
+
+			beforeAfterFilterInputs.forEach(function (input) {
+				input.addEventListener('change', function () {
+					beforeAfterCurrentFilter = this.value;
+					beforeAfterRender(true);
+				});
+			});
+
+			beforeAfterLoadMoreBtn.addEventListener('click', beforeAfterLoadMore);
+
+			let beforeAfterScrollTicking = false;
+			window.addEventListener('scroll', function () {
+				if (beforeAfterScrollTicking) return;
+				beforeAfterScrollTicking = true;
+
+				window.requestAnimationFrame(function () {
+					const rect = beforeAfterSentinel.getBoundingClientRect();
+					if (rect.top < window.innerHeight + 180) {
+						beforeAfterLoadMore();
+					}
+					beforeAfterScrollTicking = false;
+				});
+			});
+
+			beforeAfterRender(true);
+		});
+	</script>
+
+	<th:block th:replace="fragments/front/common :: commonScript"></th:block>
+</body>
+
+</html>

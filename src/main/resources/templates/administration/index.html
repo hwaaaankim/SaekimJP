@@ -1,0 +1,37 @@
+<!doctype html>
+<html 
+lang="en" 
+data-layout="vertical" 
+data-topbar="light" 
+data-sidebar="dark" 
+data-sidebar-size="lg"
+data-sidebar-image="none" 
+data-preloader="disable" 
+xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: adminHead"></head>
+
+<body>
+
+	<div id="layout-wrapper">
+
+		<header id="page-topbar" th:replace="fragments/administration/common :: adminHeader"></header>
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: adminNav"></div>
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+				</div>
+			</div>
+
+		<th:block th:replace="fragments/administration/common :: adminFooter"></th:block>
+	</div>
+	<th:block th:replace="fragments/administration/common :: adminBottom"></th:block>
+
+	<th:block th:replace="fragments/administration/common :: adminScript"></th:block>
+</body>
+
+</html>

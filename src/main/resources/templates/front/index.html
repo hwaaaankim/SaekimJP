@@ -8,37 +8,28 @@
 		<main id="main">
 			<div class="main-wrap">
 				<section class="mainv_container">
-					<!-- 상단 전체폭 프로그레스바 -->
 					<div class="progress-topbar" aria-hidden="true">
 						<span class="progress-topbar__fill"></span>
 					</div>
 
-					<div class="swiper mySwiper swiper-fade">
+					<div class="swiper mySwiper swiper-fade" id="index-main-banner-swiper">
 						<ul class="swiper-wrapper" aria-live="off">
-							<!-- 슬라이드 1 -->
-							<li class="swiper-slide mainv-slide">
-								<div class="kb-bg" style="background-image:url('/front/sample/1920-970.png')"></div>
-								<a onclick="sampleMessage();">
-									<h2 data-aos="fade-up" data-aos-duration="1000">
-										TITLE MESSAGE AREA,<br class="pc_hide"> <strong>STRONG TEXT</strong>
-									</h2>
-								</a>
-							</li>
+							<li class="swiper-slide mainv-slide" th:each="banner : ${mainBanners}">
+								<div class="kb-bg index-dynamic-main-banner-bg"
+									th:style="|--main-banner-pc:url('${banner.pcImageUrl}'); --main-banner-mo:url('${banner.mobileImageUrl}');|">
+								</div>
 
-							<!-- 슬라이드 2 -->
-							<li class="swiper-slide mainv-slide">
-								<div class="kb-bg" style="background-image:url('/front/sample/1920-970.png')"></div>
-								<a onclick="sampleMessage();">
+								<div class="index-dynamic-main-banner-text-wrap">
 									<h2 data-aos="fade-up" data-aos-duration="1000">
-										TITLE MESSAGE AREA,<br class="pc_hide"> <strong>STRONG TEXT</strong>
+										<span th:text="${banner.generalText}">TITLE MESSAGE AREA,</span><br
+											class="pc_hide">
+										<strong th:text="${banner.strongText}">STRONG TEXT</strong>
 									</h2>
-								</a>
+								</div>
 							</li>
-
 						</ul>
 
-						<!-- 우측 원형 + 숫자(남은 초) -->
-						<div class="autoplay-progress" aria-hidden="true">
+						<div class="autoplay-progress" aria-hidden="true" th:if="${#lists.size(mainBanners) > 1}">
 							<svg viewBox="0 0 48 48">
 								<circle cx="24" cy="24" r="20"></circle>
 							</svg>
@@ -304,62 +295,51 @@
 						<div class="system_cnt05 bsc_ly">
 							<div class="inner">
 								<div class="title-wrap">
-									<p class="title color03">새김성형외과의 독보적 비수술 치료법</p>
-									<span class="sub-txt">수술이 두렵거나 불필요한 분들에게 자연스러운 치료법을 통해, <br class="pc_show">비 수술 치료
-										및 시술을 통하여 자연스러운 아름다움을 선물합니다.</span>
+									<p class="title color03">새김성형외과의 특별한 EVENT!</p>
+									<span class="sub-txt">새김성형외과는 늘 고객분들에게 풍성한 혜택을 드리기 위해, <br class="pc_show">다양한 혜택을
+										드리고 있으니 꼭 참여해 보세요!</span>
 								</div>
 								<div class="article-wrap">
-									<a href="javascript:void(0);" class="iceM-go">비수술치료 자세히 보기<s></s></a>
-									<ul class="iceM-list">
+									<a href="javascript:void(0);" class="iceM-go">이벤트 자세히 보기<s></s></a>
+									<ul class="iceM-list" style="padding-left:0px;">
 										<li class="iceM-list_item">
 											<a href="javascript:void(0);">
-												<p class="iceMImg-wrap">
-													<img src="/front/sample/300-200.png">
-												</p>
-												<div class="iceMImg-txt">
-													<p>개개인 얼굴에 맞춰 진행되는</p>
-													<span>맞춤형 리프팅</span>
-												</div>
+												<p class="iceMImg-wrap"><img src="/front/sample/400-600.png">
+													<div class="iceMImg-txt">
+														<span>맞춤형 리프팅</span>
+													</div>
 											</a>
 										</li>
 										<li class="iceM-list_item">
 											<a href="javascript:void(0);">
-												<p class="iceMImg-wrap">
-													<img src="/front/sample/300-200.png">
-												</p>
-												<div class="iceMImg-txt">
-													<p>아무도 모르게</p>
-													<span>감쪽같이 예뻐지는 비결</span>
-												</div>
+												<p class="iceMImg-wrap"><img src="/front/sample/400-600.png">
+													<div class="iceMImg-txt">
+														<span>감쪽같이 예뻐지는 비결</span>
+													</div>
 											</a>
 										</li>
 										<li class="iceM-list_item">
 											<a href="javascript:void(0);">
-												<p class="iceMImg-wrap">
-													<img src="/front/sample/300-200.png">
-												</p>
-												<div class="iceMImg-txt">
-													<p>동글동글 달덩이 얼굴형</p>
-													<span>갸름하게 슬림하게</span>
-												</div>
+												<p class="iceMImg-wrap"><img src="/front/sample/400-600.png">
+													<div class="iceMImg-txt">
+														<span>갸름하게 슬림하게</span>
+													</div>
 											</a>
 										</li>
 										<li class="iceM-list_item">
 											<a href="javascript:void(0);">
-												<p class="iceMImg-wrap"><img src="/front/sample/300-200.png">
+												<p class="iceMImg-wrap"><img src="/front/sample/400-600.png">
 												</p>
 												<div class="iceMImg-txt">
-													<p>뼈수술 없이</p>
 													<span>매끈한 브이라인을 얻자</span>
 												</div>
 											</a>
 										</li>
 										<li class="iceM-list_item">
 											<a href="javascript:void(0);">
-												<p class="iceMImg-wrap"><img src="/front/sample/300-200.png">
+												<p class="iceMImg-wrap"><img src="/front/sample/400-600.png">
 												</p>
 												<div class="iceMImg-txt">
-													<p>꺼진 볼살과 늘어진 볼을</p>
 													<span>한번에 해결하자</span>
 												</div>
 											</a>
@@ -393,29 +373,25 @@
 		import Swiper from '/front/common/js/swiper-bundle.esm.browser.min.js'
 	</script>
 	<script src="/front/resources/js/index.js"></script>
-	<div id="common-popup-root">
-		<!-- Overlay -->
+	<div id="common-popup-root" th:if="${!#lists.isEmpty(visiblePopups)}">
 		<div class="common-popup-overlay" id="common-popup-overlay" aria-hidden="true"></div>
 
-		<!-- Popup -->
 		<div class="common-popup-wrap" id="common-popup-wrap" role="dialog" aria-modal="true" aria-hidden="true">
 			<div class="common-popup-inner">
-				<!-- 닫기(X) - SVG 아이콘으로 중앙정렬 정확히 -->
 				<button type="button" class="common-popup-close" id="common-popup-close" aria-label="팝업 닫기">
 					<svg class="common-popup-icon" viewBox="0 0 24 24" aria-hidden="true">
 						<path d="M6 6 L18 18 M18 6 L6 18" stroke="#fff" stroke-width="2.5" stroke-linecap="round" />
 					</svg>
 				</button>
 
-				<!-- 슬라이더 -->
 				<div class="common-popup-swiper swiper" id="common-popup-swiper" aria-label="프로모션 이미지 슬라이더">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide"><img src="/front/sample/450-700.png" alt="프로모션 이미지 1"></div>
-						<div class="swiper-slide"><img src="/front/sample/450-700.png" alt="프로모션 이미지 2"></div>
-						<div class="swiper-slide"><img src="/front/sample/450-700.png" alt="프로모션 이미지 3"></div>
+						<div class="swiper-slide" th:each="popup : ${visiblePopups}"
+							th:attr="data-link=${popup.linkUrl}">
+							<img th:src="${popup.imageUrl}" alt="프로모션 팝업 이미지">
+						</div>
 					</div>
 
-					<!-- 좌/우 네비게이션 - SVG 아이콘으로 정확히 중앙 -->
 					<button class="common-popup-nav common-popup-prev swiper-button-prev" aria-label="이전 슬라이드"
 						type="button">
 						<svg class="common-popup-icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -431,11 +407,9 @@
 						</svg>
 					</button>
 
-					<!-- 페이지네이션 -->
 					<div class="common-popup-pagination swiper-pagination" aria-hidden="true"></div>
 				</div>
 
-				<!-- 컨트롤 -->
 				<div class="common-popup-controls">
 					<label class="common-popup-check" for="common-popup-hide-7">
 						<input type="checkbox" id="common-popup-hide-7">
@@ -444,93 +418,196 @@
 
 					<div class="common-popup-actions">
 						<button type="button" class="common-popup-btn common-popup-btn--ghost"
-							id="common-popup-btn-close">닫기</button>
+							id="common-popup-btn-close">
+							닫기
+						</button>
 						<button type="button" class="common-popup-btn common-popup-btn--primary"
-							id="common-popup-btn-link" data-link="/event">링크이동</button>
+							id="common-popup-btn-link">
+							링크이동
+						</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<script type="module">
-		// import Swiper from '/front/common/js/swiper-bundle.esm.browser.min.js'  // 이미 포함됨
 
-		const commonPopupCookieKey = 'common_popup_hidden_until';
-
-		function setCookieDays(key, days) {
-			const d = new Date();
-			d.setDate(d.getDate() + days);
-			document.cookie = `${key}=${encodeURIComponent(d.toISOString())}; path=/; expires=${d.toUTCString()}`;
-		}
-		function getCookie(key) {
-			return document.cookie
-				.split('; ')
-				.map(v => v.split('='))
-				.reduce((acc, [k, v]) => (acc[k] = v, acc), {})[key];
-		}
-		function isHiddenByCookie() {
-			const v = getCookie(commonPopupCookieKey);
-			if (!v) return false;
-			try {return Date.now() < new Date(decodeURIComponent(v)).getTime();}
-			catch {return false;}
-		}
-
-		const overlay = document.getElementById('common-popup-overlay');
-		const wrap = document.getElementById('common-popup-wrap');
-		const btnX = document.getElementById('common-popup-close');
-		const btnClose = document.getElementById('common-popup-btn-close');
-		const btnLink = document.getElementById('common-popup-btn-link');
-		const hide7 = document.getElementById('common-popup-hide-7');
-
-		function openPopup() {
-			overlay.classList.remove('is-hiding'); wrap.classList.remove('is-hiding');
-			overlay.classList.add('is-open'); wrap.classList.add('is-open');
-			overlay.setAttribute('aria-hidden', 'false');
-			wrap.setAttribute('aria-hidden', 'false');
-		}
-		function closePopup(withCookie = false) {
-			if (withCookie || hide7.checked) setCookieDays(commonPopupCookieKey, 7);
-			overlay.classList.remove('is-open'); wrap.classList.remove('is-open');
-			overlay.classList.add('is-hiding'); wrap.classList.add('is-hiding');
-			overlay.setAttribute('aria-hidden', 'true');
-			wrap.setAttribute('aria-hidden', 'true');
-		}
-
-		overlay.addEventListener('click', () => closePopup(false));
-		btnX.addEventListener('click', () => closePopup(false));
-		btnClose.addEventListener('click', () => closePopup(false));
-		btnLink.addEventListener('click', () => {
-			if (hide7.checked) setCookieDays(commonPopupCookieKey, 7);
-			const href = btnLink.dataset.link || '/';
-			window.location.href = href;
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			initIndexMainBanner();
+			initIndexPopup();
 		});
 
-		let commonPopupSwiper = null;
-		function initSwiper() {
-			const el = document.getElementById('common-popup-swiper');
-			if (!el) return;
-			commonPopupSwiper = new Swiper(el, {
-				loop: true,
+		function initIndexMainBanner() {
+			const el = document.querySelector('#index-main-banner-swiper');
+			if (!el || typeof Swiper === 'undefined') return;
+
+			const slideCount = el.querySelectorAll('.swiper-slide').length;
+			const progressFill = document.querySelector('.progress-topbar__fill');
+			const progressWrap = el.querySelector('.autoplay-progress');
+			const progressText = progressWrap ? progressWrap.querySelector('span') : null;
+			const progressSvg = progressWrap ? progressWrap.querySelector('svg') : null;
+
+			if (slideCount <= 1) {
+				if (progressWrap) progressWrap.style.display = 'none';
+				if (progressFill) progressFill.style.width = '100%';
+			}
+
+			new Swiper(el, {
+				loop: slideCount > 1,
+				effect: 'fade',
+				speed: 800,
+				allowTouchMove: slideCount > 1,
+				autoplay: slideCount > 1 ? {
+					delay: 5000,
+					disableOnInteraction: false
+				} : false,
+				on: {
+					autoplayTimeLeft: function (swiper, time, progress) {
+						if (progressFill) {
+							progressFill.style.width = ((1 - progress) * 100) + '%';
+						}
+
+						if (progressText) {
+							progressText.textContent = Math.ceil(time / 1000);
+						}
+
+						if (progressSvg) {
+							progressSvg.style.setProperty('--progress', 1 - progress);
+						}
+					}
+				}
+			});
+		}
+
+		function initIndexPopup() {
+			const root = document.getElementById('common-popup-root');
+			if (!root || typeof Swiper === 'undefined') return;
+
+			const cookieKey = 'common_popup_hidden_until';
+			const overlay = document.getElementById('common-popup-overlay');
+			const wrap = document.getElementById('common-popup-wrap');
+			const btnX = document.getElementById('common-popup-close');
+			const btnClose = document.getElementById('common-popup-btn-close');
+			const btnLink = document.getElementById('common-popup-btn-link');
+			const hide7 = document.getElementById('common-popup-hide-7');
+			const swiperEl = document.getElementById('common-popup-swiper');
+
+			function setCookieDays(key, days) {
+				const d = new Date();
+				d.setDate(d.getDate() + days);
+				document.cookie = key + '=' + encodeURIComponent(d.toISOString()) + '; path=/; expires=' + d.toUTCString();
+			}
+
+			function getCookie(key) {
+				return document.cookie
+					.split('; ')
+					.map(v => v.split('='))
+					.reduce((acc, [k, v]) => {
+						acc[k] = v;
+						return acc;
+					}, {})[key];
+			}
+
+			function isHiddenByCookie() {
+				const value = getCookie(cookieKey);
+				if (!value) return false;
+
+				try {
+					return Date.now() < new Date(decodeURIComponent(value)).getTime();
+				} catch (e) {
+					return false;
+				}
+			}
+
+			function openPopup() {
+				overlay.classList.remove('is-hiding');
+				wrap.classList.remove('is-hiding');
+				overlay.classList.add('is-open');
+				wrap.classList.add('is-open');
+				overlay.setAttribute('aria-hidden', 'false');
+				wrap.setAttribute('aria-hidden', 'false');
+			}
+
+			function closePopup(withCookie) {
+				if (withCookie || (hide7 && hide7.checked)) {
+					setCookieDays(cookieKey, 7);
+				}
+
+				overlay.classList.remove('is-open');
+				wrap.classList.remove('is-open');
+				overlay.classList.add('is-hiding');
+				wrap.classList.add('is-hiding');
+				overlay.setAttribute('aria-hidden', 'true');
+				wrap.setAttribute('aria-hidden', 'true');
+			}
+
+			function updateLinkButton(swiper) {
+				const realIndex = swiper.realIndex || 0;
+				const slide = swiper.slides[swiper.activeIndex];
+				const link = slide ? slide.getAttribute('data-link') : '';
+
+				btnLink.dataset.link = link || '';
+				btnLink.disabled = !link;
+			}
+
+			overlay.addEventListener('click', function () {
+				closePopup(false);
+			});
+
+			btnX.addEventListener('click', function () {
+				closePopup(false);
+			});
+
+			btnClose.addEventListener('click', function () {
+				closePopup(false);
+			});
+
+			btnLink.addEventListener('click', function () {
+				const href = btnLink.dataset.link;
+				if (!href) return;
+
+				if (hide7 && hide7.checked) {
+					setCookieDays(cookieKey, 7);
+				}
+				window.location.href = href;
+			});
+
+			if (isHiddenByCookie()) {
+				return;
+			}
+
+			const popupSwiper = new Swiper(swiperEl, {
+				loop: swiperEl.querySelectorAll('.swiper-slide').length > 1,
 				speed: 500,
 				slidesPerView: 1,
 				spaceBetween: 0,
-				pagination: {el: el.querySelector('.common-popup-pagination'), clickable: true},
-				navigation: {nextEl: el.querySelector('.common-popup-next'), prevEl: el.querySelector('.common-popup-prev')},
-				autoplay: {delay: 3000, disableOnInteraction: false},
-				a11y: {enabled: true},
+				pagination: {
+					el: swiperEl.querySelector('.common-popup-pagination'),
+					clickable: true
+				},
+				navigation: {
+					nextEl: swiperEl.querySelector('.common-popup-next'),
+					prevEl: swiperEl.querySelector('.common-popup-prev')
+				},
+				autoplay: swiperEl.querySelectorAll('.swiper-slide').length > 1 ? {
+					delay: 3000,
+					disableOnInteraction: false
+				} : false,
+				on: {
+					init: function () {
+						updateLinkButton(this);
+					},
+					slideChange: function () {
+						updateLinkButton(this);
+					}
+				}
 			});
-			window.commonPopupSwiper = commonPopupSwiper;
+
+			window.commonPopupSwiper = popupSwiper;
+			setTimeout(openPopup, 10);
 		}
-
-		document.addEventListener('DOMContentLoaded', () => {
-			if (!isHiddenByCookie()) {
-				initSwiper();
-				setTimeout(openPopup, 10);
-			}
-		});
 	</script>
-
 </body>
 
 </html>

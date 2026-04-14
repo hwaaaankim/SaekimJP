@@ -1,0 +1,194 @@
+.popup-manager-preview-item {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: flex-start !important;
+}
+
+.popup-manager-preview-frame {
+	width: 200px !important;
+	min-width: 200px !important;
+	max-width: 200px !important;
+	height: 200px !important;
+	min-height: 200px !important;
+	max-height: 200px !important;
+	overflow: hidden !important;
+	border-radius: 12px !important;
+	border: 1px solid #dee2e6 !important;
+	background: #f8f9fa !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+
+.popup-manager-preview-frame img {
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover !important;
+	display: block !important;
+}
+
+.popup-manager-image {
+	width: 200px !important;
+	max-width: 200px !important;
+}
+
+.popup-manager-card .row.align-items-stretch {
+	align-items: flex-start !important;
+}
+
+.popup-manager-preview-item {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: flex-start !important;
+}
+
+.popup-manager-preview-frame {
+	width: 300px !important;
+	min-width: 300px !important;
+	max-width: 300px !important;
+	height: 200px !important;
+	min-height: 200px !important;
+	max-height: 200px !important;
+	overflow: hidden !important;
+	border: 1px solid #dee2e6 !important;
+	border-radius: 12px !important;
+	background: #f8f9fa !important;
+	display: flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+}
+
+.popup-manager-preview-frame img {
+	width: 100% !important;
+	height: 100% !important;
+	object-fit: cover !important;
+	display: block !important;
+}
+
+.popup-manager-image {
+	width: 300px !important;
+	max-width: 300px !important;
+}
+
+
+
+.popup-manager-period-switch-box .popup-manager-switch-wrap {
+	margin-bottom: 0 !important;
+}
+
+
+
+.popup-manager-card-actions {
+	display: flex !important;
+	flex-direction: column !important;
+	justify-content: flex-end !important;
+	align-items: stretch !important;
+	height: 100% !important;
+	gap: 10px !important;
+}
+
+.popup-manager-action-label {
+	margin-bottom: 2px !important;
+}
+
+.popup-manager-card .row.align-items-stretch {
+	align-items: flex-end !important;
+}
+
+.popup-manager-period-switch-box {
+	display: flex !important;
+	flex-direction: column !important;
+	align-items: flex-start !important;
+	height: 100% !important;
+}
+
+.popup-manager-period-switch-label {
+	margin-bottom: 6px !important;
+	line-height: 1.2 !important;
+}
+
+.popup-manager-switch-wrap {
+	flex: 1 !important;
+	display: flex !important;
+	align-items: center !important;
+	margin-bottom: 0 !important;
+	min-height: 38px !important;
+}
+
+.popup-manager-switch-wrap .form-check-input {
+	margin-top: 0 !important;
+}
+
+.main-banner-manager-preview-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 20px;
+}
+
+.main-banner-manager-preview-item {
+	display: flex;
+	flex-direction: column;
+}
+
+.main-banner-manager-preview-label {
+	margin-bottom: 8px;
+	font-weight: 600;
+	color: #495057;
+}
+
+.main-banner-manager-preview-frame {
+	width: 300px;
+	height: 200px;
+	max-width: 100%;
+	margin: 0 auto;
+	padding: 8px;
+	border: 1px solid #e9ebec;
+	border-radius: 16px;
+	background: #f8f9fb;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.main-banner-manager-preview-frame img {
+	width: 100%;
+	height: 100%;
+	object-fit: contain !important;
+	display: block;
+	border-radius: 10px;
+	background: #ffffff;
+}
+
+.main-banner-manager-preview-empty {
+	width: 100%;
+	height: 100%;
+	border-radius: 10px;
+	background: #ffffff;
+	color: #98a6ad;
+	font-size: 14px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding: 12px;
+}
+
+.main-banner-manager-card-actions {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	gap: 10px;
+}
+
+@media (max-width: 991.98px) {
+	.main-banner-manager-preview-grid {
+		grid-template-columns: 1fr;
+	}
+
+	.main-banner-manager-preview-frame {
+		width: 100%;
+		max-width: 300px;
+	}
+}

@@ -1190,7 +1190,7 @@ input[type="radio"]:checked {
 	transition: all 0.3s;
 	border: 2px solid transparent;
 	width: calc(100% / 5 - 20px);
-	height: 364px;
+	height: auto;
 	background-color: #fff;
 	display: flex;
 	justify-content: center;
@@ -1214,14 +1214,16 @@ input[type="radio"]:checked {
 }
 
 .system_bsc .system_cnt05 .iceMImg-txt>span {
-	font-weight: 700;
-	font-size: 16px;
-	color: #00b8e4;
+	font-weight: 500;
+	font-size: 15px;
+	color: #000000;
 }
-
+.iceMImg-txt{
+	margin-bottom:10px;
+}
 .system_bsc .system_cnt05 .iceMImg-wrap {
 	min-height: 100px;
-	max-height: 200px;
+	max-height: auto;
 	padding: 0px 10px 0px 10px;
 	overflow: hidden;
 }
@@ -1236,47 +1238,21 @@ input[type="radio"]:checked {
 }
 
 .curriculum_bsc .curi-list_item {
-	width: 1065px;
-	height: 460px;
-	border-radius: 20px;
+	width: 100%;
+	height: auto;
+	border-radius: 10px;
 	position: relative;
 }
 
-.curriculum_bsc .curi-list_item:nth-child(2n) {
-	margin-left: 385px;
-}
+.curriculum_bsc .curi-list_item:nth-child(2n) {}
 
 .curriculum_bsc .curi-list_item+.curi-list_item {
 	margin-top: 85px;
 }
 
-.curriculum_bsc .curi-list_item.curiItem1 {
-	background: url(/front/sample/1060-568.png) left top no-repeat;
-}
-
-.curriculum_bsc .curi-list_item.curiItem2 {
-	background: url(/front/sample/1060-568.png) left top no-repeat;
-}
-
-.curriculum_bsc .curi-list_item.curiItem3 {
-	background: url(/front/sample/1060-568.png) left top no-repeat;
-}
-
-.curriculum_bsc .curi-list_item.curiItem4 {
-	background: url(/front/sample/1060-568.png) left top no-repeat;
-}
-
-.curriculum_bsc .curi-list_item.curiItem5 {
-	background: url(/front/sample/1060-568.png) left top no-repeat;
-}
-
-.curriculum_bsc .curi-list_item.curiItem6 {
-	background: url(/front/sample/1060-568.png) left top no-repeat;
-}
-
 .curriculum_bsc .curiCont-wrap {
-	width: 880px;
-	height: 460px;
+	width: 100%;
+	height: 100%;
 	border-radius: 20px;
 	background: #fff;
 	padding: 24px 30px;
@@ -1288,12 +1264,10 @@ input[type="radio"]:checked {
 }
 
 .curriculum_bsc .curiCont-wrap.right {
-	right: -250px;
 	box-shadow: -14px 20px 15px 7px rgba(0, 0, 0, 0.15);
 }
 
 .curriculum_bsc .curiCont-wrap.left {
-	left: -250px;
 	box-shadow: 14px 20px 15px 7px rgba(0, 0, 0, 0.15);
 }
 
@@ -3010,5 +2984,21 @@ footer .footer2 .family .family-box .family-list__link:hover>s {
 	box-shadow: rgba(0, 0, 0, 0.08) 0 -3px 7px;
 }
 
-/*swiper-container::part(button-next) {color: green;}
-swiper-container::part(button-prev) {color: red;}*/
+.notice-list__item {
+	display: flex;
+	align-items: center;
+}
+
+.notice-num {
+	margin: 0;
+	width: 80px;
+	/* 필요에 따라 조절 */
+	flex: 0 0 80px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.notice-con {
+	flex: 1;
+}

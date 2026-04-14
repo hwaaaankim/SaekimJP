@@ -18,8 +18,13 @@
 	<link rel="stylesheet" type="text/css" href="/front/resources/css/sub.css">
 	<link rel="stylesheet" type="text/css" href="/front/resources/css/index.css">
 	<link rel="stylesheet" type="text/css" href="/front/resources/css/add.css">
+	<link rel="stylesheet" type="text/css" href="/front/resources/css/add_one.css">
+	<link rel="stylesheet" type="text/css" href="/front/resources/css/add_detail.css">
 	<link rel="stylesheet" href="/front/common/css/swiper-bundle.min.css">
 	<link rel="stylesheet" href="/front/common/css/aos.css">
+	<!-- Bootstrap 5 CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+
 </head>
 
 <body id="hamBody" class="" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
@@ -28,45 +33,65 @@
 	<div id="container">
 		<th:block th:fragment="commonHeader(white, dark)">
 			<header id="header" class=""
-          	th:classappend="${dark} ? ' header--dark' : (${white} ? ' header--white' : '')">
+				th:classappend="${dark} ? ' header--dark' : (${white} ? ' header--white' : '')">
 				<section class="header-inner">
 					<h1 class="header-logo"><a href="/"></a></h1>
 					<nav class="header-gnb">
 						<ul class="gnb-menu_list">
 							<li class="gnb-menu_item">
-								<a class="gnb-menu_link" href="/" title="#"><span>TITLE</span></a>
+								<a class="gnb-menu_link" href="/" title="#"><span>HOME</span></a>
 								<ul class="snb-menu">
-									<li class="snb-menu_item"><a class="snb-menu_link" href="/index" title="#">홈</a></li>
-									
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/index" title="#">HOME</a>
+									</li>
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/about"
+											title="#">새김성형외과</a></li>
 								</ul>
 							</li>
 							<li class="gnb-menu_item">
-								<a class="gnb-menu_link" href="/" title="#"><span>TITLE</span></a>
+								<a class="gnb-menu_link" href="/" title="#"><span>수술</span></a>
 								<ul class="snb-menu">
-									<li class="snb-menu_item"><a class="snb-menu_link" href="/about" title="#">ABOUT</a></li>
-									<li class="snb-menu_item"><a class="snb-menu_link" href="/surgeryDetail" title="#">수술-복잡</a></li>
-									<li class="snb-menu_item"><a class="snb-menu_link" href="/surgerySimple" title="#">수술-간단</a></li>
-									
+
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/surgeryDetail"
+											title="#">눈</a></li>
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/surgeryDetail"
+											title="#">동안</a></li>
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/surgeryDetail"
+											title="#">안면윤곽</a></li>
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/surgerySimple"
+											title="#">코</a></li>
+
 								</ul>
 							</li>
 							<li class="gnb-menu_item">
-								<a class="gnb-menu_link" href="/" title="#"><span>TITLE</span></a>
+								<a class="gnb-menu_link" href="/" title="#"><span>전후사진</span></a>
 								<ul class="snb-menu">
-									<li class="snb-menu_item"><a class="snb-menu_link" href="/contact" title="#">문의하기</a></li>
-									<li class="snb-menu_item"><a class="snb-menu_link" href="/notice" title="#">공지사항</a></li>
-									<li class="snb-menu_item"><a class="snb-menu_link" href="/faq" title="#">FAQ</a></li>
+
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/beforeAfter"
+											title="#">전후사진</a></li>
+
 								</ul>
 							</li>
 							<li class="gnb-menu_item">
-								<a class="gnb-menu_link" href="/" title="#"><span>TITLE</span></a>
+								<a class="gnb-menu_link" href="/" title="#"><span>커뮤니티</span></a>
 								<ul class="snb-menu">
-									<li class="snb-menu_item"><a class="snb-menu_link" href="#" title="#">MENU</a></li>
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/faq" title="#">FAQ</a>
+									</li>
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/notice" title="#">공지사항</a>
+									</li>
 								</ul>
 							</li>
 							<li class="gnb-menu_item">
-								<a class="gnb-menu_link" href="/" title="#"><span>TITLE</span></a>
+								<a class="gnb-menu_link" href="/" title="#"><span>EVENT</span></a>
 								<ul class="snb-menu">
-									<li class="snb-menu_item"><a class="snb-menu_link" href="#" title="#">MENU</a></li>
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/event" title="#">EVENT</a>
+									</li>
+								</ul>
+							</li>
+							<li class="gnb-menu_item">
+								<a class="gnb-menu_link" href="/" title="#"><span>고객센터</span></a>
+								<ul class="snb-menu">
+									<li class="snb-menu_item"><a class="snb-menu_link" href="/contact"
+											title="#">문의하기</a></li>
 								</ul>
 							</li>
 						</ul>
@@ -194,6 +219,10 @@
 		<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-element-bundle.min.js"></script>
 		<script src="/front/resources/js/all.js"></script>
 		<script src="/front/resources/js/common.js"></script>
+		<!-- JS -->
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+		<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 		<script>
 			window.onresize = function (event) {
 				var innerWidth = window.innerWidth;

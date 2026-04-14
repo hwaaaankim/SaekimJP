@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+	data-sidebar-image="none" data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:fragment="adminHead">
+
+	<meta charset="utf-8" />
+	<title>새김성형외과</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta content="#" name="description" />
+	<meta content="#" name="author" />
+	<link rel="shortcut icon" href="/administration/assets/images/favicon.ico">
+	<link href="/administration/assets/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/administration/assets/libs/swiper/swiper-bundle.min.css" rel="stylesheet" type="text/css" />
+	<script src="/administration/assets/js/layout.js"></script>
+	<link href="/administration/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="/administration/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+	<link href="/administration/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+	<link href="/administration/assets/css/custom.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+	<div id="layout-wrapper">
+
+		<header id="page-topbar" th:fragment="adminHeader">
+			<div class="layout-width">
+				<div class="navbar-header">
+					<div class="d-flex">
+						<!-- LOGO -->
+						<div class="navbar-brand-box horizontal-logo">
+							<a href="index.html" class="logo logo-dark">
+								<span class="logo-sm">
+									<img src="/administration/assets/images/logo-sm.png" alt="" height="22">
+								</span>
+								<span class="logo-lg">
+									<img src="/administration/assets/images/logo-dark.png" alt="" height="17">
+								</span>
+							</a>
+
+							<a href="index.html" class="logo logo-light">
+								<span class="logo-sm">
+									<img src="/administration/assets/images/logo-sm.png" alt="" height="22">
+								</span>
+								<span class="logo-lg">
+									<img src="/administration/assets/images/logo-light.png" alt="" height="17">
+								</span>
+							</a>
+						</div>
+					</div>
+
+					<div class="d-flex align-items-center">
+
+						<div class="dropdown ms-sm-3 header-item topbar-user">
+							<button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+								<span class="d-flex align-items-center">
+									<span class="text-center ms-xl-2">
+										<span
+											class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">ADMIN</span>
+										<span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">ROLE_ADMIN</span>
+									</span>
+								</span>
+							</button>
+							<div class="dropdown-menu dropdown-menu-end">
+								<h6 class="dropdown-header">WELCOME!</h6>
+								<a class="dropdown-item" href="/logout"><i
+										class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span
+										class="align-middle">로그아웃</span></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<div class="app-menu navbar-menu" th:fragment="adminNav">
+			<div class="navbar-brand-box">
+				<a href="#" class="logo logo-dark">
+					<span class="logo-sm">
+						<img src="/administration/assets/images/logo-sm.png" alt="" height="22">
+					</span>
+					<span class="logo-lg">
+						<img src="/administration/assets/images/logo-dark.png" alt="" height="17">
+					</span>
+				</a>
+				<a href="#" class="logo logo-light">
+					<span class="logo-sm">
+						<img src="/administration/assets/images/logo-sm.png" alt="" height="22">
+					</span>
+					<span class="logo-lg">
+						<img src="/administration/assets/images/logo-light.png" alt="" height="17">
+					</span>
+				</a>
+				<button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
+					id="vertical-hover">
+					<i class="ri-record-circle-line"></i>
+				</button>
+			</div>
+
+			<div id="scrollbar">
+				<div class="container-fluid">
+
+					<div id="two-column-menu">
+					</div>
+					<ul class="navbar-nav" id="navbar-nav">
+						<li class="menu-title"><span data-key="t-menu">Menu</span></li>
+						<li class="nav-item">
+							<a class="nav-link menu-link" href="#sidebarMain" data-bs-toggle="collapse" role="button"
+								aria-expanded="false" aria-controls="sidebarMain">
+								<i class="ri-dashboard-2-line"></i> <span data-key="t-main">메인화면관리</span>
+							</a>
+							<div class="collapse menu-dropdown" id="sidebarMain">
+								<ul class="nav nav-sm flex-column">
+									<li class="nav-item">
+										<a href="/admin/mainBannerManager" class="nav-link" data-key="t-main">메인배너관리</a>
+										<a href="/admin/popupManager" class="nav-link" data-key="t-main">팝업관리</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link menu-link" href="#sidebarSurgery" data-bs-toggle="collapse" role="button"
+								aria-expanded="false" aria-controls="sidebarSurgery">
+								<i class="ri-dashboard-2-line"></i> <span data-key="t-surgery">수술화면관리</span>
+							</a>
+							<div class="collapse menu-dropdown" id="sidebarSurgery">
+								<ul class="nav nav-sm flex-column">
+									<li class="nav-item">
+										<a href="#" class="nav-link" data-key="t-surgery">눈수술</a>
+										<a href="#" class="nav-link" data-key="t-surgery">코수술</a>
+										<a href="#" class="nav-link" data-key="t-surgery">윤곽수술</a>
+										<a href="#" class="nav-link" data-key="t-surgery">동안수술</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link menu-link" href="#sidebarCommunity" data-bs-toggle="collapse"
+								role="button" aria-expanded="false" aria-controls="sidebarCommunity">
+								<i class="ri-dashboard-2-line"></i> <span data-key="t-community">커뮤니티관리</span>
+							</a>
+							<div class="collapse menu-dropdown" id="sidebarCommunity">
+								<ul class="nav nav-sm flex-column">
+									<li class="nav-item">
+										<a href="#" class="nav-link" data-key="t-community">공지사항관리</a>
+										<a href="#" class="nav-link" data-key="t-community">FAQ관리</a>
+										<a href="#" class="nav-link" data-key="t-community">이벤트관리</a>
+										<a href="#" class="nav-link" data-key="t-community">전후사진관리</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link menu-link" href="#sidebarClient" data-bs-toggle="collapse" role="button"
+								aria-expanded="false" aria-controls="sidebarClient">
+								<i class="ri-dashboard-2-line"></i> <span data-key="t-client">고객문의관리</span>
+							</a>
+							<div class="collapse menu-dropdown" id="sidebarClient">
+								<ul class="nav nav-sm flex-column">
+									<li class="nav-item">
+										<a href="#" class="nav-link" data-key="t-client">고객문의관리</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="sidebar-background"></div>
+		</div>
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+
+			<div class="page-content">
+				<div class="container-fluid">
+
+
+				</div>
+			</div>
+
+			<footer class="footer" th:fragment="adminFooter">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-sm-6">
+							<script>document.write(new Date().getFullYear())</script>. 새김성형외과
+						</div>
+						<div class="col-sm-6">
+							<div class="text-sm-end d-none d-sm-block">
+								Design & Develop by Themesbrand
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+
+	</div>
+
+
+	<th:block th:fragment="adminBottom">
+		<button onclick="topFunction()" class="btn btn-danger btn-icon" id="back-to-top">
+			<i class="ri-arrow-up-line"></i>
+		</button>
+
+		<div id="preloader">
+			<div id="status">
+				<div class="spinner-border text-primary avatar-sm" role="status">
+					<span class="visually-hidden">Loading...</span>
+				</div>
+			</div>
+		</div>
+	</th:block>
+	<th:block th:fragment="adminScript">
+		<script src="/administration/assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="/administration/assets/libs/simplebar/simplebar.min.js"></script>
+		<script src="/administration/assets/libs/node-waves/waves.min.js"></script>
+		<script src="/administration/assets/libs/feather-icons/feather.min.js"></script>
+		<script src="/administration/assets/js/pages/plugins/lord-icon-2.1.0.js"></script>
+		<script src="/administration/assets/js/plugins.js"></script>
+		<script src="/administration/assets/libs/apexcharts/apexcharts.min.js"></script>
+		<script src="/administration/assets/libs/jsvectormap/js/jsvectormap.min.js"></script>
+		<script src="/administration/assets/libs/jsvectormap/maps/world-merc.js"></script>
+		<script src="/administration/assets/libs/swiper/swiper-bundle.min.js"></script>
+		<script src="/administration/assets/js/pages/dashboard-ecommerce.init.js"></script>
+		<script src="/administration/assets/js/app.js"></script>
+		<script src="/administration/assets/libs/particles.js/particles.js"></script>
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+	</th:block>
+</body>
+
+</html>
