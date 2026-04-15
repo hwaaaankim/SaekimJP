@@ -17,14 +17,17 @@ public class WebConfig implements WebMvcConfigurer {
 	private String commonPath;
 	
 	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	    String path = Paths.get(commonPath).toUri().toString();
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        String path = Paths.get(commonPath).toUri().toString();
 
-	    if (!path.endsWith("/")) {
-	        path += "/";
-	    }
+        if (!path.endsWith("/")) {
+            path += "/";
+        }
 
-	    registry.addResourceHandler("/administration/upload/**")
-	            .addResourceLocations(path);
-	}
+        registry.addResourceHandler("/upload/**")
+                .addResourceLocations(path);
+
+        registry.addResourceHandler("/administration/upload/**")
+                .addResourceLocations(path);
+    }
 }

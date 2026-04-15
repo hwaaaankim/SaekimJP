@@ -1253,7 +1253,7 @@
 	border-radius: 9999px !important;
 	width: 30px !important;
 	height: 30px !important;
-	background: rgba(0,0,0,0.7) !important;
+	background: rgba(0, 0, 0, 0.7) !important;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, .35) !important;
 	z-index: 4 !important;
 }
@@ -1337,3 +1337,64 @@
 		--icon-size: 16px;
 	}
 }
+
+.surgery-detail-added-step-grid {
+	display: grid !important;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)) !important;
+	gap: 24px !important;
+	align-items: stretch !important;
+	margin-top: 32px !important;
+}
+
+.surgery-detail-added-step-grid-item {
+	min-width: 0 !important;
+}
+
+.surgery-detail-added-icon-grid {
+	display: grid !important;
+	grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+	gap: 16px !important;
+	align-items: stretch !important;
+	justify-content: center !important;
+	margin-top: 24px !important;
+}
+
+.surgery-detail-added-icon-grid-item {
+	min-width: 0 !important;
+}
+
+.surgery-detail-added-step-card,
+.surgery-detail-added-icon-card {
+	height: 100% !important;
+}
+
+.surgery-detail-added-panel-empty {
+	margin-top: 24px !important;
+	padding: 20px !important;
+	border: 1px dashed #d9d9d9 !important;
+	border-radius: 16px !important;
+	text-align: center !important;
+	color: #888 !important;
+	background: #fafafa !important;
+}
+
+@media (max-width: 991.98px) {
+	.surgery-detail-added-step-grid {
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)) !important;
+		gap: 18px !important;
+	}
+
+	.surgery-detail-added-icon-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+		gap: 14px !important;
+	}
+}
+
+@media (max-width: 575.98px) {
+
+	.surgery-detail-added-step-grid,
+	.surgery-detail-added-icon-grid {
+		grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+	}
+}
+

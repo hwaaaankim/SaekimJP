@@ -296,51 +296,38 @@
 							<div class="inner">
 								<div class="title-wrap">
 									<p class="title color03">새김성형외과의 특별한 EVENT!</p>
-									<span class="sub-txt">새김성형외과는 늘 고객분들에게 풍성한 혜택을 드리기 위해, <br class="pc_show">다양한 혜택을
-										드리고 있으니 꼭 참여해 보세요!</span>
+									<span class="sub-txt">
+										새김성형외과는 늘 고객분들에게 풍성한 혜택을 드리기 위해,
+										<br class="pc_show">다양한 혜택을 드리고 있으니 꼭 참여해 보세요!
+									</span>
 								</div>
+
 								<div class="article-wrap">
-									<a href="javascript:void(0);" class="iceM-go">이벤트 자세히 보기<s></s></a>
-									<ul class="iceM-list" style="padding-left:0px;">
-										<li class="iceM-list_item">
-											<a href="javascript:void(0);">
-												<p class="iceMImg-wrap"><img src="/front/sample/400-600.png">
-													<div class="iceMImg-txt">
-														<span>맞춤형 리프팅</span>
-													</div>
-											</a>
-										</li>
-										<li class="iceM-list_item">
-											<a href="javascript:void(0);">
-												<p class="iceMImg-wrap"><img src="/front/sample/400-600.png">
-													<div class="iceMImg-txt">
-														<span>감쪽같이 예뻐지는 비결</span>
-													</div>
-											</a>
-										</li>
-										<li class="iceM-list_item">
-											<a href="javascript:void(0);">
-												<p class="iceMImg-wrap"><img src="/front/sample/400-600.png">
-													<div class="iceMImg-txt">
-														<span>갸름하게 슬림하게</span>
-													</div>
-											</a>
-										</li>
-										<li class="iceM-list_item">
-											<a href="javascript:void(0);">
-												<p class="iceMImg-wrap"><img src="/front/sample/400-600.png">
+									<a href="/event" class="iceM-go">이벤트 전체 보기<s></s></a>
+
+									<ul class="iceM-list" style="padding-left:0px;"
+										th:if="${!#lists.isEmpty(indexEvents)}">
+										<li class="iceM-list_item" th:each="event : ${indexEvents}">
+											<a th:href="@{/event}">
+												<p class="iceMImg-wrap">
+													<img th:src="${event.imageUrl}" th:alt="${event.title}">
 												</p>
 												<div class="iceMImg-txt">
-													<span>매끈한 브이라인을 얻자</span>
+													<span th:text="${event.title}">이벤트 제목</span>
 												</div>
 											</a>
 										</li>
-										<li class="iceM-list_item">
-											<a href="javascript:void(0);">
-												<p class="iceMImg-wrap"><img src="/front/sample/400-600.png">
+									</ul>
+
+									<ul class="iceM-list" style="padding-left:0px;"
+										th:if="${#lists.isEmpty(indexEvents)}">
+										<li class="iceM-list_item" th:each="i : ${#numbers.sequence(1, 5)}">
+											<a th:href="@{/event}">
+												<p class="iceMImg-wrap">
+													<img src="/front/sample/400-600.png" alt="이벤트 준비중">
 												</p>
 												<div class="iceMImg-txt">
-													<span>한번에 해결하자</span>
+													<span>이벤트 준비중</span>
 												</div>
 											</a>
 										</li>

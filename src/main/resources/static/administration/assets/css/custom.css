@@ -192,3 +192,894 @@
 		max-width: 300px;
 	}
 }
+
+.notice-manager-page-title-wrap {
+	margin-bottom: 24px;
+}
+
+.notice-manager-page-title {
+	margin-bottom: 6px;
+	font-size: 28px;
+	font-weight: 700;
+	color: #222;
+}
+
+.notice-manager-page-desc {
+	margin-bottom: 0;
+	color: #6c757d;
+	font-size: 14px;
+}
+
+.notice-manager-create-card,
+.notice-manager-list-card {
+	border-radius: 16px;
+	overflow: hidden;
+	box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+	border: 1px solid #eef1f6;
+}
+
+.notice-manager-label {
+	font-weight: 600;
+	color: #222;
+}
+
+.notice-manager-input {
+	height: 46px;
+	border-radius: 10px;
+}
+
+.notice-manager-editor-textarea {
+	min-height: 260px;
+}
+
+.notice-manager-submit-btn {
+	min-width: 120px;
+	height: 46px;
+	border-radius: 10px;
+	font-weight: 600;
+}
+
+.notice-manager-sortable {
+	align-items: stretch;
+}
+
+.notice-manager-sort-item {
+	display: flex;
+}
+
+.notice-manager-list-card {
+	width: 100%;
+}
+
+.notice-manager-list-card-body {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 16px;
+	width: 100%;
+	min-height: 220px;
+	padding: 20px;
+}
+
+.notice-manager-card-top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+}
+
+.notice-manager-drag-handle {
+	width: 38px;
+	height: 38px;
+	border-radius: 10px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	cursor: grab;
+	flex-shrink: 0;
+}
+
+.notice-manager-index-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	background: #f8f9fa;
+	border: 1px solid #e9ecef;
+	border-radius: 999px;
+	padding: 8px 12px;
+	font-size: 12px;
+	color: #495057;
+	font-weight: 600;
+}
+
+.notice-manager-card-content {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	flex: 1;
+}
+
+.notice-manager-title-btn {
+	display: block;
+	width: 100%;
+	padding: 0;
+	border: none;
+	background: none;
+	text-align: left;
+	font-size: 18px;
+	font-weight: 700;
+	color: #212529;
+	line-height: 1.5;
+}
+
+.notice-manager-title-btn:hover {
+	color: #0d6efd;
+}
+
+.notice-manager-meta {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 8px;
+}
+
+.notice-manager-meta-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 12px;
+	min-height: 32px;
+	padding: 8px 10px;
+	border-radius: 10px;
+	background: #f8f9fa;
+}
+
+.notice-manager-meta-label {
+	font-size: 13px;
+	color: #6c757d;
+	font-weight: 600;
+}
+
+.notice-manager-meta-value {
+	font-size: 13px;
+	color: #212529;
+	font-weight: 600;
+	text-align: right;
+	word-break: break-all;
+}
+
+.notice-manager-modal-content {
+	border-radius: 18px;
+	overflow: hidden;
+}
+
+.notice-manager-modal-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px 18px;
+	padding: 14px 16px;
+	border-radius: 12px;
+	background: #f8f9fa;
+	color: #495057;
+	font-size: 13px;
+}
+
+.notice-manager-modal-footer {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+}
+
+.ck-editor__editable {
+	min-height: 320px;
+}
+
+@media (max-width: 991px) {
+	.notice-manager-list-card-body {
+		min-height: 200px;
+	}
+}
+
+@media (max-width: 767px) {
+	.notice-manager-page-title {
+		font-size: 24px;
+	}
+
+	.notice-manager-modal-meta {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}
+
+.faq-manager-page .faq-manager-page-title-wrap {
+	margin-bottom: 24px;
+}
+
+.faq-manager-page .faq-manager-page-title {
+	margin-bottom: 6px;
+	font-size: 28px;
+	font-weight: 700;
+}
+
+.faq-manager-page .faq-manager-page-desc {
+	margin-bottom: 0;
+	color: #6c757d;
+}
+
+.faq-manager-page .faq-manager-form-label {
+	font-weight: 600;
+	margin-bottom: 8px;
+}
+
+.faq-manager-page .faq-manager-switch-wrap {
+	min-height: 38px;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding-left: 0;
+}
+
+.faq-manager-page .faq-manager-create-answer,
+.faq-manager-page .faq-manager-edit-answer {
+	resize: vertical;
+	min-height: 160px;
+}
+
+.faq-manager-page .faq-manager-card-item {
+	height: 100%;
+}
+
+.faq-manager-page .faq-manager-card-item .card-body {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+
+.faq-manager-page .faq-manager-card-title {
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 1.45;
+	min-height: 52px;
+	margin-bottom: 0;
+	word-break: keep-all;
+}
+
+.faq-manager-page .faq-manager-answer-preview {
+	min-height: 64px;
+	color: #6c757d;
+	line-height: 1.6;
+	word-break: keep-all;
+}
+
+.faq-manager-page .faq-manager-badge-wrap {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	flex-wrap: wrap;
+}
+
+.faq-manager-page .faq-manager-meta-list {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 8px 12px;
+	margin-top: auto;
+}
+
+.faq-manager-page .faq-manager-meta-item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 38px;
+	padding: 8px 12px;
+	border: 1px solid #e9ebec;
+	border-radius: 10px;
+	background: #f8f9fa;
+	font-size: 13px;
+}
+
+.faq-manager-page .faq-manager-card-footer {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+}
+
+.faq-manager-page .faq-manager-empty-box {
+	min-height: 220px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #6c757d;
+	border: 1px dashed #dbe0e6;
+	border-radius: 16px;
+	background: #fbfbfc;
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.faq-manager-edit-modal .faq-manager-edit-modal-content {
+	border-radius: 18px;
+	overflow: hidden;
+}
+
+.faq-manager-edit-modal .faq-manager-edit-meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 18px;
+	color: #6c757d;
+	font-size: 14px;
+}
+
+.faq-manager-edit-modal .faq-manager-edit-modal-footer {
+	justify-content: space-between;
+}
+
+@media (max-width: 767.98px) {
+	.faq-manager-page .faq-manager-meta-list {
+		grid-template-columns: 1fr;
+	}
+
+	.faq-manager-page .faq-manager-card-title {
+		min-height: auto;
+	}
+
+	.faq-manager-edit-modal .faq-manager-edit-meta {
+		flex-direction: column;
+		gap: 8px;
+	}
+}
+
+.form-switch .form-check-input {
+	margin-left: 0px !important;
+}
+
+input.form-check-input.faq-manager-edit-link-enabled {
+	margin-left: -2.5em !important;
+}
+
+.auth-one-bg {
+	background-image: none !important;
+}
+
+.eye-surgery-manager-page {
+	padding-bottom: 40px;
+}
+
+.eye-surgery-manager-page .min-w-0 {
+	min-width: 0 !important;
+}
+
+.eye-surgery-manager-page-title-wrap {
+	padding: 28px 32px;
+	border-radius: 20px;
+	background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+	border: 1px solid #e9ecef;
+	box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.eye-surgery-manager-page-title {
+	margin: 0 0 6px 0;
+	font-size: 28px;
+	font-weight: 800;
+	line-height: 1.3;
+	color: #111827;
+}
+
+.eye-surgery-manager-page-desc {
+	margin: 0;
+	font-size: 14px;
+	color: #6b7280;
+	line-height: 1.6;
+}
+
+.eye-surgery-manager-card {
+	border: 1px solid #e9ecef !important;
+	border-radius: 20px !important;
+	overflow: hidden !important;
+	box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05) !important;
+}
+
+.eye-surgery-manager-card .card-header {
+	padding: 20px 24px;
+	background: #fff;
+	border-bottom: 1px solid #eef2f7;
+}
+
+.eye-surgery-manager-card .card-header h5,
+.eye-surgery-manager-card .card-header h6 {
+	font-weight: 700;
+	color: #111827;
+}
+
+.eye-surgery-manager-card .card-header p {
+	font-size: 13px;
+	color: #6b7280;
+}
+
+.eye-surgery-manager-card .card-body {
+	padding: 24px;
+	background: #fff;
+}
+
+.eye-surgery-manager-page .form-label {
+	margin-bottom: 8px;
+	font-size: 13px;
+	font-weight: 700;
+	color: #374151;
+}
+
+.eye-surgery-manager-page .form-control,
+.eye-surgery-manager-page .form-select {
+	min-height: 46px;
+	border-radius: 12px;
+	border-color: #dbe2ea;
+	box-shadow: none !important;
+}
+
+.eye-surgery-manager-page textarea.form-control {
+	min-height: 110px;
+	resize: vertical;
+}
+
+.eye-surgery-manager-page .form-control:focus,
+.eye-surgery-manager-page .form-select:focus {
+	border-color: #4f46e5;
+	box-shadow: 0 0 0 0.2rem rgba(79, 70, 229, 0.12) !important;
+}
+
+.eye-surgery-manager-page .btn {
+	border-radius: 12px;
+	font-weight: 600;
+	min-height: 44px;
+}
+
+.eye-surgery-manager-page .btn-sm {
+	min-height: auto;
+	border-radius: 10px;
+}
+
+.eye-surgery-manager-section-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	flex-wrap: wrap;
+	padding: 14px 16px;
+	border: 1px solid #eef2f7;
+	border-radius: 16px;
+	background: #f8fafc;
+}
+
+.eye-surgery-manager-section-head h6 {
+	font-weight: 700;
+	color: #111827;
+}
+
+/* 미리보기 이미지 */
+.eye-surgery-manager-preview-item .card {
+	border: 1px solid #edf1f5;
+	border-radius: 18px;
+	overflow: hidden;
+	transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.eye-surgery-manager-preview-item .card:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 16px 28px rgba(15, 23, 42, 0.08);
+}
+
+.eye-surgery-manager-preview-item .card-header {
+	padding: 14px 16px;
+	background: #f8fafc;
+	border-bottom: 1px solid #eef2f7;
+}
+
+.eye-surgery-manager-preview-item .card-body {
+	padding: 14px;
+}
+
+.eye-surgery-manager-preview-item img {
+	display: block;
+}
+
+/* 중분류 리스트 */
+.eye-surgery-manager-middle-list {
+	gap: 12px;
+	display: flex;
+	flex-direction: column;
+}
+
+.eye-surgery-manager-middle-item {
+	border: 1px solid #e9edf3 !important;
+	border-radius: 16px !important;
+	padding: 18px 20px !important;
+	background: #fff !important;
+	transition: box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.eye-surgery-manager-middle-item:hover {
+	box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+	transform: translateY(-1px);
+}
+
+.eye-surgery-manager-middle-item h6 {
+	font-size: 16px;
+	font-weight: 700;
+	color: #111827;
+}
+
+.eye-surgery-manager-middle-item p {
+	max-width: 100%;
+	font-size: 13px;
+	line-height: 1.5;
+	color: #6b7280;
+}
+
+/* 중분류별 소분류 카드 */
+.eye-surgery-manager-detail-middle-card {
+	border: 1px solid #e9edf3 !important;
+	border-radius: 18px !important;
+	overflow: hidden !important;
+	box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04) !important;
+}
+
+.eye-surgery-manager-detail-middle-card .card-header {
+	padding: 18px 20px;
+	background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+}
+
+.eye-surgery-manager-detail-middle-card .card-body {
+	padding: 18px;
+}
+
+.eye-surgery-manager-detail-middle-card h6 {
+	font-size: 16px;
+	font-weight: 700;
+	color: #111827;
+}
+
+.eye-surgery-manager-detail-middle-card p {
+	font-size: 13px;
+	color: #6b7280;
+	line-height: 1.5;
+}
+
+.eye-surgery-manager-detail-sortable {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.eye-surgery-manager-detail-item {
+	border: 1px solid #edf1f5 !important;
+	border-radius: 14px !important;
+	padding: 14px 16px !important;
+	background: #fff !important;
+	transition: all 0.18s ease;
+}
+
+.eye-surgery-manager-detail-item:hover {
+	background: #f8fafc !important;
+	box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+}
+
+.eye-surgery-manager-detail-item .btn-link {
+	font-size: 14px;
+	font-weight: 700;
+	color: #1f2937 !important;
+	text-decoration: none !important;
+	max-width: 100%;
+}
+
+.eye-surgery-manager-detail-item .btn-link:hover {
+	color: #4f46e5 !important;
+}
+
+/* step / icon 카드 */
+.eye-surgery-manager-item-col .card {
+	border: 1px solid #e9edf3;
+	border-radius: 18px;
+	overflow: hidden;
+	transition: box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.eye-surgery-manager-item-col .card:hover {
+	box-shadow: 0 12px 24px rgba(15, 23, 42, 0.06);
+	transform: translateY(-1px);
+}
+
+.eye-surgery-manager-item-col .card-header {
+	padding: 14px 16px;
+	background: #f8fafc;
+	border-bottom: 1px solid #eef2f7;
+}
+
+.eye-surgery-manager-item-col .card-body {
+	padding: 16px;
+}
+
+.eye-surgery-manager-item-col .form-control {
+	min-height: 42px;
+}
+
+.eye-surgery-manager-item-col textarea.form-control {
+	min-height: 96px;
+}
+
+.eye-surgery-manager-preview-image {
+	display: block;
+}
+
+.eye-surgery-manager-preview-empty {
+	font-size: 13px;
+	font-weight: 600;
+	color: #94a3b8;
+}
+
+.eye-surgery-manager-delete-alert {
+	border-radius: 12px;
+	font-size: 13px;
+	font-weight: 600;
+	margin-bottom: 14px !important;
+}
+
+/* data state */
+.eye-surgery-manager-item-col[data-deleted="true"] .card {
+	border-color: #f5c2c7 !important;
+	background: #fff8f8 !important;
+}
+
+.eye-surgery-manager-item-col[data-deleted="true"] .card-header {
+	background: #fff1f2 !important;
+}
+
+.eye-surgery-manager-item-col.opacity-50 {
+	opacity: 0.65 !important;
+}
+
+/* 모달 */
+#eye-surgery-manager-middle-modal .modal-content,
+#eye-surgery-manager-detail-modal .modal-content {
+	border: none;
+	border-radius: 22px;
+	overflow: hidden;
+	box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+}
+
+#eye-surgery-manager-middle-modal .modal-header,
+#eye-surgery-manager-detail-modal .modal-header {
+	padding: 20px 24px;
+	border-bottom: 1px solid #eef2f7;
+	background: #fff;
+}
+
+#eye-surgery-manager-middle-modal .modal-title,
+#eye-surgery-manager-detail-modal .modal-title {
+	font-size: 20px;
+	font-weight: 800;
+	color: #111827;
+}
+
+#eye-surgery-manager-middle-modal .modal-body,
+#eye-surgery-manager-detail-modal .modal-body {
+	padding: 24px;
+	background: #fff;
+}
+
+#eye-surgery-manager-middle-modal .modal-footer,
+#eye-surgery-manager-detail-modal .modal-footer {
+	padding: 18px 24px;
+	border-top: 1px solid #eef2f7;
+	background: #fff;
+}
+
+/* Sortable drag */
+.eye-surgery-manager-preview-item.sortable-ghost,
+.eye-surgery-manager-middle-item.sortable-ghost,
+.eye-surgery-manager-detail-item.sortable-ghost {
+	opacity: 0.35 !important;
+}
+
+.eye-surgery-manager-preview-item.sortable-chosen,
+.eye-surgery-manager-middle-item.sortable-chosen,
+.eye-surgery-manager-detail-item.sortable-chosen {
+	box-shadow: 0 20px 35px rgba(79, 70, 229, 0.16) !important;
+}
+
+/* badge */
+.eye-surgery-manager-page .badge {
+	border-radius: 999px;
+	font-weight: 700;
+	padding: 7px 10px;
+}
+
+/* empty box */
+.eye-surgery-manager-page .border.rounded-3.text-center.text-muted.py-5 {
+	border-style: dashed !important;
+	border-color: #d7dee7 !important;
+	border-radius: 18px !important;
+	background: #fafbfd;
+}
+
+/* 반응형 */
+@media (max-width: 1199.98px) {
+	.eye-surgery-manager-page-title-wrap {
+		padding: 24px;
+	}
+
+	.eye-surgery-manager-card .card-header,
+	.eye-surgery-manager-card .card-body,
+	#eye-surgery-manager-middle-modal .modal-body,
+	#eye-surgery-manager-detail-modal .modal-body {
+		padding: 20px;
+	}
+}
+
+@media (max-width: 991.98px) {
+	.eye-surgery-manager-page-title {
+		font-size: 24px;
+	}
+
+	.eye-surgery-manager-middle-item,
+	.eye-surgery-manager-detail-item {
+		padding: 16px !important;
+	}
+
+	.eye-surgery-manager-section-head {
+		align-items: flex-start;
+	}
+}
+
+@media (max-width: 767.98px) {
+	.eye-surgery-manager-page-title-wrap {
+		padding: 20px;
+		border-radius: 16px;
+	}
+
+	.eye-surgery-manager-page-title {
+		font-size: 22px;
+	}
+
+	.eye-surgery-manager-card .card-header,
+	.eye-surgery-manager-card .card-body {
+		padding: 16px;
+	}
+
+	.eye-surgery-manager-middle-item .d-flex,
+	.eye-surgery-manager-detail-item .d-flex {
+		align-items: flex-start !important;
+	}
+
+	#eye-surgery-manager-middle-modal .modal-header,
+	#eye-surgery-manager-detail-modal .modal-header,
+	#eye-surgery-manager-middle-modal .modal-body,
+	#eye-surgery-manager-detail-modal .modal-body,
+	#eye-surgery-manager-middle-modal .modal-footer,
+	#eye-surgery-manager-detail-modal .modal-footer {
+		padding: 16px;
+	}
+}
+
+@media (max-width: 575.98px) {
+	.eye-surgery-manager-page {
+		padding-bottom: 24px;
+	}
+
+	.eye-surgery-manager-page-title {
+		font-size: 20px;
+	}
+
+	.eye-surgery-manager-page-desc {
+		font-size: 13px;
+	}
+
+	.eye-surgery-manager-card {
+		border-radius: 16px !important;
+	}
+
+	.eye-surgery-manager-item-col .card,
+	.eye-surgery-manager-detail-middle-card,
+	.eye-surgery-manager-middle-item {
+		border-radius: 14px !important;
+	}
+
+	.eye-surgery-manager-page .btn {
+		min-height: 42px;
+	}
+}
+
+
+/* =========================
+   소분류 상세 모달 스크롤 수정
+   기존 #eye-surgery-manager-detail-modal 관련 하단 블록 교체
+   ========================= */
+
+#eye-surgery-manager-detail-modal {
+	overflow-y: auto !important;
+}
+
+#eye-surgery-manager-detail-modal .modal-dialog {
+	max-width: 1280px;
+	margin: 1rem auto !important;
+	min-height: calc(100dvh - 2rem);
+	display: flex;
+	align-items: stretch;
+}
+
+#eye-surgery-manager-detail-modal .modal-content {
+	width: 100%;
+	min-height: calc(100dvh - 2rem);
+	max-height: none !important;
+	height: auto !important;
+	display: flex;
+	flex-direction: column;
+	border: none;
+	border-radius: 22px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	box-shadow: 0 24px 60px rgba(15, 23, 42, 0.18);
+}
+
+#eye-surgery-manager-detail-modal .modal-header {
+	flex: 0 0 auto;
+}
+
+#eye-surgery-manager-detail-modal .modal-body {
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow-y: auto !important;
+	overflow-x: hidden !important;
+	padding: 24px;
+	-webkit-overflow-scrolling: touch;
+}
+
+/* modal-body 내부의 row / col / 카드가 스크롤 영역을 밀어내며 잘리지 않도록 보정 */
+#eye-surgery-manager-detail-modal .modal-body>* {
+	min-width: 0;
+}
+
+#eye-surgery-manager-detail-modal .row {
+	--bs-gutter-y: 1rem;
+}
+
+#eye-surgery-manager-detail-modal [class*="col-"] {
+	min-width: 0;
+}
+
+/* step / icon 리스트는 개별 스크롤 없이 body 스크롤을 따르도록 */
+#eye-surgery-manager-edit-step-list,
+#eye-surgery-manager-edit-icon-list {
+	max-height: none !important;
+	height: auto !important;
+	overflow: visible !important;
+	padding-right: 0;
+	border: 1px solid #eef2f7;
+	border-radius: 16px;
+	padding: 12px;
+	background: #f8fafc;
+}
+
+#eye-surgery-manager-edit-step-list::-webkit-scrollbar,
+#eye-surgery-manager-edit-icon-list::-webkit-scrollbar {
+	display: none;
+}
+
+#eye-surgery-manager-detail-modal .modal-footer {
+	flex: 0 0 auto;
+	background: #fff;
+	border-top: 1px solid #eef2f7;
+}
+
+@media (max-width: 767.98px) {
+	#eye-surgery-manager-detail-modal .modal-dialog {
+		margin: 0.5rem !important;
+		min-height: calc(100dvh - 1rem);
+	}
+
+	#eye-surgery-manager-detail-modal .modal-content {
+		min-height: calc(100dvh - 1rem);
+	}
+
+	#eye-surgery-manager-detail-modal .modal-body {
+		padding: 16px;
+	}
+}
+

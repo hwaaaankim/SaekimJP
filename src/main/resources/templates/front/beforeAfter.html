@@ -16,7 +16,8 @@
 						</div>
 					</section>
 
-					<section class="before-after-page-section">
+					<section class="before-after-page-section" id="before-after-page" data-list-url="/api/beforeAfter"
+						data-initial-limit="20" data-append-limit="8">
 						<div class="inner w1280">
 							<div class="before-after-filter-wrap">
 								<div class="before-after-filter-title-wrap">
@@ -39,7 +40,7 @@
 									</label>
 									<label class="before-after-filter-pill">
 										<input type="radio" name="before-after-category" value="contour">
-										<span>안면윤곽</span>
+										<span>윤곽</span>
 									</label>
 									<label class="before-after-filter-pill">
 										<input type="radio" name="before-after-category" value="nose">
@@ -49,7 +50,8 @@
 
 								<div class="before-after-meta-row">
 									<div class="before-after-meta-left">
-										<span class="before-after-meta-badge">기본 20개 노출</span>
+										<span class="before-after-meta-badge" id="before-after-meta-badge">기본 20개
+											노출</span>
 										<span class="before-after-meta-text" id="before-after-total-count">총 0건</span>
 									</div>
 									<div class="before-after-meta-right">
@@ -375,7 +377,7 @@
 			justify-content: center !important;
 			text-align: center !important;
 			padding: 22px 20px 24px 20px !important;
-			min-height: 126px !important;
+			min-height: 156px !important;
 			flex: 1 1 auto !important;
 		}
 
@@ -407,6 +409,28 @@
 			font-size: 14px !important;
 			line-height: 1.6 !important;
 			color: #7a7a7a !important;
+		}
+
+		.before-after-card-meta {
+			margin-top: 14px !important;
+			display: flex !important;
+			flex-wrap: wrap !important;
+			align-items: center !important;
+			justify-content: center !important;
+			gap: 8px !important;
+		}
+
+		.before-after-card-meta span {
+			display: inline-flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			height: 28px !important;
+			padding: 0 10px !important;
+			border-radius: 999px !important;
+			background: #f8fafc !important;
+			color: #667085 !important;
+			font-size: 12px !important;
+			font-weight: 600 !important;
 		}
 
 		.before-after-load-more-wrap {
@@ -446,6 +470,18 @@
 		.before-after-scroll-sentinel {
 			width: 100% !important;
 			height: 1px !important;
+		}
+
+		.before-after-empty {
+			width: 100% !important;
+			padding: 64px 20px !important;
+			border: 1px dashed #d0d5dd !important;
+			border-radius: 24px !important;
+			text-align: center !important;
+			color: #667085 !important;
+			font-size: 16px !important;
+			font-weight: 600 !important;
+			background: #ffffff !important;
 		}
 
 		@media (max-width: 991.98px) {
@@ -498,7 +534,7 @@
 			}
 
 			.before-after-card-body {
-				min-height: 114px !important;
+				min-height: 140px !important;
 				padding: 18px 16px 22px 16px !important;
 			}
 
@@ -514,205 +550,8 @@
 		}
 	</style>
 
-	<script>
-		document.addEventListener('DOMContentLoaded', function () {
-			const beforeAfterImage = '/front/sample/700-500.png';
-			const beforeAfterPageSize = 20;
-			const beforeAfterAppendSize = 8;
-
-			const beforeAfterCategoryMap = {
-				all: '전체',
-				eye: '눈',
-				young: '동안',
-				contour: '안면윤곽',
-				nose: '코'
-			};
-
-			const beforeAfterTitlePool = {
-				eye: ['자연유착 쌍꺼풀', '눈매교정', '앞트임', '뒤트임', '상안검', '하안검'],
-				young: ['리프팅', '눈밑지방재배치', '이마거상', '실리프팅', '하안검', '미니거상'],
-				contour: ['광대축소', '사각턱', '턱끝성형', '윤곽 3종', '미니 V라인', '비대칭교정'],
-				nose: ['자연코성형', '복코교정', '매부리코', '코재수술', '콧대성형', '코끝성형']
-			};
-
-			const beforeAfterGrid = document.getElementById('before-after-grid');
-			const beforeAfterCountEl = document.getElementById('before-after-total-count');
-			const beforeAfterLoadMoreBtn = document.getElementById('before-after-load-more-btn');
-			const beforeAfterSentinel = document.getElementById('before-after-scroll-sentinel');
-			const beforeAfterFilterInputs = document.querySelectorAll('input[name="before-after-category"]');
-
-			let beforeAfterCurrentFilter = 'all';
-			let beforeAfterVisibleCount = beforeAfterPageSize;
-			let beforeAfterRenderKey = 0;
-
-			const beforeAfterItems = [];
-			let beforeAfterId = 1;
-
-			['eye', 'young', 'contour', 'nose'].forEach(function (categoryKey) {
-				for (let i = 0; i < 9; i++) {
-					const titleList = beforeAfterTitlePool[categoryKey];
-					const title = titleList[i % titleList.length];
-					beforeAfterItems.push({
-						id: beforeAfterId,
-						category: categoryKey,
-						categoryLabel: beforeAfterCategoryMap[categoryKey],
-						title: title,
-						subText: 'Before & After Case ' + String(beforeAfterId).padStart(2, '0'),
-						beforeImage: beforeAfterImage,
-						afterImage: beforeAfterImage,
-						defaultState: (beforeAfterId % 2 === 0) ? 'after' : 'before'
-					});
-					beforeAfterId++;
-				}
-			});
-
-			function beforeAfterGetFilteredItems() {
-				if (beforeAfterCurrentFilter === 'all') {
-					return beforeAfterItems;
-				}
-				return beforeAfterItems.filter(function (item) {
-					return item.category === beforeAfterCurrentFilter;
-				});
-			}
-
-			function beforeAfterCreateCard(item) {
-				const col = document.createElement('div');
-				col.className = 'col-12 col-sm-6 col-lg-3 before-after-col';
-
-				const isAfter = item.defaultState === 'after';
-
-				col.innerHTML = `
-					<article class="before-after-card before-after-observe">
-						<div class="before-after-card-media">
-							<div class="before-after-card-toggle-wrap">
-								<button type="button" class="before-after-card-toggle ${isAfter ? 'is-after' : 'is-before'}" aria-label="전후사진 전환">
-									<span class="before-after-card-toggle-indicator"></span>
-									<span class="before-after-card-toggle-text before-after-before-label">Before</span>
-									<span class="before-after-card-toggle-text before-after-after-label">After</span>
-								</button>
-							</div>
-
-							<div class="before-after-card-viewport">
-								<div class="before-after-card-track ${isAfter ? 'is-after' : ''}">
-									<div class="before-after-card-panel before-after-card-panel-before">
-										<img src="${item.beforeImage}" alt="${item.title} Before">
-										<span class="before-after-card-label">BEFORE</span>
-									</div>
-									<div class="before-after-card-panel before-after-card-panel-after">
-										<img src="${item.afterImage}" alt="${item.title} After">
-										<span class="before-after-card-label">AFTER</span>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="before-after-card-body">
-							<span class="before-after-card-category">${item.categoryLabel}</span>
-							<h3 class="before-after-card-title">${item.title}</h3>
-							<p class="before-after-card-sub">${item.subText}</p>
-						</div>
-					</article>
-				`;
-
-				const toggleBtn = col.querySelector('.before-after-card-toggle');
-				const track = col.querySelector('.before-after-card-track');
-
-				toggleBtn.addEventListener('click', function () {
-					const isNowAfter = track.classList.toggle('is-after');
-					toggleBtn.classList.toggle('is-after', isNowAfter);
-					toggleBtn.classList.toggle('is-before', !isNowAfter);
-				});
-
-				return col;
-			}
-
-			function beforeAfterBindReveal() {
-				const targetCards = document.querySelectorAll('.before-after-observe');
-
-				const observer = new IntersectionObserver(function (entries) {
-					entries.forEach(function (entry) {
-						if (entry.isIntersecting) {
-							entry.target.classList.add('before-after-visible');
-							observer.unobserve(entry.target);
-						}
-					});
-				}, {
-					threshold: 0.12
-				});
-
-				targetCards.forEach(function (card) {
-					observer.observe(card);
-				});
-			}
-
-			function beforeAfterUpdateButton(filteredItems) {
-				const remain = filteredItems.length - beforeAfterVisibleCount;
-				if (remain > 0) {
-					beforeAfterLoadMoreBtn.disabled = false;
-					beforeAfterLoadMoreBtn.textContent = '다음 전후사진 더 보기 (' + remain + '건 남음)';
-				} else {
-					beforeAfterLoadMoreBtn.disabled = true;
-					beforeAfterLoadMoreBtn.textContent = '모든 전후사진을 확인하셨습니다';
-				}
-			}
-
-			function beforeAfterRender(reset) {
-				const filteredItems = beforeAfterGetFilteredItems();
-				if (reset) {
-					beforeAfterVisibleCount = beforeAfterPageSize;
-					beforeAfterGrid.innerHTML = '';
-				}
-
-				const visibleItems = filteredItems.slice(0, beforeAfterVisibleCount);
-				beforeAfterGrid.innerHTML = '';
-				visibleItems.forEach(function (item) {
-					beforeAfterGrid.appendChild(beforeAfterCreateCard(item));
-				});
-
-				beforeAfterCountEl.textContent = '총 ' + filteredItems.length + '건';
-				beforeAfterUpdateButton(filteredItems);
-				beforeAfterBindReveal();
-				beforeAfterRenderKey++;
-			}
-
-			function beforeAfterLoadMore() {
-				const filteredItems = beforeAfterGetFilteredItems();
-				if (beforeAfterVisibleCount >= filteredItems.length) {
-					beforeAfterUpdateButton(filteredItems);
-					return;
-				}
-				beforeAfterVisibleCount += beforeAfterAppendSize;
-				beforeAfterRender(false);
-			}
-
-			beforeAfterFilterInputs.forEach(function (input) {
-				input.addEventListener('change', function () {
-					beforeAfterCurrentFilter = this.value;
-					beforeAfterRender(true);
-				});
-			});
-
-			beforeAfterLoadMoreBtn.addEventListener('click', beforeAfterLoadMore);
-
-			let beforeAfterScrollTicking = false;
-			window.addEventListener('scroll', function () {
-				if (beforeAfterScrollTicking) return;
-				beforeAfterScrollTicking = true;
-
-				window.requestAnimationFrame(function () {
-					const rect = beforeAfterSentinel.getBoundingClientRect();
-					if (rect.top < window.innerHeight + 180) {
-						beforeAfterLoadMore();
-					}
-					beforeAfterScrollTicking = false;
-				});
-			});
-
-			beforeAfterRender(true);
-		});
-	</script>
-
 	<th:block th:replace="fragments/front/common :: commonScript"></th:block>
+	<script src="/front/resources/js/beforeAfter.js"></script>
 </body>
 
 </html>

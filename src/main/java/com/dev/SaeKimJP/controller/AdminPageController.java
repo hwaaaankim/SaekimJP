@@ -10,9 +10,4 @@ public class AdminPageController {
     public String loginForm() {
         return "administration/login";
     }
-
-    @GetMapping("/admin")
-    public String adminIndex() {
-        return "administration/index";
-    }
 }

@@ -17,7 +17,7 @@
 					</section>
 
 					<section class="event-added-page-section">
-						<div class="inner w1280">
+						<div class="inner w1280" id="event-page-root" data-first-size="15" data-next-size="6">
 							<div class="event-added-top-wrap">
 								<div class="event-added-top-title-wrap">
 									<p class="event-added-top-title">진행중 / 종료 이벤트</p>
@@ -43,7 +43,7 @@
 
 								<div class="event-added-meta-row">
 									<div class="event-added-meta-left">
-										<span class="event-added-meta-badge">기본 15개 노출</span>
+										<span class="event-added-meta-badge">무한 스크롤</span>
 										<span class="event-added-meta-text" id="event-added-total-count">총 0건</span>
 									</div>
 									<div class="event-added-meta-right">
@@ -262,13 +262,7 @@
 		}
 
 		.event-added-thumb-wrap.event-added-ended::after {
-			background:
-				linear-gradient(180deg, rgba(17, 17, 17, 0.12) 0%, rgba(17, 17, 17, 0.36) 100%),
-				repeating-linear-gradient(-35deg,
-					rgba(255, 255, 255, 0.10) 0px,
-					rgba(255, 255, 255, 0.10) 12px,
-					rgba(255, 255, 255, 0.00) 12px,
-					rgba(255, 255, 255, 0.00) 28px) !important;
+			background: linear-gradient(180deg, rgba(17, 17, 17, 0.12) 0%, rgba(17, 17, 17, 0.36) 100%), repeating-linear-gradient(-35deg, rgba(255, 255, 255, 0.10) 0px, rgba(255, 255, 255, 0.10) 12px, rgba(255, 255, 255, 0.00) 12px, rgba(255, 255, 255, 0.00) 28px) !important;
 		}
 
 		.event-added-number {
@@ -284,7 +278,6 @@
 			justify-content: center !important;
 			border-radius: 999px !important;
 			background: rgba(255, 255, 255, 0.92) !important;
-			backdrop-filter: blur(8px) !important;
 			color: #111111 !important;
 			font-size: 12px !important;
 			font-weight: 800 !important;
@@ -339,7 +332,6 @@
 			letter-spacing: 0.12em !important;
 			border-radius: 999px !important;
 			background: rgba(17, 17, 17, 0.18) !important;
-			backdrop-filter: blur(2px) !important;
 		}
 
 		.event-added-card-body {
@@ -357,7 +349,6 @@
 			font-weight: 700 !important;
 			color: #111111 !important;
 			letter-spacing: -0.03em !important;
-			min-height: 66px !important;
 		}
 
 		.event-added-date {
@@ -373,7 +364,8 @@
 			font-size: 15px !important;
 			line-height: 1.75 !important;
 			color: #6f6f6f !important;
-			min-height: 84px !important;
+			white-space: pre-line !important;
+			word-break: keep-all !important;
 		}
 
 		.event-added-action {
@@ -429,289 +421,25 @@
 			color: #ffffff !important;
 			font-size: 20px !important;
 			font-weight: 700 !important;
-			letter-spacing: -0.02em !important;
 			display: flex !important;
 			align-items: center !important;
 			justify-content: center !important;
-			text-align: center !important;
 			box-shadow: 0 16px 34px rgba(17, 17, 17, 0.16) !important;
-			transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease !important;
-		}
-
-		.event-added-load-more-btn:hover {
-			transform: translateY(-3px) !important;
-			box-shadow: 0 22px 40px rgba(17, 17, 17, 0.22) !important;
 		}
 
 		.event-added-load-more-btn:disabled {
 			opacity: 0.45 !important;
 			cursor: default !important;
-			transform: none !important;
-			box-shadow: 0 12px 24px rgba(17, 17, 17, 0.10) !important;
 		}
 
 		.event-added-scroll-sentinel {
 			width: 100% !important;
 			height: 1px !important;
 		}
-
-		@media (max-width: 991.98px) {
-			.event-added-page-section {
-				padding-bottom: 90px !important;
-			}
-
-			.event-added-top-title {
-				font-size: 24px !important;
-			}
-
-			.event-added-title {
-				font-size: 20px !important;
-				min-height: auto !important;
-			}
-
-			.event-added-summary {
-				min-height: auto !important;
-			}
-
-			.event-added-load-more-btn {
-				min-height: 90px !important;
-				font-size: 18px !important;
-			}
-		}
-
-		@media (max-width: 767.98px) {
-			.event-added-top-wrap {
-				padding-top: 20px !important;
-			}
-
-			.event-added-top-title {
-				font-size: 21px !important;
-			}
-
-			.event-added-top-desc {
-				font-size: 14px !important;
-			}
-
-			.event-added-switch-pill span {
-				min-width: 84px !important;
-				height: 44px !important;
-				padding: 0 16px !important;
-				font-size: 14px !important;
-			}
-
-			.event-added-meta-row {
-				justify-content: center !important;
-				text-align: center !important;
-			}
-
-			.event-added-number,
-			.event-added-state-badge {
-				top: 14px !important;
-			}
-
-			.event-added-number {
-				left: 14px !important;
-			}
-
-			.event-added-state-badge {
-				right: 14px !important;
-			}
-
-			.event-added-ended-label {
-				min-width: 154px !important;
-				height: 52px !important;
-				font-size: 18px !important;
-			}
-
-			.event-added-card-body {
-				padding: 20px 18px 22px 18px !important;
-			}
-
-			.event-added-title {
-				font-size: 18px !important;
-			}
-
-			.event-added-load-more-btn {
-				min-height: 84px !important;
-				border-radius: 22px !important;
-				font-size: 17px !important;
-			}
-		}
 	</style>
 
-	<script>
-		document.addEventListener('DOMContentLoaded', function () {
-			const eventAddedImage = '/front/sample/470-550.png';
-			const eventAddedPageSize = 15;
-			const eventAddedAppendSize = 6;
-
-			const eventAddedGrid = document.getElementById('event-added-grid');
-			const eventAddedCountEl = document.getElementById('event-added-total-count');
-			const eventAddedLoadMoreBtn = document.getElementById('event-added-load-more-btn');
-			const eventAddedSentinel = document.getElementById('event-added-scroll-sentinel');
-			const eventAddedStatusInputs = document.querySelectorAll('input[name="event-added-status"]');
-
-			let eventAddedCurrentFilter = 'all';
-			let eventAddedVisibleCount = eventAddedPageSize;
-
-			const eventAddedItems = [
-				{no: 24, status: 'ongoing', title: '봄맞이 눈성형 특별 이벤트', date: '2026.04.01 ~ 2026.05.31', summary: '자연스럽고 또렷한 인상을 위한 눈성형 이벤트 혜택을 확인해보세요.', buttonText: '이벤트 자세히 보기', buttonLink: '#;'},
-				{no: 23, status: 'ended', title: '코성형 첫 상담 프로모션', date: '2026.03.01 ~ 2026.03.31', summary: '개인별 코 라인 분석과 함께 진행되었던 특별 상담 프로모션입니다.', buttonText: '종료된 이벤트', buttonLink: ''},
-				{no: 22, status: 'ongoing', title: '안면윤곽 집중 케어 프로그램', date: '2026.04.05 ~ 2026.06.30', summary: '수술 전후 밸런스를 고려한 맞춤형 안면윤곽 프로그램 혜택을 제공합니다.', buttonText: '신청 페이지 이동', buttonLink: '#;'},
-				{no: 21, status: 'ongoing', title: '리프팅 / 동안성형 패키지', date: '2026.04.10 ~ 2026.05.20', summary: '동안 이미지를 위한 리프팅과 눈가 개선 시술 혜택을 함께 만나보세요.', buttonText: '자세히 보기', buttonLink: '#;'},
-				{no: 20, status: 'ended', title: '재수술 상담 주간 이벤트', date: '2026.02.10 ~ 2026.03.05', summary: '재수술 고객을 위한 상담 혜택 및 맞춤 분석 프로그램이 진행되었습니다.', buttonText: '', buttonLink: ''},
-				{no: 19, status: 'ongoing', title: '여름 대비 코 / 윤곽 이벤트', date: '2026.04.12 ~ 2026.06.15', summary: '코와 윤곽을 함께 고려한 균형 중심의 복합 수술 이벤트입니다.', buttonText: '상담 예약하기', buttonLink: '#;'},
-				{no: 18, status: 'ended', title: '눈매교정 한정 이벤트', date: '2026.01.15 ~ 2026.02.28', summary: '또렷한 눈매를 위한 수술 상담과 혜택이 제공된 기간 한정 이벤트입니다.', buttonText: '', buttonLink: ''},
-				{no: 17, status: 'ongoing', title: '첫 방문 고객 혜택 이벤트', date: '2026.04.01 ~ 2026.05.15', summary: '첫 상담 고객을 위한 맞춤 혜택과 수술 계획 안내가 함께 제공됩니다.', buttonText: '혜택 확인하기', buttonLink: '#;'},
-				{no: 16, status: 'ongoing', title: '복코 / 매부리코 교정 이벤트', date: '2026.04.14 ~ 2026.06.14', summary: '코의 디테일한 형태 개선을 원하는 분들을 위한 집중 혜택 이벤트입니다.', buttonText: '자세히 보기', buttonLink: '#;'},
-				{no: 15, status: 'ended', title: '동안성형 겨울 프로모션', date: '2025.12.01 ~ 2026.01.31', summary: '겨울 시즌 동안 이미지 개선을 위한 특별 프로모션이 종료되었습니다.', buttonText: '종료된 이벤트', buttonLink: ''},
-				{no: 14, status: 'ongoing', title: '소프트 윤곽 라인 개선 이벤트', date: '2026.04.03 ~ 2026.05.28', summary: '과하지 않고 자연스러운 페이스 라인을 위한 상담 혜택 이벤트입니다.', buttonText: '이벤트 확인', buttonLink: '#;'},
-				{no: 13, status: 'ended', title: '쌍꺼풀 재수술 특별 혜택', date: '2026.02.01 ~ 2026.02.25', summary: '눈매 균형 재조정을 위한 특별 상담 혜택 이벤트가 종료되었습니다.', buttonText: '', buttonLink: ''},
-				{no: 12, status: 'ongoing', title: '콧대 + 코끝 밸런스 이벤트', date: '2026.04.08 ~ 2026.05.31', summary: '개인 얼굴 비율에 맞춘 자연스러운 코 라인 개선 혜택을 확인해보세요.', buttonText: '상담 신청', buttonLink: '#;'},
-				{no: 11, status: 'ongoing', title: '예비 신부 안면 밸런스 이벤트', date: '2026.04.01 ~ 2026.06.01', summary: '중요한 일정을 앞두고 자연스러운 인상 개선을 원하는 고객을 위한 이벤트입니다.', buttonText: '자세히 보기', buttonLink: '#;'},
-				{no: 10, status: 'ended', title: '초봄 눈/코 동시 이벤트', date: '2026.03.01 ~ 2026.03.20', summary: '눈과 코를 함께 고려한 밸런스 중심 이벤트가 종료되었습니다.', buttonText: '', buttonLink: ''},
-				{no: 9, status: 'ongoing', title: '안면윤곽 상담 주간', date: '2026.04.11 ~ 2026.05.11', summary: '개인 얼굴형에 맞는 윤곽 방향성을 안내받을 수 있는 상담 주간입니다.', buttonText: '신청하기', buttonLink: '#;'},
-				{no: 8, status: 'ended', title: '리프팅 집중 패키지', date: '2026.01.20 ~ 2026.02.20', summary: '리프팅과 동안 시술을 함께 구성한 시즌 패키지가 종료되었습니다.', buttonText: '', buttonLink: ''},
-				{no: 7, status: 'ongoing', title: '첫 수술 고객 맞춤 혜택', date: '2026.04.02 ~ 2026.05.25', summary: '첫 수술 고객이 부담 없이 상담을 시작할 수 있도록 구성된 혜택입니다.', buttonText: '이벤트 보기', buttonLink: '#;'},
-				{no: 6, status: 'ended', title: '겨울 코재수술 이벤트', date: '2025.12.15 ~ 2026.01.20', summary: '코재수술 고객 전용 분석 및 혜택 이벤트가 종료되었습니다.', buttonText: '', buttonLink: ''},
-				{no: 5, status: 'ongoing', title: '눈매교정 + 트임 복합 이벤트', date: '2026.04.06 ~ 2026.06.06', summary: '눈매 방향성과 크기를 함께 고려한 복합 수술 혜택 이벤트입니다.', buttonText: '상담 예약', buttonLink: '#;'},
-				{no: 4, status: 'ended', title: '연말 안면균형 프로모션', date: '2025.11.20 ~ 2025.12.31', summary: '연말 시즌 동안 진행된 얼굴 균형 중심 프로모션이 종료되었습니다.', buttonText: '종료', buttonLink: ''},
-				{no: 3, status: 'ongoing', title: '자연유착 집중 혜택 이벤트', date: '2026.04.14 ~ 2026.05.30', summary: '자연스럽고 깔끔한 라인을 원하는 분들을 위한 눈성형 혜택입니다.', buttonText: '내용 확인', buttonLink: '#;'},
-				{no: 2, status: 'ended', title: '복코 개선 한정 프로모션', date: '2026.02.14 ~ 2026.03.14', summary: '복코 형태 개선에 초점을 맞춘 한정 기간 프로모션이 종료되었습니다.', buttonText: '', buttonLink: ''},
-				{no: 1, status: 'ongoing', title: '새김 대표 이벤트 안내', date: '2026.04.01 ~ 2026.06.30', summary: '현재 시즌 대표 이벤트로 다양한 수술 카테고리의 혜택을 함께 제공합니다.', buttonText: '대표 이벤트 보기', buttonLink: '#;'}
-			];
-
-			function eventAddedGetFilteredItems() {
-				if (eventAddedCurrentFilter === 'all') {
-					return eventAddedItems;
-				}
-				return eventAddedItems.filter(function (item) {
-					return item.status === eventAddedCurrentFilter;
-				});
-			}
-
-			function eventAddedCreateCard(item) {
-				const col = document.createElement('div');
-				col.className = 'col-12 col-md-6 col-lg-4 event-added-col';
-
-				const isEnded = item.status === 'ended';
-				const badgeClass = isEnded ? 'event-added-ended' : 'event-added-ongoing';
-				const badgeText = isEnded ? '종료' : '진행중';
-
-				col.innerHTML = `
-					<article class="event-added-card event-added-observe">
-						<div class="event-added-thumb-wrap ${isEnded ? 'event-added-ended' : ''}">
-							<img src="${eventAddedImage}" alt="${item.title}">
-							<span class="event-added-number">NO. ${String(item.no).padStart(2, '0')}</span>
-							<span class="event-added-state-badge ${badgeClass}">${badgeText}</span>
-							${isEnded ? '<span class="event-added-ended-label">EVENT END</span>' : ''}
-						</div>
-
-						<div class="event-added-card-body">
-							<h3 class="event-added-title">${item.title}</h3>
-							<p class="event-added-date">${item.date}</p>
-							<p class="event-added-summary">${item.summary}</p>
-
-							<div class="event-added-action">
-								${item.buttonLink
-						? `<a href="${item.buttonLink}" class="event-added-action-btn">${item.buttonText}</a>`
-						: `<span class="event-added-action-empty">링크 없음</span>`
-					}
-							</div>
-						</div>
-					</article>
-				`;
-
-				return col;
-			}
-
-			function eventAddedBindReveal() {
-				const targetCards = document.querySelectorAll('.event-added-observe');
-
-				const observer = new IntersectionObserver(function (entries) {
-					entries.forEach(function (entry) {
-						if (entry.isIntersecting) {
-							entry.target.classList.add('event-added-visible');
-							observer.unobserve(entry.target);
-						}
-					});
-				}, {
-					threshold: 0.12
-				});
-
-				targetCards.forEach(function (card) {
-					observer.observe(card);
-				});
-			}
-
-			function eventAddedUpdateButton(filteredItems) {
-				const remain = filteredItems.length - eventAddedVisibleCount;
-				if (remain > 0) {
-					eventAddedLoadMoreBtn.disabled = false;
-					eventAddedLoadMoreBtn.textContent = '다음 이벤트 더 보기 (' + remain + '건 남음)';
-				} else {
-					eventAddedLoadMoreBtn.disabled = true;
-					eventAddedLoadMoreBtn.textContent = '모든 이벤트를 확인하셨습니다';
-				}
-			}
-
-			function eventAddedRender(reset) {
-				const filteredItems = eventAddedGetFilteredItems();
-				if (reset) {
-					eventAddedVisibleCount = eventAddedPageSize;
-					eventAddedGrid.innerHTML = '';
-				}
-
-				const visibleItems = filteredItems.slice(0, eventAddedVisibleCount);
-				eventAddedGrid.innerHTML = '';
-
-				visibleItems.forEach(function (item) {
-					eventAddedGrid.appendChild(eventAddedCreateCard(item));
-				});
-
-				eventAddedCountEl.textContent = '총 ' + filteredItems.length + '건';
-				eventAddedUpdateButton(filteredItems);
-				eventAddedBindReveal();
-			}
-
-			function eventAddedLoadMore() {
-				const filteredItems = eventAddedGetFilteredItems();
-				if (eventAddedVisibleCount >= filteredItems.length) {
-					eventAddedUpdateButton(filteredItems);
-					return;
-				}
-				eventAddedVisibleCount += eventAddedAppendSize;
-				eventAddedRender(false);
-			}
-
-			eventAddedStatusInputs.forEach(function (input) {
-				input.addEventListener('change', function () {
-					eventAddedCurrentFilter = this.value;
-					eventAddedRender(true);
-				});
-			});
-
-			eventAddedLoadMoreBtn.addEventListener('click', eventAddedLoadMore);
-
-			let eventAddedScrollTicking = false;
-			window.addEventListener('scroll', function () {
-				if (eventAddedScrollTicking) return;
-				eventAddedScrollTicking = true;
-
-				window.requestAnimationFrame(function () {
-					const rect = eventAddedSentinel.getBoundingClientRect();
-					if (rect.top < window.innerHeight + 180) {
-						eventAddedLoadMore();
-					}
-					eventAddedScrollTicking = false;
-				});
-			});
-
-			eventAddedRender(true);
-		});
-	</script>
-
 	<th:block th:replace="fragments/front/common :: commonScript"></th:block>
+	<script src="/front/resources/js/event.js"></script>
 </body>
 
 </html>

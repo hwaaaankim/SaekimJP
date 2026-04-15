@@ -1,0 +1,425 @@
+<!doctype html>
+<html lang="ko" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+	data-sidebar-image="none" data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: adminHead"></head>
+
+<body>
+	<div id="layout-wrapper">
+		<header id="page-topbar" th:replace="fragments/administration/common :: adminHeader"></header>
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: adminNav"></div>
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+			<div class="page-content">
+				<div class="container-fluid event-manager-page before-after-manager-page" id="before-after-manager-page"
+					data-list-url="/admin/api/beforeAfter" data-create-url="/admin/api/beforeAfter">
+
+					<div class="row mb-4">
+						<div class="col-12">
+							<div class="before-after-manager-page-title-wrap">
+								<h3 class="before-after-manager-page-title mb-1">Before&amp;After 관리</h3>
+								<p class="text-muted mb-0">전후사진 등록, 수정, 삭제 및 고객페이지 연동 관리</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="row g-4">
+						<div class="col-12">
+							<div class="card before-after-manager-card-shell">
+								<div class="card-header before-after-manager-card-header">
+									<h5 class="card-title mb-0">전후사진 등록</h5>
+								</div>
+								<div class="card-body">
+									<form id="before-after-manager-create-form" enctype="multipart/form-data">
+										<div class="row g-3">
+											<div class="col-12 col-lg-4">
+												<label for="before-after-manager-create-title"
+													class="form-label">수술명</label>
+												<input type="text" class="form-control"
+													id="before-after-manager-create-title" name="title"
+													placeholder="예: 자연유착 쌍꺼풀">
+											</div>
+
+											<div class="col-12 col-lg-3">
+												<label for="before-after-manager-create-category"
+													class="form-label">분류</label>
+												<select class="form-select" id="before-after-manager-create-category"
+													name="category">
+													<option value="">분류 선택</option>
+													<option value="eye">눈</option>
+													<option value="young">동안</option>
+													<option value="nose">코</option>
+													<option value="contour">윤곽</option>
+												</select>
+											</div>
+
+											<div class="col-12 col-lg-5">
+												<label for="before-after-manager-create-description"
+													class="form-label">간단한 설명문구</label>
+												<input type="text" class="form-control"
+													id="before-after-manager-create-description" name="description"
+													placeholder="예: 또렷하고 자연스러운 라인을 완성한 사례">
+											</div>
+
+											<div class="col-12 col-lg-6">
+												<label for="before-after-manager-create-before-image"
+													class="form-label">Before 이미지</label>
+												<input type="file" class="form-control"
+													id="before-after-manager-create-before-image" name="beforeImageFile"
+													accept="image/*">
+												<div class="before-after-manager-preview-box mt-3">
+													<img id="before-after-manager-create-before-preview"
+														class="before-after-manager-preview-image d-none" alt="">
+													<div id="before-after-manager-create-before-empty"
+														class="before-after-manager-preview-empty">
+														Before 미리보기
+													</div>
+												</div>
+											</div>
+
+											<div class="col-12 col-lg-6">
+												<label for="before-after-manager-create-after-image"
+													class="form-label">After 이미지</label>
+												<input type="file" class="form-control"
+													id="before-after-manager-create-after-image" name="afterImageFile"
+													accept="image/*">
+												<div class="before-after-manager-preview-box mt-3">
+													<img id="before-after-manager-create-after-preview"
+														class="before-after-manager-preview-image d-none" alt="">
+													<div id="before-after-manager-create-after-empty"
+														class="before-after-manager-preview-empty">
+														After 미리보기
+													</div>
+												</div>
+											</div>
+
+											<div class="col-12 d-flex justify-content-end">
+												<button type="submit"
+													class="btn btn-dark before-after-manager-submit-btn">
+													전후사진 등록
+												</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12">
+							<div class="card before-after-manager-card-shell">
+								<div class="card-header before-after-manager-card-header">
+									<div class="row g-3 align-items-center w-100">
+										<div class="col-12 col-lg-4">
+											<h5 class="card-title mb-0">등록된 전후사진</h5>
+										</div>
+										<div class="col-12 col-lg-8">
+											<div class="row g-2 align-items-center justify-content-end">
+												<div class="col-12 col-md-5 col-lg-4">
+													<select class="form-select"
+														id="before-after-manager-list-category-filter">
+														<option value="all">전체</option>
+														<option value="eye">눈</option>
+														<option value="young">동안</option>
+														<option value="nose">코</option>
+														<option value="contour">윤곽</option>
+													</select>
+												</div>
+												<div class="col-12 col-md-auto">
+													<button type="button" class="btn btn-outline-dark w-100"
+														id="before-after-manager-refresh-btn">
+														새로고침
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="card-body">
+									<div class="before-after-manager-list-meta mb-3">
+										<span class="badge bg-dark-subtle text-dark"
+											id="before-after-manager-total-count">총 0건</span>
+									</div>
+
+									<div class="row g-4" id="before-after-manager-list"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal fade" id="before-after-manager-detail-modal" tabindex="-1" aria-hidden="true">
+						<div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+							<div class="modal-content before-after-manager-modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title">전후사진 수정</h5>
+									<button type="button" class="btn-close" data-bs-dismiss="modal"
+										aria-label="Close"></button>
+								</div>
+
+								<div class="modal-body">
+									<input type="hidden" id="before-after-manager-detail-id">
+
+									<div class="row g-3">
+										<div class="col-12 col-lg-4">
+											<label for="before-after-manager-detail-title"
+												class="form-label">수술명</label>
+											<input type="text" class="form-control"
+												id="before-after-manager-detail-title">
+										</div>
+
+										<div class="col-12 col-lg-3">
+											<label for="before-after-manager-detail-category"
+												class="form-label">분류</label>
+											<select class="form-select" id="before-after-manager-detail-category">
+												<option value="eye">눈</option>
+												<option value="young">동안</option>
+												<option value="nose">코</option>
+												<option value="contour">윤곽</option>
+											</select>
+										</div>
+
+										<div class="col-12 col-lg-5">
+											<label for="before-after-manager-detail-description" class="form-label">간단한
+												설명문구</label>
+											<input type="text" class="form-control"
+												id="before-after-manager-detail-description">
+										</div>
+
+										<div class="col-12 col-lg-6">
+											<label for="before-after-manager-detail-before-image"
+												class="form-label">Before 이미지 변경</label>
+											<input type="file" class="form-control"
+												id="before-after-manager-detail-before-image" accept="image/*">
+											<div class="before-after-manager-preview-box mt-3">
+												<img id="before-after-manager-detail-before-preview"
+													class="before-after-manager-preview-image" alt="">
+											</div>
+											<div class="before-after-manager-file-name mt-2"
+												id="before-after-manager-detail-before-file-name">-</div>
+										</div>
+
+										<div class="col-12 col-lg-6">
+											<label for="before-after-manager-detail-after-image"
+												class="form-label">After 이미지 변경</label>
+											<input type="file" class="form-control"
+												id="before-after-manager-detail-after-image" accept="image/*">
+											<div class="before-after-manager-preview-box mt-3">
+												<img id="before-after-manager-detail-after-preview"
+													class="before-after-manager-preview-image" alt="">
+											</div>
+											<div class="before-after-manager-file-name mt-2"
+												id="before-after-manager-detail-after-file-name">-</div>
+										</div>
+
+										<div class="col-12">
+											<div class="before-after-manager-modal-meta">
+												<span id="before-after-manager-detail-created-at">등록일 -</span>
+												<span id="before-after-manager-detail-updated-at">수정일 -</span>
+												<span id="before-after-manager-detail-view-count">조회수 0</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div class="modal-footer before-after-manager-modal-footer">
+									<button type="button" class="btn btn-danger" id="before-after-manager-delete-btn">
+										삭제
+									</button>
+									<button type="button" class="btn btn-dark" id="before-after-manager-update-btn"
+										disabled>
+										수정
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<th:block th:replace="fragments/administration/common :: adminFooter"></th:block>
+		</div>
+	</div>
+
+	<th:block th:replace="fragments/administration/common :: adminBottom"></th:block>
+	<th:block th:replace="fragments/administration/common :: adminScript"></th:block>
+
+	<style>
+		.before-after-manager-card-shell {
+			border: 1px solid rgba(17, 17, 17, 0.08) !important;
+			border-radius: 18px !important;
+			box-shadow: 0 12px 28px rgba(17, 17, 17, 0.06) !important;
+		}
+
+		.before-after-manager-card-header {
+			background: #ffffff !important;
+			border-bottom: 1px solid rgba(17, 17, 17, 0.06) !important;
+			border-radius: 18px 18px 0 0 !important;
+		}
+
+		.before-after-manager-preview-box {
+			position: relative !important;
+			width: 100% !important;
+			height: 260px !important;
+			border: 1px dashed #d2d6dc !important;
+			border-radius: 16px !important;
+			background: #f8fafc !important;
+			overflow: hidden !important;
+		}
+
+		.before-after-manager-preview-image {
+			width: 100% !important;
+			height: 100% !important;
+			object-fit: cover !important;
+			display: block !important;
+		}
+
+		.before-after-manager-preview-image.d-none {
+			display: none !important;
+		}
+
+		.before-after-manager-preview-empty {
+			position: absolute !important;
+			inset: 0 !important;
+			display: flex !important;
+			align-items: center !important;
+			justify-content: center !important;
+			width: 100% !important;
+			height: 100% !important;
+			padding: 16px !important;
+			text-align: center !important;
+			font-size: 15px !important;
+			font-weight: 600 !important;
+			line-height: 1.5 !important;
+			color: #6b7280 !important;
+			word-break: keep-all !important;
+		}
+
+		.before-after-manager-submit-btn {
+			min-width: 180px !important;
+			height: 48px !important;
+		}
+
+		.before-after-manager-list-item {
+			display: flex !important;
+		}
+
+		.before-after-manager-list-card {
+			width: 100% !important;
+			border: 1px solid rgba(17, 17, 17, 0.08) !important;
+			border-radius: 18px !important;
+			overflow: hidden !important;
+			background: #ffffff !important;
+			box-shadow: 0 12px 24px rgba(17, 17, 17, 0.06) !important;
+			height: 100% !important;
+		}
+
+		.before-after-manager-list-card-image-row {
+			display: grid !important;
+			grid-template-columns: repeat(2, 1fr) !important;
+			gap: 0 !important;
+			height: 220px !important;
+		}
+
+		.before-after-manager-list-card-image-col {
+			position: relative !important;
+			height: 220px !important;
+			overflow: hidden !important;
+			background: #f3f4f6 !important;
+		}
+
+		.before-after-manager-list-card-image-col img {
+			width: 100% !important;
+			height: 100% !important;
+			object-fit: cover !important;
+			display: block !important;
+		}
+
+		.before-after-manager-list-card-label {
+			position: absolute !important;
+			left: 14px !important;
+			bottom: 14px !important;
+			z-index: 2 !important;
+			padding: 6px 12px !important;
+			border-radius: 999px !important;
+			background: rgba(255, 255, 255, 0.94) !important;
+			font-size: 12px !important;
+			font-weight: 800 !important;
+			color: #111827 !important;
+		}
+
+		.before-after-manager-list-card-body {
+			padding: 18px !important;
+		}
+
+		.before-after-manager-list-card-title-btn {
+			padding: 0 !important;
+			border: none !important;
+			background: none !important;
+			font-size: 20px !important;
+			font-weight: 700 !important;
+			color: #111827 !important;
+			text-align: left !important;
+			line-height: 1.45 !important;
+		}
+
+		.before-after-manager-list-card-title-btn:hover {
+			text-decoration: underline !important;
+		}
+
+		.before-after-manager-list-card-desc {
+			min-height: 44px !important;
+			margin: 10px 0 14px 0 !important;
+			font-size: 14px !important;
+			line-height: 1.6 !important;
+			color: #6b7280 !important;
+		}
+
+		.before-after-manager-list-card-meta {
+			display: flex !important;
+			flex-direction: column !important;
+			gap: 6px !important;
+			font-size: 13px !important;
+			color: #4b5563 !important;
+		}
+
+		.before-after-manager-file-name {
+			font-size: 13px !important;
+			color: #6b7280 !important;
+			word-break: break-all !important;
+		}
+
+		.before-after-manager-modal-content {
+			border-radius: 20px !important;
+		}
+
+		.before-after-manager-modal-meta {
+			display: flex !important;
+			flex-wrap: wrap !important;
+			gap: 12px !important;
+			font-size: 13px !important;
+			color: #6b7280 !important;
+		}
+
+		.before-after-manager-modal-footer {
+			display: flex !important;
+			justify-content: space-between !important;
+		}
+
+		.before-after-manager-empty {
+			width: 100% !important;
+			padding: 56px 20px !important;
+			border: 1px dashed #d1d5db !important;
+			border-radius: 18px !important;
+			text-align: center !important;
+			color: #6b7280 !important;
+			font-weight: 600 !important;
+		}
+	</style>
+
+	<script src="/administration/assets/js/page/beforeAfterManager.js"></script>
+</body>
+
+</html>

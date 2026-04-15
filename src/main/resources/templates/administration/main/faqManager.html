@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ko"
+      data-layout="vertical"
+      data-topbar="light"
+      data-sidebar="dark"
+      data-sidebar-size="lg"
+      data-sidebar-image="none"
+      data-preloader="disable"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: adminHead"></head>
+
+<body>
+<div id="layout-wrapper">
+    <header id="page-topbar" th:replace="fragments/administration/common :: adminHeader"></header>
+    <div class="app-menu navbar-menu" th:replace="fragments/administration/common :: adminNav"></div>
+    <div class="vertical-overlay"></div>
+
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid faq-manager-page">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="faq-manager-page-title-wrap">
+                            <h3 class="faq-manager-page-title">FAQ관리</h3>
+                            <p class="faq-manager-page-desc">FAQ를 등록하고 수정할 수 있습니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="card faq-manager-create-card">
+                            <div class="card-header">
+                                <h5 class="mb-0">FAQ 등록</h5>
+                            </div>
+                            <div class="card-body">
+                                <form id="faq-manager-create-form" class="faq-manager-create-form">
+                                    <div class="row g-3">
+                                        <div class="col-lg-6 col-md-12">
+                                            <label for="faq-manager-create-title" class="form-label faq-manager-form-label">제목</label>
+                                            <input type="text"
+                                                   id="faq-manager-create-title"
+                                                   class="form-control faq-manager-create-title"
+                                                   maxlength="200"
+                                                   placeholder="FAQ 제목을 입력하세요.">
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6">
+                                            <label class="form-label faq-manager-form-label d-block">링크 등록 여부</label>
+                                            <div class="form-check form-switch faq-manager-switch-wrap">
+                                                <input class="form-check-input faq-manager-create-link-enabled"
+                                                       type="checkbox"
+                                                       id="faq-manager-create-link-enabled">
+                                                <label class="form-check-label" for="faq-manager-create-link-enabled">사용</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-md-6">
+                                            <label for="faq-manager-create-link-url" class="form-label faq-manager-form-label">링크</label>
+                                            <input type="text"
+                                                   id="faq-manager-create-link-url"
+                                                   class="form-control faq-manager-create-link-url"
+                                                   maxlength="500"
+                                                   placeholder="https://example.com"
+                                                   disabled>
+                                        </div>
+
+                                        <div class="col-12">
+                                            <label for="faq-manager-create-answer" class="form-label faq-manager-form-label">답변</label>
+                                            <textarea id="faq-manager-create-answer"
+                                                      class="form-control faq-manager-create-answer"
+                                                      rows="6"
+                                                      placeholder="FAQ 답변을 입력하세요."></textarea>
+                                        </div>
+
+                                        <div class="col-12 d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary faq-manager-create-submit-btn">
+                                                등록
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="card faq-manager-list-card">
+                            <div class="card-header">
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-lg-6">
+                                        <h5 class="mb-0">등록된 FAQ</h5>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <form id="faq-manager-search-form" class="faq-manager-search-form">
+                                            <div class="input-group">
+                                                <input type="text"
+                                                       id="faq-manager-search-keyword"
+                                                       class="form-control faq-manager-search-keyword"
+                                                       placeholder="제목으로 검색">
+                                                <button type="submit" class="btn btn-outline-secondary faq-manager-search-btn">
+                                                    검색
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-body">
+                                <div class="row g-3" id="faq-manager-list-wrap"></div>
+                                <div id="faq-manager-empty-box" class="faq-manager-empty-box d-none">
+                                    등록된 FAQ가 없습니다.
+                                </div>
+
+                                <div class="faq-manager-pagination-wrap mt-4">
+                                    <nav aria-label="FAQ 관리자 페이지네이션">
+                                        <ul class="pagination justify-content-center mb-0" id="faq-manager-pagination"></ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <th:block th:replace="fragments/administration/common :: adminFooter"></th:block>
+    </div>
+</div>
+
+<div class="modal fade faq-manager-edit-modal" id="faq-manager-edit-modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content faq-manager-edit-modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">FAQ 수정</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="닫기"></button>
+            </div>
+
+            <div class="modal-body">
+                <input type="hidden" id="faq-manager-edit-id">
+
+                <div class="row g-3">
+                    <div class="col-lg-6 col-md-12">
+                        <label for="faq-manager-edit-title" class="form-label faq-manager-form-label">제목</label>
+                        <input type="text"
+                               id="faq-manager-edit-title"
+                               class="form-control faq-manager-edit-title"
+                               maxlength="200">
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <label class="form-label faq-manager-form-label d-block">링크 등록 여부</label>
+                        <div class="form-check form-switch faq-manager-switch-wrap">
+                            <input class="form-check-input faq-manager-edit-link-enabled"
+                                   type="checkbox"
+                                   id="faq-manager-edit-link-enabled">
+                            <label class="form-check-label" for="faq-manager-edit-link-enabled">사용</label>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6">
+                        <label for="faq-manager-edit-link-url" class="form-label faq-manager-form-label">링크</label>
+                        <input type="text"
+                               id="faq-manager-edit-link-url"
+                               class="form-control faq-manager-edit-link-url"
+                               maxlength="500"
+                               placeholder="https://example.com">
+                    </div>
+
+                    <div class="col-12">
+                        <label for="faq-manager-edit-answer" class="form-label faq-manager-form-label">답변</label>
+                        <textarea id="faq-manager-edit-answer"
+                                  class="form-control faq-manager-edit-answer"
+                                  rows="8"></textarea>
+                    </div>
+
+                    <div class="col-12">
+                        <div class="faq-manager-edit-meta">
+                            <span>등록일: <strong id="faq-manager-edit-created-at">-</strong></span>
+                            <span>수정일: <strong id="faq-manager-edit-updated-at">-</strong></span>
+                            <span>조회수: <strong id="faq-manager-edit-view-count">0</strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer faq-manager-edit-modal-footer">
+                <button type="button" class="btn btn-danger faq-manager-delete-btn" id="faq-manager-delete-btn">
+                    삭제
+                </button>
+                <button type="button" class="btn btn-primary faq-manager-update-btn" id="faq-manager-update-btn" disabled>
+                    수정
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<th:block th:replace="fragments/administration/common :: adminBottom"></th:block>
+<th:block th:replace="fragments/administration/common :: adminScript"></th:block>
+<script src="/administration/assets/js/page/faqManager.js"></script>
+</body>
+</html>

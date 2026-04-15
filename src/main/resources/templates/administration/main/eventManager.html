@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="ko" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+	data-sidebar-image="none" data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: adminHead"></head>
+
+<body>
+	<div id="layout-wrapper">
+		<header id="page-topbar" th:replace="fragments/administration/common :: adminHeader"></header>
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: adminNav"></div>
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+			<div class="page-content">
+				<div class="container-fluid event-manager-page">
+
+					<div class="row mb-4">
+						<div class="col-12">
+							<div class="event-manager-page-title-wrap">
+								<h3 class="event-manager-page-title mb-1">이벤트 관리</h3>
+								<p class="text-muted mb-0">등록 / 수정 / 삭제 / 프론트 연동까지 한 번에 관리합니다.</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="row g-4">
+						<div class="col-12">
+							<div class="card border-0 shadow-sm">
+								<div class="card-header bg-white border-bottom">
+									<h5 class="mb-0">이벤트 등록</h5>
+								</div>
+								<div class="card-body">
+									<form id="event-manager-create-form" enctype="multipart/form-data">
+										<div class="row g-3 align-items-stretch">
+
+											<div class="col-12 col-lg-6">
+												<label class="form-label">제목</label>
+												<input type="text" name="title"
+													class="form-control event-manager-field-height" maxlength="200"
+													required>
+											</div>
+
+											<div class="col-12 col-lg-3">
+												<label class="form-label">상태</label>
+												<select name="manualProgressStatus"
+													class="form-select event-manager-field-height">
+													<option value="ONGOING">진행중</option>
+													<option value="ENDED">종료</option>
+												</select>
+											</div>
+
+											<div class="col-12 col-lg-3 d-flex flex-column">
+												<label class="form-label d-block mb-2">기간한정 여부</label>
+												<div
+													class="form-check form-switch d-flex align-items-center justify-content-center border rounded-3 px-3 h-100">
+													<input class="form-check-input me-2" type="checkbox"
+														id="event-manager-create-period-limited" name="periodLimited">
+													<label class="form-check-label mb-0"
+														for="event-manager-create-period-limited">기간한정 사용</label>
+												</div>
+											</div>
+
+											<div class="col-12 col-lg-3 event-manager-create-period-wrap d-none">
+												<label class="form-label">시작일</label>
+												<input type="date" name="startDate"
+													class="form-control event-manager-field-height">
+											</div>
+
+											<div class="col-12 col-lg-3 event-manager-create-period-wrap d-none">
+												<label class="form-label">종료일</label>
+												<input type="date" name="endDate"
+													class="form-control event-manager-field-height">
+											</div>
+
+											<div class="col-12 col-lg-6">
+												<label class="form-label">링크(선택)</label>
+												<input type="text" name="linkUrl"
+													class="form-control event-manager-field-height"
+													placeholder="https://example.com">
+											</div>
+
+											<div class="col-12 col-lg-6">
+												<label class="form-label">이미지</label>
+												<input type="file" name="imageFile"
+													class="form-control event-manager-field-height" accept="image/*"
+													required>
+											</div>
+
+											<div class="col-12">
+												<label class="form-label">내용</label>
+												<textarea name="content" class="form-control" rows="6"
+													required></textarea>
+											</div>
+
+											<div class="col-12 d-flex justify-content-end">
+												<button type="submit"
+													class="btn btn-dark px-4 event-manager-submit-btn">
+													등록하기
+												</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12">
+							<div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
+								<h5 class="mb-0">등록된 이벤트</h5>
+								<span class="text-muted" id="event-manager-total-text">총 0건</span>
+							</div>
+
+							<div class="row g-4" id="event-manager-card-list"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<th:block th:replace="fragments/administration/common :: adminFooter"></th:block>
+		</div>
+	</div>
+
+	<div class="modal fade" id="event-manager-detail-modal" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">이벤트 수정</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+
+				<div class="modal-body">
+					<form id="event-manager-detail-form" enctype="multipart/form-data">
+						<input type="hidden" name="id">
+
+						<div class="row g-3">
+							<div class="col-12 col-lg-6">
+								<label class="form-label">제목</label>
+								<input type="text" name="title" class="form-control event-manager-field-height"
+									maxlength="200" required>
+							</div>
+
+							<div class="col-12 col-lg-3">
+								<label class="form-label">수동 상태</label>
+								<select name="manualProgressStatus" class="form-select event-manager-field-height">
+									<option value="ONGOING">진행중</option>
+									<option value="ENDED">종료</option>
+								</select>
+							</div>
+
+							<div class="col-12 col-lg-3 d-flex flex-column">
+								<label class="form-label d-block mb-2">기간한정 여부</label>
+								<div
+									class="form-check form-switch d-flex align-items-center justify-content-center border rounded-3 px-3 flex-grow-1">
+									<input class="form-check-input me-2" type="checkbox"
+										id="event-manager-detail-period-limited" name="periodLimited">
+									<label class="form-check-label mb-0" for="event-manager-detail-period-limited">기간한정
+										사용</label>
+								</div>
+							</div>
+
+							<div class="col-12 col-lg-3 event-manager-detail-period-wrap d-none">
+								<label class="form-label">시작일</label>
+								<input type="date" name="startDate" class="form-control event-manager-field-height">
+							</div>
+
+							<div class="col-12 col-lg-3 event-manager-detail-period-wrap d-none">
+								<label class="form-label">종료일</label>
+								<input type="date" name="endDate" class="form-control event-manager-field-height">
+							</div>
+
+							<div class="col-12 col-lg-6">
+								<label class="form-label">링크(선택)</label>
+								<input type="text" name="linkUrl" class="form-control event-manager-field-height"
+									placeholder="https://example.com">
+							</div>
+
+							<div class="col-12 col-lg-6">
+								<label class="form-label">이미지 변경</label>
+								<input type="file" name="imageFile" class="form-control event-manager-field-height"
+									accept="image/*">
+							</div>
+
+							<div class="col-12">
+								<div class="border rounded-3 overflow-hidden text-center bg-light">
+									<img id="event-manager-detail-preview" src="" alt="이벤트 이미지"
+										style="width:100%; max-height:360px; object-fit:cover;">
+								</div>
+							</div>
+
+							<div class="col-12 col-lg-4">
+								<div
+									class="border rounded-3 h-100 d-flex flex-column justify-content-center px-3 py-2 bg-light">
+									<small class="text-muted">등록일</small>
+									<strong id="event-manager-detail-created-at">-</strong>
+								</div>
+							</div>
+
+							<div class="col-12 col-lg-4">
+								<div
+									class="border rounded-3 h-100 d-flex flex-column justify-content-center px-3 py-2 bg-light">
+									<small class="text-muted">수정일</small>
+									<strong id="event-manager-detail-updated-at">-</strong>
+								</div>
+							</div>
+
+							<div class="col-12 col-lg-4">
+								<div
+									class="border rounded-3 h-100 d-flex flex-column justify-content-center px-3 py-2 bg-light">
+									<small class="text-muted">현재 노출 상태</small>
+									<strong id="event-manager-detail-resolved-status">-</strong>
+								</div>
+							</div>
+
+							<div class="col-12">
+								<label class="form-label">내용</label>
+								<textarea name="content" class="form-control" rows="8" required></textarea>
+							</div>
+						</div>
+					</form>
+				</div>
+
+				<div class="modal-footer d-flex justify-content-between">
+					<button type="button" class="btn btn-outline-danger" id="event-manager-delete-btn">삭제</button>
+					<button type="button" class="btn btn-dark" id="event-manager-update-btn" disabled>수정</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<th:block th:replace="fragments/administration/common :: adminBottom"></th:block>
+	<th:block th:replace="fragments/administration/common :: adminScript"></th:block>
+	<script src="/administration/assets/js/page/eventManager.js"></script>
+
+	<style>
+		.event-manager-card-thumb {
+			width: 100%;
+			aspect-ratio: 4 / 3;
+			object-fit: cover;
+			display: block;
+			background: #f5f5f5;
+		}
+
+		.event-manager-card-title-btn {
+			border: none;
+			background: transparent;
+			padding: 0;
+			text-align: left;
+			width: 100%;
+			font-weight: 700;
+			font-size: 1.05rem;
+		}
+
+		.event-manager-card-title-btn:hover {
+			text-decoration: underline;
+		}
+
+		.event-manager-status-badge {
+			min-width: 74px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.event-manager-empty-box {
+			min-height: 220px;
+		}
+	</style>
+</body>
+
+</html>

@@ -17,8 +17,7 @@
 
 					<section class="default-wrap">
 						<div class="inner w1280">
-							<form name="regiForm" id="regiForm" method="post">
-								<input type="hidden" id="jointype" name="jointype" value="_eng009">
+							<form name="regiForm" id="regiForm" method="post" novalidate>
 								<section class="consulting-wrap">
 									<div class="consulting-cont">
 										<div class="cs-infoBox">
@@ -29,67 +28,70 @@
 											<div class="form">
 												<div class="form-item">
 													<dl class="clone">
-														<dt><label for="name">이름<span class="essential">*</span></label>
+														<dt>
+															<label for="contact-name">이름<span
+																	class="essential">*</span></label>
 														</dt>
 														<dd>
 															<div class="input-area">
-																<input type="text" title="이름을 입력하세요."
-																	placeholder="이름을 입력하세요.">
+																<input type="text" id="contact-name" name="name"
+																	title="이름을 입력하세요." placeholder="이름을 입력하세요.">
 															</div>
 														</dd>
 													</dl>
+
 													<dl class="clone">
-														<dt><label for="tel">연락처<span class="essential">*</span></label>
+														<dt>
+															<label for="contact-phone">연락처<span
+																	class="essential">*</span></label>
 														</dt>
 														<dd>
 															<div class="input-area">
-																<input type="text" title="연락처를 입력하세요."
-																	placeholder="연락처를 입력하세요.">
+																<input type="text" id="contact-phone" name="phone"
+																	inputmode="numeric" maxlength="13"
+																	title="연락처를 입력하세요." placeholder="연락처를 입력하세요.">
 															</div>
 														</dd>
 													</dl>
 												</div>
+
 												<div class="form-item">
 													<dl class="clone">
-														<dt><label for="time">상담 희망 일시<span
-																	class="essential">*</span></label></dt>
-														<dd>
-															<div class="select-area half">
-																<select name="" id="day">
-																	<option value="">희망일자</option>
-																	<option value="상시">상시</option>
-																	<option value="2025-10-30">2025-10-30(목)</option>
-																	<option value="2025-10-31">2025-10-31(금)</option>
-																	<option value="2025-11-03">2025-11-03(월)</option>
-																	<option value="2025-11-04">2025-11-04(화)</option>
-																	<option value="2025-11-05">2025-11-05(수)</option>
-																	<option value="2025-11-06">2025-11-06(목)</option>
-																	<option value="2025-11-07">2025-11-07(금)</option>
-																</select>
+														<dt>
+															<label for="contact-preferred-date">상담 희망 일시</label>
+														</dt>
+														<dd style="display:flex; gap:12px;">
+															<div class="input-area" style="flex:1;">
+																<input type="date" id="contact-preferred-date"
+																	name="preferredDate" title="상담 희망일자를 선택하세요.">
 															</div>
-															<div class="select-area half">
-																<select name="" id="hour">
+															<div class="select-area half" style="flex:1;">
+																<select name="preferredTime"
+																	id="contact-preferred-time">
 																	<option value="">희망시간</option>
-																	<option value="09">9시</option>
-																	<option value="10">10시</option>
-																	<option value="11">11시</option>
-																	<option value="12">12시</option>
-																	<option value="13">13시</option>
-																	<option value="14">14시</option>
-																	<option value="15">15시</option>
-																	<option value="16">16시</option>
-																	<option value="17">17시</option>
-																	<option value="18">18시</option>
+																	<option value="09:00">09:00</option>
+																	<option value="10:00">10:00</option>
+																	<option value="11:00">11:00</option>
+																	<option value="12:00">12:00</option>
+																	<option value="13:00">13:00</option>
+																	<option value="14:00">14:00</option>
+																	<option value="15:00">15:00</option>
+																	<option value="16:00">16:00</option>
+																	<option value="17:00">17:00</option>
+																	<option value="18:00">18:00</option>
 																</select>
 															</div>
 														</dd>
 													</dl>
+
 													<dl class="clone">
-														<dt><label for="tel">이메일</label></dt>
+														<dt>
+															<label for="contact-email">이메일</label>
+														</dt>
 														<dd>
 															<div class="input-area">
-																<input type="email" title="이메일을 입력하세요."
-																	placeholder="이메일을 입력하세요.">
+																<input type="email" id="contact-email" name="email"
+																	title="이메일을 입력하세요." placeholder="이메일을 입력하세요.">
 															</div>
 														</dd>
 													</dl>
@@ -101,54 +103,72 @@
 									<div class="consulting-cont">
 										<div class="cs-infoBox">
 											<strong>기타정보</strong>
-											<p><span class="essential">*</span>는 필수 입력 항목입니다.</p>
+											<p>선택 사항은 입력하지 않아도 정상 접수됩니다.</p>
 										</div>
+
 										<div class="cs-formBox">
 											<div class="form">
 												<div class="form-item">
 													<dl class="clone">
-														<dt><label for="name">수술 경험</label></dt>
+														<dt><label for="contact-surgery-experience-true">수술 경험</label>
+														</dt>
 														<dd>
 															<div class="radio-wrap">
 																<div class="radio-area">
-																	<input type="radio" id="teaExpY" name="teaExp"
-																		value="y" class="chk_radio" checked="checked">
-																	<label for="teaExpY">있다</label>
+																	<input type="radio"
+																		id="contact-surgery-experience-true"
+																		name="surgeryExperience" value="true"
+																		class="chk_radio">
+																	<label
+																		for="contact-surgery-experience-true">있다</label>
 																</div>
 																<div class="radio-area">
-																	<input type="radio" id="teaExpN" name="teaExp"
-																		value="n" class="chk_radio">
-																	<label for="teaExpN">없다</label>
+																	<input type="radio"
+																		id="contact-surgery-experience-false"
+																		name="surgeryExperience" value="false"
+																		class="chk_radio" checked="checked">
+																	<label
+																		for="contact-surgery-experience-false">없다</label>
 																</div>
 															</div>
 														</dd>
 													</dl>
+
 													<dl class="clone">
-														<dt><label for="name">재수술 여부</label></dt>
+														<dt><label for="contact-revision-surgery-true">재수술 여부</label>
+														</dt>
 														<dd>
 															<div class="radio-wrap">
 																<div class="radio-area">
-																	<input type="radio" id="openExpY" name="openExp"
-																		value="y" class="chk_radio" checked="checked">
-																	<label for="openExpY">있다</label>
+																	<input type="radio"
+																		id="contact-revision-surgery-true"
+																		name="revisionSurgery" value="true"
+																		class="chk_radio">
+																	<label
+																		for="contact-revision-surgery-true">있다</label>
 																</div>
 																<div class="radio-area">
-																	<input type="radio" id="openExpN" name="openExp"
-																		value="n" class="chk_radio">
-																	<label for="openExpN">없다</label>
+																	<input type="radio"
+																		id="contact-revision-surgery-false"
+																		name="revisionSurgery" value="false"
+																		class="chk_radio" checked="checked">
+																	<label
+																		for="contact-revision-surgery-false">없다</label>
 																</div>
 															</div>
 														</dd>
 													</dl>
 												</div>
 											</div>
+
 											<div class="form">
 												<div class="form-item">
 													<dl class="clone" style="width:100%;">
-														<dt><label for="tel">연락처<span class="essential">*</span></label>
-														</dt>
+														<dt><label for="contact-customer-memo">기타남김말</label></dt>
 														<dd>
-															<textarea class="contact-textarea" placeholder="기타 메모를 입력하세요."></textarea>
+															<textarea class="contact-textarea"
+																id="contact-customer-memo" name="customerMemo"
+																placeholder="기타 메모를 입력하세요."></textarea>
 														</dd>
 													</dl>
 												</div>
@@ -161,33 +181,36 @@
 											<li class="check-item">
 												<div class="checkbox-wrap">
 													<div class="checkbox-area">
-														<input type="checkbox" id="agree_1" name="agree_1">
+														<input type="checkbox" id="agree_1"
+															name="privacyAgreementRequired">
 														<label for="agree_1">개인정보수집 및 이용 동의 (필수) <span
 																class="essential">*</span></label>
 													</div>
 													<a href="javascript:void(0);" title="내용 열기"
-														onclick="openPrivate('one')"><s></s></a>
+														onclick="openPrivate(this)"><s></s></a>
 												</div>
 												<div class="checkbox-cont" style="display:none;">
 													<span>※ 개인정보 수집 및 이용에 동의하지 않을 수 있으며, 동의를 거부할 경우 상담이 제한될 수
-														있습니다.​</span>
+														있습니다.</span>
 													<strong>수집 목적</strong>
 													<strong>수집 항목</strong>
 													<strong>보유 및 이용기간</strong>
 												</div>
 											</li>
+
 											<li class="check-item">
 												<div class="checkbox-wrap">
 													<div class="checkbox-area">
-														<input type="checkbox" id="agree_2" name="agree_2">
+														<input type="checkbox" id="agree_2"
+															name="thirdPartyAgreementRequired">
 														<label for="agree_2">개인정보 제 3자 제공 동의 (필수) <span
 																class="essential">*</span></label>
 													</div>
 													<a href="javascript:void(0);" title="내용 열기"
-														onclick="openPrivate('two')"><s></s></a>
+														onclick="openPrivate(this)"><s></s></a>
 												</div>
-												<div class="checkbox-cont" style="display:none">
-													<span>※ 개인정보 제 3자 제공에 동의하지 않을 수 있으며, 동의를 거부 할 경우 상담이 제한될 수
+												<div class="checkbox-cont" style="display:none;">
+													<span>※ 개인정보 제3자 제공에 동의하지 않을 수 있으며, 동의를 거부할 경우 상담이 제한될 수
 														있습니다.</span>
 													<strong>제공받는 자</strong>
 													<strong>이용 목적</strong>
@@ -195,17 +218,19 @@
 													<strong>보유 및 이용 기간</strong>
 												</div>
 											</li>
+
 											<li class="check-item">
 												<div class="checkbox-wrap">
 													<div class="checkbox-area">
-														<input type="checkbox" id="agree_3" name="agree_3">
+														<input type="checkbox" id="agree_3"
+															name="privacyAgreementOptional">
 														<label for="agree_3">개인정보수집 및 이용 동의 (선택)</label>
 													</div>
 													<a href="javascript:void(0);" title="내용 열기"
-														onclick="openPrivate('three')"><s></s></a>
+														onclick="openPrivate(this)"><s></s></a>
 												</div>
-												<div class="checkbox-cont" style="display:none">
-													<span>※ 수집 및 이용에 동의하지 않으실 수 있으며, 동의를 거부하셔도 서비스를 이용할 수 있습니다. </span>
+												<div class="checkbox-cont" style="display:none;">
+													<span>※ 수집 및 이용에 동의하지 않으실 수 있으며, 동의를 거부하셔도 서비스를 이용할 수 있습니다.</span>
 													<strong>수집 목적</strong>
 													<strong>수집 항목</strong>
 													<strong>보유 및 이용 기간</strong>
@@ -216,7 +241,7 @@
 
 									<div class="goBtn_wrap">
 										<div class="goBtn goBtn--blue">
-											<a onclick="javascript:goRegi()">
+											<a href="javascript:void(0);" onclick="goRegi();">
 												<span>상담 신청하기</span>
 												<i></i>
 											</a>
@@ -232,7 +257,9 @@
 
 		<footer th:replace="fragments/front/common :: commonFooter"></footer>
 	</div>
+
 	<th:block th:replace="fragments/front/common :: commonScript"></th:block>
+	<script src="/front/resources/js/contact.js"></script>
 </body>
 
 </html>
