@@ -36,6 +36,7 @@ import com.dev.SaeKimJP.repository.surgery.SurgeryMiddleCategoryRepository;
 import com.dev.SaeKimJP.repository.surgery.SurgeryPreviewImageRepository;
 
 import lombok.RequiredArgsConstructor;
+import jakarta.persistence.EntityManager;
 
 @Service
 @RequiredArgsConstructor
@@ -48,6 +49,7 @@ public class SurgeryAdminService {
     private final SurgeryDetailStepRepository detailStepRepository;
     private final SurgeryDetailIconRepository detailIconRepository;
     private final SurgeryFileStorageService surgeryFileStorageService;
+    private final EntityManager entityManager;
 
     public AdminSurgeryPageResponse getAdminPageData(SurgeryGroupType groupType) {
         List<AdminSurgeryPreviewImageDto> previewImages = previewImageRepository
@@ -289,14 +291,40 @@ public class SurgeryAdminService {
 
         Long middleCategoryId = detail.getMiddleCategory().getId();
 
-        detailStepRepository.findByDetailCategory_IdOrderByDisplayOrderAscIdAsc(detailId)
-                .forEach(step -> surgeryFileStorageService.deleteQuietly(step.getImagePath()));
+        List<SurgeryDetailStep> stepList =
+                detailStepRepository.findByDetailCategory_IdOrderByDisplayOrderAscIdAsc(detailId);
 
-        detailIconRepository.findByDetailCategory_IdOrderByDisplayOrderAscIdAsc(detailId)
-                .forEach(icon -> surgeryFileStorageService.deleteQuietly(icon.getImagePath()));
+        List<SurgeryDetailIcon> iconList =
+                detailIconRepository.findByDetailCategory_IdOrderByDisplayOrderAscIdAsc(detailId);
 
+        // 1) 파일 먼저 삭제
+        for (SurgeryDetailStep step : stepList) {
+            surgeryFileStorageService.deleteQuietly(step.getImagePath());
+        }
+
+        for (SurgeryDetailIcon icon : iconList) {
+            surgeryFileStorageService.deleteQuietly(icon.getImagePath());
+        }
+
+        // 2) 자식 엔티티 DB row 삭제
+        for (SurgeryDetailStep step : stepList) {
+            detailStepRepository.delete(step);
+        }
+
+        for (SurgeryDetailIcon icon : iconList) {
+            detailIconRepository.delete(icon);
+        }
+
+        // 3) 자식 삭제 SQL 먼저 반영
+        entityManager.flush();
+
+        // 4) 부모 소분류 삭제
         detailCategoryRepository.delete(detail);
 
+        // 5) 부모 삭제 SQL 반영
+        entityManager.flush();
+
+        // 6) 남은 소분류 순서 압축
         compressDetailOrders(middleCategoryId);
     }
 
