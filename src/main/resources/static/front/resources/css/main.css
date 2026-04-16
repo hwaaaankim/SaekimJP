@@ -946,6 +946,7 @@ input[type="radio"]:checked {
 
 .system_bsc .system_cnt03 .ilTBox {
 	text-align: center;
+	padding-left:0px !important;
 }
 
 .system_bsc .system_cnt03 .ilTBox li {
