@@ -3,7 +3,7 @@ spring:
   application:
     name: SaeKimJP
   profiles:
-    active: test
+    active: mac
 server:
   port: 8080
   servlet:
