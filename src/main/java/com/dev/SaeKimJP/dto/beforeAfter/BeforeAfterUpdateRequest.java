@@ -13,6 +13,11 @@ public class BeforeAfterUpdateRequest {
     private String description;
     private String category;
 
-    private MultipartFile beforeImageFile;
-    private MultipartFile afterImageFile;
+    private MultipartFile beforeFrontImageFile;
+    private MultipartFile beforeAngle45ImageFile;
+    private MultipartFile beforeAngle90ImageFile;
+
+    private MultipartFile afterFrontImageFile;
+    private MultipartFile afterAngle45ImageFile;
+    private MultipartFile afterAngle90ImageFile;
 }

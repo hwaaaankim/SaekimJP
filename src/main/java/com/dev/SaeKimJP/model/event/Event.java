@@ -40,9 +40,19 @@ public class Event {
     @Column(name = "title", nullable = false, length = 200)
     private String title;
 
+    /**
+     * 목록/카드용 요약 내용
+     */
     @Lob
     @Column(name = "content", nullable = false, columnDefinition = "TEXT")
     private String content;
+
+    /**
+     * 상세페이지 HTML 에디터 본문
+     */
+    @Lob
+    @Column(name = "detail_html", columnDefinition = "LONGTEXT")
+    private String detailHtml;
 
     @Column(name = "image_url", nullable = false, length = 500)
     private String imageUrl;
@@ -82,6 +92,7 @@ public class Event {
             Long id,
             String title,
             String content,
+            String detailHtml,
             String imageUrl,
             String imagePath,
             String imageOriginalName,
@@ -94,6 +105,7 @@ public class Event {
         this.id = id;
         this.title = title;
         this.content = content;
+        this.detailHtml = normalizeHtml(detailHtml);
         this.imageUrl = imageUrl;
         this.imagePath = imagePath;
         this.imageOriginalName = imageOriginalName;
@@ -109,6 +121,7 @@ public class Event {
     public static Event create(
             String title,
             String content,
+            String detailHtml,
             String linkUrl,
             boolean periodLimited,
             LocalDate startDate,
@@ -118,6 +131,7 @@ public class Event {
         return Event.builder()
                 .title(normalizeRequired(title))
                 .content(normalizeRequired(content))
+                .detailHtml(normalizeHtml(detailHtml))
                 .imageUrl("")
                 .imagePath("")
                 .imageOriginalName("")
@@ -132,6 +146,7 @@ public class Event {
     public void updateBasicInfo(
             String title,
             String content,
+            String detailHtml,
             String linkUrl,
             boolean periodLimited,
             LocalDate startDate,
@@ -140,6 +155,7 @@ public class Event {
     ) {
         this.title = normalizeRequired(title);
         this.content = normalizeRequired(content);
+        this.detailHtml = normalizeHtml(detailHtml);
         this.linkUrl = normalizeNullable(linkUrl);
         this.periodLimited = periodLimited;
         this.startDate = periodLimited ? startDate : null;
@@ -195,5 +211,12 @@ public class Event {
             return null;
         }
         return value.trim();
+    }
+
+    private static String normalizeHtml(String value) {
+        if (value == null) {
+            return "";
+        }
+        return value;
     }
 }

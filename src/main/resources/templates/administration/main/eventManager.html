@@ -19,17 +19,23 @@
 						<div class="col-12">
 							<div class="event-manager-page-title-wrap">
 								<h3 class="event-manager-page-title mb-1">이벤트 관리</h3>
-								<p class="text-muted mb-0">등록 / 수정 / 삭제 / 프론트 연동까지 한 번에 관리합니다.</p>
+								<p class="text-muted mb-0">이벤트 등록, 목록 노출, 상세페이지 HTML 본문까지 함께 관리합니다.</p>
 							</div>
 						</div>
 					</div>
 
 					<div class="row g-4">
 						<div class="col-12">
-							<div class="card border-0 shadow-sm">
+							<div class="card border-0 shadow-sm event-manager-second-card">
 								<div class="card-header bg-white border-bottom">
-									<h5 class="mb-0">이벤트 등록</h5>
+									<div class="d-flex align-items-center justify-content-between flex-wrap gap-2">
+										<div>
+											<h5 class="mb-1">이벤트 등록</h5>
+											<p class="text-muted mb-0 small">목록 요약과 상세페이지 본문을 분리해서 등록합니다.</p>
+										</div>
+									</div>
 								</div>
+
 								<div class="card-body">
 									<form id="event-manager-create-form" enctype="multipart/form-data">
 										<div class="row g-3 align-items-stretch">
@@ -53,7 +59,7 @@
 											<div class="col-12 col-lg-3 d-flex flex-column">
 												<label class="form-label d-block mb-2">기간한정 여부</label>
 												<div
-													class="form-check form-switch d-flex align-items-center justify-content-center border rounded-3 px-3 h-100">
+													class="form-check form-switch d-flex align-items-center justify-content-center border rounded-3 px-3 h-100 event-manager-second-switch-box">
 													<input class="form-check-input me-2" type="checkbox"
 														id="event-manager-create-period-limited" name="periodLimited">
 													<label class="form-check-label mb-0"
@@ -74,28 +80,49 @@
 											</div>
 
 											<div class="col-12 col-lg-6">
-												<label class="form-label">링크(선택)</label>
+												<label class="form-label">링크 이동 URL</label>
 												<input type="text" name="linkUrl"
 													class="form-control event-manager-field-height"
 													placeholder="https://example.com">
 											</div>
 
 											<div class="col-12 col-lg-6">
-												<label class="form-label">이미지</label>
+												<label class="form-label">대표 이미지</label>
 												<input type="file" name="imageFile"
 													class="form-control event-manager-field-height" accept="image/*"
 													required>
+												<div class="form-text">이미지를 선택하면 아래에 200 × 300 사이즈로 미리보기가 표시됩니다.</div>
 											</div>
 
 											<div class="col-12">
-												<label class="form-label">내용</label>
-												<textarea name="content" class="form-control" rows="6"
+												<div class="event-manager-thumbnail-list"
+													id="event-manager-create-thumbnail-list">
+													<div class="event-manager-thumbnail-empty">
+														대표 이미지를 선택하면 썸네일이 표시됩니다.
+													</div>
+												</div>
+											</div>
+
+											<div class="col-12">
+												<label class="form-label">목록 요약 내용</label>
+												<textarea name="content"
+													class="form-control event-manager-second-summary" rows="5"
 													required></textarea>
+												<div class="form-text">프론트 이벤트 목록 카드에 노출되는 짧은 내용입니다.</div>
+											</div>
+
+											<div class="col-12">
+												<label class="form-label">상세페이지 본문</label>
+												<textarea name="detailHtml" id="event-manager-second-create-detail-html"
+													class="form-control event-manager-second-editor"></textarea>
+												<div class="form-text">
+													이미지는 에디터에서 업로드하면 자동으로 서버에 임시 저장되고 본문 HTML에 반영됩니다.
+												</div>
 											</div>
 
 											<div class="col-12 d-flex justify-content-end">
 												<button type="submit"
-													class="btn btn-dark px-4 event-manager-submit-btn">
+													class="btn btn-dark px-4 event-manager-submit-btn event-manager-second-submit-btn">
 													등록하기
 												</button>
 											</div>
@@ -123,9 +150,12 @@
 
 	<div class="modal fade" id="event-manager-detail-modal" tabindex="-1" aria-hidden="true">
 		<div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
-			<div class="modal-content">
+			<div class="modal-content event-manager-second-modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title">이벤트 수정</h5>
+					<div>
+						<h5 class="modal-title mb-1">이벤트 수정</h5>
+						<p class="text-muted small mb-0">대표 정보, 링크, 상세페이지 본문을 수정합니다.</p>
+					</div>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 
@@ -151,11 +181,12 @@
 							<div class="col-12 col-lg-3 d-flex flex-column">
 								<label class="form-label d-block mb-2">기간한정 여부</label>
 								<div
-									class="form-check form-switch d-flex align-items-center justify-content-center border rounded-3 px-3 flex-grow-1">
+									class="form-check form-switch d-flex align-items-center justify-content-center border rounded-3 px-3 flex-grow-1 event-manager-second-switch-box">
 									<input class="form-check-input me-2" type="checkbox"
 										id="event-manager-detail-period-limited" name="periodLimited">
-									<label class="form-check-label mb-0" for="event-manager-detail-period-limited">기간한정
-										사용</label>
+									<label class="form-check-label mb-0" for="event-manager-detail-period-limited">
+										기간한정 사용
+									</label>
 								</div>
 							</div>
 
@@ -170,27 +201,32 @@
 							</div>
 
 							<div class="col-12 col-lg-6">
-								<label class="form-label">링크(선택)</label>
+								<label class="form-label">링크 이동 URL</label>
 								<input type="text" name="linkUrl" class="form-control event-manager-field-height"
 									placeholder="https://example.com">
 							</div>
 
 							<div class="col-12 col-lg-6">
-								<label class="form-label">이미지 변경</label>
+								<label class="form-label">대표 이미지 변경</label>
 								<input type="file" name="imageFile" class="form-control event-manager-field-height"
 									accept="image/*">
+								<div class="form-text">
+									새 이미지를 선택하면 아래 썸네일이 새 이미지로 변경됩니다. X를 누르면 선택한 새 이미지가 취소됩니다.
+								</div>
 							</div>
 
 							<div class="col-12">
-								<div class="border rounded-3 overflow-hidden text-center bg-light">
-									<img id="event-manager-detail-preview" src="" alt="이벤트 이미지"
-										style="width:100%; max-height:360px; object-fit:cover;">
+								<div class="event-manager-thumbnail-list"
+									id="event-manager-detail-thumbnail-list">
+									<div class="event-manager-thumbnail-empty">
+										대표 이미지가 없습니다.
+									</div>
 								</div>
 							</div>
 
 							<div class="col-12 col-lg-4">
 								<div
-									class="border rounded-3 h-100 d-flex flex-column justify-content-center px-3 py-2 bg-light">
+									class="border rounded-3 h-100 d-flex flex-column justify-content-center px-3 py-2 bg-light event-manager-second-info-box">
 									<small class="text-muted">등록일</small>
 									<strong id="event-manager-detail-created-at">-</strong>
 								</div>
@@ -198,7 +234,7 @@
 
 							<div class="col-12 col-lg-4">
 								<div
-									class="border rounded-3 h-100 d-flex flex-column justify-content-center px-3 py-2 bg-light">
+									class="border rounded-3 h-100 d-flex flex-column justify-content-center px-3 py-2 bg-light event-manager-second-info-box">
 									<small class="text-muted">수정일</small>
 									<strong id="event-manager-detail-updated-at">-</strong>
 								</div>
@@ -206,15 +242,22 @@
 
 							<div class="col-12 col-lg-4">
 								<div
-									class="border rounded-3 h-100 d-flex flex-column justify-content-center px-3 py-2 bg-light">
+									class="border rounded-3 h-100 d-flex flex-column justify-content-center px-3 py-2 bg-light event-manager-second-info-box">
 									<small class="text-muted">현재 노출 상태</small>
 									<strong id="event-manager-detail-resolved-status">-</strong>
 								</div>
 							</div>
 
 							<div class="col-12">
-								<label class="form-label">내용</label>
-								<textarea name="content" class="form-control" rows="8" required></textarea>
+								<label class="form-label">목록 요약 내용</label>
+								<textarea name="content" class="form-control event-manager-second-summary" rows="5"
+									required></textarea>
+							</div>
+
+							<div class="col-12">
+								<label class="form-label">상세페이지 본문</label>
+								<textarea name="detailHtml" id="event-manager-second-detail-detail-html"
+									class="form-control event-manager-second-editor"></textarea>
 							</div>
 						</div>
 					</form>
@@ -230,9 +273,140 @@
 
 	<th:block th:replace="fragments/administration/common :: adminBottom"></th:block>
 	<th:block th:replace="fragments/administration/common :: adminScript"></th:block>
+
+	<script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 	<script src="/administration/assets/js/page/eventManager.js"></script>
 
 	<style>
+		.event-manager-field-height {
+			min-height: 44px;
+		}
+
+		.event-manager-second-card {
+			border-radius: 18px;
+			overflow: hidden;
+		}
+
+		.event-manager-second-switch-box {
+			min-height: 44px;
+			background: #ffffff;
+		}
+
+		.event-manager-second-submit-btn {
+			min-width: 140px;
+			min-height: 44px;
+			border-radius: 12px;
+			font-weight: 700;
+		}
+
+		.event-manager-second-summary {
+			min-height: 120px;
+			resize: vertical;
+		}
+
+		.event-manager-thumbnail-list {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 14px;
+			align-items: flex-start;
+			min-height: 116px;
+			padding: 16px;
+			border: 1px dashed #d7dde6;
+			border-radius: 16px;
+			background: #f8fafc;
+		}
+
+		.event-manager-thumbnail-empty {
+			width: 100%;
+			min-height: 84px;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			color: #8a94a6;
+			font-size: 14px;
+			text-align: center;
+		}
+
+		.event-manager-thumbnail-card {
+			position: relative;
+			width: 200px;
+			height: 300px;
+			border-radius: 16px;
+			overflow: hidden;
+			background: #eef2f7;
+			border: 1px solid #e5e7eb;
+			box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+		}
+
+		.event-manager-thumbnail-card img {
+			width: 100%;
+			height: 100%;
+			display: block;
+			object-fit: cover;
+		}
+
+		.event-manager-thumbnail-remove-btn {
+			position: absolute;
+			top: 8px;
+			right: 8px;
+			z-index: 3;
+			width: 30px;
+			height: 30px;
+			border: none;
+			border-radius: 999px;
+			background: rgba(15, 23, 42, 0.82);
+			color: #ffffff;
+			font-size: 20px;
+			line-height: 1;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			cursor: pointer;
+			transition: transform 0.15s ease, background 0.15s ease;
+		}
+
+		.event-manager-thumbnail-remove-btn:hover {
+			background: rgba(220, 38, 38, 0.92);
+			transform: scale(1.05);
+		}
+
+		.event-manager-thumbnail-meta {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 2;
+			padding: 10px 12px;
+			background: linear-gradient(to top, rgba(15, 23, 42, 0.78), rgba(15, 23, 42, 0));
+			color: #ffffff;
+		}
+
+		.event-manager-thumbnail-name {
+			display: block;
+			font-size: 13px;
+			font-weight: 700;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.event-manager-thumbnail-status {
+			display: block;
+			margin-top: 3px;
+			font-size: 12px;
+			opacity: 0.88;
+		}
+
+		.event-manager-second-info-box {
+			min-height: 70px;
+		}
+
+		.event-manager-second-modal-content {
+			border: 0;
+			border-radius: 18px;
+			overflow: hidden;
+		}
+
 		.event-manager-card-thumb {
 			width: 100%;
 			aspect-ratio: 4 / 3;
@@ -264,6 +438,38 @@
 
 		.event-manager-empty-box {
 			min-height: 220px;
+		}
+
+		.event-manager-second-card-action-row {
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			flex-wrap: wrap;
+			margin-top: 16px;
+		}
+
+		.event-manager-second-card-action-row .btn {
+			min-height: 38px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			border-radius: 10px;
+			font-weight: 700;
+		}
+
+		.ck-editor__editable {
+			min-height: 360px;
+		}
+
+		#event-manager-detail-modal .ck-editor__editable {
+			min-height: 420px;
+		}
+
+		@media (max-width: 575.98px) {
+			.event-manager-thumbnail-card {
+				width: 160px;
+				height: 240px;
+			}
 		}
 	</style>
 </body>

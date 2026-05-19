@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dev.SaeKimJP.dto.event.FrontEventCursorResponse;
+import com.dev.SaeKimJP.dto.event.FrontEventDetailResponse;
 import com.dev.SaeKimJP.dto.event.FrontEventIndexResponse;
 import com.dev.SaeKimJP.service.event.EventService;
 
@@ -35,5 +37,10 @@ public class FrontEventApiController {
             @RequestParam(name = "size", defaultValue = "5") int size
     ) {
         return ResponseEntity.ok(eventService.getFrontIndexEvents(size));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<FrontEventDetailResponse> getEventDetail(@PathVariable Long id) {
+        return ResponseEntity.ok(eventService.getFrontEventDetail(id));
     }
 }

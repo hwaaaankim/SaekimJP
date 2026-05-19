@@ -16,6 +16,27 @@ document.addEventListener('DOMContentLoaded', function() {
 		nose: '코'
 	};
 
+	const VIEW_SLOTS = [
+		{
+			key: 'front',
+			label: '정면',
+			beforeUrlField: 'beforeFrontImageUrl',
+			afterUrlField: 'afterFrontImageUrl'
+		},
+		{
+			key: 'angle45',
+			label: '45도',
+			beforeUrlField: 'beforeAngle45ImageUrl',
+			afterUrlField: 'afterAngle45ImageUrl'
+		},
+		{
+			key: 'angle90',
+			label: '90도',
+			beforeUrlField: 'beforeAngle90ImageUrl',
+			afterUrlField: 'afterAngle90ImageUrl'
+		}
+	];
+
 	const grid = document.getElementById('before-after-grid');
 	const totalCountEl = document.getElementById('before-after-total-count');
 	const loadMoreBtn = document.getElementById('before-after-load-more-btn');
@@ -57,32 +78,53 @@ document.addEventListener('DOMContentLoaded', function() {
 		return data.data;
 	}
 
+	function getImageUrl(item, field, fallbackField) {
+		return item[field] || item[fallbackField] || '';
+	}
+
+	function createViewBlock(item, view) {
+		const beforeUrl = getImageUrl(item, view.beforeUrlField, 'beforeFrontImageUrl');
+		const afterUrl = getImageUrl(item, view.afterUrlField, 'afterFrontImageUrl');
+
+		return `
+            <div class="before-after-view-block" data-view="${escapeHtml(view.key)}">
+                <div class="before-after-view-title">${escapeHtml(view.label)}</div>
+
+                <div class="before-after-card-toggle-wrap">
+                    <button type="button" class="before-after-card-toggle is-before" aria-label="${escapeHtml(view.label)} 전후사진 전환">
+                        <span class="before-after-card-toggle-indicator"></span>
+                        <span class="before-after-card-toggle-text before-after-before-label">Before</span>
+                        <span class="before-after-card-toggle-text before-after-after-label">After</span>
+                    </button>
+                </div>
+
+                <div class="before-after-card-viewport">
+                    <div class="before-after-card-track">
+                        <div class="before-after-card-panel before-after-card-panel-before">
+                            <img src="${escapeHtml(beforeUrl)}" alt="${escapeHtml(item.title)} ${escapeHtml(view.label)} Before">
+                            <span class="before-after-card-label">BEFORE</span>
+                        </div>
+                        <div class="before-after-card-panel before-after-card-panel-after">
+                            <img src="${escapeHtml(afterUrl)}" alt="${escapeHtml(item.title)} ${escapeHtml(view.label)} After">
+                            <span class="before-after-card-label">AFTER</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+	}
+
 	function createCard(item) {
 		const col = document.createElement('div');
-		col.className = 'col-12 col-sm-6 col-lg-3 before-after-col';
+		col.className = 'col-12 col-lg-6 before-after-col';
 
 		col.innerHTML = `
             <article class="before-after-card before-after-observe">
                 <div class="before-after-card-media">
-                    <div class="before-after-card-toggle-wrap">
-                        <button type="button" class="before-after-card-toggle is-before" aria-label="전후사진 전환">
-                            <span class="before-after-card-toggle-indicator"></span>
-                            <span class="before-after-card-toggle-text before-after-before-label">Before</span>
-                            <span class="before-after-card-toggle-text before-after-after-label">After</span>
-                        </button>
-                    </div>
-
-                    <div class="before-after-card-viewport">
-                        <div class="before-after-card-track">
-                            <div class="before-after-card-panel before-after-card-panel-before">
-                                <img src="${escapeHtml(item.beforeImageUrl)}" alt="${escapeHtml(item.title)} Before">
-                                <span class="before-after-card-label">BEFORE</span>
-                            </div>
-                            <div class="before-after-card-panel before-after-card-panel-after">
-                                <img src="${escapeHtml(item.afterImageUrl)}" alt="${escapeHtml(item.title)} After">
-                                <span class="before-after-card-label">AFTER</span>
-                            </div>
-                        </div>
+                    <div class="before-after-view-grid">
+                        ${VIEW_SLOTS.map(function(view) {
+			return createViewBlock(item, view);
+		}).join('')}
                     </div>
                 </div>
 
@@ -93,19 +135,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     <div class="before-after-card-meta">
                         <span>등록일 ${escapeHtml(item.createdDateText || '-')}</span>
-                        <span>조회 ${item.viewCount || 0}</span>
                     </div>
                 </div>
             </article>
         `;
 
-		const toggleBtn = col.querySelector('.before-after-card-toggle');
-		const track = col.querySelector('.before-after-card-track');
+		col.querySelectorAll('.before-after-view-block').forEach(function(block) {
+			const toggleBtn = block.querySelector('.before-after-card-toggle');
+			const track = block.querySelector('.before-after-card-track');
 
-		toggleBtn.addEventListener('click', function() {
-			const isNowAfter = track.classList.toggle('is-after');
-			toggleBtn.classList.toggle('is-after', isNowAfter);
-			toggleBtn.classList.toggle('is-before', !isNowAfter);
+			toggleBtn.addEventListener('click', function() {
+				const isNowAfter = track.classList.toggle('is-after');
+				toggleBtn.classList.toggle('is-after', isNowAfter);
+				toggleBtn.classList.toggle('is-before', !isNowAfter);
+			});
 		});
 
 		return col;
@@ -200,6 +243,7 @@ document.addEventListener('DOMContentLoaded', function() {
 			bindRevealForNewCards();
 		} catch (error) {
 			console.error(error);
+
 			if (reset) {
 				renderEmpty();
 			}

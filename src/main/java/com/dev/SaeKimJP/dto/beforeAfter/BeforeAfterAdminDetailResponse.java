@@ -13,13 +13,24 @@ public class BeforeAfterAdminDetailResponse {
     private String categoryCode;
     private String categoryLabel;
 
-    private String beforeImageUrl;
-    private String beforeImageOriginalName;
+    private String beforeFrontImageUrl;
+    private String beforeFrontImageOriginalName;
 
-    private String afterImageUrl;
-    private String afterImageOriginalName;
+    private String beforeAngle45ImageUrl;
+    private String beforeAngle45ImageOriginalName;
 
-    private Long viewCount;
+    private String beforeAngle90ImageUrl;
+    private String beforeAngle90ImageOriginalName;
+
+    private String afterFrontImageUrl;
+    private String afterFrontImageOriginalName;
+
+    private String afterAngle45ImageUrl;
+    private String afterAngle45ImageOriginalName;
+
+    private String afterAngle90ImageUrl;
+    private String afterAngle90ImageOriginalName;
+
     private String createdAtText;
     private String updatedAtText;
 }

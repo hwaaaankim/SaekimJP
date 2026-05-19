@@ -8,6 +8,7 @@ import java.nio.file.StandardCopyOption;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -20,7 +21,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.dev.SaeKimJP.dto.event.AdminEventCardResponse;
 import com.dev.SaeKimJP.dto.event.AdminEventDetailResponse;
 import com.dev.SaeKimJP.dto.event.AdminEventSaveRequest;
+import com.dev.SaeKimJP.dto.event.EventEditorImageUploadResponse;
 import com.dev.SaeKimJP.dto.event.FrontEventCursorResponse;
+import com.dev.SaeKimJP.dto.event.FrontEventDetailResponse;
 import com.dev.SaeKimJP.dto.event.FrontEventIndexResponse;
 import com.dev.SaeKimJP.dto.event.FrontEventListItemResponse;
 import com.dev.SaeKimJP.enums.event.EventFrontFilterStatus;
@@ -43,6 +46,10 @@ public class EventService {
     private static final DateTimeFormatter DATE_FOLDER_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm");
 
+    private static final Set<String> ALLOWED_IMAGE_EXTENSIONS = Set.of(
+            ".jpg", ".jpeg", ".png", ".gif", ".webp"
+    );
+
     @Transactional(readOnly = true)
     public List<AdminEventCardResponse> getAdminEventList() {
         LocalDate today = LocalDate.now();
@@ -64,6 +71,7 @@ public class EventService {
         Event event = Event.create(
                 request.getTitle(),
                 request.getContent(),
+                request.getDetailHtml(),
                 request.getLinkUrl(),
                 request.isPeriodLimited(),
                 request.getStartDate(),
@@ -73,7 +81,7 @@ public class EventService {
 
         event = eventRepository.save(event);
 
-        StoredImageInfo storedImageInfo = storeImage(event.getId(), request.getImageFile());
+        StoredImageInfo storedImageInfo = storeMainImage(event.getId(), request.getImageFile());
         event.replaceImage(storedImageInfo.imageUrl(), storedImageInfo.absolutePath(), storedImageInfo.originalName());
 
         return AdminEventDetailResponse.from(event, LocalDate.now(), DATE_TIME_FORMATTER);
@@ -83,12 +91,12 @@ public class EventService {
         validateRequest(request, false);
 
         Event event = getEvent(id);
-
         String oldImagePath = event.getImagePath();
 
         event.updateBasicInfo(
                 request.getTitle(),
                 request.getContent(),
+                request.getDetailHtml(),
                 request.getLinkUrl(),
                 request.isPeriodLimited(),
                 request.getStartDate(),
@@ -97,12 +105,17 @@ public class EventService {
         );
 
         if (request.getImageFile() != null && !request.getImageFile().isEmpty()) {
-            StoredImageInfo storedImageInfo = storeImage(event.getId(), request.getImageFile());
+            StoredImageInfo storedImageInfo = storeMainImage(event.getId(), request.getImageFile());
             event.replaceImage(storedImageInfo.imageUrl(), storedImageInfo.absolutePath(), storedImageInfo.originalName());
             deleteFileQuietly(oldImagePath);
         }
 
         return AdminEventDetailResponse.from(event, LocalDate.now(), DATE_TIME_FORMATTER);
+    }
+
+    public EventEditorImageUploadResponse uploadEditorImageTemp(MultipartFile upload) {
+        StoredImageInfo storedImageInfo = storeEditorImageTemp(upload);
+        return new EventEditorImageUploadResponse(storedImageInfo.imageUrl());
     }
 
     public void deleteEvent(Long id) {
@@ -166,6 +179,12 @@ public class EventService {
                 .toList();
     }
 
+    @Transactional(readOnly = true)
+    public FrontEventDetailResponse getFrontEventDetail(Long id) {
+        Event event = getEvent(id);
+        return FrontEventDetailResponse.from(event, LocalDate.now(), DATE_TIME_FORMATTER);
+    }
+
     private Event getEvent(Long id) {
         return eventRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("이벤트를 찾을 수 없습니다. id=" + id));
@@ -181,11 +200,11 @@ public class EventService {
         }
 
         if (!StringUtils.hasText(request.getContent())) {
-            throw new IllegalArgumentException("내용은 필수입니다.");
+            throw new IllegalArgumentException("목록용 내용은 필수입니다.");
         }
 
         if (createMode && (request.getImageFile() == null || request.getImageFile().isEmpty())) {
-            throw new IllegalArgumentException("이미지는 필수입니다.");
+            throw new IllegalArgumentException("대표 이미지는 필수입니다.");
         }
 
         if (request.isPeriodLimited()) {
@@ -203,33 +222,80 @@ public class EventService {
         return status == null ? EventManualProgressStatus.ONGOING : status;
     }
 
-    private StoredImageInfo storeImage(Long eventId, MultipartFile imageFile) {
+    private StoredImageInfo storeMainImage(Long eventId, MultipartFile imageFile) {
+        if (eventId == null) {
+            throw new IllegalArgumentException("이벤트 ID가 없습니다.");
+        }
+
+        return storeImage(
+                imageFile,
+                Paths.get(uploadPath, "event", String.valueOf(eventId), LocalDate.now().format(DATE_FOLDER_FORMATTER)),
+                "/upload/event/" + eventId + "/" + LocalDate.now().format(DATE_FOLDER_FORMATTER) + "/"
+        );
+    }
+
+    private StoredImageInfo storeEditorImageTemp(MultipartFile imageFile) {
+        return storeImage(
+                imageFile,
+                Paths.get(uploadPath, "event", "editor", "temp", LocalDate.now().format(DATE_FOLDER_FORMATTER)),
+                "/upload/event/editor/temp/" + LocalDate.now().format(DATE_FOLDER_FORMATTER) + "/"
+        );
+    }
+
+    private StoredImageInfo storeImage(MultipartFile imageFile, Path directory, String urlPrefix) {
         if (imageFile == null || imageFile.isEmpty()) {
             throw new IllegalArgumentException("업로드할 이미지가 없습니다.");
         }
 
+        validateImageFile(imageFile);
+
         try {
             String originalName = imageFile.getOriginalFilename();
-            String extension = getExtension(originalName);
+            String extension = getSafeExtension(originalName);
             String storedName = UUID.randomUUID().toString().replace("-", "") + extension;
-            String dateFolder = LocalDate.now().format(DATE_FOLDER_FORMATTER);
 
-            Path directory = Paths.get(uploadPath, "event", String.valueOf(eventId), dateFolder);
             Files.createDirectories(directory);
 
             Path filePath = directory.resolve(storedName);
             Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 
-            String imageUrl = "/upload/event/" + eventId + "/" + dateFolder + "/" + storedName;
-
             return new StoredImageInfo(
-                    imageUrl,
+                    urlPrefix + storedName,
                     filePath.toAbsolutePath().toString(),
                     originalName == null ? storedName : originalName
             );
         } catch (IOException e) {
             throw new IllegalStateException("이벤트 이미지를 저장하지 못했습니다.", e);
         }
+    }
+
+    private void validateImageFile(MultipartFile imageFile) {
+        String contentType = imageFile.getContentType();
+
+        if (StringUtils.hasText(contentType) && !contentType.toLowerCase().startsWith("image/")) {
+            throw new IllegalArgumentException("이미지 파일만 업로드할 수 있습니다.");
+        }
+
+        getSafeExtension(imageFile.getOriginalFilename());
+    }
+
+    private String getSafeExtension(String originalFilename) {
+        if (!StringUtils.hasText(originalFilename)) {
+            throw new IllegalArgumentException("파일명이 올바르지 않습니다.");
+        }
+
+        int idx = originalFilename.lastIndexOf(".");
+        if (idx < 0) {
+            throw new IllegalArgumentException("확장자가 없는 이미지는 업로드할 수 없습니다.");
+        }
+
+        String extension = originalFilename.substring(idx).toLowerCase();
+
+        if (!ALLOWED_IMAGE_EXTENSIONS.contains(extension)) {
+            throw new IllegalArgumentException("jpg, jpeg, png, gif, webp 이미지만 업로드할 수 있습니다.");
+        }
+
+        return extension;
     }
 
     private void deleteFileQuietly(String absolutePath) {
@@ -241,19 +307,6 @@ public class EventService {
             Files.deleteIfExists(Path.of(absolutePath));
         } catch (Exception ignored) {
         }
-    }
-
-    private String getExtension(String originalFilename) {
-        if (!StringUtils.hasText(originalFilename)) {
-            return "";
-        }
-
-        int idx = originalFilename.lastIndexOf(".");
-        if (idx < 0) {
-            return "";
-        }
-
-        return originalFilename.substring(idx);
     }
 
     private record StoredImageInfo(

@@ -1,3 +1,5 @@
+/* event.js */
+
 document.addEventListener('DOMContentLoaded', function () {
     const root = document.getElementById('event-page-root');
     if (!root) return;
@@ -61,6 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const params = new URLSearchParams();
             params.set('status', state.status);
             params.set('size', String(size));
+
             if (state.cursorId) {
                 params.set('cursorId', String(state.cursorId));
             }
@@ -79,6 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             appendCards(items);
+
             state.totalCount = result.totalCount || 0;
             state.hasNext = !!result.hasNext;
             state.cursorId = result.nextCursor || null;
@@ -130,9 +134,11 @@ document.addEventListener('DOMContentLoaded', function () {
         const badgeText = isEnded ? '종료' : '진행중';
 
         const contentHtml = escapeHtml(item.content || '').replace(/\n/g, '<br>');
+        const detailUrl = item.detailPageUrl || ('/eventDetailPage/' + item.id);
+
         const linkHtml = item.hasLink
-            ? `<a href="${escapeAttribute(item.linkUrl)}" class="event-added-action-btn">링크 이동</a>`
-            : `<span class="event-added-action-empty">링크 없음</span>`;
+            ? `<a href="${escapeAttribute(item.linkUrl)}" class="event-page-second-action-btn event-page-second-link-btn">링크 이동</a>`
+            : `<span class="event-page-second-action-empty">링크 없음</span>`;
 
         return `
             <div class="col-12 col-md-6 col-lg-4 event-added-col">
@@ -149,8 +155,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         <p class="event-added-date">${escapeHtml(item.periodText)} · 등록 ${escapeHtml(item.createdAtText)}</p>
                         <p class="event-added-summary">${contentHtml}</p>
 
-                        <div class="event-added-action">
-                            ${linkHtml}
+                        <div class="event-added-action event-page-second-action-wrap">
+                            <div class="event-page-second-action-grid">
+                                ${linkHtml}
+                                <a href="${escapeAttribute(detailUrl)}" class="event-page-second-action-btn event-page-second-detail-btn">
+                                    상세보기
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </article>
@@ -192,15 +203,19 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     let ticking = false;
+
     function throttleScroll() {
         if (ticking) return;
 
         ticking = true;
+
         window.requestAnimationFrame(function () {
             const rect = sentinel.getBoundingClientRect();
+
             if (rect.top < window.innerHeight + 180) {
                 fetchEvents(state.initialized ? nextSize : firstSize);
             }
+
             ticking = false;
         });
     }

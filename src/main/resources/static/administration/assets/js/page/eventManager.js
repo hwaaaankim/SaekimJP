@@ -10,7 +10,12 @@ document.addEventListener('DOMContentLoaded', function () {
     const detailPeriodToggle = document.getElementById('event-manager-detail-period-limited');
     const detailPeriodWraps = document.querySelectorAll('.event-manager-detail-period-wrap');
 
-    const detailPreview = document.getElementById('event-manager-detail-preview');
+    const createImageInput = createForm.querySelector('input[name="imageFile"]');
+    const detailImageInput = detailForm.querySelector('input[name="imageFile"]');
+
+    const createThumbnailList = document.getElementById('event-manager-create-thumbnail-list');
+    const detailThumbnailList = document.getElementById('event-manager-detail-thumbnail-list');
+
     const detailCreatedAt = document.getElementById('event-manager-detail-created-at');
     const detailUpdatedAt = document.getElementById('event-manager-detail-updated-at');
     const detailResolvedStatus = document.getElementById('event-manager-detail-resolved-status');
@@ -23,18 +28,137 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let currentDetailId = null;
     let detailOriginalSnapshot = '';
+    let createEditor = null;
+    let detailEditor = null;
+    let detailCurrentImageUrl = '';
 
     init();
 
-    function init() {
+    async function init() {
         bindCreatePeriodToggle();
         bindDetailPeriodToggle();
         bindCreateForm();
         bindDetailFormChangeTracking();
         bindUpdateButton();
         bindDeleteButton();
-        bindDetailImagePreview();
+        bindThumbnailControls();
+
+        await initEditors();
+
+        renderEmptyThumbnail(createThumbnailList, '대표 이미지를 선택하면 썸네일이 표시됩니다.');
+        renderEmptyThumbnail(detailThumbnailList, '대표 이미지가 없습니다.');
+
         loadList();
+    }
+
+    async function initEditors() {
+        if (!window.ClassicEditor) {
+            console.warn('ClassicEditor가 로드되지 않았습니다. 일반 textarea로 동작합니다.');
+            return;
+        }
+
+        const createEditorEl = document.getElementById('event-manager-second-create-detail-html');
+        const detailEditorEl = document.getElementById('event-manager-second-detail-detail-html');
+
+        if (createEditorEl) {
+            createEditor = await ClassicEditor
+                .create(createEditorEl, {
+                    extraPlugins: [eventManagerSecondUploadAdapterPlugin],
+                    toolbar: [
+                        'heading',
+                        '|',
+                        'bold',
+                        'italic',
+                        'link',
+                        'bulletedList',
+                        'numberedList',
+                        '|',
+                        'imageUpload',
+                        'blockQuote',
+                        'insertTable',
+                        'undo',
+                        'redo'
+                    ]
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    return null;
+                });
+        }
+
+        if (detailEditorEl) {
+            detailEditor = await ClassicEditor
+                .create(detailEditorEl, {
+                    extraPlugins: [eventManagerSecondUploadAdapterPlugin],
+                    toolbar: [
+                        'heading',
+                        '|',
+                        'bold',
+                        'italic',
+                        'link',
+                        'bulletedList',
+                        'numberedList',
+                        '|',
+                        'imageUpload',
+                        'blockQuote',
+                        'insertTable',
+                        'undo',
+                        'redo'
+                    ]
+                })
+                .catch(function (error) {
+                    console.error(error);
+                    return null;
+                });
+
+            if (detailEditor) {
+                detailEditor.model.document.on('change:data', function () {
+                    updateDetailButtonState();
+                });
+            }
+        }
+    }
+
+    function eventManagerSecondUploadAdapterPlugin(editor) {
+        editor.plugins.get('FileRepository').createUploadAdapter = function (loader) {
+            return new EventManagerSecondUploadAdapter(loader);
+        };
+    }
+
+    class EventManagerSecondUploadAdapter {
+        constructor(loader) {
+            this.loader = loader;
+        }
+
+        upload() {
+            return this.loader.file.then(function (file) {
+                const formData = new FormData();
+                formData.append('upload', file);
+
+                return fetch('/admin/api/events/editor-images/temp', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(function (response) {
+                        if (!response.ok) {
+                            throw new Error('이미지 업로드에 실패했습니다.');
+                        }
+                        return response.json();
+                    })
+                    .then(function (result) {
+                        if (!result.url) {
+                            throw new Error('이미지 URL 응답이 없습니다.');
+                        }
+
+                        return {
+                            default: result.url
+                        };
+                    });
+            });
+        }
+
+        abort() {
+        }
     }
 
     function bindCreatePeriodToggle() {
@@ -58,9 +182,190 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!checked && form) {
             const start = form.querySelector('input[name="startDate"]');
             const end = form.querySelector('input[name="endDate"]');
-            if (start) start.value = '';
-            if (end) end.value = '';
+
+            if (start) {
+                start.value = '';
+            }
+
+            if (end) {
+                end.value = '';
+            }
         }
+    }
+
+    function bindThumbnailControls() {
+        createImageInput.addEventListener('change', function () {
+            handleCreateImageChange();
+        });
+
+        detailImageInput.addEventListener('change', function () {
+            handleDetailImageChange();
+        });
+
+        createThumbnailList.addEventListener('click', function (e) {
+            const removeBtn = e.target.closest('[data-thumbnail-action="clear-create-image"]');
+
+            if (!removeBtn) {
+                return;
+            }
+
+            clearCreateImageSelection();
+        });
+
+        detailThumbnailList.addEventListener('click', function (e) {
+            const removeBtn = e.target.closest('[data-thumbnail-action="clear-detail-new-image"]');
+
+            if (!removeBtn) {
+                return;
+            }
+
+            clearDetailNewImageSelection();
+        });
+    }
+
+    function handleCreateImageChange() {
+        const file = createImageInput.files && createImageInput.files[0];
+
+        if (!file) {
+            renderEmptyThumbnail(createThumbnailList, '대표 이미지를 선택하면 썸네일이 표시됩니다.');
+            return;
+        }
+
+        if (!isImageFile(file)) {
+            alert('이미지 파일만 등록할 수 있습니다.');
+            clearCreateImageSelection();
+            return;
+        }
+
+        renderSelectedFileThumbnail({
+            file: file,
+            listEl: createThumbnailList,
+            statusText: '등록 예정 이미지',
+            removeAction: 'clear-create-image'
+        });
+    }
+
+    function handleDetailImageChange() {
+        const file = detailImageInput.files && detailImageInput.files[0];
+
+        if (!file) {
+            renderDetailCurrentThumbnail();
+            updateDetailButtonState();
+            return;
+        }
+
+        if (!isImageFile(file)) {
+            alert('이미지 파일만 등록할 수 있습니다.');
+            clearDetailNewImageSelection();
+            return;
+        }
+
+        renderSelectedFileThumbnail({
+            file: file,
+            listEl: detailThumbnailList,
+            statusText: '수정 예정 이미지',
+            removeAction: 'clear-detail-new-image'
+        });
+
+        updateDetailButtonState();
+    }
+
+    function renderSelectedFileThumbnail(options) {
+        const file = options.file;
+        const listEl = options.listEl;
+        const statusText = options.statusText;
+        const removeAction = options.removeAction;
+
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            renderThumbnail({
+                listEl: listEl,
+                imageUrl: e.target.result,
+                fileName: file.name,
+                statusText: statusText,
+                removeAction: removeAction,
+                removable: true
+            });
+        };
+
+        reader.readAsDataURL(file);
+    }
+
+    function renderDetailCurrentThumbnail() {
+        if (!detailCurrentImageUrl) {
+            renderEmptyThumbnail(detailThumbnailList, '대표 이미지가 없습니다.');
+            return;
+        }
+
+        renderThumbnail({
+            listEl: detailThumbnailList,
+            imageUrl: detailCurrentImageUrl,
+            fileName: '현재 대표 이미지',
+            statusText: '현재 저장된 이미지',
+            removeAction: '',
+            removable: false
+        });
+    }
+
+    function renderThumbnail(options) {
+        const listEl = options.listEl;
+        const imageUrl = options.imageUrl || '';
+        const fileName = options.fileName || '대표 이미지';
+        const statusText = options.statusText || '';
+        const removeAction = options.removeAction || '';
+        const removable = options.removable === true;
+
+        if (!listEl || !imageUrl) {
+            return;
+        }
+
+        listEl.innerHTML = `
+            <div class="event-manager-thumbnail-card">
+                ${removable ? `
+                    <button type="button"
+                            class="event-manager-thumbnail-remove-btn"
+                            data-thumbnail-action="${escapeHtml(removeAction)}"
+                            aria-label="선택 이미지 삭제">
+                        ×
+                    </button>
+                ` : ''}
+
+                <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(fileName)}">
+
+                <div class="event-manager-thumbnail-meta">
+                    <span class="event-manager-thumbnail-name">${escapeHtml(fileName)}</span>
+                    <span class="event-manager-thumbnail-status">${escapeHtml(statusText)}</span>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderEmptyThumbnail(listEl, message) {
+        if (!listEl) {
+            return;
+        }
+
+        listEl.innerHTML = `
+            <div class="event-manager-thumbnail-empty">
+                ${escapeHtml(message || '대표 이미지를 선택해 주세요.')}
+            </div>
+        `;
+    }
+
+    function clearCreateImageSelection() {
+        createImageInput.value = '';
+        renderEmptyThumbnail(createThumbnailList, '대표 이미지를 선택하면 썸네일이 표시됩니다.');
+    }
+
+    function clearDetailNewImageSelection() {
+        detailImageInput.value = '';
+        renderDetailCurrentThumbnail();
+        updateDetailButtonState();
+    }
+
+    function isImageFile(file) {
+        return file && typeof file.type === 'string' && file.type.startsWith('image/');
     }
 
     function bindCreateForm() {
@@ -68,6 +373,14 @@ document.addEventListener('DOMContentLoaded', function () {
             e.preventDefault();
 
             try {
+                if (!createImageInput.files || !createImageInput.files[0]) {
+                    alert('대표 이미지를 등록해 주세요.');
+                    createImageInput.focus();
+                    return;
+                }
+
+                syncEditorToTextarea(createForm);
+
                 const formData = buildFormData(createForm);
                 const response = await fetch('/admin/api/events', {
                     method: 'POST',
@@ -81,7 +394,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 alert(result.message || '이벤트가 등록되었습니다.');
+
                 createForm.reset();
+                renderEmptyThumbnail(createThumbnailList, '대표 이미지를 선택하면 썸네일이 표시됩니다.');
+
+                if (createEditor) {
+                    createEditor.setData('');
+                }
+
                 togglePeriodWrap(false, createPeriodWraps, createForm);
                 await loadList();
             } catch (error) {
@@ -95,25 +415,6 @@ document.addEventListener('DOMContentLoaded', function () {
         detailForm.addEventListener('change', updateDetailButtonState);
     }
 
-    function bindDetailImagePreview() {
-        const fileInput = detailForm.querySelector('input[name="imageFile"]');
-        fileInput.addEventListener('change', function () {
-            const file = this.files && this.files[0];
-            if (!file) {
-                updateDetailButtonState();
-                return;
-            }
-
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                detailPreview.src = e.target.result;
-            };
-            reader.readAsDataURL(file);
-
-            updateDetailButtonState();
-        });
-    }
-
     function bindUpdateButton() {
         updateBtn.addEventListener('click', async function () {
             if (!currentDetailId) {
@@ -121,6 +422,8 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             try {
+                syncEditorToTextarea(detailForm);
+
                 const formData = buildFormData(detailForm);
                 const response = await fetch('/admin/api/events/' + currentDetailId, {
                     method: 'PUT',
@@ -244,13 +547,27 @@ document.addEventListener('DOMContentLoaded', function () {
                             <div class="small text-muted mb-2">기간 : ${escapeHtml(item.periodText)}</div>
                             <div class="small text-muted mb-1">등록일 : ${escapeHtml(item.createdAtText)}</div>
                             <div class="small text-muted">수정일 : ${escapeHtml(item.updatedAtText)}</div>
+
+                            <div class="event-manager-second-card-action-row">
+                                <button type="button"
+                                        class="btn btn-sm btn-dark"
+                                        data-id="${item.id}">
+                                    수정
+                                </button>
+                                <a class="btn btn-sm btn-outline-secondary"
+                                   href="/eventDetailPage/${item.id}"
+                                   target="_blank"
+                                   rel="noopener">
+                                    상세 미리보기
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
             `;
         }).join('');
 
-        cardList.querySelectorAll('.event-manager-card-title-btn').forEach(function (btn) {
+        cardList.querySelectorAll('button[data-id]').forEach(function (btn) {
             btn.addEventListener('click', function () {
                 openDetailModal(this.dataset.id);
             });
@@ -278,16 +595,23 @@ document.addEventListener('DOMContentLoaded', function () {
         detailForm.querySelector('input[name="id"]').value = detail.id;
         detailForm.querySelector('input[name="title"]').value = detail.title || '';
         detailForm.querySelector('textarea[name="content"]').value = detail.content || '';
+        detailForm.querySelector('textarea[name="detailHtml"]').value = detail.detailHtml || '';
         detailForm.querySelector('input[name="linkUrl"]').value = detail.linkUrl || '';
         detailForm.querySelector('select[name="manualProgressStatus"]').value = detail.manualProgressStatus || 'ONGOING';
         detailForm.querySelector('input[name="startDate"]').value = detail.startDate || '';
         detailForm.querySelector('input[name="endDate"]').value = detail.endDate || '';
-        detailForm.querySelector('input[name="imageFile"]').value = '';
+        detailImageInput.value = '';
+
+        if (detailEditor) {
+            detailEditor.setData(detail.detailHtml || '');
+        }
 
         detailPeriodToggle.checked = !!detail.periodLimited;
         togglePeriodWrap(detail.periodLimited, detailPeriodWraps, null);
 
-        detailPreview.src = detail.imageUrl || '';
+        detailCurrentImageUrl = detail.imageUrl || '';
+        renderDetailCurrentThumbnail();
+
         detailCreatedAt.textContent = detail.createdAtText || '-';
         detailUpdatedAt.textContent = detail.updatedAtText || '-';
         detailResolvedStatus.textContent = detail.resolvedProgressStatus === 'ONGOING' ? '진행중' : '종료';
@@ -297,14 +621,23 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateDetailButtonState() {
+        if (!currentDetailId) {
+            updateBtn.disabled = true;
+            return;
+        }
+
         updateBtn.disabled = getFormSnapshot(detailForm) === detailOriginalSnapshot;
     }
 
     function getFormSnapshot(form) {
-        const formData = new FormData(form);
         const snapshot = [];
+        const formData = new FormData(form);
 
         for (const [key, value] of formData.entries()) {
+            if (key === 'detailHtml') {
+                continue;
+            }
+
             if (key === 'imageFile') {
                 const fileName = value && value.name ? value.name : '';
                 snapshot.push(key + '=' + fileName);
@@ -314,14 +647,19 @@ document.addEventListener('DOMContentLoaded', function () {
             snapshot.push(key + '=' + value);
         }
 
+        snapshot.push('detailHtml=' + getEditorData(form));
+        snapshot.push('periodLimited=' + form.querySelector('input[name="periodLimited"]').checked);
+
         snapshot.sort();
-        return snapshot.join('&') + '|periodLimited=' + detailPeriodToggle.checked;
+        return snapshot.join('&');
     }
 
     function buildFormData(form) {
         const formData = new FormData();
+
         const title = form.querySelector('input[name="title"]').value || '';
         const content = form.querySelector('textarea[name="content"]').value || '';
+        const detailHtml = getEditorData(form);
         const linkUrl = form.querySelector('input[name="linkUrl"]').value || '';
         const manualProgressStatus = form.querySelector('select[name="manualProgressStatus"]').value || 'ONGOING';
         const periodLimited = form.querySelector('input[name="periodLimited"]').checked;
@@ -331,6 +669,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         formData.append('title', title);
         formData.append('content', content);
+        formData.append('detailHtml', detailHtml);
         formData.append('linkUrl', linkUrl);
         formData.append('manualProgressStatus', manualProgressStatus);
         formData.append('periodLimited', periodLimited);
@@ -345,6 +684,29 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         return formData;
+    }
+
+    function syncEditorToTextarea(form) {
+        const textarea = form.querySelector('textarea[name="detailHtml"]');
+
+        if (!textarea) {
+            return;
+        }
+
+        textarea.value = getEditorData(form);
+    }
+
+    function getEditorData(form) {
+        if (form === createForm && createEditor) {
+            return createEditor.getData();
+        }
+
+        if (form === detailForm && detailEditor) {
+            return detailEditor.getData();
+        }
+
+        const textarea = form.querySelector('textarea[name="detailHtml"]');
+        return textarea ? textarea.value : '';
     }
 
     function escapeHtml(value) {

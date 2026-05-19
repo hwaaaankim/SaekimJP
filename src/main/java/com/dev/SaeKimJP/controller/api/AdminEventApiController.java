@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.dev.SaeKimJP.dto.common.ApiResponse;
 import com.dev.SaeKimJP.dto.event.AdminEventCardResponse;
 import com.dev.SaeKimJP.dto.event.AdminEventDetailResponse;
 import com.dev.SaeKimJP.dto.event.AdminEventSaveRequest;
+import com.dev.SaeKimJP.dto.event.EventEditorImageUploadResponse;
 import com.dev.SaeKimJP.service.event.EventService;
 
 import lombok.RequiredArgsConstructor;
@@ -51,6 +54,13 @@ public class AdminEventApiController {
             @ModelAttribute AdminEventSaveRequest request
     ) {
         return ResponseEntity.ok(ApiResponse.ok("이벤트가 수정되었습니다.", eventService.updateEvent(id, request)));
+    }
+
+    @PostMapping(value = "/editor-images/temp", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<EventEditorImageUploadResponse> uploadEditorImageTemp(
+            @RequestParam("upload") MultipartFile upload
+    ) {
+        return ResponseEntity.ok(eventService.uploadEditorImageTemp(upload));
     }
 
     @DeleteMapping("/{id}")

@@ -18,8 +18,16 @@ public class AdminEventSaveRequest {
     @NotBlank(message = "제목은 필수입니다.")
     private String title;
 
+    /**
+     * 목록/카드용 요약 내용
+     */
     @NotBlank(message = "내용은 필수입니다.")
     private String content;
+
+    /**
+     * 상세페이지 HTML 에디터 본문
+     */
+    private String detailHtml;
 
     private String linkUrl;
 

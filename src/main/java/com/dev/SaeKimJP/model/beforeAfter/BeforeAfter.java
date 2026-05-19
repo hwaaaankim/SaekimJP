@@ -24,11 +24,11 @@ import lombok.Setter;
 
 @Entity
 @Table(
-    name = "before_after",
-    indexes = {
-        @Index(name = "idx_before_after_created_at", columnList = "created_at,id"),
-        @Index(name = "idx_before_after_category_created_at", columnList = "category,created_at,id")
-    }
+        name = "before_after",
+        indexes = {
+                @Index(name = "idx_before_after_created_at", columnList = "created_at,id"),
+                @Index(name = "idx_before_after_category_created_at", columnList = "category,created_at,id")
+        }
 )
 @Getter
 @Setter
@@ -51,27 +51,59 @@ public class BeforeAfter {
     @Column(name = "category", nullable = false, length = 20)
     private BeforeAfterCategory category;
 
-    @Column(name = "before_image_url", nullable = false, length = 500)
-    private String beforeImageUrl;
+    @Column(name = "before_front_image_url", nullable = false, length = 500)
+    private String beforeFrontImageUrl;
 
-    @Column(name = "before_image_path", nullable = false, length = 1000)
-    private String beforeImagePath;
+    @Column(name = "before_front_image_path", nullable = false, length = 1000)
+    private String beforeFrontImagePath;
 
-    @Column(name = "before_image_original_name", nullable = false, length = 255)
-    private String beforeImageOriginalName;
+    @Column(name = "before_front_image_original_name", nullable = false, length = 255)
+    private String beforeFrontImageOriginalName;
 
-    @Column(name = "after_image_url", nullable = false, length = 500)
-    private String afterImageUrl;
+    @Column(name = "before_angle45_image_url", length = 500)
+    private String beforeAngle45ImageUrl;
 
-    @Column(name = "after_image_path", nullable = false, length = 1000)
-    private String afterImagePath;
+    @Column(name = "before_angle45_image_path", length = 1000)
+    private String beforeAngle45ImagePath;
 
-    @Column(name = "after_image_original_name", nullable = false, length = 255)
-    private String afterImageOriginalName;
+    @Column(name = "before_angle45_image_original_name", length = 255)
+    private String beforeAngle45ImageOriginalName;
 
-    @Builder.Default
-    @Column(name = "view_count", nullable = false)
-    private Long viewCount = 0L;
+    @Column(name = "before_angle90_image_url", length = 500)
+    private String beforeAngle90ImageUrl;
+
+    @Column(name = "before_angle90_image_path", length = 1000)
+    private String beforeAngle90ImagePath;
+
+    @Column(name = "before_angle90_image_original_name", length = 255)
+    private String beforeAngle90ImageOriginalName;
+
+    @Column(name = "after_front_image_url", nullable = false, length = 500)
+    private String afterFrontImageUrl;
+
+    @Column(name = "after_front_image_path", nullable = false, length = 1000)
+    private String afterFrontImagePath;
+
+    @Column(name = "after_front_image_original_name", nullable = false, length = 255)
+    private String afterFrontImageOriginalName;
+
+    @Column(name = "after_angle45_image_url", length = 500)
+    private String afterAngle45ImageUrl;
+
+    @Column(name = "after_angle45_image_path", length = 1000)
+    private String afterAngle45ImagePath;
+
+    @Column(name = "after_angle45_image_original_name", length = 255)
+    private String afterAngle45ImageOriginalName;
+
+    @Column(name = "after_angle90_image_url", length = 500)
+    private String afterAngle90ImageUrl;
+
+    @Column(name = "after_angle90_image_path", length = 1000)
+    private String afterAngle90ImagePath;
+
+    @Column(name = "after_angle90_image_original_name", length = 255)
+    private String afterAngle90ImageOriginalName;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)

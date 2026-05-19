@@ -5,10 +5,11 @@ import java.time.format.DateTimeFormatter;
 
 import com.dev.SaeKimJP.model.event.Event;
 
-public record FrontEventListItemResponse(
+public record FrontEventDetailResponse(
         Long id,
         String title,
         String content,
+        String detailHtml,
         String imageUrl,
         String linkUrl,
         boolean hasLink,
@@ -16,14 +17,14 @@ public record FrontEventListItemResponse(
         String periodText,
         String createdAtText,
         String updatedAtText,
-        String displayStatus,
-        String detailPageUrl
+        String displayStatus
 ) {
-    public static FrontEventListItemResponse from(Event event, LocalDate today, DateTimeFormatter formatter) {
-        return new FrontEventListItemResponse(
+    public static FrontEventDetailResponse from(Event event, LocalDate today, DateTimeFormatter formatter) {
+        return new FrontEventDetailResponse(
                 event.getId(),
                 event.getTitle(),
                 event.getContent(),
+                event.getDetailHtml() == null ? "" : event.getDetailHtml(),
                 event.getImageUrl(),
                 event.getLinkUrl(),
                 event.hasLink(),
@@ -31,8 +32,7 @@ public record FrontEventListItemResponse(
                 event.getPeriodText(),
                 event.getCreatedAt() == null ? "" : event.getCreatedAt().format(formatter),
                 event.getUpdatedAt() == null ? "" : event.getUpdatedAt().format(formatter),
-                event.resolveDisplayStatus(today).name().toLowerCase(),
-                "/eventDetailPage/" + event.getId()
+                event.resolveDisplayStatus(today).name().toLowerCase()
         );
     }
 }

@@ -1,6 +1,7 @@
 package com.dev.SaeKimJP.service.beforeAfter;
 
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ import com.dev.SaeKimJP.dto.beforeAfter.BeforeAfterUpdateRequest;
 import com.dev.SaeKimJP.dto.beforeAfter.FrontBeforeAfterItemResponse;
 import com.dev.SaeKimJP.dto.beforeAfter.FrontBeforeAfterListResponse;
 import com.dev.SaeKimJP.enums.beforeAfter.BeforeAfterCategory;
+import com.dev.SaeKimJP.enums.beforeAfter.BeforeAfterImageSlot;
 import com.dev.SaeKimJP.model.beforeAfter.BeforeAfter;
 import com.dev.SaeKimJP.repository.beforeAfter.BeforeAfterRepository;
 import com.dev.SaeKimJP.service.beforeAfter.BeforeAfterFileStoreService.StoredFileInfo;
@@ -91,38 +93,54 @@ public class BeforeAfterService {
     @Transactional
     public BeforeAfterAdminDetailResponse create(BeforeAfterCreateRequest request) {
         validateCommonFields(request.getTitle(), request.getDescription(), request.getCategory());
-
-        if (!hasFile(request.getBeforeImageFile())) {
-            throw new IllegalArgumentException("Before 이미지는 필수입니다.");
-        }
-
-        if (!hasFile(request.getAfterImageFile())) {
-            throw new IllegalArgumentException("After 이미지는 필수입니다.");
-        }
+        validateRequiredCreateImages(request);
 
         BeforeAfter entity = BeforeAfter.builder()
                 .title(request.getTitle().trim())
                 .description(request.getDescription().trim())
                 .category(BeforeAfterCategory.fromCode(request.getCategory()))
-                .beforeImageUrl("")
-                .beforeImagePath("")
-                .beforeImageOriginalName("")
-                .afterImageUrl("")
-                .afterImagePath("")
-                .afterImageOriginalName("")
-                .viewCount(0L)
+
+                .beforeFrontImageUrl("")
+                .beforeFrontImagePath("")
+                .beforeFrontImageOriginalName("")
+
+                .beforeAngle45ImageUrl("")
+                .beforeAngle45ImagePath("")
+                .beforeAngle45ImageOriginalName("")
+
+                .beforeAngle90ImageUrl("")
+                .beforeAngle90ImagePath("")
+                .beforeAngle90ImageOriginalName("")
+
+                .afterFrontImageUrl("")
+                .afterFrontImagePath("")
+                .afterFrontImageOriginalName("")
+
+                .afterAngle45ImageUrl("")
+                .afterAngle45ImagePath("")
+                .afterAngle45ImageOriginalName("")
+
+                .afterAngle90ImageUrl("")
+                .afterAngle90ImagePath("")
+                .afterAngle90ImageOriginalName("")
                 .build();
 
         beforeAfterRepository.save(entity);
 
         try {
-            applyBeforeImage(entity, request.getBeforeImageFile());
-            applyAfterImage(entity, request.getAfterImageFile());
+            applyImage(entity, request.getBeforeFrontImageFile(), BeforeAfterImageSlot.BEFORE_FRONT);
+            applyImage(entity, request.getBeforeAngle45ImageFile(), BeforeAfterImageSlot.BEFORE_ANGLE45);
+            applyImage(entity, request.getBeforeAngle90ImageFile(), BeforeAfterImageSlot.BEFORE_ANGLE90);
+
+            applyImage(entity, request.getAfterFrontImageFile(), BeforeAfterImageSlot.AFTER_FRONT);
+            applyImage(entity, request.getAfterAngle45ImageFile(), BeforeAfterImageSlot.AFTER_ANGLE45);
+            applyImage(entity, request.getAfterAngle90ImageFile(), BeforeAfterImageSlot.AFTER_ANGLE90);
+
             beforeAfterRepository.save(entity);
+
             return toAdminDetailResponse(entity);
         } catch (RuntimeException e) {
-            beforeAfterFileStoreService.deleteQuietly(entity.getBeforeImagePath());
-            beforeAfterFileStoreService.deleteQuietly(entity.getAfterImagePath());
+            getAllImagePaths(entity).forEach(beforeAfterFileStoreService::deleteQuietly);
             beforeAfterRepository.delete(entity);
             throw e;
         }
@@ -138,12 +156,28 @@ public class BeforeAfterService {
         entity.setDescription(request.getDescription().trim());
         entity.setCategory(BeforeAfterCategory.fromCode(request.getCategory()));
 
-        if (hasFile(request.getBeforeImageFile())) {
-            replaceBeforeImage(entity, request.getBeforeImageFile());
+        if (hasFile(request.getBeforeFrontImageFile())) {
+            replaceImage(entity, request.getBeforeFrontImageFile(), BeforeAfterImageSlot.BEFORE_FRONT);
         }
 
-        if (hasFile(request.getAfterImageFile())) {
-            replaceAfterImage(entity, request.getAfterImageFile());
+        if (hasFile(request.getBeforeAngle45ImageFile())) {
+            replaceImage(entity, request.getBeforeAngle45ImageFile(), BeforeAfterImageSlot.BEFORE_ANGLE45);
+        }
+
+        if (hasFile(request.getBeforeAngle90ImageFile())) {
+            replaceImage(entity, request.getBeforeAngle90ImageFile(), BeforeAfterImageSlot.BEFORE_ANGLE90);
+        }
+
+        if (hasFile(request.getAfterFrontImageFile())) {
+            replaceImage(entity, request.getAfterFrontImageFile(), BeforeAfterImageSlot.AFTER_FRONT);
+        }
+
+        if (hasFile(request.getAfterAngle45ImageFile())) {
+            replaceImage(entity, request.getAfterAngle45ImageFile(), BeforeAfterImageSlot.AFTER_ANGLE45);
+        }
+
+        if (hasFile(request.getAfterAngle90ImageFile())) {
+            replaceImage(entity, request.getAfterAngle90ImageFile(), BeforeAfterImageSlot.AFTER_ANGLE90);
         }
 
         return toAdminDetailResponse(entity);
@@ -152,40 +186,107 @@ public class BeforeAfterService {
     @Transactional
     public void delete(Long id) {
         BeforeAfter entity = getEntity(id);
-
-        String beforeImagePath = entity.getBeforeImagePath();
-        String afterImagePath = entity.getAfterImagePath();
+        List<String> deletePaths = getAllImagePaths(entity);
 
         beforeAfterRepository.delete(entity);
 
-        beforeAfterFileStoreService.deleteQuietly(beforeImagePath);
-        beforeAfterFileStoreService.deleteQuietly(afterImagePath);
+        deletePaths.forEach(beforeAfterFileStoreService::deleteQuietly);
     }
 
-    private void replaceBeforeImage(BeforeAfter entity, MultipartFile file) {
-        String oldPath = entity.getBeforeImagePath();
-        applyBeforeImage(entity, file);
+    private void validateRequiredCreateImages(BeforeAfterCreateRequest request) {
+        if (!hasFile(request.getBeforeFrontImageFile())) {
+            throw new IllegalArgumentException("Before 정면 이미지는 필수입니다.");
+        }
+
+        if (!hasFile(request.getBeforeAngle45ImageFile())) {
+            throw new IllegalArgumentException("Before 45도 이미지는 필수입니다.");
+        }
+
+        if (!hasFile(request.getBeforeAngle90ImageFile())) {
+            throw new IllegalArgumentException("Before 90도 이미지는 필수입니다.");
+        }
+
+        if (!hasFile(request.getAfterFrontImageFile())) {
+            throw new IllegalArgumentException("After 정면 이미지는 필수입니다.");
+        }
+
+        if (!hasFile(request.getAfterAngle45ImageFile())) {
+            throw new IllegalArgumentException("After 45도 이미지는 필수입니다.");
+        }
+
+        if (!hasFile(request.getAfterAngle90ImageFile())) {
+            throw new IllegalArgumentException("After 90도 이미지는 필수입니다.");
+        }
+    }
+
+    private void replaceImage(BeforeAfter entity, MultipartFile file, BeforeAfterImageSlot slot) {
+        String oldPath = getImagePath(entity, slot);
+        applyImage(entity, file, slot);
         beforeAfterFileStoreService.deleteQuietly(oldPath);
     }
 
-    private void replaceAfterImage(BeforeAfter entity, MultipartFile file) {
-        String oldPath = entity.getAfterImagePath();
-        applyAfterImage(entity, file);
-        beforeAfterFileStoreService.deleteQuietly(oldPath);
+    private void applyImage(BeforeAfter entity, MultipartFile file, BeforeAfterImageSlot slot) {
+        StoredFileInfo storedFileInfo = beforeAfterFileStoreService.store(entity.getId(), file, slot);
+
+        switch (slot) {
+            case BEFORE_FRONT -> {
+                entity.setBeforeFrontImageOriginalName(storedFileInfo.getOriginalFilename());
+                entity.setBeforeFrontImagePath(storedFileInfo.getFullPath());
+                entity.setBeforeFrontImageUrl(storedFileInfo.getUrl());
+            }
+            case BEFORE_ANGLE45 -> {
+                entity.setBeforeAngle45ImageOriginalName(storedFileInfo.getOriginalFilename());
+                entity.setBeforeAngle45ImagePath(storedFileInfo.getFullPath());
+                entity.setBeforeAngle45ImageUrl(storedFileInfo.getUrl());
+            }
+            case BEFORE_ANGLE90 -> {
+                entity.setBeforeAngle90ImageOriginalName(storedFileInfo.getOriginalFilename());
+                entity.setBeforeAngle90ImagePath(storedFileInfo.getFullPath());
+                entity.setBeforeAngle90ImageUrl(storedFileInfo.getUrl());
+            }
+            case AFTER_FRONT -> {
+                entity.setAfterFrontImageOriginalName(storedFileInfo.getOriginalFilename());
+                entity.setAfterFrontImagePath(storedFileInfo.getFullPath());
+                entity.setAfterFrontImageUrl(storedFileInfo.getUrl());
+            }
+            case AFTER_ANGLE45 -> {
+                entity.setAfterAngle45ImageOriginalName(storedFileInfo.getOriginalFilename());
+                entity.setAfterAngle45ImagePath(storedFileInfo.getFullPath());
+                entity.setAfterAngle45ImageUrl(storedFileInfo.getUrl());
+            }
+            case AFTER_ANGLE90 -> {
+                entity.setAfterAngle90ImageOriginalName(storedFileInfo.getOriginalFilename());
+                entity.setAfterAngle90ImagePath(storedFileInfo.getFullPath());
+                entity.setAfterAngle90ImageUrl(storedFileInfo.getUrl());
+            }
+        }
     }
 
-    private void applyBeforeImage(BeforeAfter entity, MultipartFile file) {
-        StoredFileInfo storedFileInfo = beforeAfterFileStoreService.store(entity.getId(), file, "before");
-        entity.setBeforeImageOriginalName(storedFileInfo.getOriginalFilename());
-        entity.setBeforeImagePath(storedFileInfo.getFullPath());
-        entity.setBeforeImageUrl(storedFileInfo.getUrl());
+    private String getImagePath(BeforeAfter entity, BeforeAfterImageSlot slot) {
+        return switch (slot) {
+            case BEFORE_FRONT -> entity.getBeforeFrontImagePath();
+            case BEFORE_ANGLE45 -> entity.getBeforeAngle45ImagePath();
+            case BEFORE_ANGLE90 -> entity.getBeforeAngle90ImagePath();
+            case AFTER_FRONT -> entity.getAfterFrontImagePath();
+            case AFTER_ANGLE45 -> entity.getAfterAngle45ImagePath();
+            case AFTER_ANGLE90 -> entity.getAfterAngle90ImagePath();
+        };
     }
 
-    private void applyAfterImage(BeforeAfter entity, MultipartFile file) {
-        StoredFileInfo storedFileInfo = beforeAfterFileStoreService.store(entity.getId(), file, "after");
-        entity.setAfterImageOriginalName(storedFileInfo.getOriginalFilename());
-        entity.setAfterImagePath(storedFileInfo.getFullPath());
-        entity.setAfterImageUrl(storedFileInfo.getUrl());
+    private List<String> getAllImagePaths(BeforeAfter entity) {
+        List<String> paths = new ArrayList<>();
+
+        paths.add(entity.getBeforeFrontImagePath());
+        paths.add(entity.getBeforeAngle45ImagePath());
+        paths.add(entity.getBeforeAngle90ImagePath());
+        paths.add(entity.getAfterFrontImagePath());
+        paths.add(entity.getAfterAngle45ImagePath());
+        paths.add(entity.getAfterAngle90ImagePath());
+
+        return paths.stream()
+                .filter(StringUtils::hasText)
+                .distinct()
+                .toList();
     }
 
     private BeforeAfter getEntity(Long id) {
@@ -217,6 +318,10 @@ public class BeforeAfterService {
         return file != null && !file.isEmpty();
     }
 
+    private String fallback(String value, String fallback) {
+        return StringUtils.hasText(value) ? value : fallback;
+    }
+
     private BeforeAfterAdminListItemResponse toAdminListItemResponse(BeforeAfter entity) {
         return BeforeAfterAdminListItemResponse.builder()
                 .id(entity.getId())
@@ -224,9 +329,15 @@ public class BeforeAfterService {
                 .description(entity.getDescription())
                 .categoryCode(entity.getCategory().getCode())
                 .categoryLabel(entity.getCategory().getLabel())
-                .beforeImageUrl(entity.getBeforeImageUrl())
-                .afterImageUrl(entity.getAfterImageUrl())
-                .viewCount(entity.getViewCount())
+
+                .beforeFrontImageUrl(entity.getBeforeFrontImageUrl())
+                .beforeAngle45ImageUrl(fallback(entity.getBeforeAngle45ImageUrl(), entity.getBeforeFrontImageUrl()))
+                .beforeAngle90ImageUrl(fallback(entity.getBeforeAngle90ImageUrl(), entity.getBeforeFrontImageUrl()))
+
+                .afterFrontImageUrl(entity.getAfterFrontImageUrl())
+                .afterAngle45ImageUrl(fallback(entity.getAfterAngle45ImageUrl(), entity.getAfterFrontImageUrl()))
+                .afterAngle90ImageUrl(fallback(entity.getAfterAngle90ImageUrl(), entity.getAfterFrontImageUrl()))
+
                 .createdAtText(entity.getCreatedAt() == null ? "-" : entity.getCreatedAt().format(ADMIN_DATE_TIME_FORMATTER))
                 .updatedAtText(entity.getUpdatedAt() == null ? "-" : entity.getUpdatedAt().format(ADMIN_DATE_TIME_FORMATTER))
                 .build();
@@ -239,11 +350,25 @@ public class BeforeAfterService {
                 .description(entity.getDescription())
                 .categoryCode(entity.getCategory().getCode())
                 .categoryLabel(entity.getCategory().getLabel())
-                .beforeImageUrl(entity.getBeforeImageUrl())
-                .beforeImageOriginalName(entity.getBeforeImageOriginalName())
-                .afterImageUrl(entity.getAfterImageUrl())
-                .afterImageOriginalName(entity.getAfterImageOriginalName())
-                .viewCount(entity.getViewCount())
+
+                .beforeFrontImageUrl(entity.getBeforeFrontImageUrl())
+                .beforeFrontImageOriginalName(entity.getBeforeFrontImageOriginalName())
+
+                .beforeAngle45ImageUrl(entity.getBeforeAngle45ImageUrl())
+                .beforeAngle45ImageOriginalName(entity.getBeforeAngle45ImageOriginalName())
+
+                .beforeAngle90ImageUrl(entity.getBeforeAngle90ImageUrl())
+                .beforeAngle90ImageOriginalName(entity.getBeforeAngle90ImageOriginalName())
+
+                .afterFrontImageUrl(entity.getAfterFrontImageUrl())
+                .afterFrontImageOriginalName(entity.getAfterFrontImageOriginalName())
+
+                .afterAngle45ImageUrl(entity.getAfterAngle45ImageUrl())
+                .afterAngle45ImageOriginalName(entity.getAfterAngle45ImageOriginalName())
+
+                .afterAngle90ImageUrl(entity.getAfterAngle90ImageUrl())
+                .afterAngle90ImageOriginalName(entity.getAfterAngle90ImageOriginalName())
+
                 .createdAtText(entity.getCreatedAt() == null ? "-" : entity.getCreatedAt().format(ADMIN_DATE_TIME_FORMATTER))
                 .updatedAtText(entity.getUpdatedAt() == null ? "-" : entity.getUpdatedAt().format(ADMIN_DATE_TIME_FORMATTER))
                 .build();
@@ -256,9 +381,15 @@ public class BeforeAfterService {
                 .description(entity.getDescription())
                 .categoryCode(entity.getCategory().getCode())
                 .categoryLabel(entity.getCategory().getLabel())
-                .beforeImageUrl(entity.getBeforeImageUrl())
-                .afterImageUrl(entity.getAfterImageUrl())
-                .viewCount(entity.getViewCount())
+
+                .beforeFrontImageUrl(entity.getBeforeFrontImageUrl())
+                .beforeAngle45ImageUrl(fallback(entity.getBeforeAngle45ImageUrl(), entity.getBeforeFrontImageUrl()))
+                .beforeAngle90ImageUrl(fallback(entity.getBeforeAngle90ImageUrl(), entity.getBeforeFrontImageUrl()))
+
+                .afterFrontImageUrl(entity.getAfterFrontImageUrl())
+                .afterAngle45ImageUrl(fallback(entity.getAfterAngle45ImageUrl(), entity.getAfterFrontImageUrl()))
+                .afterAngle90ImageUrl(fallback(entity.getAfterAngle90ImageUrl(), entity.getAfterFrontImageUrl()))
+
                 .createdDateText(entity.getCreatedAt() == null ? "-" : entity.getCreatedAt().format(FRONT_DATE_FORMATTER))
                 .build();
     }

@@ -12,8 +12,14 @@ public class FrontBeforeAfterItemResponse {
     private String description;
     private String categoryCode;
     private String categoryLabel;
-    private String beforeImageUrl;
-    private String afterImageUrl;
-    private Long viewCount;
+
+    private String beforeFrontImageUrl;
+    private String beforeAngle45ImageUrl;
+    private String beforeAngle90ImageUrl;
+
+    private String afterFrontImageUrl;
+    private String afterAngle45ImageUrl;
+    private String afterAngle90ImageUrl;
+
     private String createdDateText;
 }
