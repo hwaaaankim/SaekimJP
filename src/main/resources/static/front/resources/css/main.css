@@ -837,23 +837,23 @@ input[type="radio"]:checked {
 
 /* 실제 이미지 경로 (필요시 각각 교체) */
 .system_cnt02 .bg-list_item .pic1 {
-	background-image: url(/front/sample/715-710.png);
+	background-image: url(/front/images/main/section03/1.png);
 }
 
 .system_cnt02 .bg-list_item .pic2 {
-	background-image: url(/front/sample/715-710.png);
+	background-image: url(/front/images/main/section03/2.png);
 }
 
 .system_cnt02 .bg-list_item .pic3 {
-	background-image: url(/front/sample/715-710.png);
+	background-image: url(/front/images/main/section03/3.png);
 }
 
 .system_cnt02 .bg-list_item .pic4 {
-	background-image: url(/front/sample/715-710.png);
+	background-image: url(/front/images/main/section03/4.png);
 }
 
 .system_cnt02 .bg-list_item .pic5 {
-	background-image: url(/front/sample/715-710.png);
+	background-image: url(/front/images/main/section03/5.png);
 }
 
 /* data-stage 값에 맞는 레이어만 표시 */
@@ -1007,27 +1007,27 @@ input[type="radio"]:checked {
 
 
 .system_bsc .system_cnt04 #sysTab1.sysTab_in .imgBox-list_item:first-child {
-	background: url(/front/sample/470-550.png) no-repeat;
+	background: url(/front/images/main/section05/1.png) no-repeat;
 }
 
 .system_bsc .system_cnt04 #sysTab1.sysTab_in .imgBox-list_item:nth-child(2) {
-	background: url(/front/sample/470-550.png) no-repeat;
+	background: url(/front/images/main/section05/2.png) no-repeat;
 }
 
 .system_bsc .system_cnt04 #sysTab1.sysTab_in .imgBox-list_item:last-child {
-	background: url(/front/sample/470-550.png) no-repeat;
+	background: url(/front/images/main/section05/3.png) no-repeat;
 }
 
 .system_bsc .system_cnt04 #sysTab2.sysTab_in .imgBox-list_item:first-child {
-	background: url(/front/sample/470-550.png) no-repeat;
+	background: url(/front/images/main/section05/4.png) no-repeat;
 }
 
 .system_bsc .system_cnt04 #sysTab2.sysTab_in .imgBox-list_item:nth-child(2) {
-	background: url(/front/sample/470-550.png) no-repeat;
+	background: url(/front/images/main/section05/5.png) no-repeat;
 }
 
 .system_bsc .system_cnt04 #sysTab2.sysTab_in .imgBox-list_item:last-child {
-	background: url(/front/sample/470-550.png) no-repeat;
+	background: url(/front/images/main/section05/6.png) no-repeat;
 }
 
 .system_bsc .system_cnt04 #sysTab1.sysTab_in .imgBox-list_item .comment {
@@ -1347,7 +1347,7 @@ input[type="radio"]:checked {
 	height: 100vh;
 	display: flex;
 	align-items: center;
-	background: url(/front/sample/1920-970.png) no-repeat;
+	background: url(/front/images/main/6.png) no-repeat;
 }
 
 .certification_bsc .certi_cnt01 .title {

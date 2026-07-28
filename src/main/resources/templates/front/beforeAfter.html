@@ -1,646 +1,749 @@
+<!-- beforeAfter.html -->
 <html id="hamHtml" lang="ko" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/front/common :: commonHead"></head>
 
 <body id="hamBody" class="" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
-	<div id="container">
-		<th:block th:replace="~{fragments/front/common :: commonHeader(white=${false}, dark=${true})}"></th:block>
-
-		<main id="main">
-			<div class="main-wrap">
-				<section class="bsc_container">
-					<section class="subtit-wrap">
-						<div class="inner w1280 mt-3">
-							<p class="title">Before&amp;After</p>
-							<span class="sub-txt">전후사진을 통해 새김성형외과의 신뢰를 확인하세요.</span><br>
-						</div>
-					</section>
-
-					<section class="before-after-page-section" id="before-after-page" data-list-url="/api/beforeAfter"
-						data-initial-limit="20" data-append-limit="8">
-						<div class="inner w1280">
-							<div class="before-after-filter-wrap">
-								<div class="before-after-filter-title-wrap">
-									<p class="before-after-filter-title">수술종류 필터</p>
-									<p class="before-after-filter-desc">원하시는 수술 카테고리를 선택하여 전후사진을 확인하실 수 있습니다.</p>
-								</div>
-
-								<div class="before-after-filter-pills" id="before-after-filter-pills">
-									<label class="before-after-filter-pill">
-										<input type="radio" name="before-after-category" value="all" checked>
-										<span>전체</span>
-									</label>
-									<label class="before-after-filter-pill">
-										<input type="radio" name="before-after-category" value="eye">
-										<span>눈</span>
-									</label>
-									<label class="before-after-filter-pill">
-										<input type="radio" name="before-after-category" value="young">
-										<span>동안</span>
-									</label>
-									<label class="before-after-filter-pill">
-										<input type="radio" name="before-after-category" value="contour">
-										<span>윤곽</span>
-									</label>
-									<label class="before-after-filter-pill">
-										<input type="radio" name="before-after-category" value="nose">
-										<span>코</span>
-									</label>
-								</div>
-
-								<div class="before-after-meta-row">
-									<div class="before-after-meta-left">
-										<span class="before-after-meta-badge" id="before-after-meta-badge">기본 20개
-											노출</span>
-										<span class="before-after-meta-text" id="before-after-total-count">총 0건</span>
-									</div>
-									<div class="before-after-meta-right">
-										<span class="before-after-meta-scroll-guide">스크롤 또는 하단 버튼으로 다음 목록 확인</span>
-									</div>
-								</div>
-							</div>
-
-							<div class="before-after-divider"></div>
-
-							<div class="before-after-grid-wrap">
-								<div class="row g-4" id="before-after-grid"></div>
-							</div>
-
-							<div class="before-after-load-more-wrap">
-								<button type="button" id="before-after-load-more-btn"
-									class="before-after-load-more-btn">
-									다음 전후사진 더 보기
-								</button>
-							</div>
-
-							<div id="before-after-scroll-sentinel" class="before-after-scroll-sentinel"
-								aria-hidden="true"></div>
-						</div>
-					</section>
-				</section>
-			</div>
-		</main>
-
-		<footer th:replace="fragments/front/common :: commonFooter"></footer>
-	</div>
-
-	<style>
-		.before-after-page-section {
-			padding: 22px 0 110px 0 !important;
-			background: linear-gradient(180deg, #ffffff 0%, #fcfcfc 100%) !important;
-		}
-
-		.before-after-filter-wrap {
-			position: relative !important;
-			padding: 30px 0 16px 0 !important;
-		}
-
-		.before-after-filter-title-wrap {
-			text-align: center !important;
-			margin-bottom: 20px !important;
-		}
-
-		.before-after-filter-title {
-			margin: 0 0 6px 0 !important;
-			font-size: 28px !important;
-			font-weight: 700 !important;
-			line-height: 1.25 !important;
-			color: #111111 !important;
-			letter-spacing: -0.03em !important;
-		}
-
-		.before-after-filter-desc {
-			margin: 0 !important;
-			font-size: 15px !important;
-			line-height: 1.45 !important;
-			color: #666666 !important;
-		}
-
-		.before-after-filter-pills {
-			display: flex !important;
-			flex-wrap: wrap !important;
-			justify-content: center !important;
-			align-items: center !important;
-			gap: 10px !important;
-			margin-bottom: 20px !important;
-		}
-
-		.before-after-filter-pill {
-			margin: 0 !important;
-			cursor: pointer !important;
-		}
-
-		.before-after-filter-pill input {
-			display: none !important;
-		}
-
-		.before-after-filter-pill span {
-			min-width: 86px !important;
-			height: 42px !important;
-			padding: 0 20px !important;
-			display: inline-flex !important;
-			align-items: center !important;
-			justify-content: center !important;
-			border: 1px solid #dcdcdc !important;
-			border-radius: 5px !important;
-			background: #ffffff !important;
-			color: #222222 !important;
-			font-size: 14px !important;
-			font-weight: 600 !important;
-			transition: all 0.28s ease !important;
-			box-shadow: 0 6px 14px rgba(17, 17, 17, 0.04) !important;
-		}
-
-		.before-after-filter-pill input:checked+span {
-			background: #111111 !important;
-			color: #ffffff !important;
-			border-color: #111111 !important;
-			transform: translateY(-1px) !important;
-			box-shadow: 0 10px 20px rgba(17, 17, 17, 0.14) !important;
-		}
-
-		.before-after-meta-row {
-			display: flex !important;
-			align-items: center !important;
-			justify-content: space-between !important;
-			gap: 14px !important;
-			flex-wrap: wrap !important;
-		}
-
-		.before-after-meta-left,
-		.before-after-meta-right {
-			display: flex !important;
-			align-items: center !important;
-			gap: 8px !important;
-			flex-wrap: wrap !important;
-		}
-
-		.before-after-meta-badge {
-			display: inline-flex !important;
-			align-items: center !important;
-			justify-content: center !important;
-			height: 30px !important;
-			padding: 0 12px !important;
-			border-radius: 5px !important;
-			background: #f3f5f7 !important;
-			color: #111111 !important;
-			font-size: 12px !important;
-			font-weight: 700 !important;
-		}
-
-		.before-after-meta-text,
-		.before-after-meta-scroll-guide {
-			font-size: 13px !important;
-			color: #6d6d6d !important;
-			line-height: 1.35 !important;
-		}
-
-		.before-after-divider {
-			width: 100% !important;
-			height: 2px !important;
-			margin: 8px 0 28px 0 !important;
-			background: linear-gradient(90deg, #111111 0%, #cfcfcf 100%) !important;
-			border-radius: 5px !important;
-		}
-
-		.before-after-grid-wrap {
-			position: relative !important;
-		}
-
-		.before-after-col {
-			display: flex !important;
-		}
-
-		.before-after-card {
-			position: relative !important;
-			width: 100% !important;
-			height: 100% !important;
-			display: flex !important;
-			flex-direction: column !important;
-			border-radius: 5px !important;
-			background: #ffffff !important;
-			overflow: hidden !important;
-			box-shadow: 0 12px 28px rgba(17, 17, 17, 0.07) !important;
-			border: 1px solid rgba(17, 17, 17, 0.06) !important;
-			transform: translateY(18px) !important;
-			opacity: 0 !important;
-			transition: transform 0.55s ease, opacity 0.55s ease, box-shadow 0.3s ease !important;
-		}
-
-		.before-after-card.before-after-visible {
-			transform: translateY(0) !important;
-			opacity: 1 !important;
-		}
-
-		.before-after-card:hover {
-			transform: translateY(-4px) !important;
-			box-shadow: 0 16px 34px rgba(17, 17, 17, 0.11) !important;
-		}
-
-		.before-after-card-media {
-			position: relative !important;
-			padding: 10px !important;
-			padding-bottom: 0 !important;
-		}
-
-		.before-after-view-grid {
-			display: grid !important;
-			grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-			gap: 10px !important;
-		}
-
-		.before-after-view-block {
-			position: relative !important;
-			border-radius: 5px !important;
-			background: #f8fafc !important;
-			overflow: hidden !important;
-			border: 1px solid rgba(17, 17, 17, 0.06) !important;
-		}
-
-		.before-after-view-title {
-			position: absolute !important;
-			top: 8px !important;
-			left: 8px !important;
-			z-index: 5 !important;
-			height: 28px !important;
-			max-width: calc(100% - 126px) !important;
-			padding: 0 10px !important;
-			display: inline-flex !important;
-			align-items: center !important;
-			justify-content: flex-start !important;
-			border-radius: 5px !important;
-			background: rgba(17, 17, 17, 0.74) !important;
-			color: #ffffff !important;
-			font-size: 12px !important;
-			font-weight: 800 !important;
-			line-height: 1 !important;
-			white-space: nowrap !important;
-			overflow: hidden !important;
-			text-overflow: ellipsis !important;
-		}
-
-		.before-after-card-toggle-wrap {
-			position: absolute !important;
-			top: 8px !important;
-			right: 8px !important;
-			left: auto !important;
-			z-index: 5 !important;
-		}
-
-		.before-after-card-toggle {
-			position: relative !important;
-			width: 104px !important;
-			height: 28px !important;
-			padding: 3px !important;
-			display: flex !important;
-			align-items: center !important;
-			border: none !important;
-			border-radius: 5px !important;
-			background: rgba(255, 255, 255, 0.92) !important;
-			backdrop-filter: blur(8px) !important;
-			box-shadow: 0 8px 18px rgba(17, 17, 17, 0.13) !important;
-			cursor: pointer !important;
-			overflow: hidden !important;
-		}
-
-		.before-after-card-toggle-indicator {
-			position: absolute !important;
-			top: 3px !important;
-			left: 3px !important;
-			width: 49px !important;
-			height: 22px !important;
-			border-radius: 5px !important;
-			background: #111111 !important;
-			transition: transform 0.34s cubic-bezier(0.4, 0, 0.2, 1) !important;
-		}
-
-		.before-after-card-toggle.is-after .before-after-card-toggle-indicator {
-			transform: translateX(49px) !important;
-		}
-
-		.before-after-card-toggle-text {
-			position: relative !important;
-			z-index: 1 !important;
-			width: 50% !important;
-			height: 100% !important;
-			display: inline-flex !important;
-			align-items: center !important;
-			justify-content: center !important;
-			font-size: 10px !important;
-			font-weight: 800 !important;
-			line-height: 1 !important;
-			letter-spacing: 0.02em !important;
-			text-transform: uppercase !important;
-			color: #555555 !important;
-			transition: color 0.28s ease !important;
-		}
-
-		.before-after-card-toggle.is-before .before-after-before-label,
-		.before-after-card-toggle.is-after .before-after-after-label {
-			color: #ffffff !important;
-		}
-
-		.before-after-card-viewport {
-			position: relative !important;
-			width: 100% !important;
-			aspect-ratio: 420 / 500 !important;
-			border-radius: 5px !important;
-			overflow: hidden !important;
-			background: #f4f4f4 !important;
-		}
-
-		.before-after-card-track {
-			width: 200% !important;
-			height: 100% !important;
-			display: flex !important;
-			transition: transform 0.48s cubic-bezier(0.4, 0, 0.2, 1) !important;
-			will-change: transform !important;
-		}
-
-		.before-after-card-track.is-after {
-			transform: translateX(-50%) !important;
-		}
-
-		.before-after-card-panel {
-			position: relative !important;
-			width: 50% !important;
-			height: 100% !important;
-			overflow: hidden !important;
-		}
-
-		.before-after-card-panel img {
-			width: 100% !important;
-			height: 100% !important;
-			object-fit: cover !important;
-			display: block !important;
-			transition: transform 0.6s ease !important;
-		}
-
-		.before-after-card:hover .before-after-card-panel img {
-			transform: scale(1.035) !important;
-		}
-
-		.before-after-card-panel::after {
-			content: "" !important;
-			position: absolute !important;
-			inset: 0 !important;
-			background: linear-gradient(180deg, rgba(17, 17, 17, 0.04) 0%, rgba(17, 17, 17, 0.12) 100%) !important;
-			pointer-events: none !important;
-		}
-
-		.before-after-card-label {
-			position: absolute !important;
-			right: 10px !important;
-			bottom: 10px !important;
-			z-index: 2 !important;
-			display: inline-flex !important;
-			align-items: center !important;
-			justify-content: center !important;
-			min-width: 58px !important;
-			height: 26px !important;
-			padding: 0 10px !important;
-			border-radius: 5px !important;
-			background: rgba(255, 255, 255, 0.92) !important;
-			backdrop-filter: blur(8px) !important;
-			color: #111111 !important;
-			font-size: 10px !important;
-			font-weight: 800 !important;
-			line-height: 1 !important;
-			letter-spacing: 0.04em !important;
-		}
-
-		.before-after-card-body {
-			display: flex !important;
-			flex-direction: column !important;
-			align-items: center !important;
-			justify-content: center !important;
-			text-align: center !important;
-			padding: 14px 14px 16px 14px !important;
-			min-height: 118px !important;
-			flex: 1 1 auto !important;
-		}
-
-		.before-after-card-category {
-			display: inline-flex !important;
-			align-items: center !important;
-			justify-content: center !important;
-			height: 24px !important;
-			padding: 0 10px !important;
-			border-radius: 5px !important;
-			background: #f5f7f9 !important;
-			color: #666666 !important;
-			font-size: 11px !important;
-			font-weight: 700 !important;
-			line-height: 1 !important;
-			margin-bottom: 5px !important;
-		}
-
-		.before-after-card-title {
-			margin: 0 0 4px 0 !important;
-			font-size: 18px !important;
-			line-height: 1.22 !important;
-			font-weight: 700 !important;
-			color: #111111 !important;
-			letter-spacing: -0.03em !important;
-		}
-
-		.before-after-card-sub {
-			margin: 0 !important;
-			font-size: 13px !important;
-			line-height: 1.35 !important;
-			color: #7a7a7a !important;
-		}
-
-		.before-after-card-meta {
-			margin-top: 8px !important;
-			display: flex !important;
-			flex-wrap: wrap !important;
-			align-items: center !important;
-			justify-content: center !important;
-			gap: 5px !important;
-		}
-
-		.before-after-card-meta span {
-			display: inline-flex !important;
-			align-items: center !important;
-			justify-content: center !important;
-			height: 24px !important;
-			padding: 0 8px !important;
-			border-radius: 5px !important;
-			background: #f8fafc !important;
-			color: #667085 !important;
-			font-size: 11px !important;
-			font-weight: 600 !important;
-			line-height: 1 !important;
-		}
-
-		.before-after-load-more-wrap {
-			margin-top: 32px !important;
-		}
-
-		.before-after-load-more-btn {
-			width: 100% !important;
-			min-height: 86px !important;
-			border: none !important;
-			border-radius: 5px !important;
-			background: linear-gradient(135deg, #141414 0%, #2a2a2a 100%) !important;
-			color: #ffffff !important;
-			font-size: 18px !important;
-			font-weight: 700 !important;
-			letter-spacing: -0.02em !important;
-			display: flex !important;
-			align-items: center !important;
-			justify-content: center !important;
-			text-align: center !important;
-			box-shadow: 0 14px 28px rgba(17, 17, 17, 0.14) !important;
-			transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease !important;
-		}
-
-		.before-after-load-more-btn:hover {
-			transform: translateY(-3px) !important;
-			box-shadow: 0 18px 34px rgba(17, 17, 17, 0.2) !important;
-		}
-
-		.before-after-load-more-btn:disabled {
-			opacity: 0.45 !important;
-			cursor: default !important;
-			transform: none !important;
-			box-shadow: 0 10px 20px rgba(17, 17, 17, 0.10) !important;
-		}
-
-		.before-after-scroll-sentinel {
-			width: 100% !important;
-			height: 1px !important;
-		}
-
-		.before-after-empty {
-			width: 100% !important;
-			padding: 56px 20px !important;
-			border: 1px dashed #d0d5dd !important;
-			border-radius: 5px !important;
-			text-align: center !important;
-			color: #667085 !important;
-			font-size: 15px !important;
-			font-weight: 600 !important;
-			background: #ffffff !important;
-		}
-
-		@media (max-width: 991.98px) {
-			.before-after-page-section {
-				padding-bottom: 90px !important;
-			}
-
-			.before-after-filter-title {
-				font-size: 24px !important;
-			}
-
-			.before-after-view-grid {
-				grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-				gap: 8px !important;
-			}
-
-			.before-after-card-toggle {
-				width: 92px !important;
-				height: 28px !important;
-			}
-
-			.before-after-card-toggle-indicator {
-				width: 43px !important;
-				height: 22px !important;
-			}
-
-			.before-after-card-toggle.is-after .before-after-card-toggle-indicator {
-				transform: translateX(43px) !important;
-			}
-
-			.before-after-card-toggle-text {
-				font-size: 9px !important;
-			}
-
-			.before-after-view-title {
-				max-width: calc(100% - 112px) !important;
-				font-size: 11px !important;
-			}
-
-			.before-after-card-title {
-				font-size: 17px !important;
-			}
-
-			.before-after-load-more-btn {
-				min-height: 78px !important;
-				font-size: 17px !important;
-			}
-		}
-
-		@media (max-width: 767.98px) {
-			.before-after-filter-wrap {
-				padding-top: 20px !important;
-			}
-
-			.before-after-filter-title {
-				font-size: 21px !important;
-			}
-
-			.before-after-filter-desc {
-				font-size: 14px !important;
-			}
-
-			.before-after-filter-pill span {
-				min-width: 72px !important;
-				height: 38px !important;
-				padding: 0 14px !important;
-				font-size: 13px !important;
-			}
-
-			.before-after-meta-row {
-				justify-content: center !important;
-				text-align: center !important;
-			}
-
-			.before-after-view-grid {
-				grid-template-columns: 1fr !important;
-				gap: 14px !important;
-			}
-
-			.before-after-card-media {
-				padding: 8px !important;
-				padding-bottom: 0 !important;
-			}
-
-			.before-after-view-title {
-				top: 8px !important;
-				left: 8px !important;
-			}
-
-			.before-after-card-toggle-wrap {
-				top: 8px !important;
-				right: 8px !important;
-			}
-
-			.before-after-card-body {
-				min-height: 104px !important;
-				padding: 12px 12px 14px 12px !important;
-			}
-
-			.before-after-card-title {
-				font-size: 16px !important;
-				line-height: 1.2 !important;
-			}
-
-			.before-after-card-sub {
-				font-size: 12px !important;
-				line-height: 1.3 !important;
-			}
-
-			.before-after-load-more-btn {
-				min-height: 72px !important;
-				font-size: 16px !important;
-			}
-		}
-	</style>
-
-	<th:block th:replace="fragments/front/common :: commonScript"></th:block>
-	<script src="/front/resources/js/beforeAfter.js"></script>
+    <div id="container">
+        <th:block th:replace="~{fragments/front/common :: commonHeader(white=${false}, dark=${true})}"></th:block>
+
+        <main id="main">
+            <div class="main-wrap">
+                <section class="bsc_container">
+                    <section class="subtit-wrap">
+                        <div class="inner w1280 mt-3">
+                            <p class="title">Before&amp;After</p>
+                            <span class="sub-txt">전후사진을 통해 새김성형외과의 신뢰를 확인하세요.</span><br>
+                        </div>
+                    </section>
+
+                    <section class="before-after-page-section" id="before-after-page"
+                        data-list-url="/api/beforeAfter"
+                        data-initial-limit="20"
+                        data-append-limit="8">
+                        <div class="inner w1280">
+                            <div class="before-after-filter-wrap">
+                                <div class="before-after-filter-title-wrap">
+                                    <p class="before-after-filter-title">수술종류 필터</p>
+                                    <p class="before-after-filter-desc">원하시는 수술 카테고리를 선택하여 전후사진을 확인하실 수 있습니다.</p>
+                                </div>
+
+                                <div class="before-after-filter-pills" id="before-after-filter-pills">
+                                    <label class="before-after-filter-pill">
+                                        <input type="radio" name="before-after-category" value="all" checked>
+                                        <span>전체</span>
+                                    </label>
+                                    <label class="before-after-filter-pill">
+                                        <input type="radio" name="before-after-category" value="eye">
+                                        <span>눈</span>
+                                    </label>
+                                    <label class="before-after-filter-pill">
+                                        <input type="radio" name="before-after-category" value="young">
+                                        <span>동안</span>
+                                    </label>
+                                    <label class="before-after-filter-pill">
+                                        <input type="radio" name="before-after-category" value="contour">
+                                        <span>윤곽</span>
+                                    </label>
+                                    <label class="before-after-filter-pill">
+                                        <input type="radio" name="before-after-category" value="nose">
+                                        <span>코</span>
+                                    </label>
+                                </div>
+
+                                <div class="before-after-meta-row">
+                                    <div class="before-after-meta-left">
+                                        <span class="before-after-meta-text" id="before-after-total-count">총 0건</span>
+                                    </div>
+                                    <div class="before-after-meta-right">
+                                        <span class="before-after-meta-scroll-guide">스크롤 또는 하단 버튼으로 다음 목록 확인</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="before-after-divider"></div>
+
+                            <div class="before-after-grid-wrap">
+                                <div id="before-after-grid" class="before-after-grid"></div>
+                            </div>
+
+                            <div class="before-after-load-more-wrap">
+                                <button type="button" id="before-after-load-more-btn"
+                                    class="before-after-load-more-btn">
+                                    다음 전후사진 더 보기
+                                </button>
+                            </div>
+
+                            <div id="before-after-scroll-sentinel" class="before-after-scroll-sentinel"
+                                aria-hidden="true"></div>
+                        </div>
+                    </section>
+                </section>
+            </div>
+        </main>
+
+        <footer th:replace="fragments/front/common :: commonFooter"></footer>
+    </div>
+
+    <style>
+        .before-after-page-section {
+            padding: 22px 0 110px 0 !important;
+            background: linear-gradient(180deg, #ffffff 0%, #fcfcfc 100%) !important;
+        }
+
+        .before-after-filter-wrap {
+            position: relative !important;
+            padding: 30px 0 16px 0 !important;
+        }
+
+        .before-after-filter-title-wrap {
+            margin-bottom: 20px !important;
+            text-align: center !important;
+        }
+
+        .before-after-filter-title {
+            margin: 0 0 6px 0 !important;
+            color: #111111 !important;
+            font-size: 28px !important;
+            font-weight: 700 !important;
+            line-height: 1.25 !important;
+            letter-spacing: -0.03em !important;
+        }
+
+        .before-after-filter-desc {
+            margin: 0 !important;
+            color: #666666 !important;
+            font-size: 15px !important;
+            line-height: 1.45 !important;
+        }
+
+        .before-after-filter-pills {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 10px !important;
+            margin-bottom: 20px !important;
+        }
+
+        .before-after-filter-pill {
+            margin: 0 !important;
+            cursor: pointer !important;
+        }
+
+        .before-after-filter-pill input {
+            display: none !important;
+        }
+
+        .before-after-filter-pill span {
+            min-width: 86px !important;
+            height: 42px !important;
+            padding: 0 20px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border: 1px solid #dcdcdc !important;
+            border-radius: 5px !important;
+            background: #ffffff !important;
+            color: #222222 !important;
+            font-size: 14px !important;
+            font-weight: 600 !important;
+            box-shadow: 0 6px 14px rgba(17, 17, 17, 0.04) !important;
+            transition: transform 0.28s ease, background-color 0.28s ease, color 0.28s ease,
+                border-color 0.28s ease, box-shadow 0.28s ease !important;
+        }
+
+        .before-after-filter-pill input:checked+span {
+            transform: translateY(-1px) !important;
+            border-color: #111111 !important;
+            background: #111111 !important;
+            color: #ffffff !important;
+            box-shadow: 0 10px 20px rgba(17, 17, 17, 0.14) !important;
+        }
+
+        .before-after-meta-row {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            gap: 14px !important;
+        }
+
+        .before-after-meta-left,
+        .before-after-meta-right {
+            display: flex !important;
+            flex-wrap: wrap !important;
+            align-items: center !important;
+            gap: 8px !important;
+        }
+
+        .before-after-meta-text,
+        .before-after-meta-scroll-guide {
+            color: #6d6d6d !important;
+            font-size: 13px !important;
+            line-height: 1.35 !important;
+        }
+
+        .before-after-divider {
+            width: 100% !important;
+            height: 2px !important;
+            margin: 8px 0 28px 0 !important;
+            border-radius: 5px !important;
+            background: linear-gradient(90deg, #111111 0%, #cfcfcf 100%) !important;
+        }
+
+        .before-after-grid-wrap {
+            position: relative !important;
+            width: 100% !important;
+        }
+
+        /*
+         * 데스크톱은 한 줄을 동일한 6칸으로 구성합니다.
+         * 각 사례는 실제 촬영 시점 수만큼 칸을 차지하며, 카드 내부 이미지 간격과
+         * 카드 사이 간격을 동일하게 맞춰 1·2·3시점의 개별 이미지 폭을 같게 유지합니다.
+         */
+        .before-after-grid {
+            --before-after-layout-gap: 12px;
+            position: relative !important;
+            width: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            gap: var(--before-after-layout-gap) !important;
+        }
+
+        .before-after-layout-row {
+            width: 100% !important;
+            min-width: 0 !important;
+            display: grid !important;
+            grid-template-columns: repeat(var(--before-after-row-capacity), minmax(0, 1fr)) !important;
+            align-items: stretch !important;
+            gap: var(--before-after-layout-gap) !important;
+        }
+
+        .before-after-col {
+            min-width: 0 !important;
+            display: flex !important;
+            grid-column: span var(--before-after-card-span) !important;
+        }
+
+        .before-after-card {
+            position: relative !important;
+            width: 100% !important;
+            height: 100% !important;
+            min-width: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            overflow: hidden !important;
+            border: 0 !important;
+            border-radius: 5px !important;
+            outline: 1px solid rgba(17, 17, 17, 0.06) !important;
+            background: #ffffff !important;
+            opacity: 0 !important;
+            transform: translateY(18px) !important;
+            box-shadow: 0 12px 28px rgba(17, 17, 17, 0.07) !important;
+            transition: transform 0.55s ease, opacity 0.55s ease, box-shadow 0.3s ease !important;
+        }
+
+        .before-after-card.before-after-visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        .before-after-card.before-after-visible:hover {
+            transform: translateY(-4px) !important;
+            box-shadow: 0 16px 34px rgba(17, 17, 17, 0.11) !important;
+        }
+
+        /* 카드마다 반복되던 좌우 패딩을 제거해 1시점 이미지도 기준 1칸 폭을 그대로 사용합니다. */
+        .before-after-card-media {
+            position: relative !important;
+            width: 100% !important;
+            padding: 0 !important;
+            background: #ffffff !important;
+        }
+
+        .before-after-view-grid {
+            width: 100% !important;
+            display: grid !important;
+            grid-template-columns: repeat(var(--before-after-view-count), minmax(0, 1fr)) !important;
+            gap: var(--before-after-layout-gap) !important;
+        }
+
+        .before-after-view-block {
+            position: relative !important;
+            min-width: 0 !important;
+            overflow: hidden !important;
+            border: 1px solid rgba(17, 17, 17, 0.06) !important;
+            border-radius: 5px !important;
+            background: #f8fafc !important;
+        }
+
+        .before-after-view-title {
+            position: absolute !important;
+            top: 8px !important;
+            left: 8px !important;
+            z-index: 5 !important;
+            max-width: calc(100% - 110px) !important;
+            height: 28px !important;
+            padding: 0 8px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: flex-start !important;
+            overflow: hidden !important;
+            border-radius: 5px !important;
+            background: rgba(17, 17, 17, 0.74) !important;
+            color: #ffffff !important;
+            font-size: 11px !important;
+            font-weight: 700 !important;
+            line-height: 1 !important;
+            white-space: nowrap !important;
+            text-overflow: ellipsis !important;
+        }
+
+        .before-after-card-toggle-wrap {
+            position: absolute !important;
+            top: 8px !important;
+            right: 8px !important;
+            z-index: 5 !important;
+        }
+
+        .before-after-card-toggle {
+            position: relative !important;
+            width: 90px !important;
+            height: 28px !important;
+            padding: 3px !important;
+            display: flex !important;
+            align-items: center !important;
+            overflow: hidden !important;
+            border: none !important;
+            border-radius: 5px !important;
+            background: rgba(255, 255, 255, 0.92) !important;
+            cursor: pointer !important;
+            box-shadow: 0 8px 18px rgba(17, 17, 17, 0.13) !important;
+            backdrop-filter: blur(8px) !important;
+        }
+
+        .before-after-card-toggle-indicator {
+            position: absolute !important;
+            top: 3px !important;
+            left: 3px !important;
+            width: 42px !important;
+            height: 22px !important;
+            border-radius: 5px !important;
+            background: #111111 !important;
+            transition: transform 0.34s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .before-after-card-toggle.is-after .before-after-card-toggle-indicator {
+            transform: translateX(42px) !important;
+        }
+
+        .before-after-card-toggle-text {
+            position: relative !important;
+            z-index: 1 !important;
+            width: 50% !important;
+            height: 100% !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            color: #555555 !important;
+            font-size: 8.5px !important;
+            font-weight: 800 !important;
+            line-height: 1 !important;
+            letter-spacing: 0 !important;
+            text-transform: uppercase !important;
+            transition: color 0.28s ease !important;
+        }
+
+        .before-after-card-toggle.is-before .before-after-before-label,
+        .before-after-card-toggle.is-after .before-after-after-label {
+            color: #ffffff !important;
+        }
+
+        .before-after-card-viewport {
+            position: relative !important;
+            width: 100% !important;
+            aspect-ratio: 420 / 500 !important;
+            overflow: hidden !important;
+            border-radius: 4px !important;
+            background: #f4f4f4 !important;
+        }
+
+        .before-after-card-track {
+            width: 200% !important;
+            height: 100% !important;
+            display: flex !important;
+            will-change: transform !important;
+            transition: transform 0.48s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        }
+
+        .before-after-card-track.is-after {
+            transform: translateX(-50%) !important;
+        }
+
+        .before-after-card-panel {
+            position: relative !important;
+            width: 50% !important;
+            height: 100% !important;
+            overflow: hidden !important;
+        }
+
+        .before-after-card-panel img {
+            width: 100% !important;
+            height: 100% !important;
+            display: block !important;
+            object-fit: cover !important;
+            transition: transform 0.6s ease !important;
+        }
+
+        .before-after-card-panel.is-image-error img {
+            display: none !important;
+        }
+
+        .before-after-card-image-error {
+            position: absolute !important;
+            inset: 0 !important;
+            z-index: 1 !important;
+            display: none !important;
+            align-items: center !important;
+            justify-content: center !important;
+            padding: 18px !important;
+            background: linear-gradient(180deg, #f7f7f7 0%, #ececec 100%) !important;
+            color: #7a7a7a !important;
+            font-size: 12px !important;
+            font-weight: 700 !important;
+            line-height: 1.45 !important;
+            text-align: center !important;
+            word-break: keep-all !important;
+        }
+
+        .before-after-card-panel.is-image-error .before-after-card-image-error {
+            display: flex !important;
+        }
+
+        .before-after-card:hover .before-after-card-panel:not(.is-image-error) img {
+            transform: scale(1.035) !important;
+        }
+
+        .before-after-card-panel::after {
+            content: "" !important;
+            position: absolute !important;
+            inset: 0 !important;
+            pointer-events: none !important;
+            background: linear-gradient(180deg, rgba(17, 17, 17, 0.04) 0%, rgba(17, 17, 17, 0.12) 100%) !important;
+        }
+
+        .before-after-card-label {
+            position: absolute !important;
+            right: 8px !important;
+            bottom: 8px !important;
+            z-index: 2 !important;
+            min-width: 54px !important;
+            height: 25px !important;
+            padding: 0 8px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 5px !important;
+            background: rgba(255, 255, 255, 0.92) !important;
+            color: #111111 !important;
+            font-size: 9px !important;
+            font-weight: 800 !important;
+            line-height: 1 !important;
+            letter-spacing: 0.03em !important;
+            backdrop-filter: blur(8px) !important;
+        }
+
+        .before-after-card-body {
+            min-height: 122px !important;
+            padding: 13px 12px 15px 12px !important;
+            display: flex !important;
+            flex: 1 1 auto !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+        }
+
+        .before-after-card-category {
+            height: 23px !important;
+            margin-bottom: 5px !important;
+            padding: 0 8px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 5px !important;
+            background: #f5f7f9 !important;
+            color: #666666 !important;
+            font-size: 10px !important;
+            font-weight: 700 !important;
+            line-height: 1 !important;
+        }
+
+        .before-after-card-title {
+            width: 100% !important;
+            margin: 0 0 4px 0 !important;
+            overflow: hidden !important;
+            color: #111111 !important;
+            font-size: 17px !important;
+            font-weight: 700 !important;
+            line-height: 1.25 !important;
+            letter-spacing: -0.03em !important;
+            text-overflow: ellipsis !important;
+            white-space: nowrap !important;
+        }
+
+        .before-after-card-sub {
+            width: 100% !important;
+            margin: 0 !important;
+            display: -webkit-box !important;
+            overflow: hidden !important;
+            color: #7a7a7a !important;
+            font-size: 12px !important;
+            line-height: 1.35 !important;
+            word-break: keep-all !important;
+            -webkit-box-orient: vertical !important;
+            -webkit-line-clamp: 2 !important;
+        }
+
+        .before-after-card-meta {
+            margin-top: 8px !important;
+            display: flex !important;
+            flex-wrap: wrap !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 5px !important;
+        }
+
+        .before-after-card-meta span {
+            height: 23px !important;
+            padding: 0 7px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 5px !important;
+            background: #f8fafc !important;
+            color: #667085 !important;
+            font-size: 10px !important;
+            font-weight: 600 !important;
+            line-height: 1 !important;
+            white-space: nowrap !important;
+        }
+
+        .before-after-card-view-1 .before-after-card-body {
+            padding-right: 8px !important;
+            padding-left: 8px !important;
+        }
+
+        .before-after-card-view-1 .before-after-card-title {
+            font-size: 15px !important;
+        }
+
+        .before-after-card-view-1 .before-after-card-sub {
+            font-size: 11px !important;
+        }
+
+        .before-after-card-view-1 .before-after-card-meta span {
+            padding-right: 5px !important;
+            padding-left: 5px !important;
+            font-size: 9px !important;
+        }
+
+        .before-after-load-more-wrap {
+            margin-top: 38px !important;
+        }
+
+        .before-after-load-more-btn {
+            width: 100% !important;
+            min-height: 86px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border: none !important;
+            border-radius: 5px !important;
+            background: linear-gradient(135deg, #141414 0%, #2a2a2a 100%) !important;
+            color: #ffffff !important;
+            font-size: 18px !important;
+            font-weight: 700 !important;
+            letter-spacing: -0.02em !important;
+            text-align: center !important;
+            box-shadow: 0 14px 28px rgba(17, 17, 17, 0.14) !important;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease !important;
+        }
+
+        .before-after-load-more-btn:hover:not(:disabled) {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 18px 34px rgba(17, 17, 17, 0.2) !important;
+        }
+
+        .before-after-load-more-btn.is-loading {
+            pointer-events: none !important;
+            opacity: 0.68 !important;
+        }
+
+        .before-after-load-more-btn:disabled {
+            opacity: 0.45 !important;
+            cursor: default !important;
+            transform: none !important;
+            box-shadow: 0 10px 20px rgba(17, 17, 17, 0.10) !important;
+        }
+
+        .before-after-scroll-sentinel {
+            width: 100% !important;
+            height: 1px !important;
+        }
+
+        .before-after-empty {
+            grid-column: 1 / -1 !important;
+            width: 100% !important;
+            padding: 56px 20px !important;
+            border: 1px dashed #d0d5dd !important;
+            border-radius: 5px !important;
+            background: #ffffff !important;
+            color: #667085 !important;
+            font-size: 15px !important;
+            font-weight: 600 !important;
+            text-align: center !important;
+        }
+
+        @media (max-width: 1199.98px) {
+            .before-after-grid {
+                --before-after-layout-gap: 10px;
+            }
+
+            .before-after-card-toggle {
+                width: 86px !important;
+            }
+
+            .before-after-card-toggle-indicator {
+                width: 40px !important;
+            }
+
+            .before-after-card-toggle.is-after .before-after-card-toggle-indicator {
+                transform: translateX(40px) !important;
+            }
+
+            .before-after-view-title {
+                max-width: calc(100% - 104px) !important;
+                padding-right: 7px !important;
+                padding-left: 7px !important;
+                font-size: 10px !important;
+            }
+        }
+
+        @media (max-width: 991.98px) {
+            .before-after-page-section {
+                padding-bottom: 90px !important;
+            }
+
+            .before-after-filter-title {
+                font-size: 24px !important;
+            }
+
+            .before-after-card-title {
+                font-size: 16px !important;
+            }
+
+            .before-after-card-view-1 .before-after-card-title {
+                font-size: 15px !important;
+            }
+
+            .before-after-load-more-btn {
+                min-height: 78px !important;
+                font-size: 17px !important;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .before-after-filter-wrap {
+                padding-top: 20px !important;
+            }
+
+            .before-after-filter-title {
+                font-size: 21px !important;
+            }
+
+            .before-after-filter-desc {
+                font-size: 14px !important;
+            }
+
+            .before-after-filter-pill span {
+                min-width: 72px !important;
+                height: 38px !important;
+                padding: 0 14px !important;
+                font-size: 13px !important;
+            }
+
+            .before-after-meta-row {
+                justify-content: center !important;
+                text-align: center !important;
+            }
+
+            .before-after-grid {
+                --before-after-layout-gap: 18px;
+            }
+
+            .before-after-view-grid {
+                grid-template-columns: minmax(0, 1fr) !important;
+                gap: 10px !important;
+            }
+
+            .before-after-card-toggle {
+                width: 92px !important;
+            }
+
+            .before-after-card-toggle-indicator {
+                width: 43px !important;
+            }
+
+            .before-after-card-toggle.is-after .before-after-card-toggle-indicator {
+                transform: translateX(43px) !important;
+            }
+
+            .before-after-view-title {
+                max-width: calc(100% - 112px) !important;
+                padding-right: 10px !important;
+                padding-left: 10px !important;
+                font-size: 11px !important;
+            }
+
+            .before-after-card-body,
+            .before-after-card-view-1 .before-after-card-body {
+                min-height: 104px !important;
+                padding: 12px 12px 14px 12px !important;
+            }
+
+            .before-after-card-title,
+            .before-after-card-view-1 .before-after-card-title {
+                font-size: 16px !important;
+            }
+
+            .before-after-card-sub,
+            .before-after-card-view-1 .before-after-card-sub {
+                font-size: 12px !important;
+            }
+
+            .before-after-card-view-1 .before-after-card-meta span {
+                padding: 0 7px !important;
+                font-size: 10px !important;
+            }
+
+            .before-after-load-more-btn {
+                min-height: 72px !important;
+                font-size: 16px !important;
+            }
+        }
+
+        @media (max-width: 575.98px) {
+            .before-after-meta-right {
+                width: 100% !important;
+                justify-content: center !important;
+            }
+        }
+    </style>
+
+    <th:block th:replace="fragments/front/common :: commonScript"></th:block>
+    <script src="/front/resources/js/beforeAfter.js?v=20260728-2"></script>
 </body>
 
 </html>

@@ -12,6 +12,7 @@ public class BeforeAfterAdminDetailResponse {
     private String description;
     private String categoryCode;
     private String categoryLabel;
+    private int viewCount;
 
     private String beforeFrontImageUrl;
     private String beforeFrontImageOriginalName;

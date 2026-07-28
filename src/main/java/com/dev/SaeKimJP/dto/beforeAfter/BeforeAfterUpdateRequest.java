@@ -20,4 +20,8 @@ public class BeforeAfterUpdateRequest {
     private MultipartFile afterFrontImageFile;
     private MultipartFile afterAngle45ImageFile;
     private MultipartFile afterAngle90ImageFile;
+
+    private boolean removeFrontView;
+    private boolean removeAngle45View;
+    private boolean removeAngle90View;
 }

@@ -2107,62 +2107,6 @@ input[type="checkbox"] {
   margin-bottom: 20px;
 }
 
-.textF-wrap {
-  position: relative;
-  width: 100%;
-  height: 640px;
-  display: flex;
-  flex-direction: column;
-}
-.textF-wrap:before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 400px;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    rgb(255, 255, 255) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  content: "";
-  z-index: 2;
-}
-.textF-wrap:after {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 400px;
-  height: 100%;
-  background: linear-gradient(
-    270deg,
-    rgb(255, 255, 255) 0%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  content: "";
-  z-index: 2;
-}
-.textF-track {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  animation: rollingleft 20000s linear infinite;
-}
-.textF-track.left {
-  animation: rollingleft 20000s linear infinite;
-  background: url(/front/sample/1920-640.png)
-    left repeat-x;
-}
-
-@keyframes rollingleft {
-  0% {
-    background-position: 0;
-  }
-  100% {
-    background-position: -999999px;
-  }
-}
-
 .successCon-wrap .cont02 {
   background: #ddf8ff;
 }

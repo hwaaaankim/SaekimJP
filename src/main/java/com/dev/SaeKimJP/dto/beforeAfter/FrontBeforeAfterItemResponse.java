@@ -12,6 +12,7 @@ public class FrontBeforeAfterItemResponse {
     private String description;
     private String categoryCode;
     private String categoryLabel;
+    private int viewCount;
 
     private String beforeFrontImageUrl;
     private String beforeAngle45ImageUrl;

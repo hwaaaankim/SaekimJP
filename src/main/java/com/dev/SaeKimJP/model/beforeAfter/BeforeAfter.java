@@ -51,13 +51,13 @@ public class BeforeAfter {
     @Column(name = "category", nullable = false, length = 20)
     private BeforeAfterCategory category;
 
-    @Column(name = "before_front_image_url", nullable = false, length = 500)
+    @Column(name = "before_front_image_url", length = 500)
     private String beforeFrontImageUrl;
 
-    @Column(name = "before_front_image_path", nullable = false, length = 1000)
+    @Column(name = "before_front_image_path", length = 1000)
     private String beforeFrontImagePath;
 
-    @Column(name = "before_front_image_original_name", nullable = false, length = 255)
+    @Column(name = "before_front_image_original_name", length = 255)
     private String beforeFrontImageOriginalName;
 
     @Column(name = "before_angle45_image_url", length = 500)
@@ -78,13 +78,13 @@ public class BeforeAfter {
     @Column(name = "before_angle90_image_original_name", length = 255)
     private String beforeAngle90ImageOriginalName;
 
-    @Column(name = "after_front_image_url", nullable = false, length = 500)
+    @Column(name = "after_front_image_url", length = 500)
     private String afterFrontImageUrl;
 
-    @Column(name = "after_front_image_path", nullable = false, length = 1000)
+    @Column(name = "after_front_image_path", length = 1000)
     private String afterFrontImagePath;
 
-    @Column(name = "after_front_image_original_name", nullable = false, length = 255)
+    @Column(name = "after_front_image_original_name", length = 255)
     private String afterFrontImageOriginalName;
 
     @Column(name = "after_angle45_image_url", length = 500)

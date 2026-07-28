@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronization;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -61,8 +63,7 @@ public class BeforeAfterService {
     }
 
     public BeforeAfterAdminDetailResponse getAdminDetail(Long id) {
-        BeforeAfter entity = getEntity(id);
-        return toAdminDetailResponse(entity);
+        return toAdminDetailResponse(getEntity(id));
     }
 
     public FrontBeforeAfterListResponse getFrontList(String category, int offset, int limit) {
@@ -93,55 +94,51 @@ public class BeforeAfterService {
     @Transactional
     public BeforeAfterAdminDetailResponse create(BeforeAfterCreateRequest request) {
         validateCommonFields(request.getTitle(), request.getDescription(), request.getCategory());
-        validateRequiredCreateImages(request);
+        validateCreateViewPairs(request);
 
         BeforeAfter entity = BeforeAfter.builder()
                 .title(request.getTitle().trim())
                 .description(request.getDescription().trim())
                 .category(BeforeAfterCategory.fromCode(request.getCategory()))
-
-                .beforeFrontImageUrl("")
-                .beforeFrontImagePath("")
-                .beforeFrontImageOriginalName("")
-
-                .beforeAngle45ImageUrl("")
-                .beforeAngle45ImagePath("")
-                .beforeAngle45ImageOriginalName("")
-
-                .beforeAngle90ImageUrl("")
-                .beforeAngle90ImagePath("")
-                .beforeAngle90ImageOriginalName("")
-
-                .afterFrontImageUrl("")
-                .afterFrontImagePath("")
-                .afterFrontImageOriginalName("")
-
-                .afterAngle45ImageUrl("")
-                .afterAngle45ImagePath("")
-                .afterAngle45ImageOriginalName("")
-
-                .afterAngle90ImageUrl("")
-                .afterAngle90ImagePath("")
-                .afterAngle90ImageOriginalName("")
                 .build();
 
-        beforeAfterRepository.save(entity);
+        beforeAfterRepository.saveAndFlush(entity);
+
+        List<String> newlyStoredPaths = new ArrayList<>();
 
         try {
-            applyImage(entity, request.getBeforeFrontImageFile(), BeforeAfterImageSlot.BEFORE_FRONT);
-            applyImage(entity, request.getBeforeAngle45ImageFile(), BeforeAfterImageSlot.BEFORE_ANGLE45);
-            applyImage(entity, request.getBeforeAngle90ImageFile(), BeforeAfterImageSlot.BEFORE_ANGLE90);
+            applyCreatePair(
+                    entity,
+                    request.getBeforeFrontImageFile(),
+                    request.getAfterFrontImageFile(),
+                    BeforeAfterImageSlot.BEFORE_FRONT,
+                    BeforeAfterImageSlot.AFTER_FRONT,
+                    newlyStoredPaths
+            );
+            applyCreatePair(
+                    entity,
+                    request.getBeforeAngle45ImageFile(),
+                    request.getAfterAngle45ImageFile(),
+                    BeforeAfterImageSlot.BEFORE_ANGLE45,
+                    BeforeAfterImageSlot.AFTER_ANGLE45,
+                    newlyStoredPaths
+            );
+            applyCreatePair(
+                    entity,
+                    request.getBeforeAngle90ImageFile(),
+                    request.getAfterAngle90ImageFile(),
+                    BeforeAfterImageSlot.BEFORE_ANGLE90,
+                    BeforeAfterImageSlot.AFTER_ANGLE90,
+                    newlyStoredPaths
+            );
 
-            applyImage(entity, request.getAfterFrontImageFile(), BeforeAfterImageSlot.AFTER_FRONT);
-            applyImage(entity, request.getAfterAngle45ImageFile(), BeforeAfterImageSlot.AFTER_ANGLE45);
-            applyImage(entity, request.getAfterAngle90ImageFile(), BeforeAfterImageSlot.AFTER_ANGLE90);
-
-            beforeAfterRepository.save(entity);
+            validateFinalViewState(entity);
+            beforeAfterRepository.saveAndFlush(entity);
+            registerFileCleanupAfterTransaction(List.of(), newlyStoredPaths);
 
             return toAdminDetailResponse(entity);
         } catch (RuntimeException e) {
-            getAllImagePaths(entity).forEach(beforeAfterFileStoreService::deleteQuietly);
-            beforeAfterRepository.delete(entity);
+            newlyStoredPaths.forEach(beforeAfterFileStoreService::deleteQuietly);
             throw e;
         }
     }
@@ -151,36 +148,57 @@ public class BeforeAfterService {
         validateCommonFields(request.getTitle(), request.getDescription(), request.getCategory());
 
         BeforeAfter entity = getEntity(id);
+        List<String> oldPathsToDeleteAfterCommit = new ArrayList<>();
+        List<String> newlyStoredPaths = new ArrayList<>();
 
-        entity.setTitle(request.getTitle().trim());
-        entity.setDescription(request.getDescription().trim());
-        entity.setCategory(BeforeAfterCategory.fromCode(request.getCategory()));
+        try {
+            entity.setTitle(request.getTitle().trim());
+            entity.setDescription(request.getDescription().trim());
+            entity.setCategory(BeforeAfterCategory.fromCode(request.getCategory()));
 
-        if (hasFile(request.getBeforeFrontImageFile())) {
-            replaceImage(entity, request.getBeforeFrontImageFile(), BeforeAfterImageSlot.BEFORE_FRONT);
+            applyUpdatePair(
+                    entity,
+                    "정면",
+                    request.isRemoveFrontView(),
+                    request.getBeforeFrontImageFile(),
+                    request.getAfterFrontImageFile(),
+                    BeforeAfterImageSlot.BEFORE_FRONT,
+                    BeforeAfterImageSlot.AFTER_FRONT,
+                    oldPathsToDeleteAfterCommit,
+                    newlyStoredPaths
+            );
+            applyUpdatePair(
+                    entity,
+                    "45도",
+                    request.isRemoveAngle45View(),
+                    request.getBeforeAngle45ImageFile(),
+                    request.getAfterAngle45ImageFile(),
+                    BeforeAfterImageSlot.BEFORE_ANGLE45,
+                    BeforeAfterImageSlot.AFTER_ANGLE45,
+                    oldPathsToDeleteAfterCommit,
+                    newlyStoredPaths
+            );
+            applyUpdatePair(
+                    entity,
+                    "90도",
+                    request.isRemoveAngle90View(),
+                    request.getBeforeAngle90ImageFile(),
+                    request.getAfterAngle90ImageFile(),
+                    BeforeAfterImageSlot.BEFORE_ANGLE90,
+                    BeforeAfterImageSlot.AFTER_ANGLE90,
+                    oldPathsToDeleteAfterCommit,
+                    newlyStoredPaths
+            );
+
+            validateFinalViewState(entity);
+            beforeAfterRepository.saveAndFlush(entity);
+            registerFileCleanupAfterTransaction(oldPathsToDeleteAfterCommit, newlyStoredPaths);
+
+            return toAdminDetailResponse(entity);
+        } catch (RuntimeException e) {
+            newlyStoredPaths.forEach(beforeAfterFileStoreService::deleteQuietly);
+            throw e;
         }
-
-        if (hasFile(request.getBeforeAngle45ImageFile())) {
-            replaceImage(entity, request.getBeforeAngle45ImageFile(), BeforeAfterImageSlot.BEFORE_ANGLE45);
-        }
-
-        if (hasFile(request.getBeforeAngle90ImageFile())) {
-            replaceImage(entity, request.getBeforeAngle90ImageFile(), BeforeAfterImageSlot.BEFORE_ANGLE90);
-        }
-
-        if (hasFile(request.getAfterFrontImageFile())) {
-            replaceImage(entity, request.getAfterFrontImageFile(), BeforeAfterImageSlot.AFTER_FRONT);
-        }
-
-        if (hasFile(request.getAfterAngle45ImageFile())) {
-            replaceImage(entity, request.getAfterAngle45ImageFile(), BeforeAfterImageSlot.AFTER_ANGLE45);
-        }
-
-        if (hasFile(request.getAfterAngle90ImageFile())) {
-            replaceImage(entity, request.getAfterAngle90ImageFile(), BeforeAfterImageSlot.AFTER_ANGLE90);
-        }
-
-        return toAdminDetailResponse(entity);
     }
 
     @Transactional
@@ -189,45 +207,187 @@ public class BeforeAfterService {
         List<String> deletePaths = getAllImagePaths(entity);
 
         beforeAfterRepository.delete(entity);
+        beforeAfterRepository.flush();
 
-        deletePaths.forEach(beforeAfterFileStoreService::deleteQuietly);
+        registerFileCleanupAfterTransaction(deletePaths, List.of());
     }
 
-    private void validateRequiredCreateImages(BeforeAfterCreateRequest request) {
-        if (!hasFile(request.getBeforeFrontImageFile())) {
-            throw new IllegalArgumentException("Before 정면 이미지는 필수입니다.");
-        }
+    private void validateCreateViewPairs(BeforeAfterCreateRequest request) {
+        int selectedPairCount = 0;
 
-        if (!hasFile(request.getBeforeAngle45ImageFile())) {
-            throw new IllegalArgumentException("Before 45도 이미지는 필수입니다.");
-        }
+        selectedPairCount += validateCreatePair(
+                "정면",
+                request.getBeforeFrontImageFile(),
+                request.getAfterFrontImageFile()
+        );
+        selectedPairCount += validateCreatePair(
+                "45도",
+                request.getBeforeAngle45ImageFile(),
+                request.getAfterAngle45ImageFile()
+        );
+        selectedPairCount += validateCreatePair(
+                "90도",
+                request.getBeforeAngle90ImageFile(),
+                request.getAfterAngle90ImageFile()
+        );
 
-        if (!hasFile(request.getBeforeAngle90ImageFile())) {
-            throw new IllegalArgumentException("Before 90도 이미지는 필수입니다.");
-        }
-
-        if (!hasFile(request.getAfterFrontImageFile())) {
-            throw new IllegalArgumentException("After 정면 이미지는 필수입니다.");
-        }
-
-        if (!hasFile(request.getAfterAngle45ImageFile())) {
-            throw new IllegalArgumentException("After 45도 이미지는 필수입니다.");
-        }
-
-        if (!hasFile(request.getAfterAngle90ImageFile())) {
-            throw new IllegalArgumentException("After 90도 이미지는 필수입니다.");
+        if (selectedPairCount < 1) {
+            throw new IllegalArgumentException("정면, 45도, 90도 중 하나 이상의 Before·After 이미지 쌍을 등록해 주세요.");
         }
     }
 
-    private void replaceImage(BeforeAfter entity, MultipartFile file, BeforeAfterImageSlot slot) {
+    private int validateCreatePair(String label, MultipartFile beforeFile, MultipartFile afterFile) {
+        boolean hasBefore = hasFile(beforeFile);
+        boolean hasAfter = hasFile(afterFile);
+
+        if (hasBefore != hasAfter) {
+            throw new IllegalArgumentException(label + " 이미지는 Before와 After를 모두 등록해야 합니다.");
+        }
+
+        return hasBefore ? 1 : 0;
+    }
+
+    private void applyCreatePair(
+            BeforeAfter entity,
+            MultipartFile beforeFile,
+            MultipartFile afterFile,
+            BeforeAfterImageSlot beforeSlot,
+            BeforeAfterImageSlot afterSlot,
+            List<String> newlyStoredPaths
+    ) {
+        if (!hasFile(beforeFile) && !hasFile(afterFile)) {
+            return;
+        }
+
+        applyImage(entity, beforeFile, beforeSlot, newlyStoredPaths);
+        applyImage(entity, afterFile, afterSlot, newlyStoredPaths);
+    }
+
+    private void applyUpdatePair(
+            BeforeAfter entity,
+            String label,
+            boolean removeView,
+            MultipartFile beforeFile,
+            MultipartFile afterFile,
+            BeforeAfterImageSlot beforeSlot,
+            BeforeAfterImageSlot afterSlot,
+            List<String> oldPathsToDeleteAfterCommit,
+            List<String> newlyStoredPaths
+    ) {
+        if (removeView && (hasFile(beforeFile) || hasFile(afterFile))) {
+            throw new IllegalArgumentException(label + " 시점은 삭제와 이미지 변경을 동시에 처리할 수 없습니다.");
+        }
+
+        if (removeView) {
+            removeImage(entity, beforeSlot, oldPathsToDeleteAfterCommit);
+            removeImage(entity, afterSlot, oldPathsToDeleteAfterCommit);
+            return;
+        }
+
+        if (hasFile(beforeFile)) {
+            replaceImage(
+                    entity,
+                    beforeFile,
+                    beforeSlot,
+                    oldPathsToDeleteAfterCommit,
+                    newlyStoredPaths
+            );
+        }
+
+        if (hasFile(afterFile)) {
+            replaceImage(
+                    entity,
+                    afterFile,
+                    afterSlot,
+                    oldPathsToDeleteAfterCommit,
+                    newlyStoredPaths
+            );
+        }
+
+        validatePairState(entity, label, beforeSlot, afterSlot);
+    }
+
+    private void validateFinalViewState(BeforeAfter entity) {
+        validatePairState(
+                entity,
+                "정면",
+                BeforeAfterImageSlot.BEFORE_FRONT,
+                BeforeAfterImageSlot.AFTER_FRONT
+        );
+        validatePairState(
+                entity,
+                "45도",
+                BeforeAfterImageSlot.BEFORE_ANGLE45,
+                BeforeAfterImageSlot.AFTER_ANGLE45
+        );
+        validatePairState(
+                entity,
+                "90도",
+                BeforeAfterImageSlot.BEFORE_ANGLE90,
+                BeforeAfterImageSlot.AFTER_ANGLE90
+        );
+
+        if (calculateViewCount(entity) < 1) {
+            throw new IllegalArgumentException("정면, 45도, 90도 중 하나 이상의 Before·After 이미지 쌍이 필요합니다.");
+        }
+    }
+
+    private void validatePairState(
+            BeforeAfter entity,
+            String label,
+            BeforeAfterImageSlot beforeSlot,
+            BeforeAfterImageSlot afterSlot
+    ) {
+        boolean hasBefore = hasStoredImage(entity, beforeSlot);
+        boolean hasAfter = hasStoredImage(entity, afterSlot);
+
+        if (hasBefore != hasAfter) {
+            throw new IllegalArgumentException(label + " 이미지는 Before와 After가 모두 있어야 합니다.");
+        }
+    }
+
+    private void replaceImage(
+            BeforeAfter entity,
+            MultipartFile file,
+            BeforeAfterImageSlot slot,
+            List<String> oldPathsToDeleteAfterCommit,
+            List<String> newlyStoredPaths
+    ) {
         String oldPath = getImagePath(entity, slot);
-        applyImage(entity, file, slot);
-        beforeAfterFileStoreService.deleteQuietly(oldPath);
+
+        applyImage(entity, file, slot, newlyStoredPaths);
+
+        if (StringUtils.hasText(oldPath)) {
+            oldPathsToDeleteAfterCommit.add(oldPath);
+        }
     }
 
-    private void applyImage(BeforeAfter entity, MultipartFile file, BeforeAfterImageSlot slot) {
-        StoredFileInfo storedFileInfo = beforeAfterFileStoreService.store(entity.getId(), file, slot);
+    private void removeImage(
+            BeforeAfter entity,
+            BeforeAfterImageSlot slot,
+            List<String> oldPathsToDeleteAfterCommit
+    ) {
+        String oldPath = getImagePath(entity, slot);
 
+        if (StringUtils.hasText(oldPath)) {
+            oldPathsToDeleteAfterCommit.add(oldPath);
+        }
+
+        clearImage(entity, slot);
+    }
+
+    private void applyImage(
+            BeforeAfter entity,
+            MultipartFile file,
+            BeforeAfterImageSlot slot,
+            List<String> newlyStoredPaths
+    ) {
+        StoredFileInfo storedFileInfo = beforeAfterFileStoreService.store(entity.getId(), file, slot);
+        newlyStoredPaths.add(storedFileInfo.getFullPath());
+        setImage(entity, slot, storedFileInfo);
+    }
+
+    private void setImage(BeforeAfter entity, BeforeAfterImageSlot slot, StoredFileInfo storedFileInfo) {
         switch (slot) {
             case BEFORE_FRONT -> {
                 entity.setBeforeFrontImageOriginalName(storedFileInfo.getOriginalFilename());
@@ -262,6 +422,52 @@ public class BeforeAfterService {
         }
     }
 
+    private void clearImage(BeforeAfter entity, BeforeAfterImageSlot slot) {
+        switch (slot) {
+            case BEFORE_FRONT -> {
+                entity.setBeforeFrontImageOriginalName(null);
+                entity.setBeforeFrontImagePath(null);
+                entity.setBeforeFrontImageUrl(null);
+            }
+            case BEFORE_ANGLE45 -> {
+                entity.setBeforeAngle45ImageOriginalName(null);
+                entity.setBeforeAngle45ImagePath(null);
+                entity.setBeforeAngle45ImageUrl(null);
+            }
+            case BEFORE_ANGLE90 -> {
+                entity.setBeforeAngle90ImageOriginalName(null);
+                entity.setBeforeAngle90ImagePath(null);
+                entity.setBeforeAngle90ImageUrl(null);
+            }
+            case AFTER_FRONT -> {
+                entity.setAfterFrontImageOriginalName(null);
+                entity.setAfterFrontImagePath(null);
+                entity.setAfterFrontImageUrl(null);
+            }
+            case AFTER_ANGLE45 -> {
+                entity.setAfterAngle45ImageOriginalName(null);
+                entity.setAfterAngle45ImagePath(null);
+                entity.setAfterAngle45ImageUrl(null);
+            }
+            case AFTER_ANGLE90 -> {
+                entity.setAfterAngle90ImageOriginalName(null);
+                entity.setAfterAngle90ImagePath(null);
+                entity.setAfterAngle90ImageUrl(null);
+            }
+        }
+    }
+
+    private String getImageUrl(BeforeAfter entity, BeforeAfterImageSlot slot) {
+        return switch (slot) {
+            case BEFORE_FRONT -> entity.getBeforeFrontImageUrl();
+            case BEFORE_ANGLE45 -> entity.getBeforeAngle45ImageUrl();
+            case BEFORE_ANGLE90 -> entity.getBeforeAngle90ImageUrl();
+            case AFTER_FRONT -> entity.getAfterFrontImageUrl();
+            case AFTER_ANGLE45 -> entity.getAfterAngle45ImageUrl();
+            case AFTER_ANGLE90 -> entity.getAfterAngle90ImageUrl();
+        };
+    }
+
     private String getImagePath(BeforeAfter entity, BeforeAfterImageSlot slot) {
         return switch (slot) {
             case BEFORE_FRONT -> entity.getBeforeFrontImagePath();
@@ -271,6 +477,36 @@ public class BeforeAfterService {
             case AFTER_ANGLE45 -> entity.getAfterAngle45ImagePath();
             case AFTER_ANGLE90 -> entity.getAfterAngle90ImagePath();
         };
+    }
+
+    private boolean hasStoredImage(BeforeAfter entity, BeforeAfterImageSlot slot) {
+        return StringUtils.hasText(getImageUrl(entity, slot));
+    }
+
+    private boolean hasCompletePair(
+            BeforeAfter entity,
+            BeforeAfterImageSlot beforeSlot,
+            BeforeAfterImageSlot afterSlot
+    ) {
+        return hasStoredImage(entity, beforeSlot) && hasStoredImage(entity, afterSlot);
+    }
+
+    private int calculateViewCount(BeforeAfter entity) {
+        int count = 0;
+
+        if (hasCompletePair(entity, BeforeAfterImageSlot.BEFORE_FRONT, BeforeAfterImageSlot.AFTER_FRONT)) {
+            count++;
+        }
+
+        if (hasCompletePair(entity, BeforeAfterImageSlot.BEFORE_ANGLE45, BeforeAfterImageSlot.AFTER_ANGLE45)) {
+            count++;
+        }
+
+        if (hasCompletePair(entity, BeforeAfterImageSlot.BEFORE_ANGLE90, BeforeAfterImageSlot.AFTER_ANGLE90)) {
+            count++;
+        }
+
+        return count;
     }
 
     private List<String> getAllImagePaths(BeforeAfter entity) {
@@ -287,6 +523,39 @@ public class BeforeAfterService {
                 .filter(StringUtils::hasText)
                 .distinct()
                 .toList();
+    }
+
+    private void registerFileCleanupAfterTransaction(
+            List<String> oldPathsToDeleteAfterCommit,
+            List<String> newlyStoredPaths
+    ) {
+        List<String> oldPaths = oldPathsToDeleteAfterCommit.stream()
+                .filter(StringUtils::hasText)
+                .distinct()
+                .toList();
+        List<String> newPaths = newlyStoredPaths.stream()
+                .filter(StringUtils::hasText)
+                .distinct()
+                .toList();
+
+        if (!TransactionSynchronizationManager.isSynchronizationActive()) {
+            oldPaths.forEach(beforeAfterFileStoreService::deleteQuietly);
+            return;
+        }
+
+        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
+            @Override
+            public void afterCommit() {
+                oldPaths.forEach(beforeAfterFileStoreService::deleteQuietly);
+            }
+
+            @Override
+            public void afterCompletion(int status) {
+                if (status != TransactionSynchronization.STATUS_COMMITTED) {
+                    newPaths.forEach(beforeAfterFileStoreService::deleteQuietly);
+                }
+            }
+        });
     }
 
     private BeforeAfter getEntity(Long id) {
@@ -318,10 +587,6 @@ public class BeforeAfterService {
         return file != null && !file.isEmpty();
     }
 
-    private String fallback(String value, String fallback) {
-        return StringUtils.hasText(value) ? value : fallback;
-    }
-
     private BeforeAfterAdminListItemResponse toAdminListItemResponse(BeforeAfter entity) {
         return BeforeAfterAdminListItemResponse.builder()
                 .id(entity.getId())
@@ -329,17 +594,15 @@ public class BeforeAfterService {
                 .description(entity.getDescription())
                 .categoryCode(entity.getCategory().getCode())
                 .categoryLabel(entity.getCategory().getLabel())
-
+                .viewCount(calculateViewCount(entity))
                 .beforeFrontImageUrl(entity.getBeforeFrontImageUrl())
-                .beforeAngle45ImageUrl(fallback(entity.getBeforeAngle45ImageUrl(), entity.getBeforeFrontImageUrl()))
-                .beforeAngle90ImageUrl(fallback(entity.getBeforeAngle90ImageUrl(), entity.getBeforeFrontImageUrl()))
-
+                .beforeAngle45ImageUrl(entity.getBeforeAngle45ImageUrl())
+                .beforeAngle90ImageUrl(entity.getBeforeAngle90ImageUrl())
                 .afterFrontImageUrl(entity.getAfterFrontImageUrl())
-                .afterAngle45ImageUrl(fallback(entity.getAfterAngle45ImageUrl(), entity.getAfterFrontImageUrl()))
-                .afterAngle90ImageUrl(fallback(entity.getAfterAngle90ImageUrl(), entity.getAfterFrontImageUrl()))
-
-                .createdAtText(entity.getCreatedAt() == null ? "-" : entity.getCreatedAt().format(ADMIN_DATE_TIME_FORMATTER))
-                .updatedAtText(entity.getUpdatedAt() == null ? "-" : entity.getUpdatedAt().format(ADMIN_DATE_TIME_FORMATTER))
+                .afterAngle45ImageUrl(entity.getAfterAngle45ImageUrl())
+                .afterAngle90ImageUrl(entity.getAfterAngle90ImageUrl())
+                .createdAtText(formatAdminDateTime(entity.getCreatedAt()))
+                .updatedAtText(formatAdminDateTime(entity.getUpdatedAt()))
                 .build();
     }
 
@@ -350,27 +613,21 @@ public class BeforeAfterService {
                 .description(entity.getDescription())
                 .categoryCode(entity.getCategory().getCode())
                 .categoryLabel(entity.getCategory().getLabel())
-
+                .viewCount(calculateViewCount(entity))
                 .beforeFrontImageUrl(entity.getBeforeFrontImageUrl())
                 .beforeFrontImageOriginalName(entity.getBeforeFrontImageOriginalName())
-
                 .beforeAngle45ImageUrl(entity.getBeforeAngle45ImageUrl())
                 .beforeAngle45ImageOriginalName(entity.getBeforeAngle45ImageOriginalName())
-
                 .beforeAngle90ImageUrl(entity.getBeforeAngle90ImageUrl())
                 .beforeAngle90ImageOriginalName(entity.getBeforeAngle90ImageOriginalName())
-
                 .afterFrontImageUrl(entity.getAfterFrontImageUrl())
                 .afterFrontImageOriginalName(entity.getAfterFrontImageOriginalName())
-
                 .afterAngle45ImageUrl(entity.getAfterAngle45ImageUrl())
                 .afterAngle45ImageOriginalName(entity.getAfterAngle45ImageOriginalName())
-
                 .afterAngle90ImageUrl(entity.getAfterAngle90ImageUrl())
                 .afterAngle90ImageOriginalName(entity.getAfterAngle90ImageOriginalName())
-
-                .createdAtText(entity.getCreatedAt() == null ? "-" : entity.getCreatedAt().format(ADMIN_DATE_TIME_FORMATTER))
-                .updatedAtText(entity.getUpdatedAt() == null ? "-" : entity.getUpdatedAt().format(ADMIN_DATE_TIME_FORMATTER))
+                .createdAtText(formatAdminDateTime(entity.getCreatedAt()))
+                .updatedAtText(formatAdminDateTime(entity.getUpdatedAt()))
                 .build();
     }
 
@@ -381,16 +638,20 @@ public class BeforeAfterService {
                 .description(entity.getDescription())
                 .categoryCode(entity.getCategory().getCode())
                 .categoryLabel(entity.getCategory().getLabel())
-
+                .viewCount(calculateViewCount(entity))
                 .beforeFrontImageUrl(entity.getBeforeFrontImageUrl())
-                .beforeAngle45ImageUrl(fallback(entity.getBeforeAngle45ImageUrl(), entity.getBeforeFrontImageUrl()))
-                .beforeAngle90ImageUrl(fallback(entity.getBeforeAngle90ImageUrl(), entity.getBeforeFrontImageUrl()))
-
+                .beforeAngle45ImageUrl(entity.getBeforeAngle45ImageUrl())
+                .beforeAngle90ImageUrl(entity.getBeforeAngle90ImageUrl())
                 .afterFrontImageUrl(entity.getAfterFrontImageUrl())
-                .afterAngle45ImageUrl(fallback(entity.getAfterAngle45ImageUrl(), entity.getAfterFrontImageUrl()))
-                .afterAngle90ImageUrl(fallback(entity.getAfterAngle90ImageUrl(), entity.getAfterFrontImageUrl()))
-
-                .createdDateText(entity.getCreatedAt() == null ? "-" : entity.getCreatedAt().format(FRONT_DATE_FORMATTER))
+                .afterAngle45ImageUrl(entity.getAfterAngle45ImageUrl())
+                .afterAngle90ImageUrl(entity.getAfterAngle90ImageUrl())
+                .createdDateText(entity.getCreatedAt() == null
+                        ? "-"
+                        : entity.getCreatedAt().format(FRONT_DATE_FORMATTER))
                 .build();
+    }
+
+    private String formatAdminDateTime(java.time.LocalDateTime value) {
+        return value == null ? "-" : value.format(ADMIN_DATE_TIME_FORMATTER);
     }
 }

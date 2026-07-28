@@ -1,0 +1,921 @@
+/* ROLLING START */
+
+/* =========================================================
+   ABOUT GALLERY - INFINITE ROLLING
+   기존 .textF-wrap / .textF-track / rollingleft 관련 CSS는
+   이 블록으로 전체 교체
+========================================================= */
+
+/* 가로 스크롤 방지 */
+html,
+body {
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+body.saekim-about-modal-open {
+	overflow: hidden;
+}
+
+#container,
+#main,
+.main-wrap,
+.bsc_container,
+.successCon-wrap,
+.successCon-wrap .cont01 {
+	max-width: 100%;
+	overflow-x: hidden;
+}
+
+/* 혹시 기존 textF-wrap 기본 before/after가 남아있어도 이 갤러리에서는 새 효과만 적용 */
+.textF-wrap.saekim-about-gallery-wrap {
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	height: auto;
+	min-height: 0;
+	margin: 0;
+	display: block;
+	overflow: hidden;
+	background: #fff;
+	z-index: 1;
+
+	/* 10개를 억지로 꽉 채우지 않고 자연스럽게 흐르게 */
+	--saekim-about-item-width: clamp(130px, 9.4vw, 178px);
+	--saekim-about-gap: clamp(10px, 1.05vw, 20px);
+	--saekim-about-duration: 46s;
+	--saekim-about-radius: clamp(14px, 1.15vw, 22px);
+
+	/* JS가 실제 이동거리를 넣어주기 전 fallback */
+	--saekim-marquee-distance: 1200px;
+
+	/* 좌우 약 2장 정도 뿌옇게 */
+	--saekim-about-edge-width: clamp(150px, 20vw, 390px);
+}
+
+/* 좌우 뿌연 마스킹 */
+.textF-wrap.saekim-about-gallery-wrap::before,
+.textF-wrap.saekim-about-gallery-wrap::after {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: var(--saekim-about-edge-width);
+	display: block;
+	content: "";
+	z-index: 10;
+	pointer-events: none;
+	-webkit-backdrop-filter: blur(3.5px);
+	backdrop-filter: blur(3.5px);
+}
+
+.textF-wrap.saekim-about-gallery-wrap::before {
+	left: 0;
+	background: linear-gradient(
+		90deg,
+		rgba(255, 255, 255, 1) 0%,
+		rgba(255, 255, 255, 0.97) 24%,
+		rgba(255, 255, 255, 0.76) 60%,
+		rgba(255, 255, 255, 0) 100%
+	);
+}
+
+.textF-wrap.saekim-about-gallery-wrap::after {
+	right: 0;
+	background: linear-gradient(
+		270deg,
+		rgba(255, 255, 255, 1) 0%,
+		rgba(255, 255, 255, 0.97) 24%,
+		rgba(255, 255, 255, 0.76) 60%,
+		rgba(255, 255, 255, 0) 100%
+	);
+}
+
+.saekim-about-gallery {
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	padding: clamp(34px, 4vw, 72px) 0;
+	display: flex;
+	flex-direction: column;
+	gap: clamp(10px, 1.15vw, 22px);
+	overflow: hidden;
+}
+
+.saekim-about-gallery-row {
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	overflow: hidden;
+	padding: 10px 0;
+	margin: -10px 0;
+}
+
+/* 핵심: JS 실패 시에도 움직이도록 기본 animation 강제 */
+.saekim-about-gallery-track {
+	width: max-content;
+	display: flex;
+	will-change: transform;
+	backface-visibility: hidden;
+	transform: translate3d(0, 0, 0);
+	animation-duration: var(--saekim-about-duration) !important;
+	animation-timing-function: linear !important;
+	animation-iteration-count: infinite !important;
+	animation-play-state: running !important;
+}
+
+/* 1, 3번째 줄: 좌 → 우 */
+.saekim-about-gallery-row--ltr .saekim-about-gallery-track {
+	animation-name: saekim-about-marquee-ltr !important;
+}
+
+/* 2번째 줄: 우 → 좌 */
+.saekim-about-gallery-row--rtl .saekim-about-gallery-track {
+	animation-name: saekim-about-marquee-rtl !important;
+}
+
+.saekim-about-gallery-group {
+	display: flex;
+	flex: 0 0 auto;
+	width: max-content;
+	gap: var(--saekim-about-gap);
+	padding-right: var(--saekim-about-gap);
+	box-sizing: content-box;
+}
+
+.saekim-about-gallery-item {
+	position: relative;
+	flex: 0 0 var(--saekim-about-item-width);
+	width: var(--saekim-about-item-width);
+	padding: 0;
+	border: 0;
+	background: transparent;
+	cursor: pointer;
+	box-sizing: border-box;
+	appearance: none;
+	-webkit-appearance: none;
+}
+
+.saekim-about-gallery-item:hover,
+.saekim-about-gallery-item:focus-visible {
+	z-index: 3;
+}
+
+.saekim-about-gallery-card {
+	position: relative;
+	display: block;
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	overflow: hidden;
+	border-radius: var(--saekim-about-radius);
+	background: #f5f2ee;
+	box-shadow: 0 10px 24px rgba(31, 24, 18, 0.08);
+	transform: translate3d(0, 0, 0) scale(1);
+	filter: brightness(1) saturate(1);
+	transition:
+		transform 0.65s cubic-bezier(0.19, 1, 0.22, 1),
+		box-shadow 0.65s cubic-bezier(0.19, 1, 0.22, 1),
+		filter 0.65s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.saekim-about-gallery-card img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transform: scale(1);
+	transition: transform 0.85s cubic-bezier(0.19, 1, 0.22, 1);
+	user-select: none;
+	-webkit-user-drag: none;
+}
+
+.saekim-about-gallery-card::after {
+	position: absolute;
+	inset: 8px;
+	border: 1px solid rgba(255, 255, 255, 0.84);
+	border-radius: calc(var(--saekim-about-radius) - 6px);
+	box-shadow:
+		0 0 0 1px rgba(116, 82, 58, 0.12) inset,
+		0 8px 18px rgba(0, 0, 0, 0.07);
+	opacity: 0;
+	transform: scale(0.985);
+	transition:
+		opacity 480ms ease,
+		transform 520ms cubic-bezier(0.16, 1, 0.3, 1);
+	content: "";
+	pointer-events: none;
+}
+
+.saekim-about-gallery-item:hover .saekim-about-gallery-card,
+.saekim-about-gallery-item:focus-visible .saekim-about-gallery-card {
+	transform: translate3d(0, -5px, 0) scale(1.025);
+	box-shadow: 0 18px 36px rgba(31, 24, 18, 0.16);
+	filter: brightness(1.03) saturate(1.04);
+}
+
+.saekim-about-gallery-item:hover .saekim-about-gallery-card img,
+.saekim-about-gallery-item:focus-visible .saekim-about-gallery-card img {
+	transform: scale(1.055);
+}
+
+.saekim-about-gallery-item:hover .saekim-about-gallery-card::after,
+.saekim-about-gallery-item:focus-visible .saekim-about-gallery-card::after {
+	opacity: 1;
+	transform: scale(1);
+}
+
+.saekim-about-gallery-item:focus-visible {
+	outline: none;
+}
+
+/* 마우스 호버 / 포커스 / 모달 열림 시 롤링 정지 */
+.textF-wrap.saekim-about-gallery-wrap:hover .saekim-about-gallery-track,
+.textF-wrap.saekim-about-gallery-wrap:focus-within .saekim-about-gallery-track,
+.textF-wrap.saekim-about-gallery-wrap.is-hover-paused .saekim-about-gallery-track,
+.textF-wrap.saekim-about-gallery-wrap.is-modal-open .saekim-about-gallery-track {
+	animation-play-state: paused !important;
+}
+
+/* 실제 JS에서 --saekim-marquee-distance 값을 넣어주면 더 정확하게 반복됨 */
+@keyframes saekim-about-marquee-rtl {
+	0% {
+		transform: translate3d(0, 0, 0);
+	}
+
+	100% {
+		transform: translate3d(calc(var(--saekim-marquee-distance, 1200px) * -1), 0, 0);
+	}
+}
+
+@keyframes saekim-about-marquee-ltr {
+	0% {
+		transform: translate3d(calc(var(--saekim-marquee-distance, 1200px) * -1), 0, 0);
+	}
+
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+/* =========================================================
+   GALLERY MODAL
+========================================================= */
+
+.saekim-about-gallery-overlay[hidden],
+.saekim-about-gallery-modal[hidden] {
+	display: none !important;
+}
+
+.saekim-about-gallery-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 9990;
+	background: rgba(0, 0, 0, 0.6);
+	opacity: 0;
+	transition: opacity 0.24s ease;
+}
+
+.saekim-about-gallery-overlay.is-show {
+	opacity: 1;
+}
+
+.saekim-about-gallery-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 9991;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: clamp(16px, 3vw, 40px);
+	opacity: 0;
+	pointer-events: none;
+	transition: opacity 0.24s ease;
+}
+
+.saekim-about-gallery-modal.is-show {
+	opacity: 1;
+}
+
+.saekim-about-gallery-modal-panel {
+	position: relative;
+	width: min(920px, calc(100vw - 32px));
+	max-height: calc(100vh - 40px);
+	padding: clamp(16px, 2.5vw, 28px);
+	border-radius: clamp(18px, 2vw, 30px);
+	background: rgba(255, 255, 255, 0.96);
+	box-shadow: 0 30px 90px rgba(0, 0, 0, 0.34);
+	pointer-events: auto;
+	transform: translateY(14px) scale(0.985);
+	transition: transform 0.24s ease;
+}
+
+.saekim-about-gallery-modal.is-show .saekim-about-gallery-modal-panel {
+	transform: translateY(0) scale(1);
+}
+
+.saekim-about-gallery-modal-close {
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	z-index: 3;
+	width: 42px;
+	height: 42px;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(25, 20, 18, 0.72);
+	color: #fff;
+	font-size: 30px;
+	line-height: 38px;
+	font-weight: 300;
+	cursor: pointer;
+	transition:
+		background 0.22s ease,
+		transform 0.22s ease;
+}
+
+.saekim-about-gallery-modal-close:hover,
+.saekim-about-gallery-modal-close:focus-visible {
+	background: rgba(25, 20, 18, 0.92);
+	transform: rotate(90deg);
+	outline: none;
+}
+
+.saekim-about-gallery-modal-figure {
+	position: relative;
+	width: 100%;
+	margin: 0;
+}
+
+.saekim-about-gallery-modal-image {
+	display: block;
+	width: 100%;
+	max-height: min(72vh, 760px);
+	object-fit: contain;
+	border-radius: clamp(14px, 1.5vw, 22px);
+	background: #f5f2ee;
+}
+
+.saekim-about-gallery-modal-caption {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 14px;
+	padding: 16px 4px 2px;
+	color: #27211d;
+}
+
+.saekim-about-gallery-modal-title {
+	font-size: clamp(16px, 1.4vw, 22px);
+	font-weight: 700;
+	letter-spacing: -0.03em;
+}
+
+.saekim-about-gallery-modal-count {
+	font-size: 14px;
+	font-weight: 500;
+	color: rgba(39, 33, 29, 0.58);
+	white-space: nowrap;
+}
+
+.saekim-about-gallery-modal-arrow {
+	position: absolute;
+	top: 50%;
+	z-index: 4;
+	width: clamp(42px, 4vw, 58px);
+	height: clamp(42px, 4vw, 58px);
+	border: 0;
+	border-radius: 50%;
+	background: rgba(25, 20, 18, 0.72);
+	color: #fff;
+	font-size: clamp(38px, 4vw, 56px);
+	line-height: 0.8;
+	cursor: pointer;
+	transform: translateY(-50%);
+	transition:
+		background 0.22s ease,
+		transform 0.22s ease;
+}
+
+.saekim-about-gallery-modal-arrow:hover,
+.saekim-about-gallery-modal-arrow:focus-visible {
+	background: rgba(25, 20, 18, 0.94);
+	outline: none;
+}
+
+.saekim-about-gallery-modal-prev {
+	left: clamp(10px, 1.5vw, 22px);
+}
+
+.saekim-about-gallery-modal-next {
+	right: clamp(10px, 1.5vw, 22px);
+}
+
+.saekim-about-gallery-modal-prev:hover,
+.saekim-about-gallery-modal-prev:focus-visible {
+	transform: translateY(-50%) translateX(-3px);
+}
+
+.saekim-about-gallery-modal-next:hover,
+.saekim-about-gallery-modal-next:focus-visible {
+	transform: translateY(-50%) translateX(3px);
+}
+
+/* =========================================================
+   GALLERY RESPONSIVE
+========================================================= */
+
+@media (max-width: 1199.98px) {
+	.textF-wrap.saekim-about-gallery-wrap {
+		--saekim-about-item-width: clamp(122px, 13.2vw, 156px);
+		--saekim-about-edge-width: clamp(110px, 23vw, 310px);
+	}
+}
+
+@media (max-width: 991.98px) {
+	.textF-wrap.saekim-about-gallery-wrap {
+		--saekim-about-item-width: clamp(118px, 17vw, 148px);
+		--saekim-about-edge-width: clamp(90px, 22vw, 240px);
+	}
+}
+
+@media (max-width: 767.98px) {
+	.textF-wrap.saekim-about-gallery-wrap {
+		--saekim-about-item-width: clamp(116px, 28vw, 142px);
+		--saekim-about-duration: 42s;
+		--saekim-about-edge-width: clamp(58px, 18vw, 140px);
+	}
+
+	.saekim-about-gallery-modal-panel {
+		padding: 14px;
+	}
+
+	.saekim-about-gallery-modal-caption {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 6px;
+	}
+}
+
+@media (max-width: 575.98px) {
+	.textF-wrap.saekim-about-gallery-wrap {
+		--saekim-about-item-width: clamp(138px, 46vw, 180px);
+		--saekim-about-gap: 10px;
+		--saekim-about-radius: 16px;
+		--saekim-about-edge-width: 18vw;
+		--saekim-about-duration: 38s;
+	}
+
+	.saekim-about-gallery {
+		padding: 30px 0;
+		gap: 10px;
+	}
+
+	.saekim-about-gallery-modal {
+		padding: 12px;
+	}
+
+	.saekim-about-gallery-modal-close {
+		top: 10px;
+		right: 10px;
+		width: 38px;
+		height: 38px;
+		font-size: 28px;
+		line-height: 34px;
+	}
+
+	.saekim-about-gallery-modal-arrow {
+		width: 38px;
+		height: 38px;
+		font-size: 36px;
+	}
+
+	.saekim-about-gallery-modal-prev {
+		left: 8px;
+	}
+
+	.saekim-about-gallery-modal-next {
+		right: 8px;
+	}
+}
+
+/* 접근성 설정이어도 갤러리 롤링/hover는 죽이지 않음.
+   모달 모션만 최소화 */
+@media (prefers-reduced-motion: reduce) {
+	.saekim-about-gallery-modal,
+	.saekim-about-gallery-overlay,
+	.saekim-about-gallery-modal-panel {
+		transition: none !important;
+	}
+}
+
+/* ROLLING END */
+
+
+/* ==============================
+   Saekim About Doctor
+============================== */
+
+.saekim-about-doctor-wrap {
+	width: 100%;
+}
+
+.saekim-about-doctor-card {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	overflow: hidden;
+	background: #fff;
+	border: 1px solid rgba(0, 0, 0, 0.06);
+	border-radius: 5px;
+	box-shadow: 0 10px 28px rgba(0, 0, 0, 0.045);
+	transition:
+		transform 260ms ease,
+		box-shadow 260ms ease,
+		border-color 260ms ease;
+}
+
+.saekim-about-doctor-card:hover {
+	transform: translateY(-4px);
+	border-color: rgba(0, 0, 0, 0.1);
+	box-shadow: 0 16px 34px rgba(0, 0, 0, 0.075);
+}
+
+.saekim-about-doctor-imgbox {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 600 / 400;
+	overflow: hidden;
+	background: #eee;
+}
+
+.saekim-about-doctor-imgbox img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 360ms ease;
+}
+
+.saekim-about-doctor-card:hover .saekim-about-doctor-imgbox img {
+	transform: scale(1.035);
+}
+
+.saekim-about-doctor-body {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	padding: 28px 28px 18px;
+	text-align: left;
+}
+
+.saekim-about-doctor-name {
+	margin: 0 0 18px;
+	color: #111;
+	font-size: 24px;
+	font-weight: 700;
+	line-height: 1.35;
+	text-align: center;
+	letter-spacing: -0.04em;
+}
+
+.saekim-about-doctor-career {
+	display: flex;
+	flex-direction: column;
+	gap: 9px;
+	min-height: 128px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.saekim-about-doctor-career li {
+	position: relative;
+	padding-left: 13px;
+	color: #222;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1.55;
+	letter-spacing: -0.035em;
+	word-break: keep-all;
+}
+
+.saekim-about-doctor-career li::before {
+	position: absolute;
+	top: 0.72em;
+	left: 0;
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background: #222;
+	content: "";
+}
+
+.saekim-about-doctor-footer {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding: 0 28px 28px;
+	margin-top: auto;
+}
+
+.saekim-about-doctor-more {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 128px;
+	height: 42px;
+	padding: 0 20px;
+	border: 1px solid rgba(0, 0, 0, 0.16);
+	border-radius: 999px;
+	background: #fff;
+	color: #0b4da2;
+	font-size: 15px;
+	font-weight: 500;
+	line-height: 1;
+	letter-spacing: -0.035em;
+	cursor: pointer;
+	transition:
+		background-color 220ms ease,
+		color 220ms ease,
+		border-color 220ms ease,
+		transform 220ms ease;
+}
+
+.saekim-about-doctor-more:hover,
+.saekim-about-doctor-more:focus-visible {
+	background: #0b4da2;
+	border-color: #0b4da2;
+	color: #fff;
+	transform: translateY(-1px);
+	outline: none;
+}
+
+/* ==============================
+   Doctor Modal
+   상단 이미지 + 하단 텍스트 구조
+============================== */
+
+.saekim-about-doctor-overlay[hidden],
+.saekim-about-doctor-modal[hidden] {
+	display: none !important;
+}
+
+.saekim-about-doctor-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 9998;
+	background: rgba(0, 0, 0, 0.52);
+	opacity: 0;
+	transition: opacity 220ms ease;
+}
+
+.saekim-about-doctor-overlay.is-show {
+	opacity: 1;
+}
+
+.saekim-about-doctor-modal {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	z-index: 9999;
+	width: min(720px, calc(100% - 32px));
+	max-height: calc(100vh - 48px);
+	opacity: 0;
+	transform: translate(-50%, -48%) scale(0.98);
+	transition:
+		opacity 220ms ease,
+		transform 220ms ease;
+}
+
+.saekim-about-doctor-modal.is-show {
+	opacity: 1;
+	transform: translate(-50%, -50%) scale(1);
+}
+
+.saekim-about-doctor-modal-panel {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	width: 100%;
+	max-height: calc(100vh - 48px);
+	background: #fff;
+	border-radius: 5px;
+	box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.saekim-about-doctor-close {
+	position: absolute;
+	top: 14px;
+	right: 14px;
+	z-index: 3;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 38px;
+	height: 38px;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.92);
+	color: #111;
+	font-size: 28px;
+	line-height: 1;
+	cursor: pointer;
+	transition:
+		background-color 200ms ease,
+		transform 200ms ease;
+}
+
+.saekim-about-doctor-close:hover,
+.saekim-about-doctor-close:focus-visible {
+	background: #fff;
+	transform: rotate(90deg);
+	outline: none;
+}
+
+.saekim-about-doctor-modal-imgbox {
+	width: 100%;
+	aspect-ratio: 600 / 400;
+	overflow: hidden;
+	flex: 0 0 auto;
+	background: #eee;
+}
+
+.saekim-about-doctor-modal-imgbox img,
+.saekim-about-doctor-modal-img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.saekim-about-doctor-modal-content {
+	width: 100%;
+	overflow-y: auto;
+	padding: 36px 42px 42px;
+	flex: 1 1 auto;
+}
+
+.saekim-about-doctor-modal-title {
+	margin: 0 0 22px;
+	color: #111;
+	font-size: 30px;
+	font-weight: 700;
+	line-height: 1.35;
+	letter-spacing: -0.045em;
+	text-align: center;
+}
+
+.saekim-about-doctor-modal-list {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.saekim-about-doctor-modal-list li {
+	position: relative;
+	padding-left: 14px;
+	color: #222;
+	font-size: 17px;
+	font-weight: 500;
+	line-height: 1.65;
+	letter-spacing: -0.035em;
+	word-break: keep-all;
+}
+
+.saekim-about-doctor-modal-list li::before {
+	position: absolute;
+	top: 0.82em;
+	left: 0;
+	width: 4px;
+	height: 4px;
+	border-radius: 50%;
+	background: #222;
+	content: "";
+}
+
+/* ==============================
+   Doctor Responsive
+============================== */
+
+@media (max-width: 1199px) {
+	.saekim-about-doctor-body {
+		padding: 24px 22px 16px;
+	}
+
+	.saekim-about-doctor-footer {
+		padding: 0 22px 24px;
+	}
+
+	.saekim-about-doctor-name {
+		font-size: 22px;
+	}
+
+	.saekim-about-doctor-career li {
+		font-size: 15px;
+	}
+}
+
+@media (max-width: 991px) {
+	.saekim-about-doctor-career {
+		min-height: 118px;
+	}
+
+	.saekim-about-doctor-modal {
+		width: min(680px, calc(100% - 32px));
+	}
+
+	.saekim-about-doctor-modal-content {
+		padding: 34px 30px 38px;
+	}
+
+	.saekim-about-doctor-modal-title {
+		font-size: 25px;
+	}
+}
+
+@media (max-width: 767px) {
+	.saekim-about-doctor-card {
+		max-width: 520px;
+		margin: 0 auto;
+	}
+
+	.saekim-about-doctor-body {
+		padding: 22px 20px 14px;
+	}
+
+	.saekim-about-doctor-footer {
+		padding: 0 20px 22px;
+	}
+
+	.saekim-about-doctor-name {
+		margin-bottom: 16px;
+		font-size: 21px;
+	}
+
+	.saekim-about-doctor-career {
+		min-height: auto;
+		gap: 8px;
+	}
+
+	.saekim-about-doctor-career li {
+		font-size: 15px;
+		line-height: 1.5;
+	}
+
+	.saekim-about-doctor-more {
+		width: 100%;
+		height: 44px;
+	}
+
+	.saekim-about-doctor-modal {
+		width: calc(100% - 24px);
+		max-height: calc(100vh - 24px);
+	}
+
+	.saekim-about-doctor-modal-panel {
+		max-height: calc(100vh - 24px);
+	}
+
+	.saekim-about-doctor-modal-content {
+		padding: 30px 22px 32px;
+	}
+
+	.saekim-about-doctor-modal-title {
+		font-size: 23px;
+	}
+
+	.saekim-about-doctor-modal-list li {
+		font-size: 15px;
+		line-height: 1.55;
+	}
+}
+
+@media (max-width: 575px) {
+	.saekim-about-doctor-modal {
+		width: calc(100% - 24px);
+	}
+
+	.saekim-about-doctor-close {
+		top: 10px;
+		right: 10px;
+		width: 36px;
+		height: 36px;
+		font-size: 26px;
+	}
+
+	.saekim-about-doctor-modal-content {
+		padding: 26px 20px 30px;
+	}
+
+	.saekim-about-doctor-modal-title {
+		margin-bottom: 18px;
+		font-size: 22px;
+	}
+
+	.saekim-about-doctor-modal-list {
+		gap: 8px;
+	}
+}
