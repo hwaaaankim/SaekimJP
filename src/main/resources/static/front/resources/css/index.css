@@ -66,3 +66,12 @@
 
 /* 터치 디바이스에서 탭 피드백을 원할 경우(선택) */
 /* .index-morebtn:active .index-morebtn__wrap { transform: translateX(6px); } */
+
+
+@media(max-width:600px){
+	
+	ul.edu-list{
+		
+		padding-left:0px !important;
+	}
+}
