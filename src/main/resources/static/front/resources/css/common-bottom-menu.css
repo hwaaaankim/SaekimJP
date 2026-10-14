@@ -1,0 +1,785 @@
+/* ========================================================================== 
+   SAEKIM JP - Footer common bottom menu popup
+   신규 class/id는 common-bottom-menu- 접두사로만 사용합니다.
+   ========================================================================== */
+
+.common-bottom-menu-trigger {
+	cursor: pointer;
+}
+
+.common-bottom-menu-modal,
+.common-bottom-menu-modal * {
+	box-sizing: border-box;
+}
+
+.common-bottom-menu-modal[hidden] {
+	display: none !important;
+}
+
+.common-bottom-menu-modal {
+	position: fixed;
+	inset: 0;
+	z-index: 2147483000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+	font-family: inherit;
+	isolation: isolate;
+}
+
+.common-bottom-menu-backdrop {
+	position: absolute;
+	inset: 0;
+	background: rgba(15, 15, 15, 0.66);
+	-webkit-backdrop-filter: blur(7px);
+	backdrop-filter: blur(7px);
+	opacity: 0;
+	transition: opacity 220ms ease;
+}
+
+.common-bottom-menu-dialog {
+	position: relative;
+	z-index: 1;
+	display: flex;
+	flex-direction: column;
+	width: min(1200px, 94vw);
+	height: min(90vh, 920px);
+	height: min(90dvh, 920px);
+	max-height: 920px;
+	background: #fff;
+	border: 1px solid rgba(20, 20, 20, 0.09);
+	border-radius: 20px;
+	box-shadow: 0 30px 100px rgba(0, 0, 0, 0.32);
+	overflow: hidden;
+	opacity: 0;
+	transform: translateY(18px) scale(0.985);
+	transition:
+		opacity 220ms ease,
+		transform 270ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.common-bottom-menu-modal.common-bottom-menu-is-open .common-bottom-menu-backdrop {
+	opacity: 1;
+}
+
+.common-bottom-menu-modal.common-bottom-menu-is-open .common-bottom-menu-dialog {
+	opacity: 1;
+	transform: translateY(0) scale(1);
+}
+
+body.common-bottom-menu-open {
+	overflow: hidden !important;
+}
+
+.common-bottom-menu-header {
+	position: relative;
+	z-index: 5;
+	flex: 0 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 24px;
+	min-height: 100px;
+	padding: 20px 30px;
+	background: rgba(255, 255, 255, 0.98);
+	border-bottom: 1px solid #ebe7e0;
+}
+
+.common-bottom-menu-heading-wrap {
+	min-width: 0;
+}
+
+.common-bottom-menu-eyebrow {
+	margin: 0 0 5px !important;
+	padding: 0 !important;
+	font-size: 11px !important;
+	font-weight: 700 !important;
+	line-height: 1.4 !important;
+	letter-spacing: 0.14em !important;
+	color: #9a8565 !important;
+}
+
+.common-bottom-menu-title {
+	margin: 0 !important;
+	padding: 0 !important;
+	font-size: clamp(24px, 2.3vw, 34px) !important;
+	font-weight: 600 !important;
+	line-height: 1.25 !important;
+	letter-spacing: -0.04em !important;
+	color: #181818 !important;
+}
+
+.common-bottom-menu-close {
+	position: relative;
+	flex: 0 0 46px;
+	width: 46px;
+	height: 46px;
+	margin: 0;
+	padding: 0;
+	border: 1px solid #e6dfd4;
+	border-radius: 50%;
+	background: #fff;
+	color: #202020;
+	cursor: pointer;
+	outline: none;
+	transition:
+		background-color 180ms ease,
+		border-color 180ms ease,
+		transform 180ms ease;
+}
+
+.common-bottom-menu-close:hover {
+	background: #f7f3ed;
+	border-color: #bca889;
+	transform: rotate(4deg);
+}
+
+.common-bottom-menu-close:focus-visible,
+.common-bottom-menu-table-scroll:focus-visible,
+.common-bottom-menu-image-scroll:focus-visible {
+	outline: 2px solid #a58d69;
+	outline-offset: 2px;
+}
+
+.common-bottom-menu-close-icon,
+.common-bottom-menu-close-icon::before,
+.common-bottom-menu-close-icon::after {
+	position: absolute;
+	display: block;
+	content: "";
+}
+
+.common-bottom-menu-close-icon {
+	inset: 0;
+}
+
+.common-bottom-menu-close-icon::before,
+.common-bottom-menu-close-icon::after {
+	top: 50%;
+	left: 50%;
+	width: 18px;
+	height: 1.5px;
+	background: currentColor;
+	transform-origin: center;
+}
+
+.common-bottom-menu-close-icon::before {
+	transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.common-bottom-menu-close-icon::after {
+	transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.common-bottom-menu-scroll {
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow-x: hidden;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	-webkit-overflow-scrolling: touch;
+	scrollbar-gutter: stable;
+	background: #fff;
+}
+
+.common-bottom-menu-scroll,
+.common-bottom-menu-table-scroll,
+.common-bottom-menu-image-scroll {
+	scrollbar-width: thin;
+	scrollbar-color: #c6b79e #f4f1ec;
+}
+
+.common-bottom-menu-scroll::-webkit-scrollbar,
+.common-bottom-menu-table-scroll::-webkit-scrollbar,
+.common-bottom-menu-image-scroll::-webkit-scrollbar {
+	width: 9px;
+	height: 9px;
+}
+
+.common-bottom-menu-scroll::-webkit-scrollbar-track,
+.common-bottom-menu-table-scroll::-webkit-scrollbar-track,
+.common-bottom-menu-image-scroll::-webkit-scrollbar-track {
+	background: #f4f1ec;
+}
+
+.common-bottom-menu-scroll::-webkit-scrollbar-thumb,
+.common-bottom-menu-table-scroll::-webkit-scrollbar-thumb,
+.common-bottom-menu-image-scroll::-webkit-scrollbar-thumb {
+	background: #c6b79e;
+	border: 2px solid #f4f1ec;
+	border-radius: 999px;
+}
+
+.common-bottom-menu-content {
+	width: 100%;
+	max-width: 1120px;
+	min-height: 100%;
+	margin: 0 auto;
+	padding: 42px 40px 64px;
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 1.82;
+	letter-spacing: -0.015em;
+	color: #383838;
+	word-break: keep-all;
+	overflow-wrap: break-word;
+}
+
+.common-bottom-menu-content p,
+.common-bottom-menu-content ul,
+.common-bottom-menu-content ol {
+	margin-top: 0;
+	margin-bottom: 14px;
+}
+
+.common-bottom-menu-content strong {
+	font-weight: 700;
+	color: #202020;
+}
+
+.common-bottom-menu-document {
+	width: 100%;
+}
+
+.common-bottom-menu-document-lead {
+	padding: 12px 10px 40px;
+	text-align: center;
+	border-bottom: 1px solid #ede9e2;
+}
+
+.common-bottom-menu-document-kicker {
+	margin: 0 0 8px !important;
+	font-size: 12px !important;
+	font-weight: 700 !important;
+	line-height: 1.5 !important;
+	letter-spacing: 0.16em !important;
+	text-transform: uppercase;
+	color: #a08a69 !important;
+}
+
+.common-bottom-menu-document-main-title {
+	margin: 0 !important;
+	font-size: clamp(30px, 4vw, 48px) !important;
+	font-weight: 600 !important;
+	line-height: 1.25 !important;
+	letter-spacing: -0.055em !important;
+	color: #171717 !important;
+}
+
+.common-bottom-menu-document-summary {
+	margin: 12px 0 0 !important;
+	font-size: 16px !important;
+	font-weight: 400 !important;
+	line-height: 1.65 !important;
+	color: #777 !important;
+}
+
+.common-bottom-menu-policy-section,
+.common-bottom-menu-terms-intro,
+.common-bottom-menu-toc,
+.common-bottom-menu-fee-section {
+	margin-top: 34px;
+}
+
+.common-bottom-menu-policy-section {
+	padding: 26px 28px;
+	background: #fff;
+	border: 1px solid #eae5dd;
+	border-radius: 14px;
+}
+
+.common-bottom-menu-policy-section-intro {
+	background: #faf8f5;
+}
+
+.common-bottom-menu-policy-section-supplement {
+	background: #faf8f5;
+}
+
+.common-bottom-menu-section-title {
+	position: relative;
+	margin: 0 0 18px !important;
+	padding: 0 0 14px !important;
+	font-size: 20px !important;
+	font-weight: 700 !important;
+	line-height: 1.45 !important;
+	letter-spacing: -0.035em !important;
+	color: #1d1d1d !important;
+	border-bottom: 1px solid #e8e2d9;
+}
+
+.common-bottom-menu-section-title::after {
+	position: absolute;
+	left: 0;
+	bottom: -1px;
+	width: 54px;
+	height: 2px;
+	background: #a98f68;
+	content: "";
+}
+
+.common-bottom-menu-subsection {
+	margin-top: 18px;
+	padding: 18px 20px;
+	background: #faf9f7;
+	border-radius: 10px;
+}
+
+.common-bottom-menu-subsection h5 {
+	margin: 0 0 8px !important;
+	font-size: 15px !important;
+	font-weight: 700 !important;
+	line-height: 1.6 !important;
+	color: #252525 !important;
+}
+
+.common-bottom-menu-subsection > :last-child,
+.common-bottom-menu-policy-section > :last-child,
+.common-bottom-menu-terms-intro > :last-child {
+	margin-bottom: 0 !important;
+}
+
+.common-bottom-menu-toc {
+	padding: 24px 26px;
+	background: #f7f3ed;
+	border: 1px solid #e6ddd0;
+	border-radius: 14px;
+}
+
+.common-bottom-menu-toc-title {
+	margin: 0 0 16px !important;
+	font-size: 16px !important;
+	font-weight: 700 !important;
+	line-height: 1.5 !important;
+	color: #292929 !important;
+}
+
+.common-bottom-menu-toc-list {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 8px 28px;
+	margin: 0 !important;
+	padding-left: 22px !important;
+}
+
+.common-bottom-menu-toc-list li {
+	padding-left: 3px;
+	line-height: 1.65;
+}
+
+.common-bottom-menu-bullet-list,
+.common-bottom-menu-number-list,
+.common-bottom-menu-alpha-list {
+	padding-left: 22px !important;
+}
+
+.common-bottom-menu-bullet-list li,
+.common-bottom-menu-number-list li,
+.common-bottom-menu-alpha-list li {
+	margin: 6px 0;
+	padding-left: 2px;
+}
+
+.common-bottom-menu-bullet-list {
+	list-style: disc;
+}
+
+.common-bottom-menu-number-list {
+	list-style: decimal;
+}
+
+.common-bottom-menu-alpha-list {
+	margin: 8px 0 0 !important;
+	list-style: lower-alpha;
+}
+
+.common-bottom-menu-circle-list {
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none;
+	counter-reset: common-bottom-menu-circle-counter;
+}
+
+.common-bottom-menu-circle-list > li {
+	position: relative;
+	margin: 10px 0;
+	padding-left: 30px;
+	counter-increment: common-bottom-menu-circle-counter;
+}
+
+.common-bottom-menu-circle-list > li::before {
+	position: absolute;
+	left: 0;
+	top: 0.15em;
+	width: 22px;
+	height: 22px;
+	border: 1px solid #cbbba2;
+	border-radius: 50%;
+	font-size: 11px;
+	font-weight: 700;
+	line-height: 20px;
+	text-align: center;
+	color: #836f52;
+	content: counter(common-bottom-menu-circle-counter);
+}
+
+.common-bottom-menu-note {
+	margin-top: 18px !important;
+	padding: 14px 16px;
+	font-size: 13px !important;
+	line-height: 1.7 !important;
+	color: #6c6358 !important;
+	background: #f8f5f0;
+	border-left: 3px solid #bba486;
+	border-radius: 0 8px 8px 0;
+}
+
+.common-bottom-menu-table-scroll {
+	width: 100%;
+	margin: 20px 0 4px;
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+	border: 1px solid #dcd5ca;
+	border-radius: 10px;
+	background: #fff;
+}
+
+.common-bottom-menu-table {
+	width: 100%;
+	min-width: 760px;
+	margin: 0 !important;
+	border-collapse: collapse !important;
+	border-spacing: 0 !important;
+	table-layout: fixed;
+	background: #fff;
+}
+
+.common-bottom-menu-table th,
+.common-bottom-menu-table td {
+	height: 54px;
+	min-height: 54px;
+	padding: 13px 14px !important;
+	border: 0 !important;
+	border-right: 1px solid #e1dbd1 !important;
+	border-bottom: 1px solid #e1dbd1 !important;
+	font-family: inherit !important;
+	font-size: 13px !important;
+	font-weight: 400 !important;
+	line-height: 1.65 !important;
+	text-align: center !important;
+	vertical-align: middle !important;
+	color: #383838 !important;
+	background: #fff;
+	word-break: keep-all;
+}
+
+.common-bottom-menu-table thead th {
+	font-weight: 700 !important;
+	color: #292929 !important;
+	background: #f4f0e9 !important;
+}
+
+.common-bottom-menu-table tbody th {
+	font-weight: 600 !important;
+	color: #35302a !important;
+	background: #faf8f4 !important;
+}
+
+.common-bottom-menu-table tr > *:last-child {
+	border-right: 0 !important;
+}
+
+.common-bottom-menu-table tbody tr:last-child > * {
+	border-bottom: 0 !important;
+}
+
+.common-bottom-menu-table-col-28 {
+	width: 28%;
+}
+
+.common-bottom-menu-table-col-18 {
+	width: 18%;
+}
+
+.common-bottom-menu-table-col-38 {
+	width: 38%;
+}
+
+.common-bottom-menu-table-note {
+	display: inline-block;
+	margin-top: 4px;
+	font-size: 12px;
+	line-height: 1.5;
+	color: #746b61;
+}
+
+.common-bottom-menu-table-compact {
+	min-width: 640px;
+}
+
+.common-bottom-menu-table-five {
+	min-width: 760px;
+}
+
+.common-bottom-menu-table-four {
+	min-width: 700px;
+}
+
+.common-bottom-menu-contact-box,
+.common-bottom-menu-effective-box,
+.common-bottom-menu-terms-intro {
+	padding: 20px 22px;
+	background: #f8f5f0;
+	border: 1px solid #e4dbce;
+	border-radius: 12px;
+}
+
+.common-bottom-menu-contact-box p {
+	margin: 5px 0 !important;
+	word-break: break-all;
+}
+
+.common-bottom-menu-effective-box {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px 28px;
+	margin-top: 18px;
+	font-size: 14px;
+	font-weight: 600;
+	color: #4f473e;
+}
+
+.common-bottom-menu-terms-intro {
+	font-size: 15px;
+	line-height: 1.8;
+}
+
+.common-bottom-menu-terms-intro strong {
+	display: block;
+	margin-bottom: 7px;
+	font-size: 16px;
+}
+
+.common-bottom-menu-fee-section {
+	padding: 26px;
+	border: 1px solid #e8e2d8;
+	border-radius: 14px;
+	background: #faf9f7;
+}
+
+.common-bottom-menu-fee-title {
+	margin: 0 0 18px !important;
+	font-size: 20px !important;
+	font-weight: 700 !important;
+	line-height: 1.45 !important;
+	letter-spacing: -0.03em !important;
+	text-align: center;
+	color: #222 !important;
+}
+
+.common-bottom-menu-image-scroll {
+	width: 100%;
+	overflow-x: auto;
+	overflow-y: hidden;
+	-webkit-overflow-scrolling: touch;
+	background: #fff;
+	border: 1px solid #e1dacf;
+	border-radius: 10px;
+}
+
+.common-bottom-menu-fee-image {
+	display: block;
+	width: auto;
+	max-width: 100%;
+	height: auto;
+	margin: 0 auto;
+	object-fit: contain;
+	image-rendering: auto;
+}
+
+@media (max-width: 991.98px) {
+	.common-bottom-menu-modal {
+		padding: 16px;
+	}
+
+	.common-bottom-menu-dialog {
+		width: min(96vw, 1000px);
+		height: 92vh;
+		height: 92dvh;
+	}
+
+	.common-bottom-menu-header {
+		min-height: 88px;
+		padding: 16px 22px;
+	}
+
+	.common-bottom-menu-content {
+		padding: 34px 26px 50px;
+	}
+
+	.common-bottom-menu-policy-section {
+		padding: 22px;
+	}
+
+	.common-bottom-menu-toc-list {
+		grid-template-columns: 1fr;
+		gap: 5px;
+	}
+}
+
+@media (max-width: 767.98px) {
+	.common-bottom-menu-modal {
+		align-items: flex-end;
+		padding: 8px;
+	}
+
+	.common-bottom-menu-dialog {
+		width: 100%;
+		height: calc(100dvh - 16px);
+		max-height: calc(100dvh - 16px);
+		border-radius: 16px;
+	}
+
+	.common-bottom-menu-header {
+		min-height: 76px;
+		padding: 13px 16px;
+	}
+
+	.common-bottom-menu-eyebrow {
+		font-size: 9px !important;
+		letter-spacing: 0.11em !important;
+	}
+
+	.common-bottom-menu-title {
+		font-size: 22px !important;
+	}
+
+	.common-bottom-menu-close {
+		flex-basis: 40px;
+		width: 40px;
+		height: 40px;
+	}
+
+	.common-bottom-menu-content {
+		padding: 24px 16px 40px;
+		font-size: 14px;
+		line-height: 1.76;
+		word-break: normal;
+	}
+
+	.common-bottom-menu-document-lead {
+		padding: 6px 4px 28px;
+	}
+
+	.common-bottom-menu-document-main-title {
+		font-size: 29px !important;
+	}
+
+	.common-bottom-menu-document-summary {
+		font-size: 14px !important;
+	}
+
+	.common-bottom-menu-policy-section,
+	.common-bottom-menu-terms-intro,
+	.common-bottom-menu-toc,
+	.common-bottom-menu-fee-section {
+		margin-top: 20px;
+	}
+
+	.common-bottom-menu-policy-section,
+	.common-bottom-menu-fee-section {
+		padding: 18px 15px;
+		border-radius: 11px;
+	}
+
+	.common-bottom-menu-section-title,
+	.common-bottom-menu-fee-title {
+		font-size: 17px !important;
+	}
+
+	.common-bottom-menu-subsection {
+		padding: 14px;
+	}
+
+	.common-bottom-menu-toc {
+		padding: 18px;
+	}
+
+	.common-bottom-menu-table-scroll {
+		margin-left: 0;
+		margin-right: 0;
+		border-radius: 8px;
+	}
+
+	.common-bottom-menu-table {
+		min-width: 780px;
+	}
+
+	.common-bottom-menu-table-compact {
+		min-width: 650px;
+	}
+
+	.common-bottom-menu-table th,
+	.common-bottom-menu-table td {
+		height: 50px;
+		min-height: 50px;
+		padding: 11px 12px !important;
+		font-size: 12px !important;
+		line-height: 1.55 !important;
+	}
+
+	.common-bottom-menu-effective-box {
+		flex-direction: column;
+		gap: 4px;
+	}
+
+	.common-bottom-menu-image-scroll {
+		padding-bottom: 2px;
+	}
+
+	/* 모바일에서 큰 수가표 이미지를 억지로 축소하지 않고 X축으로 확인 */
+	.common-bottom-menu-fee-image {
+		width: 980px;
+		max-width: none;
+		margin: 0;
+	}
+}
+
+@media (max-width: 420px) {
+	.common-bottom-menu-modal {
+		padding: 5px;
+	}
+
+	.common-bottom-menu-dialog {
+		height: calc(100dvh - 10px);
+		max-height: calc(100dvh - 10px);
+		border-radius: 14px;
+	}
+
+	.common-bottom-menu-content {
+		padding: 22px 12px 34px;
+	}
+
+	.common-bottom-menu-policy-section,
+	.common-bottom-menu-fee-section {
+		padding: 16px 12px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.common-bottom-menu-backdrop,
+	.common-bottom-menu-dialog,
+	.common-bottom-menu-close {
+		transition: none !important;
+	}
+}
+
+/* 일본어 문장은 한글의 keep-all 규칙을 사용하지 않습니다. */
+.common-bottom-menu-dialog[lang="ja"] .common-bottom-menu-content,
+.common-bottom-menu-dialog[lang="ja"] .common-bottom-menu-table th,
+.common-bottom-menu-dialog[lang="ja"] .common-bottom-menu-table td {
+	word-break: normal;
+	line-break: strict;
+}

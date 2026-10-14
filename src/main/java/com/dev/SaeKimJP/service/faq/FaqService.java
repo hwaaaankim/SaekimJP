@@ -13,7 +13,9 @@ import com.dev.SaeKimJP.dto.community.FaqAdminListResponse;
 import com.dev.SaeKimJP.dto.community.FaqFrontListResponse;
 import com.dev.SaeKimJP.dto.community.FaqSaveRequest;
 import com.dev.SaeKimJP.model.community.Faq;
+import com.dev.SaeKimJP.model.community.FaqTopic;
 import com.dev.SaeKimJP.repository.community.FaqRepository;
+import com.dev.SaeKimJP.util.FrontPagePathUtils;
 
 import lombok.RequiredArgsConstructor;
 
@@ -23,17 +25,20 @@ import lombok.RequiredArgsConstructor;
 public class FaqService {
 
     private final FaqRepository faqRepository;
+    private final FaqTopicService faqTopicService;
 
     @Transactional
     public Long createFaq(FaqSaveRequest request) {
+        FaqTopic topic = faqTopicService.getTopicOrThrow(request.getTopicId());
         String title = normalizeRequired(request.getTitle(), "제목");
         String answer = normalizeRequired(request.getAnswer(), "답변");
         boolean linkEnabled = Boolean.TRUE.equals(request.getLinkEnabled());
-        String linkUrl = normalizeOptional(request.getLinkUrl());
+        String linkUrl = FrontPagePathUtils.normalizeInternalPagePath(request.getLinkUrl());
 
         validateLink(linkEnabled, linkUrl);
 
         Faq faq = Faq.builder()
+                .topic(topic)
                 .title(title)
                 .answer(answer)
                 .linkEnabled(linkEnabled)
@@ -44,15 +49,8 @@ public class FaqService {
         return faq.getId();
     }
 
-    public Page<FaqAdminListResponse> getAdminFaqPage(String keyword, Pageable pageable) {
-        String normalizedKeyword = normalizeOptional(keyword);
-
-        if (StringUtils.hasText(normalizedKeyword)) {
-            return faqRepository.findByTitleContainingIgnoreCase(normalizedKeyword, pageable)
-                    .map(FaqAdminListResponse::fromEntity);
-        }
-
-        return faqRepository.findAll(pageable)
+    public Page<FaqAdminListResponse> getAdminFaqPage(String keyword, Long topicId, Pageable pageable) {
+        return getFaqPage(keyword, topicId, pageable)
                 .map(FaqAdminListResponse::fromEntity);
     }
 
@@ -68,14 +66,16 @@ public class FaqService {
         Faq faq = faqRepository.findById(faqId)
                 .orElseThrow(() -> new NoSuchElementException("FAQ를 찾을 수 없습니다. id=" + faqId));
 
+        FaqTopic topic = faqTopicService.getTopicOrThrow(request.getTopicId());
         String title = normalizeRequired(request.getTitle(), "제목");
         String answer = normalizeRequired(request.getAnswer(), "답변");
         boolean linkEnabled = Boolean.TRUE.equals(request.getLinkEnabled());
-        String linkUrl = normalizeOptional(request.getLinkUrl());
+        String linkUrl = FrontPagePathUtils.normalizeInternalPagePath(request.getLinkUrl());
 
         validateLink(linkEnabled, linkUrl);
 
         faq.update(
+                topic,
                 title,
                 answer,
                 linkEnabled,
@@ -91,15 +91,8 @@ public class FaqService {
         faqRepository.delete(faq);
     }
 
-    public Page<FaqFrontListResponse> getFrontFaqPage(String keyword, Pageable pageable) {
-        String normalizedKeyword = normalizeOptional(keyword);
-
-        if (StringUtils.hasText(normalizedKeyword)) {
-            return faqRepository.findByTitleContainingIgnoreCase(normalizedKeyword, pageable)
-                    .map(FaqFrontListResponse::fromEntity);
-        }
-
-        return faqRepository.findAll(pageable)
+    public Page<FaqFrontListResponse> getFrontFaqPage(String keyword, Long topicId, Pageable pageable) {
+        return getFaqPage(keyword, topicId, pageable)
                 .map(FaqFrontListResponse::fromEntity);
     }
 
@@ -110,6 +103,23 @@ public class FaqService {
 
         faq.increaseViewCount();
         return faq.getViewCount();
+    }
+
+    private Page<Faq> getFaqPage(String keyword, Long topicId, Pageable pageable) {
+        String normalizedKeyword = normalizeOptional(keyword);
+        boolean hasKeyword = StringUtils.hasText(normalizedKeyword);
+        boolean hasTopic = topicId != null;
+
+        if (hasTopic && hasKeyword) {
+            return faqRepository.findByTopic_IdAndTitleContainingIgnoreCase(topicId, normalizedKeyword, pageable);
+        }
+        if (hasTopic) {
+            return faqRepository.findByTopic_Id(topicId, pageable);
+        }
+        if (hasKeyword) {
+            return faqRepository.findByTitleContainingIgnoreCase(normalizedKeyword, pageable);
+        }
+        return faqRepository.findAll(pageable);
     }
 
     private String normalizeRequired(String value, String fieldName) {

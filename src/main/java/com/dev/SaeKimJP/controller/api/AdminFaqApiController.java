@@ -46,6 +46,9 @@ public class AdminFaqApiController {
         } catch (IllegalArgumentException e) {
             return ResponseEntity.badRequest()
                     .body(ApiResponse.of(false, e.getMessage(), null));
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body(ApiResponse.of(false, e.getMessage(), null));
         }
     }
 
@@ -53,7 +56,8 @@ public class AdminFaqApiController {
     public ResponseEntity<ApiResponse<Page<FaqAdminListResponse>>> getFaqList(
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "12") int size,
-            @RequestParam(value = "keyword", required = false) String keyword
+            @RequestParam(value = "keyword", required = false) String keyword,
+            @RequestParam(value = "topicId", required = false) Long topicId
     ) {
         PageRequest pageable = PageRequest.of(
                 Math.max(page, 0),
@@ -61,7 +65,7 @@ public class AdminFaqApiController {
                 Sort.by(Sort.Order.desc("id"))
         );
 
-        Page<FaqAdminListResponse> faqPage = faqService.getAdminFaqPage(keyword, pageable);
+        Page<FaqAdminListResponse> faqPage = faqService.getAdminFaqPage(keyword, topicId, pageable);
         return ResponseEntity.ok(ApiResponse.of(true, "FAQ 목록 조회 성공", faqPage));
     }
 

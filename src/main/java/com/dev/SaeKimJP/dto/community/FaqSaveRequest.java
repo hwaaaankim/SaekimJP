@@ -7,6 +7,7 @@ import lombok.Setter;
 @Setter
 public class FaqSaveRequest {
 
+    private Long topicId;
     private String title;
     private String answer;
     private Boolean linkEnabled;

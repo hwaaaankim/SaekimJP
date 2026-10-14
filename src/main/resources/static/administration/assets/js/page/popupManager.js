@@ -96,7 +96,7 @@
                                         <input type="text"
                                                class="form-control popup-manager-link-url"
                                                value="${escapeHtml(item.linkUrl || '')}"
-                                               placeholder="/event 또는 https://...">
+                                               placeholder="/eventPage 또는 https://...">
                                     </div>
 
                                     <div class="col-md-4">

@@ -26,7 +26,7 @@
 									</p>
 								</div>
 
-								<form name="searchForm" id="searchForm" method="get" th:action="@{/notice}">
+								<form name="searchForm" id="searchForm" method="get" th:action="@{/noticePage}">
 									<div class="search">
 										<div class="inputBox">
 											<input type="text" name="searchText" id="searchText" title="검색어"
@@ -70,11 +70,11 @@
 
 							<ul class="list-pagination" th:if="${noticePage.totalPages > 0}">
 								<span class="arrow">
-									<a th:href="@{/notice(page=1, searchText=${searchText})}" class="first">
+									<a th:href="@{/noticePage(page=1, searchText=${searchText})}" class="first">
 										<em class="blind">처음페이지</em>
 									</a>
 
-									<a th:href="@{/notice(page=${currentPage > 1 ? currentPage - 1 : 1}, searchText=${searchText})}"
+									<a th:href="@{/noticePage(page=${currentPage > 1 ? currentPage - 1 : 1}, searchText=${searchText})}"
 										class="prev">
 										<em class="blind">이전페이지</em>
 									</a>
@@ -83,18 +83,18 @@
 								<ul class="num-list">
 									<li th:each="pageNum : ${pageNumbers}"
 										th:classappend="${pageNum == currentPage} ? 'current on' : ''">
-										<a th:href="@{/notice(page=${pageNum}, searchText=${searchText})}"
+										<a th:href="@{/noticePage(page=${pageNum}, searchText=${searchText})}"
 											th:text="${pageNum}">1</a>
 									</li>
 								</ul>
 
 								<span class="arrow">
-									<a th:href="@{/notice(page=${currentPage < noticePage.totalPages ? currentPage + 1 : noticePage.totalPages}, searchText=${searchText})}"
+									<a th:href="@{/noticePage(page=${currentPage < noticePage.totalPages ? currentPage + 1 : noticePage.totalPages}, searchText=${searchText})}"
 										class="next">
 										<em class="blind">다음페이지</em>
 									</a>
 
-									<a th:href="@{/notice(page=${noticePage.totalPages}, searchText=${searchText})}"
+									<a th:href="@{/noticePage(page=${noticePage.totalPages}, searchText=${searchText})}"
 										class="last">
 										<em class="blind">마지막페이지</em>
 									</a>

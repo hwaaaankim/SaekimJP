@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import com.dev.SaeKimJP.dto.main.DisplayOrderUpdateRequest;
 import com.dev.SaeKimJP.dto.main.FrontMainPopupResponse;
@@ -16,6 +15,7 @@ import com.dev.SaeKimJP.dto.main.MainPopupAdminResponse;
 import com.dev.SaeKimJP.dto.main.MainPopupUpsertRequest;
 import com.dev.SaeKimJP.model.main.MainPopup;
 import com.dev.SaeKimJP.repository.main.MainPopupRepository;
+import com.dev.SaeKimJP.util.FrontPagePathUtils;
 
 import lombok.RequiredArgsConstructor;
 
@@ -54,7 +54,7 @@ public class MainPopupService {
         }
 
         MainPopup entity = new MainPopup();
-        entity.setLinkUrl(trimToNull(request.getLinkUrl()));
+        entity.setLinkUrl(FrontPagePathUtils.normalizeInternalPagePath(request.getLinkUrl()));
         entity.setUseDisplayPeriod(Boolean.TRUE.equals(request.getUseDisplayPeriod()));
         entity.setDisplayStartDate(Boolean.TRUE.equals(request.getUseDisplayPeriod()) ? request.getDisplayStartDate() : null);
         entity.setDisplayEndDate(Boolean.TRUE.equals(request.getUseDisplayPeriod()) ? request.getDisplayEndDate() : null);
@@ -83,7 +83,7 @@ public class MainPopupService {
         MainPopup entity = mainPopupRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("팝업을 찾을 수 없습니다."));
 
-        entity.setLinkUrl(trimToNull(request.getLinkUrl()));
+        entity.setLinkUrl(FrontPagePathUtils.normalizeInternalPagePath(request.getLinkUrl()));
         entity.setUseDisplayPeriod(Boolean.TRUE.equals(request.getUseDisplayPeriod()));
 
         if (Boolean.TRUE.equals(request.getUseDisplayPeriod())) {
@@ -198,10 +198,4 @@ public class MainPopupService {
         return !targetDate.isBefore(popup.getDisplayStartDate()) && !targetDate.isAfter(popup.getDisplayEndDate());
     }
 
-    private String trimToNull(String value) {
-        if (!StringUtils.hasText(value)) {
-            return null;
-        }
-        return value.trim();
-    }
 }

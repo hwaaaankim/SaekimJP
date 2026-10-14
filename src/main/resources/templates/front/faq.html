@@ -8,7 +8,7 @@
 
     <main id="main">
         <div class="main-wrap">
-            <section class="bsc_container">
+            <section class="bsc_container faq-page">
                 <section class="subtit-wrap">
                     <div class="inner w1280 mt-3">
                         <p class="title">FAQ</p>
@@ -18,14 +18,35 @@
 
                 <section class="default-wrap">
                     <div class="inner w1280">
-                        <div class="total-searchBox">
+                        <div class="faq-topic-filter-wrap" aria-label="FAQ 주제 선택">
+                            <div class="faq-topic-filter">
+                                <a class="faq-topic-filter__item"
+                                   th:classappend="${selectedTopicId == null} ? ' is-active' : ''"
+                                   th:href="@{/faqPage(page=1, keyword=${keyword})}">
+                                    ALL
+                                </a>
+                                <a class="faq-topic-filter__item"
+                                   th:each="topic : ${faqTopics}"
+                                   th:classappend="${selectedTopicId != null and selectedTopicId == topic.id} ? ' is-active' : ''"
+                                   th:href="@{/faqPage(page=1, keyword=${keyword}, topicId=${topic.id})}"
+                                   th:text="${topic.name}">
+                                    주제
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="total-searchBox faq-total-search-box">
                             <div class="total">
                                 <p class="total-txt">
                                     Total <span class="total-num" th:text="${totalCount}">0</span>
                                 </p>
                             </div>
 
-                            <form name="searchForm" id="searchForm" method="get" th:action="@{/faq}">
+                            <form name="searchForm" id="searchForm" method="get" th:action="@{/faqPage}">
+                                <input type="hidden"
+                                       name="topicId"
+                                       th:if="${selectedTopicId != null}"
+                                       th:value="${selectedTopicId}">
                                 <div class="search">
                                     <div class="inputBox">
                                         <input type="text"
@@ -34,7 +55,7 @@
                                                class="input-txt"
                                                placeholder="검색어를 입력하세요."
                                                th:value="${keyword}">
-                                        <button type="submit" value="검색" class="searchBtn"></button>
+                                        <button type="submit" value="검색" class="searchBtn" aria-label="FAQ 검색"></button>
                                     </div>
                                 </div>
                             </form>
@@ -53,13 +74,13 @@
                                         <span class="faq-question__icon">Q<em class="blind">질문</em></span>
 
                                         <strong class="faq-question__text">
-                                            <span class="tag-category md">FAQ</span>
+                                            <span class="tag-category md faq-topic-badge" th:text="${faq.topicName}">FAQ 주제</span>
                                             <span th:text="${faq.title}">FAQ 제목</span>
 
-                                            <span style="display:block; margin-top:8px; font-size:14px; font-weight:400; color:#888;">
+                                            <span class="faq-question__meta">
                                                 등록일
                                                 <span th:text="${#temporals.format(faq.createdAt, 'yyyy.MM.dd')}">2026.04.15</span>
-                                                &nbsp;&nbsp;&nbsp;
+                                                <span class="faq-question__meta-divider" aria-hidden="true"></span>
                                                 조회수
                                                 <span class="js-front-faq-view-count" th:text="${faq.viewCount}">0</span>
                                             </span>
@@ -75,20 +96,20 @@
                                             <span class="faq-answer__icon">A<em class="blind">답변</em></span>
 
                                             <div class="faq-answer__box">
-                                                <div style="white-space: pre-line;" th:text="${faq.answer}">
+                                                <div class="faq-answer__content" th:text="${faq.answer}">
                                                     FAQ 답변
                                                 </div>
 
                                                 <div th:if="${faq.linkEnabled and faq.linkUrl != null and !#strings.isEmpty(faq.linkUrl)}"
-                                                     style="margin-top: 16px;">
+                                                     class="faq-answer__link-wrap">
                                                     <a th:href="${faq.linkUrl}"
                                                        target="_blank"
                                                        rel="noopener noreferrer">
-                                                        * 관련 링크 바로가기
+                                                        관련 링크 바로가기
                                                     </a>
                                                 </div>
 
-                                                <div style="margin-top: 16px; font-size:14px; color:#888;">
+                                                <div class="faq-answer__updated-at">
                                                     최종 수정일
                                                     <span th:text="${#temporals.format(faq.updatedAt, 'yyyy.MM.dd')}">2026.04.15</span>
                                                 </div>
@@ -99,16 +120,17 @@
                             </ul>
                         </div>
 
-                        <div th:if="${faqPage.empty}" style="padding:80px 0; text-align:center; color:#888;">
-                            검색 결과가 없습니다.
+                        <div th:if="${faqPage.empty}" class="faq-empty-state">
+                            <strong>검색 결과가 없습니다.</strong>
+                            <span>선택한 주제 또는 검색어를 변경해보세요.</span>
                         </div>
 
                         <ul class="list-pagination" th:if="${faqPage.totalElements > 0}">
                             <span class="arrow">
-                                <a th:href="@{/faq(page=1, keyword=${keyword})}" class="first">
+                                <a th:href="@{/faqPage(page=1, keyword=${keyword}, topicId=${selectedTopicId})}" class="first">
                                     <em class="blind">처음페이지</em>
                                 </a>
-                                <a th:href="@{/faq(page=${currentPage > 1 ? currentPage - 1 : 1}, keyword=${keyword})}" class="prev">
+                                <a th:href="@{/faqPage(page=${currentPage > 1 ? currentPage - 1 : 1}, keyword=${keyword}, topicId=${selectedTopicId})}" class="prev">
                                     <em class="blind">이전페이지</em>
                                 </a>
                             </span>
@@ -116,16 +138,16 @@
                             <ul class="num-list">
                                 <li th:each="pageNum : ${#numbers.sequence(startPage, endPage)}"
                                     th:classappend="${pageNum == currentPage} ? 'current on' : ''">
-                                    <a th:href="@{/faq(page=${pageNum}, keyword=${keyword})}"
+                                    <a th:href="@{/faqPage(page=${pageNum}, keyword=${keyword}, topicId=${selectedTopicId})}"
                                        th:text="${pageNum}">1</a>
                                 </li>
                             </ul>
 
                             <span class="arrow">
-                                <a th:href="@{/faq(page=${currentPage < faqPage.totalPages ? currentPage + 1 : faqPage.totalPages}, keyword=${keyword})}" class="next">
+                                <a th:href="@{/faqPage(page=${currentPage < faqPage.totalPages ? currentPage + 1 : faqPage.totalPages}, keyword=${keyword}, topicId=${selectedTopicId})}" class="next">
                                     <em class="blind">다음페이지</em>
                                 </a>
-                                <a th:href="@{/faq(page=${faqPage.totalPages}, keyword=${keyword})}" class="last">
+                                <a th:href="@{/faqPage(page=${faqPage.totalPages}, keyword=${keyword}, topicId=${selectedTopicId})}" class="last">
                                     <em class="blind">마지막페이지</em>
                                 </a>
                             </span>

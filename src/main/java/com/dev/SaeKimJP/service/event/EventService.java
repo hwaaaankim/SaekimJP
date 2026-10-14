@@ -30,6 +30,7 @@ import com.dev.SaeKimJP.enums.event.EventFrontFilterStatus;
 import com.dev.SaeKimJP.enums.event.EventManualProgressStatus;
 import com.dev.SaeKimJP.model.event.Event;
 import com.dev.SaeKimJP.repository.event.EventRepository;
+import com.dev.SaeKimJP.util.FrontPagePathUtils;
 
 import lombok.RequiredArgsConstructor;
 
@@ -72,7 +73,7 @@ public class EventService {
                 request.getTitle(),
                 request.getContent(),
                 request.getDetailHtml(),
-                request.getLinkUrl(),
+                FrontPagePathUtils.normalizeInternalPagePath(request.getLinkUrl()),
                 request.isPeriodLimited(),
                 request.getStartDate(),
                 request.getEndDate(),
@@ -97,7 +98,7 @@ public class EventService {
                 request.getTitle(),
                 request.getContent(),
                 request.getDetailHtml(),
-                request.getLinkUrl(),
+                FrontPagePathUtils.normalizeInternalPagePath(request.getLinkUrl()),
                 request.isPeriodLimited(),
                 request.getStartDate(),
                 request.getEndDate(),

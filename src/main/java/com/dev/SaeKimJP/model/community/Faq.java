@@ -4,11 +4,14 @@ import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
@@ -21,6 +24,7 @@ import lombok.NoArgsConstructor;
 @Table(
     name = "tb_faq",
     indexes = {
+        @Index(name = "idx_tb_faq_topic_id", columnList = "topic_id"),
         @Index(name = "idx_tb_faq_title", columnList = "title"),
         @Index(name = "idx_tb_faq_created_at", columnList = "created_at"),
         @Index(name = "idx_tb_faq_view_count", columnList = "view_count")
@@ -33,6 +37,10 @@ public class Faq {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "topic_id", nullable = false)
+    private FaqTopic topic;
 
     @Column(name = "title", nullable = false, length = 200)
     private String title;
@@ -57,7 +65,8 @@ public class Faq {
     private LocalDateTime updatedAt;
 
     @Builder
-    public Faq(String title, String answer, boolean linkEnabled, String linkUrl) {
+    public Faq(FaqTopic topic, String title, String answer, boolean linkEnabled, String linkUrl) {
+        this.topic = topic;
         this.title = title;
         this.answer = answer;
         this.linkEnabled = linkEnabled;
@@ -80,7 +89,8 @@ public class Faq {
         this.updatedAt = LocalDateTime.now();
     }
 
-    public void update(String title, String answer, boolean linkEnabled, String linkUrl) {
+    public void update(FaqTopic topic, String title, String answer, boolean linkEnabled, String linkUrl) {
+        this.topic = topic;
         this.title = title;
         this.answer = answer;
         this.linkEnabled = linkEnabled;

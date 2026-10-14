@@ -13,18 +13,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.dev.SaeKimJP.dto.community.FaqFrontListResponse;
+import com.dev.SaeKimJP.dto.community.FaqTopicResponse;
 import com.dev.SaeKimJP.dto.community.FrontNoticeListItemResponse;
 import com.dev.SaeKimJP.dto.event.FrontEventDetailResponse;
 import com.dev.SaeKimJP.dto.event.FrontEventIndexResponse;
 import com.dev.SaeKimJP.dto.main.FrontMainBannerResponse;
 import com.dev.SaeKimJP.dto.main.FrontMainPopupResponse;
-import com.dev.SaeKimJP.enums.surgery.SurgeryGroupType;
 import com.dev.SaeKimJP.service.event.EventService;
 import com.dev.SaeKimJP.service.faq.FaqService;
+import com.dev.SaeKimJP.service.faq.FaqTopicService;
 import com.dev.SaeKimJP.service.main.MainBannerService;
 import com.dev.SaeKimJP.service.main.MainPopupService;
 import com.dev.SaeKimJP.service.notice.NoticeService;
-import com.dev.SaeKimJP.service.surgery.SurgeryFrontService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -36,8 +36,8 @@ public class IndexController {
     private final MainPopupService mainPopupService;
     private final NoticeService noticeService;
     private final FaqService faqService;
+    private final FaqTopicService faqTopicService;
     private final EventService eventService;
-    private final SurgeryFrontService surgeryFrontService;
 
     @GetMapping({ "/", "/index", "" })
     public String index(Model model) {
@@ -52,31 +52,27 @@ public class IndexController {
         return "front/index";
     }
 
-    @GetMapping("/eyeSurgeryPgae")
+    @GetMapping({"/eyeSurgeryPage", "/eyeSurgeryPgae"})
     public String eye(Model model) {
-        model.addAttribute("pageData", surgeryFrontService.getPage(SurgeryGroupType.EYE));
         return "front/eye";
     }
 
-    @GetMapping("/noseSurgeryPgae")
+    @GetMapping({"/noseSurgeryPage", "/noseSurgeryPgae"})
     public String nose(Model model) {
-        model.addAttribute("pageData", surgeryFrontService.getPage(SurgeryGroupType.NOSE));
         return "front/nose";
     }
 
-    @GetMapping("/youngSurgeryPgae")
+    @GetMapping({"/youngSurgeryPage", "/youngSurgeryPgae"})
     public String young(Model model) {
-        model.addAttribute("pageData", surgeryFrontService.getPage(SurgeryGroupType.YOUNG));
         return "front/young";
     }
 
-    @GetMapping("/contouringSurgeryPgae")
+    @GetMapping({"/contouringSurgeryPage", "/contouringSurgeryPgae"})
     public String contouring(Model model) {
-        model.addAttribute("pageData", surgeryFrontService.getPage(SurgeryGroupType.CONTOURING));
         return "front/contouring";
     }
 
-    @GetMapping("/noticePgae")
+    @GetMapping({"/noticePage", "/noticePgae"})
     public String notice(@RequestParam(name = "searchText", defaultValue = "") String searchText,
                          @RequestParam(name = "page", defaultValue = "1") int page,
                          Model model) {
@@ -93,16 +89,25 @@ public class IndexController {
         return "front/notice";
     }
 
-    @GetMapping("/faqPgae")
+    @GetMapping({"/faqPage", "/faqPgae"})
     public String faq(@RequestParam(value = "page", defaultValue = "1") int page,
                       @RequestParam(value = "keyword", required = false) String keyword,
+                      @RequestParam(value = "topicId", required = false) Long topicId,
                       Model model) {
 
         int currentPage = Math.max(page, 1);
         int pageSize = 10;
+        String normalizedKeyword = keyword == null ? "" : keyword.trim();
+
+        List<FaqTopicResponse> topics = faqTopicService.getTopics();
+        Long selectedTopicId = topics.stream()
+                .anyMatch(topic -> topic.getId().equals(topicId))
+                ? topicId
+                : null;
 
         Page<FaqFrontListResponse> faqPage = faqService.getFrontFaqPage(
-                keyword,
+                normalizedKeyword,
+                selectedTopicId,
                 PageRequest.of(currentPage - 1, pageSize, Sort.by(Sort.Order.desc("id")))
         );
 
@@ -112,7 +117,9 @@ public class IndexController {
 
         model.addAttribute("faqPage", faqPage);
         model.addAttribute("faqList", faqPage.getContent());
-        model.addAttribute("keyword", keyword == null ? "" : keyword.trim());
+        model.addAttribute("faqTopics", topics);
+        model.addAttribute("selectedTopicId", selectedTopicId);
+        model.addAttribute("keyword", normalizedKeyword);
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
@@ -121,7 +128,7 @@ public class IndexController {
         return "front/faq";
     }
 
-    @GetMapping("/contactPage")
+    @GetMapping({"/contactPage", "/contactPgae"})
     public String contact() {
         return "front/contact";
     }
@@ -147,7 +154,7 @@ public class IndexController {
         model.addAttribute("event", event);
         return "front/eventDetail";
     }
-    
+
     private List<Integer> getVisiblePageNumbers(int currentPage, int totalPages, int maxVisibleCount) {
         List<Integer> result = new ArrayList<>();
         if (totalPages <= 0) {

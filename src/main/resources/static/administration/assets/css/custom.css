@@ -1083,3 +1083,141 @@ input.form-check-input.faq-manager-edit-link-enabled {
 	}
 }
 
+
+/* =========================================================
+   FAQ topic management / FAQ manager refinements
+   ========================================================= */
+.faq-manager-page .faq-manager-section-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 76px;
+}
+
+.faq-manager-page .faq-manager-topic-card,
+.faq-manager-page .faq-manager-create-card,
+.faq-manager-page .faq-manager-list-card {
+	border: 1px solid #e9ebec;
+	box-shadow: 0 8px 28px rgba(15, 23, 42, 0.05);
+}
+
+.faq-manager-page .faq-manager-topic-create-form {
+	padding: 16px;
+	border: 1px solid #e9ebec;
+	border-radius: 12px;
+	background: #f8fafc;
+}
+
+.faq-manager-page .faq-manager-topic-list-wrap {
+	position: relative;
+	min-height: 220px;
+	border: 1px solid #edf0f2;
+	border-radius: 12px;
+	overflow: hidden;
+}
+
+.faq-manager-page .faq-manager-topic-table thead th {
+	padding: 12px 10px;
+	border-bottom: 1px solid #e9ebec;
+	background: #f8f9fa;
+	color: #6c757d;
+	font-size: 12px;
+	font-weight: 700;
+	white-space: nowrap;
+}
+
+.faq-manager-page .faq-manager-topic-table tbody td {
+	padding: 12px 10px;
+	vertical-align: middle;
+}
+
+.faq-manager-page .faq-manager-topic-name {
+	display: block;
+	max-width: 150px;
+	overflow: hidden;
+	color: #212529;
+	font-size: 14px;
+	font-weight: 700;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.faq-manager-page .faq-manager-topic-empty {
+	display: flex;
+	min-height: 220px;
+	align-items: center;
+	justify-content: center;
+	padding: 24px;
+	color: #868e96;
+	font-size: 14px;
+	line-height: 1.7;
+	text-align: center;
+}
+
+.faq-manager-page .faq-manager-card-topic-row {
+	display: flex;
+	align-items: center;
+	min-height: 24px;
+}
+
+.faq-manager-page .faq-manager-topic-badge {
+	max-width: 100%;
+	overflow: hidden;
+	font-size: 12px;
+	font-weight: 700;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.faq-manager-page .faq-manager-search-form .form-select,
+.faq-manager-page .faq-manager-search-form .form-control,
+.faq-manager-page .faq-manager-search-form .btn {
+	min-height: 40px;
+}
+
+.faq-manager-page .faq-manager-create-topic-id:disabled,
+.faq-manager-page .faq-manager-edit-topic-id:disabled,
+.faq-manager-page .faq-manager-search-topic-id:disabled {
+	cursor: not-allowed;
+	background-color: #f3f4f6;
+	color: #8a8f98;
+}
+
+.faq-manager-page .faq-manager-switch-wrap .form-check-input,
+.faq-manager-edit-modal .faq-manager-switch-wrap .form-check-input {
+	margin-left: 0 !important;
+}
+
+.faq-manager-topic-edit-modal .modal-content {
+	border: 0;
+	border-radius: 16px;
+	overflow: hidden;
+	box-shadow: 0 18px 60px rgba(15, 23, 42, 0.16);
+}
+
+@media (max-width: 1199.98px) {
+	.faq-manager-page .faq-manager-topic-name {
+		max-width: none;
+	}
+}
+
+@media (max-width: 767.98px) {
+	.faq-manager-page .faq-manager-section-header {
+		min-height: auto;
+	}
+
+	.faq-manager-page .faq-manager-topic-create-form {
+		padding: 14px;
+	}
+
+	.faq-manager-page .faq-manager-topic-table thead th,
+	.faq-manager-page .faq-manager-topic-table tbody td {
+		padding-right: 8px;
+		padding-left: 8px;
+	}
+
+	.faq-manager-page .faq-manager-pagination-wrap .pagination {
+		flex-wrap: wrap;
+		gap: 4px;
+	}
+}

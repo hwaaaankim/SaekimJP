@@ -12,6 +12,8 @@ import lombok.Getter;
 public class FaqAdminListResponse {
 
     private Long id;
+    private Long topicId;
+    private String topicName;
     private String title;
     private String answerPreview;
     private boolean linkEnabled;
@@ -23,6 +25,8 @@ public class FaqAdminListResponse {
     public static FaqAdminListResponse fromEntity(Faq faq) {
         return FaqAdminListResponse.builder()
                 .id(faq.getId())
+                .topicId(faq.getTopic().getId())
+                .topicName(faq.getTopic().getName())
                 .title(faq.getTitle())
                 .answerPreview(toPreview(faq.getAnswer()))
                 .linkEnabled(faq.isLinkEnabled())

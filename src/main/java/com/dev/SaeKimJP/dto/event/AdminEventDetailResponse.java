@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import com.dev.SaeKimJP.model.event.Event;
+import com.dev.SaeKimJP.util.FrontPagePathUtils;
 
 public record AdminEventDetailResponse(
         Long id,
@@ -28,7 +29,7 @@ public record AdminEventDetailResponse(
                 event.getContent(),
                 event.getDetailHtml() == null ? "" : event.getDetailHtml(),
                 event.getImageUrl(),
-                event.getLinkUrl(),
+                FrontPagePathUtils.normalizeInternalPagePath(event.getLinkUrl()),
                 event.isPeriodLimited(),
                 event.getStartDate() == null ? "" : event.getStartDate().toString(),
                 event.getEndDate() == null ? "" : event.getEndDate().toString(),

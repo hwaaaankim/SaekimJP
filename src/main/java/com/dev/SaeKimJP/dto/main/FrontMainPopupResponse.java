@@ -1,5 +1,6 @@
 package com.dev.SaeKimJP.dto.main;
 import com.dev.SaeKimJP.model.main.MainPopup;
+import com.dev.SaeKimJP.util.FrontPagePathUtils;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +18,7 @@ public class FrontMainPopupResponse {
         return FrontMainPopupResponse.builder()
                 .id(entity.getId())
                 .imageUrl(hasText(entity.getImageUrl()) ? entity.getImageUrl() : "/front/sample/450-700.png")
-                .linkUrl(entity.getLinkUrl())
+                .linkUrl(FrontPagePathUtils.normalizeInternalPagePath(entity.getLinkUrl()))
                 .displayOrder(entity.getDisplayOrder())
                 .build();
     }

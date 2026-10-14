@@ -301,12 +301,12 @@
 								</div>
 
 								<div class="article-wrap">
-									<a href="/event" class="iceM-go">이벤트 전체 보기<s></s></a>
+									<a href="/eventPage" class="iceM-go">이벤트 전체 보기<s></s></a>
 
 									<ul class="iceM-list" style="padding-left:0px;"
 										th:if="${!#lists.isEmpty(indexEvents)}">
 										<li class="iceM-list_item" th:each="event : ${indexEvents}">
-											<a th:href="@{/event}">
+											<a th:href="@{/eventPage}">
 												<p class="iceMImg-wrap">
 													<img th:src="${event.imageUrl}" th:alt="${event.title}">
 												</p>
@@ -320,7 +320,7 @@
 									<ul class="iceM-list" style="padding-left:0px;"
 										th:if="${#lists.isEmpty(indexEvents)}">
 										<li class="iceM-list_item" th:each="i : ${#numbers.sequence(1, 5)}">
-											<a th:href="@{/event}">
+											<a th:href="@{/eventPage}">
 												<p class="iceMImg-wrap">
 													<img src="/front/sample/400-600.png" alt="이벤트 준비중">
 												</p>

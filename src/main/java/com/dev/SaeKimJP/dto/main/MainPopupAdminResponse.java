@@ -2,6 +2,7 @@ package com.dev.SaeKimJP.dto.main;
 import java.time.LocalDate;
 
 import com.dev.SaeKimJP.model.main.MainPopup;
+import com.dev.SaeKimJP.util.FrontPagePathUtils;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -23,7 +24,7 @@ public class MainPopupAdminResponse {
         return MainPopupAdminResponse.builder()
                 .id(entity.getId())
                 .imageUrl(hasText(entity.getImageUrl()) ? entity.getImageUrl() : "/front/sample/450-700.png")
-                .linkUrl(entity.getLinkUrl())
+                .linkUrl(FrontPagePathUtils.normalizeInternalPagePath(entity.getLinkUrl()))
                 .displayOrder(entity.getDisplayOrder())
                 .useDisplayPeriod(Boolean.TRUE.equals(entity.getUseDisplayPeriod()))
                 .displayStartDate(entity.getDisplayStartDate())
