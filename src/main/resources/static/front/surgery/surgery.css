@@ -416,3 +416,40 @@ body.sk-surgery-page .btn_top > s { --sk-hover-duration: 360ms; }
  .sk-surgery .sk-hero-copy { padding: 24px 22px; }
  .sk-surgery .sk-hero-copy h2 { font-size: 30px; }
 }
+
+/* 2026-10-14: supplied portraits are all 1536 x 1024 (3:2).
+   Preserve the complete photo in heroes, explanations, cards and the viewer.
+   Instructional diagrams keep their own intrinsic dimensions and layout. */
+.sk-surgery .sk-hero-photo { background: #e8f0f8; }
+.sk-surgery .sk-hero-photo img.sk-model-image {
+ width: 100%; height: auto; max-width: 760px; max-height: none;
+ aspect-ratio: 3 / 2; object-fit: contain; object-position: center;
+}
+.sk-surgery .sk-figure:has(img.sk-model-image) { --sk-source-width: 1536px; }
+.sk-surgery .sk-figure:has(img.sk-model-image) > .sk-zoom:has(img.sk-model-image) {
+ display: block; width: 100%; height: auto; aspect-ratio: 3 / 2;
+ max-height: none; padding: 0; margin: 0 auto; max-width: 660px;
+}
+.sk-surgery .sk-figure:has(img.sk-model-image) > .sk-zoom > img.sk-model-image {
+ display: block; position: static; inset: auto; width: 100%; height: auto;
+ max-width: 100%; max-height: none; margin: 0; aspect-ratio: 3 / 2;
+ object-fit: contain; object-position: center;
+}
+.sk-surgery .sk-zoom:hover img.sk-model-image { transform: none; }
+.sk-surgery .sk-slide-card > img.sk-model-image {
+ width: 100%; height: auto; flex: 0 0 auto; aspect-ratio: 3 / 2;
+ object-fit: contain; object-position: center; background: #e8f0f8;
+}
+.sk-surgery .sk-slide-card:hover > img.sk-model-image { transform: none; }
+.sk-surgery .sk-photo-notes ul {
+ list-style: none; padding: 0; display: flex; flex-wrap: wrap;
+ justify-content: center; gap: 8px; margin: 0;
+}
+.sk-surgery .sk-photo-notes li {
+ padding: 7px 12px; border-radius: 8px; background: #fff;
+ color: var(--sk-ink); font-size: 14px; line-height: 1.5;
+}
+@media (max-width: 760px) {
+ .sk-surgery .sk-hero-photo img.sk-model-image { max-width: 600px; }
+ .sk-surgery .sk-photo-notes li { font-size: 13px; padding: 6px 10px; }
+}
