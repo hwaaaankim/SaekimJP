@@ -1,0 +1,554 @@
+/* 2026-10-16 | Local card layouts for the existing 2030 / 4050 lifting tabs.
+   Loaded only by young.html. Shared surgery styles, JS and image files stay intact. */
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-core-grid,
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-plan-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 24px;
+}
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-card,
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-step {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #e4eaf2;
+  border-radius: 20px;
+  background: #f5f7fa;
+  overflow: hidden;
+  box-shadow: none;
+}
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-media {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 3 / 2;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  background: #edf2f7;
+}
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-zoom {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  appearance: none;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-zoom img {
+  display: block;
+  position: static;
+  width: 100%;
+  height: 100%;
+  max-width: min(100%, var(--sk-lift-source-width, 100%));
+  max-height: 100%;
+  margin: auto;
+  object-fit: contain;
+  object-position: center center;
+  transform: none;
+}
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-zoom-icon {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #d9e2ef;
+  border-radius: 50%;
+  background: #ffffffed;
+  color: #335f97;
+  pointer-events: none;
+  transition: background .3s ease;
+}
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-zoom-icon svg { width: 18px; height: 18px; }
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-zoom:hover .sk-lift-zoom-icon { background: #e3edfc; }
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-zoom:focus-visible { outline-offset: -4px; }
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-copy { padding: 24px 12px 16px; min-width: 0; }
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-copy h4 {
+  margin: 0 0 20px;
+  padding: 0;
+  min-height: 2.9em;
+  font-size: clamp(20px, 1.55vw, 24px);
+  font-weight: 700;
+  line-height: 1.45;
+  text-align: center;
+  color: var(--sk-ink);
+}
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-copy h4 strong {
+  display: block;
+  color: var(--sk-blue);
+  font-weight: 700;
+}
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-checks {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-checks li {
+  position: relative;
+  padding-left: 27px;
+  color: #42536a;
+  font-size: 16px;
+  line-height: 1.8;
+  text-align: left;
+}
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-checks li::before {
+  content: "✓";
+  position: absolute;
+  top: .23em;
+  left: 0;
+  display: grid;
+  place-items: center;
+  width: 19px;
+  height: 19px;
+  border: 1.5px solid #7aa6df;
+  border-radius: 50%;
+  color: #3976c5;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+}
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-copy p,
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-plan p {
+  margin: 0;
+  max-width: none;
+  color: #52637a;
+  font-size: 16px;
+  line-height: 1.8;
+  text-align: left;
+}
+/* Existing carousel handles controls, swipe, keyboard and right-edge width. */
+#young-lifting-2030 .sk-lift-step-rail { list-style: none; padding-left: 0; align-items: stretch; }
+#young-lifting-2030 .sk-lift-step {
+  flex: 0 0 clamp(300px, 29vw, 420px);
+  height: auto;
+  min-height: 0;
+  transform: none;
+  color: var(--sk-ink);
+  cursor: default;
+}
+#young-lifting-2030 .sk-lift-step:hover,
+#young-lifting-2030 .sk-lift-step:active { transform: none; box-shadow: none; }
+#young-lifting-2030 .sk-lift-step .sk-lift-copy { flex: 1; padding: 22px 12px 14px; }
+#young-lifting-2030 .sk-lift-step .sk-lift-copy h4 {
+  min-height: max(2.9em, var(--sk-card-title-height, 0px));
+  margin-bottom: 12px;
+  font-size: 21px;
+  text-align: left;
+}
+:is(#young-lifting-2030, #young-lifting-4050) .sk-lift-step-number { color: #648fc8; font-variant-numeric: tabular-nums; }
+#young-lifting-2030 .sk-lift-step-badge {
+  position: absolute;
+  z-index: 1;
+  top: 12px;
+  left: 12px;
+  padding: 6px 11px;
+  border: 1px solid #ffffff70;
+  border-radius: 8px;
+  color: #fff;
+  background: #275da5;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: .04em;
+  pointer-events: none;
+}
+#young-lifting-2030 .sk-lift-controls { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+#young-lifting-2030 .sk-lift-controls p { margin: 0; max-width: none; font-size: 14px; line-height: 1.6; }
+#young-lifting-2030 .sk-lift-controls > div { display: flex; flex-shrink: 0; gap: 8px; }
+#young-lifting-2030 .sk-lift-controls button { display: grid; place-items: center; width: 44px; height: 44px; margin: 0; padding: 0; }
+#young-lifting-2030 .sk-lift-controls svg { width: 22px; height: 22px; }
+#young-lifting-2030 .sk-lift-controls [data-slide="-1"] svg { transform: rotate(180deg); }
+/* Separate continuous explanations without changing the existing surgery copy. */
+#young-lifting-2030 .sk-lift-reasons { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin: 0; padding: 0; list-style: none; }
+#young-lifting-2030 .sk-lift-reasons li { border: 1px solid #e4eaf2; border-radius: 12px; padding: 22px; background: #f5f7fa; font-size: 17px; line-height: 1.8; }
+#young-lifting-4050 .sk-lift-plan { border: 1px solid #e4eaf2; border-radius: 16px; padding: 26px; background: #f5f7fa; }
+#young-lifting-4050 .sk-lift-plan-number { display: block; margin-bottom: 14px; color: #648fc8; font-size: 15px; font-weight: 700; }
+#young-lifting-4050 .sk-lift-plan h4 { margin: 0 0 14px; font-size: 23px; line-height: 1.45; }
+#young-lifting-4050 .sk-lift-related-grid h4 { min-height: 0; margin-bottom: 14px; }
+@media (min-width: 641px) and (max-width: 1000px) {
+  :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-core-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-card { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); align-items: center; gap: 24px; padding: 18px; }
+  :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-copy { padding: 0; }
+  :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-copy h4 { min-height: 0; margin-bottom: 16px; text-align: left; font-size: 21px; }
+}
+@media (max-width: 1000px) {
+  #young-lifting-4050 .sk-lift-plan-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  #young-lifting-2030 .sk-lift-step { flex-basis: clamp(300px, 42vw, 380px); }
+}
+@media (max-width: 760px) {
+  #young-lifting-2030 .sk-lift-step { flex-basis: min(82vw, 360px); padding: 10px; }
+  #young-lifting-2030 .sk-lift-step .sk-lift-copy { padding: 20px 10px 12px; }
+  #young-lifting-2030 .sk-lift-step .sk-lift-copy h4 { font-size: 19px; }
+  #young-lifting-2030 .sk-lift-reasons { grid-template-columns: minmax(0, 1fr); }
+  #young-lifting-2030 .sk-lift-reasons li { padding: 18px; font-size: 16px; }
+  #young-lifting-2030 .sk-lift-controls p { font-size: 13px; }
+}
+@media (max-width: 640px) {
+  :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-core-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-card { padding: 10px; border-radius: 16px; }
+  :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-copy { padding: 22px 12px 16px; }
+  :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-copy h4 { min-height: 0; margin-bottom: 20px; font-size: 21px; }
+  :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-checks { gap: 12px; }
+  #young-lifting-4050 .sk-lift-plan { padding: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-zoom-icon { transition: none; }
+}
+
+/* Match title rows to the actual text height without adding empty fixed space. */
+@media (min-width: 1001px) {
+  @supports (grid-template-rows: subgrid) {
+    :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-core-grid > .sk-lift-card {
+      display: grid;
+      grid-template-rows: subgrid;
+      grid-row: span 3;
+      row-gap: 22px;
+    }
+    :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-core-grid .sk-lift-copy { display: contents; }
+    :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-core-grid .sk-lift-copy h4 { min-height: 0; margin: 0 12px; }
+    :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-core-grid .sk-lift-checks,
+    :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-core-grid .sk-lift-copy > p { margin: 0 12px 16px; }
+  }
+}
+:is(#young-lifting-2030, #young-lifting-4050) .sk-section-no { white-space: nowrap; }
+
+/* 2026-10-16 | Forehead lift: pair each explanation with its own illustration.
+   These selectors affect only the forehead-lift tab. */
+#young-forehead-lift .sk-forehead-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  height: auto;
+  min-height: 0;
+  padding: 12px;
+  border: 1px solid #e4eaf2;
+  border-radius: 20px;
+  background: #f5f7fa;
+  color: var(--sk-ink);
+  overflow: hidden;
+  box-shadow: none;
+}
+#young-forehead-lift .sk-forehead-rail { list-style: none; padding-left: 0; align-items: stretch; }
+#young-forehead-lift .sk-forehead-rail > .sk-forehead-card { flex: 0 0 clamp(320px, 30vw, 440px); cursor: default; }
+#young-forehead-lift .sk-forehead-card:hover,
+#young-forehead-lift .sk-forehead-card:active { transform: none; box-shadow: none; }
+#young-forehead-lift .sk-forehead-media {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 16 / 9;
+  flex: 0 0 auto;
+  border-radius: 12px;
+  background: #edf2f7;
+}
+#young-forehead-lift .sk-forehead-zoom {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  appearance: none;
+  background: transparent;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+#young-forehead-lift .sk-forehead-zoom img {
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  position: static;
+  width: 100%;
+  height: 100%;
+  max-width: min(100%, var(--sk-forehead-source-width, 100%));
+  max-height: 100%;
+  margin: auto;
+  object-fit: contain;
+  object-position: center center;
+  transform: none;
+}
+#young-forehead-lift .sk-forehead-badge {
+  position: absolute;
+  z-index: 1;
+  top: 12px;
+  left: 12px;
+  padding: 6px 10px;
+  border: 1px solid #ffffff70;
+  border-radius: 8px;
+  color: #fff;
+  background: #275da5;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: .04em;
+  pointer-events: none;
+}
+#young-forehead-lift .sk-forehead-zoom-icon {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #d9e2ef;
+  border-radius: 50%;
+  background: #ffffffed;
+  color: #335f97;
+  pointer-events: none;
+  transition: background .3s ease;
+}
+#young-forehead-lift .sk-forehead-zoom-icon svg { width: 18px; height: 18px; }
+#young-forehead-lift .sk-forehead-zoom:hover .sk-forehead-zoom-icon { background: #e3edfc; }
+#young-forehead-lift .sk-forehead-zoom:focus-visible { outline-offset: -4px; }
+#young-forehead-lift .sk-forehead-copy {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 16px;
+  min-width: 0;
+  padding: 24px 12px 14px;
+}
+#young-forehead-lift .sk-forehead-copy h4 {
+  min-height: var(--sk-card-title-height, 0px);
+  margin: 0;
+  padding: 0;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--sk-ink);
+  text-align: left;
+}
+#young-forehead-lift .sk-forehead-copy p {
+  margin: 0;
+  max-width: none;
+  color: #52637a;
+  font-size: 16px;
+  line-height: 1.8;
+  text-align: left;
+}
+#young-forehead-lift .sk-forehead-copy .sk-forehead-takeaway {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid #dce5f0;
+  color: #275da5;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.7;
+}
+#young-forehead-lift .sk-forehead-takeaway > span { flex: 0 0 auto; font-weight: 700; }
+#young-forehead-lift .sk-forehead-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+#young-forehead-lift .sk-forehead-steps .sk-forehead-media { aspect-ratio: 1280 / 785; }
+#young-forehead-lift .sk-forehead-related { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#young-forehead-lift .sk-forehead-related .sk-forehead-media { aspect-ratio: 1280 / 870; max-height: 320px; }
+#young-forehead-lift .sk-forehead-controls { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+#young-forehead-lift .sk-forehead-controls p { margin: 0; max-width: none; font-size: 14px; line-height: 1.6; }
+#young-forehead-lift .sk-forehead-controls > div { display: flex; flex-shrink: 0; gap: 8px; }
+#young-forehead-lift .sk-forehead-controls button { display: grid; place-items: center; width: 44px; height: 44px; margin: 0; padding: 0; }
+#young-forehead-lift .sk-forehead-controls svg { width: 22px; height: 22px; }
+#young-forehead-lift .sk-forehead-controls [data-slide="-1"] svg { transform: rotate(180deg); }
+#young-forehead-lift .sk-section-no { white-space: nowrap; }
+@media (max-width: 1100px) {
+  #young-forehead-lift .sk-forehead-rail > .sk-forehead-card { flex-basis: clamp(320px, 43vw, 420px); }
+  #young-forehead-lift .sk-forehead-copy h4 { font-size: 20px; }
+}
+@media (min-width: 641px) and (max-width: 1000px) {
+  #young-forehead-lift .sk-forehead-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  #young-forehead-lift .sk-forehead-grid > .sk-forehead-card { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); align-items: center; gap: 24px; padding: 18px; }
+  #young-forehead-lift .sk-forehead-grid .sk-forehead-copy { padding: 0; }
+}
+@media (max-width: 760px) {
+  #young-forehead-lift .sk-forehead-rail > .sk-forehead-card { flex-basis: min(86vw, 380px); }
+  #young-forehead-lift .sk-forehead-card { padding: 10px; border-radius: 16px; }
+  #young-forehead-lift .sk-forehead-copy { gap: 14px; padding: 20px 10px 12px; }
+  #young-forehead-lift .sk-forehead-badge { top: 10px; left: 10px; padding: 5px 9px; font-size: 11px; }
+  #young-forehead-lift .sk-forehead-controls p { font-size: 13px; }
+}
+@media (max-width: 640px) {
+  #young-forehead-lift .sk-forehead-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #young-forehead-lift .sk-forehead-zoom-icon { transition: none; }
+}
+
+/* 2026-10-16 | Independent subject / method hierarchy, only on young.html. */
+.sk-theme-young .sk-section-no { white-space: nowrap; }
+.sk-theme-young .sk-nested-tabs .sk-section-head {
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  border: 1px solid #dfe7f0;
+  border-radius: 16px;
+  background: #f6f8fb;
+}
+.sk-theme-young .sk-nested-tabs .sk-section-head > .sk-section-no {
+  display: grid;
+  place-items: center;
+  flex: 0 0 46px;
+  min-width: 46px;
+  height: 46px;
+  align-self: center;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #cad9ec;
+  border-radius: 13px;
+  background: #e8eff9;
+  color: #315e94;
+  font-family: inherit !important;
+  font-size: 20px !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  font-variant-numeric: tabular-nums;
+  transform: none;
+}
+.sk-theme-young .sk-nested-tabs .sk-section-head h3 {
+  margin: 4px 0 0;
+  font-size: clamp(21px, 2vw, 30px);
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.sk-theme-young .sk-nested-tabs .sk-section-head .sk-eyebrow { font-size: 10px; letter-spacing: .14em; }
+.sk-theme-young .sk-nested-tabs .sk-section-head > .sk-icon { margin-top: 0; width: 24px; height: 24px; flex: 0 0 24px; }
+.sk-theme-young .sk-young-item-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  width: fit-content;
+  padding: 6px 10px;
+  border: 1px solid #d6e2f1;
+  border-radius: 8px;
+  background: #edf3fb;
+  color: #315e94;
+  font-family: inherit !important;
+  font-size: 11px !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  letter-spacing: .07em;
+  white-space: nowrap;
+}
+.sk-theme-young .sk-young-item-label b { font-size: 14px; font-weight: 750; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.sk-theme-young .sk-young-age-plan {
+  padding: clamp(20px, 2.6vw, 36px);
+  border: 1px solid #e0e7f0;
+  border-radius: 22px;
+  background: #f5f7fa;
+}
+.sk-theme-young .sk-young-age-plan > p:first-child { margin: 0; font-size: 17px; line-height: 1.8; }
+.sk-theme-young .sk-young-age-plan > p:first-child strong { color: #274b79; }
+.sk-theme-young .sk-young-age-plan .sk-age-cards { gap: 16px; margin: 24px 0; }
+.sk-theme-young .sk-young-age-plan .sk-age-cards > article {
+  position: relative;
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid #dce5f0;
+  border-top: 3px solid #7f9fc6;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: none;
+  transform: none;
+}
+.sk-theme-young .sk-young-age-plan .sk-age-cards h4 { margin: 20px 0 16px; color: #203b5f; font-size: clamp(23px, 2vw, 28px); line-height: 1.4; }
+.sk-theme-young .sk-young-age-plan .sk-age-cards ul { margin: 0; padding: 16px 0 0; border-top: 1px solid #e8edf4; gap: 10px; }
+.sk-theme-young .sk-young-age-plan .sk-age-cards li { font-size: 15px; line-height: 1.6; }
+.sk-theme-young .sk-young-age-plan .sk-disclaimer { margin: 0; font-size: 13px; line-height: 1.8; }
+
+/* The neck-lift introduction keeps the original image and copy in one card. */
+#detail-189 .sk-young-intro-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(24px, 3vw, 44px);
+  padding: clamp(20px, 3vw, 36px);
+  border: 1px solid #e0e7f0;
+  border-radius: 22px;
+  background: #f5f7fa;
+}
+#detail-189 .sk-editorial-copy,
+#detail-189 .sk-editorial-visual { min-width: 0; }
+#detail-189 .sk-young-intro-lead { margin: 0 0 24px; color: #344d6b; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.85; }
+#detail-189 .sk-young-feature-list { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+#detail-189 .sk-young-feature-list > li {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  margin: 0;
+  padding: 16px;
+  border: 1px solid #e1e8f1;
+  border-radius: 12px;
+  background: #fff;
+}
+#detail-189 .sk-young-feature-list p { margin: 0; color: #40536b; font-size: 16px; line-height: 1.7; overflow-wrap: anywhere; }
+#detail-189 .sk-editorial-visual .sk-gallery { margin: 0; }
+#detail-189 .sk-editorial-visual .sk-figure { margin: 0; padding: 12px; border-radius: 16px; background: #eaf0f7; }
+#detail-189 .sk-figure > .sk-zoom:has(img.sk-model-image) {
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  aspect-ratio: 3 / 2;
+  width: 100%;
+  max-width: none;
+  padding: 0;
+  border-radius: 10px;
+}
+#detail-189 .sk-figure > .sk-zoom > img.sk-model-image {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-height: 100%;
+  margin: 0;
+  object-fit: contain;
+  object-position: center;
+}
+#detail-189 .sk-zoom > span { top: 10px; right: 10px; bottom: auto; }
+#detail-189 .sk-photo-notes { margin: 12px 0 0; }
+@media (max-width: 1100px) {
+  .sk-theme-young .sk-young-age-plan .sk-age-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 900px) {
+  #detail-189 .sk-young-intro-card { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  #detail-189 .sk-editorial-visual { width: 100%; max-width: 580px; justify-self: center; }
+}
+@media (max-width: 640px) {
+  .sk-theme-young .sk-nested-tabs .sk-section-head { gap: 12px; padding: 16px; border-radius: 12px; }
+  .sk-theme-young .sk-nested-tabs .sk-section-head > .sk-section-no { min-width: 38px; flex-basis: 38px; height: 38px; border-radius: 10px; font-size: 17px !important; }
+  .sk-theme-young .sk-nested-tabs .sk-section-head > .sk-icon { display: none; }
+  .sk-theme-young .sk-young-age-plan .sk-age-cards { grid-template-columns: minmax(0, 1fr); gap: 12px; margin: 20px 0; }
+  .sk-theme-young .sk-young-age-plan .sk-age-cards > article { padding: 20px; }
+  .sk-theme-young .sk-young-age-plan .sk-age-cards h4 { margin: 14px 0; }
+  .sk-theme-young .sk-young-age-plan > p:first-child { font-size: 15px; }
+  #detail-189 .sk-young-feature-list > li { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 16px; }
+  #detail-189 .sk-young-feature-list p { font-size: 15px; }
+}

@@ -1,0 +1,161 @@
+/* 2026-10-16 | Page-local cards for the requested facial-contouring sections.
+   Shared surgery styles/scripts and other procedure pages are not changed. */
+.sk-theme-contouring :is(#detail-222, #detail-225, #detail-237, #detail-238) > .sk-section-head > .sk-section-no { white-space: nowrap; }
+.sk-theme-contouring .sk-contour-pairs,
+.sk-theme-contouring .sk-contour-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sk-theme-contouring .sk-contour-pairs { grid-template-columns: minmax(0, 1fr); }
+.sk-theme-contouring .sk-contour-grid--two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.sk-theme-contouring .sk-contour-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  margin: 0;
+  padding: 12px;
+  border: 1px solid #dfe7f1;
+  border-radius: 20px;
+  background: #f5f7fa;
+  overflow: hidden;
+}
+.sk-theme-contouring .sk-contour-card--split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 0;
+}
+.sk-theme-contouring .sk-contour-media {
+  position: relative;
+  flex: 0 0 auto;
+  width: 100%;
+  min-width: 0;
+  aspect-ratio: 3 / 2;
+  max-height: 360px;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+.sk-theme-contouring .sk-contour-zoom {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template: minmax(0, 1fr) / minmax(0, 1fr);
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  appearance: none;
+  background: transparent;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+.sk-theme-contouring .sk-contour-zoom img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  max-width: min(100%, var(--sk-contour-source-width, 100%));
+  max-height: 100%;
+  margin: auto;
+  object-fit: contain;
+  object-position: center;
+}
+.sk-theme-contouring .sk-contour-zoom-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid #dce5ef;
+  border-radius: 50%;
+  background: #ffffffed;
+  color: #315f99;
+  pointer-events: none;
+  transition: background .3s ease;
+}
+.sk-theme-contouring .sk-contour-zoom-icon svg { width: 18px; height: 18px; }
+.sk-theme-contouring .sk-contour-zoom:hover .sk-contour-zoom-icon { background: #e6effc; }
+.sk-theme-contouring .sk-contour-zoom:focus-visible { outline: 3px solid #315f99; outline-offset: -4px; }
+.sk-theme-contouring .sk-contour-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+  min-width: 0;
+  padding: 24px 16px 20px;
+}
+.sk-theme-contouring .sk-contour-card--split .sk-contour-copy { padding: clamp(24px, 3vw, 44px); }
+.sk-theme-contouring .sk-contour-badge {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 6px 10px;
+  border: 1px solid #cedcf0;
+  border-radius: 8px;
+  background: #eaf1fc;
+  color: #315f99;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: .07em;
+  font-variant-numeric: tabular-nums;
+}
+.sk-theme-contouring .sk-contour-copy h4 {
+  margin: 0;
+  padding: 0;
+  color: var(--sk-ink);
+  font-size: clamp(20px, 1.65vw, 25px);
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: left;
+}
+.sk-theme-contouring .sk-contour-copy p {
+  max-width: none;
+  margin: 0;
+  color: #506178;
+  font-size: 16px;
+  line-height: 1.85;
+  text-align: left;
+}
+.sk-theme-contouring .sk-contour-copy p strong { color: #284f82; }
+.sk-theme-contouring .sk-section > .sk-contour-intro { margin-bottom: 24px; }
+.sk-theme-contouring .sk-contour-subhead { display: grid; gap: 6px; margin: 0 0 20px; }
+.sk-theme-contouring .sk-contour-kicker { color: #315f99; font-size: 11px; font-weight: 700; line-height: 1.4; letter-spacing: .15em; }
+.sk-theme-contouring .sk-contour-subhead h4 { margin: 0; color: var(--sk-ink); font-size: clamp(22px, 2vw, 28px); font-weight: 700; line-height: 1.4; }
+.sk-theme-contouring .sk-contour-method { margin-top: 32px; padding-top: 28px; border-top: 1px solid #dfe7f1; }
+.sk-theme-contouring .sk-contour-steps .sk-contour-media { aspect-ratio: 1280 / 916; }
+@media (min-width: 641px) and (max-width: 1000px) {
+  .sk-theme-contouring .sk-contour-grid:not(.sk-contour-grid--two) { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .sk-theme-contouring .sk-contour-grid:not(.sk-contour-grid--two) > .sk-contour-card { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; }
+}
+@media (max-width: 760px) {
+  .sk-theme-contouring .sk-contour-pairs,
+  .sk-theme-contouring .sk-contour-grid--two { gap: 20px; }
+  .sk-theme-contouring .sk-contour-grid--two { grid-template-columns: minmax(0, 1fr); }
+  .sk-theme-contouring .sk-contour-copy,
+  .sk-theme-contouring .sk-contour-card--split .sk-contour-copy { gap: 12px; padding: 20px 12px 14px; }
+  .sk-theme-contouring .sk-contour-copy p { font-size: 15px; line-height: 1.8; }
+}
+@media (max-width: 640px) {
+  .sk-theme-contouring .sk-contour-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .sk-theme-contouring .sk-contour-card--split { grid-template-columns: minmax(0, 1fr); }
+  .sk-theme-contouring .sk-contour-card { padding: 10px; border-radius: 16px; }
+  .sk-theme-contouring .sk-contour-copy h4 { font-size: 20px; }
+  .sk-theme-contouring .sk-contour-method { margin-top: 24px; padding-top: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sk-theme-contouring .sk-contour-zoom-icon { transition: none; }
+}

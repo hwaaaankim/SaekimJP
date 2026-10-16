@@ -55,7 +55,18 @@ const observer='IntersectionObserver' in window?new IntersectionObserver(entries
 function reveal(){
  scheduleAlignment();
  const active=main.querySelector(':scope > .sk-panels > [data-panel]:not([hidden]):not(.is-leaving)');
+ if(active&&root.classList.contains('sk-theme-young')){
+  // Each procedure and each nested method owns its own sequence, even during crossfades.
+  [active,...active.querySelectorAll('[data-panel]')].forEach(panel=>{
+   const sections=[...panel.querySelectorAll('.sk-section')].filter(section=>section.closest('[data-panel]')===panel);
+   sections.forEach((section,index)=>{
+    const number=section.querySelector(':scope > .sk-section-head > .sk-section-no');
+    if(number)number.textContent=String(index+1).padStart(2,'0');
+   });
+  });
+ }else{
  if(active)[...active.querySelectorAll('.sk-section')].filter(e=>!e.closest('[hidden]')).forEach((e,i)=>{const n=e.querySelector('.sk-section-no');if(n)n.textContent=String(i+1).padStart(2,'0')});
+ }
  root.querySelectorAll('.sk-reveal:not(.is-visible)').forEach(e=>{if(!e.closest('[hidden]')){if(observer&&!motion.matches)observer.observe(e);else e.classList.add('is-visible')}});
 }
 function cancel(st){
