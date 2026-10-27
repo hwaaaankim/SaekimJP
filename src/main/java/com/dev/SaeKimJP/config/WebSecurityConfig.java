@@ -13,6 +13,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.session.HttpSessionEventPublisher;
 import org.thymeleaf.extras.springsecurity6.dialect.SpringSecurityDialect;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.security.web.authentication.HttpStatusEntryPoint;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import lombok.RequiredArgsConstructor;
 
 @Configuration
@@ -70,6 +73,10 @@ public class WebSecurityConfig {
                 .requestMatchers(visitorsUrls).permitAll()
                 .anyRequest().permitAll()
             )
+            .exceptionHandling(exceptions -> exceptions.defaultAuthenticationEntryPointFor(
+                new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED),
+                new AntPathRequestMatcher("/admin/api/surgery-page-copy/**")
+            ))
             .formLogin(form -> form
                 .loginPage("/loginForm")
                 .usernameParameter("username")

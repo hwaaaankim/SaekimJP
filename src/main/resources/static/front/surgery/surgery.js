@@ -159,8 +159,8 @@ root.querySelectorAll('[data-carousel]').forEach(carousel=>{
 // Diagram selection works identically with pointer, keyboard and touch.
 root.querySelectorAll('.sk-reason-layout').forEach(diagram=>{
  const buttons=[...diagram.querySelectorAll('button[data-reason]')],label=diagram.querySelector('.sk-donut-label');
- function choose(button){buttons.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));diagram.querySelectorAll('.sk-donut-segment').forEach(s=>{s.classList.toggle('is-active',s.dataset.reason===button.dataset.reason);s.classList.toggle('is-muted',s.dataset.reason!==button.dataset.reason)});label.querySelector('span').textContent=button.dataset.name;label.querySelector('strong').replaceChildren(document.createTextNode(button.dataset.percent),Object.assign(document.createElement('small'),{textContent:'%'}))}
- buttons.forEach(b=>b.addEventListener('click',()=>choose(b)));choose(buttons[0]);
+ function choose(button){buttons.forEach(b=>b.setAttribute('aria-pressed',String(b===button)));diagram.querySelectorAll('.sk-donut-segment').forEach(s=>{s.classList.toggle('is-active',s.dataset.reason===button.dataset.reason);s.classList.toggle('is-muted',s.dataset.reason!==button.dataset.reason)});label.querySelector('span').textContent=button.querySelector('b').textContent;label.querySelector('strong').replaceChildren(document.createTextNode(button.dataset.percent),Object.assign(document.createElement('small'),{textContent:'%'}))}
+ buttons.forEach(b=>b.addEventListener('click',()=>choose(b)));new MutationObserver(()=>choose(buttons.find(b=>b.getAttribute('aria-pressed')==='true')||buttons[0])).observe(diagram.querySelector('.sk-reason-options'),{subtree:true,characterData:true,childList:true});choose(buttons[0]);
 });
 // Native dialog preserves focus trapping. Each set is explicitly scoped to its content group.
 const dialog=root.querySelector('.sk-image-dialog'),stage=dialog.querySelector('.sk-viewer-stage'),prev=dialog.querySelector('.sk-viewer-prev'),next=dialog.querySelector('.sk-viewer-next'),error=dialog.querySelector('.sk-viewer-error');

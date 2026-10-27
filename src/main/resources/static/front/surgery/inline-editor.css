@@ -1,0 +1,26 @@
+.sk-surgery sk-copy { white-space: pre-line; overflow-wrap: anywhere; }
+.sk-surgery sk-copy[hidden] { display:none !important; }
+.sk-surgery .sk-copy-controls { display:inline-flex; flex-wrap:wrap; align-items:center; gap:5px; vertical-align:middle; margin-inline-start:6px; max-width:100%; font:13px/1.5 'Saekim Noto JP',sans-serif; letter-spacing:normal; }
+.sk-surgery .sk-copy-button { display:inline-block; flex:none; min-width:44px; min-height:32px; padding:4px 9px; border:1px solid #9bb0cb; border-radius:6px; background:#fff; color:#184477; font:500 12px/1.5 'Saekim Noto JP',sans-serif; cursor:pointer; box-shadow:none; }
+.sk-surgery .sk-copy-button:hover { background:#eaf2ff; }
+.sk-surgery .sk-copy-button:focus-visible,.sk-surgery .sk-copy-input:focus { outline:2px solid #1460bb; outline-offset:2px; }
+.sk-surgery .sk-copy-button:disabled { opacity:.6; cursor:wait; }
+.sk-surgery .sk-copy-input { display:block; flex-basis:100%; width:min(520px,100%); min-width:min(240px,100%); max-width:100%; box-sizing:border-box; padding:10px; border:1px solid #86a4cd; border-radius:6px; background:#fff; color:#172b49; font:400 16px/1.7 'Saekim Noto JP',sans-serif; resize:vertical; white-space:pre-wrap; }
+.sk-surgery .sk-copy-status { flex-basis:100%; color:#a32929; font:400 13px/1.6 'Saekim Noto JP',sans-serif; }
+.sk-surgery .sk-copy-link-wrap { display:flex; flex-wrap:wrap; align-items:center; gap:4px; min-width:0; }
+.sk-surgery .sk-copy-link-wrap > a,.sk-surgery .sk-copy-link-wrap > button { flex:1; min-width:0; }
+.sk-surgery .sk-edit-notice { margin:12px auto; width:min(1440px,calc(100% - 40px)); padding:10px 14px; border:1px solid #bed0e8; border-radius:8px; background:#f2f7ff; color:#184477; font:14px/1.7 'Saekim Noto JP',sans-serif; }
+
+@font-face { font-family:'Surgery Yomogi'; src:url('./fonts/yomogi-japanese.woff2') format('woff2'); font-style:normal; font-weight:400; font-display:swap; }
+html[lang="ja"] .sk-surgery .sk-figure .sk-image-caption,
+html[lang="ja"] .sk-surgery .sk-heading-side .sk-script { font-family:'Surgery Yomogi',cursive !important; font-weight:400 !important; font-style:normal; line-height:1.6; }
+
+html[lang="ja"] .sk-surgery .sk-heading-side .sk-script { font-size:clamp(22px,2vw,30px) !important; text-wrap:balance; }
+@media(max-width:760px) {
+ .sk-surgery .sk-tablist > .sk-copy-link-wrap,
+ .sk-surgery .sk-category-nav > .sk-copy-link-wrap { display:flex; flex-direction:column; align-items:stretch; }
+ .sk-surgery .sk-tablist > .sk-copy-link-wrap > a,
+ .sk-surgery .sk-category-nav > .sk-copy-link-wrap > a { width:100%; flex:auto; }
+ .sk-surgery .sk-tablist > .sk-copy-link-wrap > .sk-copy-controls,
+ .sk-surgery .sk-category-nav > .sk-copy-link-wrap > .sk-copy-controls { align-self:flex-end; margin:2px 0 4px; }
+}

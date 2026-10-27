@@ -1,0 +1,30 @@
+/* Shared public header: the same readable palette in every initial/scroll state. */
+html[lang="ja"] body #header {
+ --front-header-height:110px;
+ height:var(--front-header-height);
+ background:rgba(255,255,255,.94);
+ border-bottom:1px solid #e3e8ef;
+ backdrop-filter:blur(16px);
+ -webkit-backdrop-filter:blur(16px);
+ transition:height .25s ease,background-color .25s ease;
+}
+html[lang="ja"] body #header.scroll { --front-header-height:80px; background:rgba(255,255,255,.98); }
+html[lang="ja"] body #header .header-inner { height:100%; }
+html[lang="ja"] body #header .gnb-menu_link > span,
+html[lang="ja"] body.sk-surgery-page #header .gnb-menu_link > span { color:#17202b; }
+html[lang="ja"] body #header .gnb-menu_link:hover > span,
+html[lang="ja"] body #header .gnb-menu_link:focus-visible > span { color:#094bad; }
+html[lang="ja"] body #header .ham > a > span { background-color:#17202b; }
+html[lang="ja"] body #header .right-wrap > a { color:#fff; background:#000; }
+html[lang="ja"] body #header .snb-menu,
+html[lang="ja"] body #header .snb-menu-bg { top:100%; }
+html[lang="ja"] body #header .snb-menu_link { color:#17202b; }
+html[lang="ja"] body #header .snb-menu_link:hover { color:#094bad; }
+@media(max-width:1024px) {
+ html[lang="ja"] body #header { --front-header-height:80px; }
+ html[lang="ja"] body #header.scroll { --front-header-height:64px; }
+ html[lang="ja"] body #header .header-logo { height:100%; }
+}
+@media(prefers-reduced-motion:reduce) {
+ html[lang="ja"] body #header { transition:none; }
+}

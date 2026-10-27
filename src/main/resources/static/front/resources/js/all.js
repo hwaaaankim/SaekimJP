@@ -217,14 +217,14 @@ var main = {
 		$(window).scroll(function() {
 			var scroll = $(window).scrollTop();
 
-			if ($(".bsc_container").length) {
+			if ($("#header").length) {
 				var bsc_container_location = 10;
 
 				if (scroll >= bsc_container_location) {
-					$("#header").addClass("scroll");
+					// Shared header-state.js owns scroll state.
 					$(".onepage-pagination").addClass("active");
 				} else {
-					$("#header").removeClass("scroll");
+					// Shared header-state.js owns scroll state.
 					$(".onepage-pagination").removeClass("active");
 				}
 			}
@@ -531,3 +531,5 @@ $(window).on("scroll", function() {
 $(window).on("resize", function() {
 	main.resize();
 });
+
+
