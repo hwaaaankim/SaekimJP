@@ -50,7 +50,7 @@ function scrollToValue(target,value){
  const began=performance.now();function frame(now){if(scrollJobs.get(target)!==job)return;const t=Math.min(1,(now-began)/ms),smooth=t*t*(3-2*t);write(start+(end-start)*smooth);if(t<1)job.frame=requestAnimationFrame(frame);else{if(horizontal)target.style.scrollSnapType=job.snap;scrollJobs.delete(target)}}job.frame=requestAnimationFrame(frame);
 }
 window.addEventListener('wheel',()=>stopScroll(window),{passive:true});window.addEventListener('touchstart',()=>stopScroll(window),{passive:true});
-document.querySelector('.btn_top')?.setAttribute('aria-label','페이지 맨 위로');
+document.querySelector('.btn_top')?.setAttribute('aria-label','ページの先頭へ');
 const observer='IntersectionObserver' in window?new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('is-visible');observer.unobserve(e.target)}}),{threshold:0,rootMargin:'0px 0px -16px 0px'}):null;
 function reveal(){
  scheduleAlignment();

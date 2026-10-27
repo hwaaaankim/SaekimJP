@@ -143,6 +143,21 @@ function openBook() {
 }
 
 function openMobileGnbItem(menu) {
+    // Resolve the clicked group instead of opening the first group for every label.
+    if (menu && menu.nodeType === 1) {
+        const item = menu.closest('.mobile-gnb_item');
+        if (!item) return;
+        const expanded = !item.classList.contains('open');
+        document.querySelectorAll('.mobile-gnb-wrap .mobile-gnb_item').forEach(other => {
+            other.classList.remove('open');
+            const trigger = other.querySelector('.mobile-gnb_link');
+            if (trigger) trigger.setAttribute('aria-expanded', 'false');
+        });
+        item.classList.toggle('open', expanded);
+        menu.setAttribute('aria-expanded', String(expanded));
+        return;
+    }
+
 	if (menu == "engloo") {
 		if ($(".mobile-gnb_list li:nth-child(1)").hasClass("open")) {
 			$(".mobile-gnb_list li:nth-child(1)").removeClass("open");
@@ -189,7 +204,7 @@ function openMobileGnbItem(menu) {
 }
 
 function moveToIceMall() {
-	alert("로그인 후 이용해주세요.");
+	alert("ログインしてからご利用ください。");
 	location.href = "/front/join/login.php";
 }
 

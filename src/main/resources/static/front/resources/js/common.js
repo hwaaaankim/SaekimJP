@@ -340,7 +340,7 @@ var common = {
 //sample skin object
 var skin = {
 
-	dataName: ['TOEIC', 'TOEIC Speaking', 'TOEFL ITP', 'JPT', 'SJPT', 'TSC', 'JET', 'JET SPEAKING', 'JET KIDS', 'TOEIC BRIDGE', '상무한검', '일본어검정', 'KPE'],
+	dataName: ['TOEIC', 'TOEIC Speaking', 'TOEFL ITP', 'JPT', 'SJPT', 'TSC', 'JET', 'JET SPEAKING', 'JET KIDS', 'TOEIC BRIDGE', 'ビジネス中国語検定', '日本語検定', 'KPE'],
 	dataClass: ['TOEIC', 'TOEIC_SPEAKING', 'TOEFL_ITP', 'JPT', 'SJPT', 'TSC', 'JET', 'JET_SPEAKING', 'JET_KIDS', 'TOEIC_BRIDGE', 'SANGMUKO', 'JPL', 'KPE'],
 	dataColor: ['#2172d5', '#1d61b4', '#223a5e', '#cf4350', '#2a6fa1', '#876645', '#df446f', '#09a5b4', '#ff803b', '#ecaa18', '#333e5c', '#c2403e', '#3e4452'],
 	chartData: [],
@@ -486,7 +486,7 @@ var chart = {
 							if (!_dataObject.numbering && _dataObject.unit != 'point') {
 								_value = value + '%';
 							} else if (_dataObject.unit == 'point') {
-								_value = value + '점';
+								_value = value + '点';
 							}
 							return _value;
 						}
@@ -918,7 +918,7 @@ var chart = {
 							if (!_dataObject.numbering && _dataObject.unit != 'point') {
 								_value = value + '%';
 							} else if (_dataObject.unit == 'point') {
-								_value = value + '점';
+								_value = value + '点';
 							}
 							return _value;
 						}
@@ -1703,14 +1703,14 @@ function changeBlueBox(genre) {
 function copyEventUrl() {
 	var nowUrl = window.location.href;
 	navigator.clipboard.writeText(nowUrl).then(res => {
-		alert("주소가 복사되었습니다.\n원하는 곳에 붙여넣기 해주세요.");
+		alert("URLをコピーしました。\nご希望の場所に貼り付けてください。");
 	})
 }
 
 // 지도 주소 복사
 function copyAddr(addr) {
 	navigator.clipboard.writeText(addr).then(res => {
-		alert("주소가 복사되었습니다.\n원하는 곳에 붙여넣기 해주세요.");
+		alert("住所をコピーしました。\nご希望の場所に貼り付けてください。");
 	})
 }
 
@@ -1727,7 +1727,6 @@ function openPersonal() {
 
 // 가맹 상담 개인정보 아코디언 함수
 function openPrivate(stance) {
-
 	if (stance == 'one') {
 		if ($(".cs-checkBox li:nth-child(1) .checkbox-cont").css("display") == "none") {
 			$(".cs-checkBox li:nth-child(1)").addClass("active");

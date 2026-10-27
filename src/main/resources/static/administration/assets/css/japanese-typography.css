@@ -1,0 +1,23 @@
+@import url('/front/surgery/fonts-jp.css');
+:root, [data-bs-theme] {
+  --vz-font-sans-serif: "Saekim Noto JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  --vz-body-font-family: var(--vz-font-sans-serif);
+  --vz-body-font-size: .875rem;
+  --vz-body-line-height: 1.65;
+}
+html[lang="ja"] body { font-family: var(--vz-font-sans-serif); line-break: strict; word-break: normal; overflow-wrap: break-word; letter-spacing: normal; }
+html[lang="ja"] :is(h1,h2,h3,h4,h5,h6,.btn,.form-control,.form-select,.nav-link,.dropdown-item,.modal-title,.card-title,label,table,.ql-editor) { font-family: var(--vz-font-sans-serif); letter-spacing: normal; line-break: strict; }
+html[lang="ja"] :is(h1,h2,h3,h4,h5,h6,.card-title,.modal-title) { line-height: 1.5; font-weight: 600; }
+html[lang="ja"] :is(.form-control,.form-select,.btn,.form-label,.form-check-label) { line-height: 1.6; }
+html[lang="ja"] :is(.form-text,.text-muted,.invalid-feedback,.alert) { line-height: 1.7; }
+html[lang="ja"] .navbar-menu .navbar-nav .nav-link { line-height: 1.6; white-space: normal; }
+html[lang="ja"] :is(.table th,.table td) { line-height: 1.6; vertical-align: middle; }
+html[lang="ja"] .table th { min-width: 5em; word-break: normal; }
+html[lang="ja"] .table-responsive { overflow-x: auto; }
+html[lang="ja"] .ql-editor { font-size: 15px; line-height: 1.75; }
+html[lang="ja"] .ql-editor p { line-height: 1.75; }
+@media (max-width: 767px) {
+ html[lang="ja"] :is(.form-control,.form-select) { font-size: 16px; }
+ html[lang="ja"] .page-title-box { gap: 12px; flex-wrap: wrap; }
+ html[lang="ja"] .modal-title { font-size: 19px; }
+}

@@ -117,13 +117,13 @@ public class MainPageFileStorageService {
 
             return new StoredFile(accessUrl, originalFilename, targetFile.toString());
         } catch (IOException e) {
-            throw new RuntimeException("파일 저장 중 오류가 발생했습니다.", e);
+            throw new RuntimeException(com.dev.SaeKimJP.util.UiLanguage.text("파일 저장 중 오류가 발생했습니다.", "ファイルの保存中にエラーが発生しました。"), e);
         }
     }
 
     private void validateFile(MultipartFile file) {
         if (file == null || file.isEmpty()) {
-            throw new IllegalArgumentException("업로드할 파일이 없습니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("업로드할 파일이 없습니다.", "アップロードするファイルがありません。"));
         }
     }
 

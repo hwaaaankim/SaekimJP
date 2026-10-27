@@ -63,7 +63,7 @@
   display: block;
   width: 16px;
   height: 16px;
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-chevron-down-bk.svg)
+  background: url(/front/resources/icons/i-chevron-down-bk.svg)
     no-repeat center/100% auto;
   position: absolute;
   right: 20px;
@@ -654,7 +654,7 @@
   display: inline-block;
   width: 22px;
   height: 22px;
-  background-image: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-chevron-right-wh.svg);
+  background-image: url(/front/resources/icons/i-chevron-right-wh.svg);
   background-repeat: no-repeat;
   background-size: 100% auto;
 }
@@ -887,7 +887,7 @@
   right: 20px;
   top: 50%;
   transform: translateY(-50%);
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-search.svg)
+  background: url(/front/resources/icons/i-search.svg)
     center center no-repeat;
   background-size: 100%;
   font-size: 0;
@@ -937,7 +937,7 @@
   display: block;
   width: 24px;
   height: 24px;
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-add-bk.svg)
+  background: url(/front/resources/icons/i-add-bk.svg)
     center center no-repeat;
 }
 .faq-question.active .faq-open-close > s {
@@ -1214,7 +1214,7 @@
   display: inline-block;
   width: 16px;
   height: 16px;
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-chevron-down-bk.svg)
+  background: url(/front/resources/icons/i-chevron-down-bk.svg)
     no-repeat center/100% auto;
 }
 .select.open {
@@ -1832,7 +1832,7 @@ input[type="checkbox"] {
   padding: 0 15px;
   height: 60px;
   display: inline-block;
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-chevron-down-bk.svg)
+  background: url(/front/resources/icons/i-chevron-down-bk.svg)
     no-repeat right 15px center;
 }
 .select-area + .select-area,
@@ -1862,7 +1862,7 @@ input[type="checkbox"] {
   display: block;
   width: 24px;
   height: 24px;
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-add-bk.svg)
+  background: url(/front/resources/icons/i-add-bk.svg)
     center center no-repeat;
 }
 .check-item.active .checkbox-wrap > a > s {
@@ -2172,17 +2172,17 @@ input[type="checkbox"] {
   top: -50px;
 }
 .cs-list_item:first-child::before {
-  content: "상담실";
+  content: "カウンセリングルーム";
   background: #00b8e4;
   left: calc(50% - 34px);
 }
 .cs-list_item:nth-child(2)::before {
-  content: "수술실";
+  content: "手術室";
   background: rgb(0, 128, 255);
   left: calc(50% - 34px);
 }
 .cs-list_item:last-child::before {
-  content: "회복실";
+  content: "リカバリールーム";
   background: #ff7a00;
   left: calc(50% - 34px);
 }
@@ -2553,7 +2553,7 @@ swiper-container.imgBox-slide::part(pagination) {
 .fc-icon-left-single-arrow:after {
   content: "" !important;
   transform: rotate(180deg);
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-chevron-right.svg)
+  background: url(/front/resources/icons/i-chevron-right.svg)
     center center no-repeat;
   width: 22px;
   height: 22px;
@@ -2562,7 +2562,7 @@ swiper-container.imgBox-slide::part(pagination) {
 }
 .fc-icon-right-single-arrow:after {
   content: "" !important;
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-chevron-right.svg)
+  background: url(/front/resources/icons/i-chevron-right.svg)
     center center no-repeat;
   width: 22px;
   height: 22px;

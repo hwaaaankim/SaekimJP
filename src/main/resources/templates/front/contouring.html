@@ -1,48 +1,49 @@
 <!DOCTYPE html>
 
-<html id="hamHtml" lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html id="hamHtml" lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<th:block th:replace="~{fragments/front/common :: surgeryHead('안면윤곽')}"></th:block>
+	<th:block th:replace="~{fragments/front/common :: surgeryHead(&#x27;輪郭形成&#x27;)}"></th:block>
 	<link rel="stylesheet" href="/front/surgery/contouring-cards.css?v=20261016-cards-1">
+<link rel="stylesheet" href="/front/resources/css/japanese-typography.css?v=20261027-effects-2">
 </head>
 
-<body class="sk-surgery-page" id="hamBody">
+<body class="sk-surgery-page jp-page-contouring" id="hamBody">
 	<div id="container">
 		<th:block th:replace="~{fragments/front/common :: commonHeader(white=${false}, dark=${true})}"></th:block>
 		<main class="sk-surgery sk-theme-contouring" id="main">
 			<div class="sk-shell">
 				<div class="sk-breadcrumb"><a
-						href="/">HOME</a><span>/</span><span>SURGERY</span><span>/</span><strong>안면윤곽</strong></div>
-				<nav aria-label="수술 분야" class="sk-category-nav"><a href="/eyeSurgeryPage"><svg aria-hidden="true"
+						href="/">HOME</a><span>/</span><span>SURGERY</span><span>/</span><strong>輪郭形成</strong></div>
+				<nav aria-label="診療分野" class="sk-category-nav"><a href="/eyeSurgeryPage"><svg aria-hidden="true"
 							class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round"
 							stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 							<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"></path>
 							<circle cx="12" cy="12" r="3"></circle>
-						</svg>눈성형</a><a href="/noseSurgeryPage"><svg aria-hidden="true" class="sk-icon" fill="none"
+						</svg>目元形成</a><a href="/noseSurgeryPage"><svg aria-hidden="true" class="sk-icon" fill="none"
 							stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 							viewBox="0 0 24 24">
 							<path d="M10 3c0 5-1 8-3 12-1 3 2 5 5 3 3 2 6 0 5-3l-2-4M10 21h4"></path>
-						</svg>코성형</a><a href="/youngSurgeryPage"><svg aria-hidden="true" class="sk-icon" fill="none"
+						</svg>鼻形成</a><a href="/youngSurgeryPage"><svg aria-hidden="true" class="sk-icon" fill="none"
 							stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 							viewBox="0 0 24 24">
 							<path d="M5 16c2 4 5 6 7 6s5-2 7-6M5 12V3m0 0L2 6m3-3 3 3M19 12V3m0 0-3 3m3-3 3 3"></path>
-						</svg>동안 · 리프팅</a><a aria-current="page" href="/contouringSurgeryPage"><svg aria-hidden="true"
+						</svg>エイジングケア・リフトアップ</a><a aria-current="page" href="/contouringSurgeryPage"><svg aria-hidden="true"
 							class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round"
 							stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 							<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
-						</svg>안면윤곽</a></nav>
+						</svg>輪郭形成</a></nav>
 				<header class="sk-page-heading">
 					<div><span class="sk-eyebrow">SAEKIM PLASTIC SURGERY</span>
-						<h1>안면윤곽<span><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
+						<h1>輪郭形成<span><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 									stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 									viewBox="0 0 24 24">
 									<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 								</svg></span></h1>
-						<p>선과 비율로 완성하는 입체감</p>
+						<p>ラインと比率がつくる立体感</p>
 					</div>
 					<div class="sk-heading-side"><span class="sk-script">The art of contour.</span>
-						<p>얼굴 골격과 연부조직의 조화를 고려해 부드러운 윤곽을 설계합니다.</p>
+						<p>顔の骨格と軟部組織の調和を考慮し、なめらかな輪郭をデザインします。</p>
 					</div>
 				</header>
 				<div class="sk-selector-label"><span><svg aria-hidden="true" class="sk-icon" fill="none"
@@ -51,44 +52,44 @@
 							<circle cx="12" cy="12" r="9"></circle>
 							<circle cx="12" cy="12" r="4"></circle>
 							<path d="M12 1v4m0 14v4M1 12h4m14 0h4"></path>
-						</svg> 수술 알아보기</span><span>07 PROCEDURES</span></div>
+						</svg> 手術について詳しく見る</span><span>07 PROCEDURES</span></div>
 				<div class="sk-tabs sk-main-tabs" data-major="true" data-tabs="contouring">
-					<div aria-label="수술 종류" class="sk-tablist sk-primary-tabs" data-tablist=""><a class="sk-tab"
+					<div aria-label="手術の種類" class="sk-tablist sk-primary-tabs" data-tablist=""><a class="sk-tab"
 							data-tab="contouring-cheekbone" href="#contouring-cheekbone"
-							id="tab-contouring-cheekbone"><span class="sk-tab-index">01</span>3D 광대축소술<svg
+							id="tab-contouring-cheekbone"><span class="sk-tab-index">01</span>3D頬骨縮小術<svg
 								aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 								stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 								<path d="M4 12h16m-6-6 6 6-6 6"></path>
 							</svg></a><a class="sk-tab" data-tab="contouring-jaw" href="#contouring-jaw"
-							id="tab-contouring-jaw"><span class="sk-tab-index">02</span>사각턱수술<svg aria-hidden="true"
+							id="tab-contouring-jaw"><span class="sk-tab-index">02</span>エラ縮小術<svg aria-hidden="true"
 								class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round"
 								stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 								<path d="M4 12h16m-6-6 6 6-6 6"></path>
 							</svg></a><a class="sk-tab" data-tab="contouring-chin" href="#contouring-chin"
-							id="tab-contouring-chin"><span class="sk-tab-index">03</span>턱끝수술<svg aria-hidden="true"
+							id="tab-contouring-chin"><span class="sk-tab-index">03</span>オトガイ形成術<svg aria-hidden="true"
 								class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round"
 								stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 								<path d="M4 12h16m-6-6 6 6-6 6"></path>
 							</svg></a><a class="sk-tab" data-tab="contouring-contour-revision"
 							href="#contouring-contour-revision" id="tab-contouring-contour-revision"><span
-								class="sk-tab-index">04</span>윤곽재수술<svg aria-hidden="true" class="sk-icon" fill="none"
+								class="sk-tab-index">04</span>輪郭修正手術<svg aria-hidden="true" class="sk-icon" fill="none"
 								stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 								viewBox="0 0 24 24">
 								<path d="M4 12h16m-6-6 6 6-6 6"></path>
 							</svg></a><a class="sk-tab" data-tab="contouring-chin-implant"
 							href="#contouring-chin-implant" id="tab-contouring-chin-implant"><span
-								class="sk-tab-index">05</span>무턱보형물<svg aria-hidden="true" class="sk-icon" fill="none"
+								class="sk-tab-index">05</span>あごプロテーゼ<svg aria-hidden="true" class="sk-icon" fill="none"
 								stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 								viewBox="0 0 24 24">
 								<path d="M4 12h16m-6-6 6 6-6 6"></path>
 							</svg></a><a class="sk-tab" data-tab="contouring-paranasal" href="#contouring-paranasal"
-							id="tab-contouring-paranasal"><span class="sk-tab-index">06</span>귀족보형물<svg
+							id="tab-contouring-paranasal"><span class="sk-tab-index">06</span>鼻翼基部プロテーゼ<svg
 								aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 								stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 								<path d="M4 12h16m-6-6 6 6-6 6"></path>
 							</svg></a><a class="sk-tab" data-tab="contouring-forehead-implant"
 							href="#contouring-forehead-implant" id="tab-contouring-forehead-implant"><span
-								class="sk-tab-index">07</span>이마보형물<svg aria-hidden="true" class="sk-icon" fill="none"
+								class="sk-tab-index">07</span>額プロテーゼ<svg aria-hidden="true" class="sk-icon" fill="none"
 								stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 								viewBox="0 0 24 24">
 								<path d="M4 12h16m-6-6 6 6-6 6"></path>
@@ -97,16 +98,16 @@
 						<article class="sk-tabpanel" data-panel="contouring-cheekbone" data-slug="cheekbone"
 							id="contouring-cheekbone">
 							<header class="sk-procedure-hero">
-								<div class="sk-hero-photo"><img class="sk-model-image" alt="3D 광대축소술 모델 이미지"
+								<div class="sk-hero-photo"><img class="sk-model-image" alt="3D頬骨縮小術 モデル写真"
 										decoding="async" fetchpriority="high" height="1024" loading="eager"
 										src="/front/surgery/images-20261014/contouring/cheekbone/hero.webp" width="1536"
 										srcset="/front/surgery/images-20261014/contouring/cheekbone/hero-768.webp 768w, /front/surgery/images-20261014/contouring/cheekbone/hero.webp 1536w"
 										sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1100px) 50vw, 760px"
 										style="--sk-source-width:1536px;--sk-stage-ratio:3 / 2" /></div>
 								<div class="sk-hero-copy"><span class="sk-eyebrow">FACIAL CONTOURING / 01</span>
-									<h2>3D 광대축소술</h2><span class="sk-fine-rule"></span>
-									<p>광대의 크기를 줄이고 재배치하여 부드럽고 입체적인 얼굴형으로 개선할 수 있는 수술입니다.</p><a class="sk-text-link"
-										href="/contactPage">나에게 맞는 수술 상담 <svg aria-hidden="true" class="sk-icon"
+									<h2>3D頬骨縮小術</h2><span class="sk-fine-rule"></span>
+									<p>頬骨を縮小・再配置し、やわらかく立体的な輪郭を目指す手術です。</p><a class="sk-text-link"
+										href="/contactPage">ご自身に合った治療のご相談 <svg aria-hidden="true" class="sk-icon"
 											fill="none" stroke="currentColor" stroke-linecap="round"
 											stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M4 12h16m-6-6 6 6-6 6"></path>
@@ -117,7 +118,7 @@
 							<section class="sk-section sk-detail sk-reveal" id="detail-212">
 								<header class="sk-section-head"><span class="sk-section-no">01</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>3D 광대축소술 수술정보</h3>
+										<h3>3D頬骨縮小術の手術情報</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -133,16 +134,16 @@
 												<circle cx="12" cy="12" r="9"></circle>
 												<path d="M12 6v6l4 2"></path>
 											</svg>
-											<dt>수술시간</dt>
-											<dd>약 40분 내외</dd>
+											<dt>手術時間</dt>
+											<dd>約40分</dd>
 										</div>
 										<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 												stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 												viewBox="0 0 24 24">
 												<path d="m14 3 7 7M16 5 5 16l3 3L19 8M5 16l-3 6m8-11 3 3"></path>
 											</svg>
-											<dt>마취방법</dt>
-											<dd>전신마취</dd>
+											<dt>麻酔方法</dt>
+											<dd>全身麻酔</dd>
 										</div>
 										<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 												stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -150,35 +151,35 @@
 												<path d="M4 21V6h16v15M9 6V2h6v4M2 21h20M10 21v-6h4v6M9 10h6m-3-3v6">
 												</path>
 											</svg>
-											<dt>입원치료</dt>
-											<dd>당일 퇴원</dd>
+											<dt>入院</dt>
+											<dd>日帰り</dd>
 										</div>
 										<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 												stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 												viewBox="0 0 24 24">
 												<path d="m3 18 15-15 3 3L6 21H3v-3ZM9 7l8 8M5 11l8 8"></path>
 											</svg>
-											<dt>실밥제거</dt>
-											<dd>7일 후 1회(구레나룻 실밥)</dd>
-											<dd>2주 후 1회(입안 실밥)</dd>
+											<dt>抜糸</dt>
+											<dd>7日後に1回（もみあげ部分の抜糸）</dd>
+											<dd>2週間後に1回（口腔内の抜糸）</dd>
 										</div>
 										<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 												stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 												viewBox="0 0 24 24">
 												<path d="M20 7a9 9 0 1 0 1 9M20 2v5h-5M8 12l3 3 5-6"></path>
 											</svg>
-											<dt>회복기간</dt>
-											<dd>1주</dd>
+											<dt>回復期間</dt>
+											<dd>1週間</dd>
 										</div>
 									</dl>
-									<p class="sk-disclaimer">※ 수술시간과 회복기간 등은 개인 상태와 수술 범위에 따라 달라질 수 있습니다.</p>
+									<p class="sk-disclaimer">※手術時間・回復期間などは、患者様の状態と手術範囲により異なります。</p>
 									<div class="sk-candidates">
-										<h4>이런 경우에 고려합니다</h4>
+										<h4>このようなお悩みのある方へ</h4>
 										<ul>
-											<li>튀어나온 광대로 얼굴선이 울퉁불퉁한 경우</li>
-											<li>전체적인 광대뼈가 모두 발달한 경우</li>
-											<li>광대가 도드라지고 광대뼈 밑으로 그림자가 생기는 경우</li>
-											<li>발달한 광대로 인해 얼굴 면적이 커 보이는 경우</li>
+											<li>張り出した頬骨により輪郭に凹凸がある方</li>
+											<li>頬骨全体が発達している方</li>
+											<li>頬骨の張り出しと、その下の影が気になる方</li>
+											<li>頬骨の発達により顔が大きく見える方</li>
 										</ul>
 									</div>
 								</div>
@@ -186,7 +187,7 @@
 							<section class="sk-section sk-point sk-reveal" id="detail-213">
 								<header class="sk-section-head"><span class="sk-section-no">02</span>
 									<div><span class="sk-eyebrow">CHECK POINT</span>
-										<h3>새김 광대축소술 POINT</h3>
+										<h3>SAEKIM頬骨縮小術のPOINT</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -206,8 +207,8 @@
 													<path d="M12 1v4m0 14v4M1 12h4m14 0h4"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 01</span>
-												<h4>작고 입체적인 얼굴라인</h4>
-												<p>사다리꼴 절골 &amp; 3D 회전술로 효과 극대화</p>
+												<h4>小さく立体的な輪郭</h4>
+												<p>台形骨切りと3D回転術による効果を追求</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -217,8 +218,8 @@
 													</path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 02</span>
-												<h4>단단하고 안정적인 고정</h4>
-												<p>삼중고정(앞고정 + 뒷고정 + 윗고정)으로 불유합 최소화</p>
+												<h4>しっかりと安定した固定</h4>
+												<p>三重固定（前方・後方・上方）で骨癒合不全のリスクを軽減</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -228,8 +229,8 @@
 													<path d="m8 12 3 3 5-6"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 03</span>
-												<h4>볼 처짐 예방</h4>
-												<p>박리를 최소화하여 근육, 지방 등 연부조직을 상향 밀착 고정</p>
+												<h4>頬のたるみ予防</h4>
+												<p>剥離を抑え、筋肉・脂肪などの軟部組織を上方に密着固定</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -238,8 +239,8 @@
 													<path d="M20 7a9 9 0 1 0 1 9M20 2v5h-5M8 12l3 3 5-6"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 04</span>
-												<h4>빠른 회복 기간</h4>
-												<p>최소 절개와 빠른 수술 시간으로 출혈, 붓기 DOWN</p>
+												<h4>回復期間への配慮</h4>
+												<p>切開と手術時間を抑え、出血・腫れを軽減</p>
 											</div>
 										</article>
 									</div>
@@ -248,7 +249,7 @@
 							<section class="sk-section sk-detail sk-reveal" id="detail-214">
 								<header class="sk-section-head"><span class="sk-section-no">03</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>3D 3중 고정 광대축소술, 새김은 뭐가 다를까요?</h3>
+										<h3>3D三重固定頬骨縮小術、SAEKIMの特徴は？</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -260,21 +261,21 @@
 									<table>
 										<thead>
 											<tr>
-												<th scope="col">고정법</th>
-												<th scope="col">2중 고정</th>
-												<th scope="col">3중 고정</th>
+												<th scope="col">固定方法</th>
+												<th scope="col">二重固定</th>
+												<th scope="col">三重固定</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<th scope="row">고정 위치</th>
-												<td>앞고정, 뒷고정</td>
-												<td>앞고정(추가고정), 윗고정, 뒷고정</td>
+												<th scope="row">固定位置</th>
+												<td>前方固定・後方固定</td>
+												<td>前方固定（追加固定）・上方固定・後方固定</td>
 											</tr>
 											<tr>
-												<th scope="row">특징</th>
-												<td>불유합, 볼 처짐 가능성 있음</td>
-												<td>불유합, 볼 처짐 가능성 적음</td>
+												<th scope="row">特徴</th>
+												<td>骨癒合不全・頬のたるみが生じる可能性あり</td>
+												<td>骨癒合不全・頬のたるみのリスクを軽減</td>
 											</tr>
 										</tbody>
 									</table>
@@ -284,7 +285,7 @@
 											aria-label="View zygomatic fixation comparison" class="sk-zoom"
 											data-caption="Zygomatic fixation comparison"
 											data-gallery="contouring-gallery-1"
-											data-gallery-title="3D 3중 고정 광대축소술, 새김은 뭐가 다를까요?"
+											data-gallery-title="3D三重固定頬骨縮小術、SAEKIMの特徴は？"
 											data-image="/front/surgery/images-guides/guide-364.webp" type="button"><img
 												alt="Zygomatic fixation comparison" decoding="async" height="464"
 												loading="lazy" src="/front/surgery/images-guides/guide-364.webp"
@@ -302,7 +303,7 @@
 											aria-label="View cheekbone contour planning" class="sk-zoom"
 											data-caption="Cheekbone contour planning"
 											data-gallery="contouring-gallery-1"
-											data-gallery-title="3D 3중 고정 광대축소술, 새김은 뭐가 다를까요?"
+											data-gallery-title="3D三重固定頬骨縮小術、SAEKIMの特徴は？"
 											data-image="/front/surgery/images-20261014/contouring/cheekbone/hero.webp"
 											type="button"><img alt="Cheekbone contour planning" decoding="async"
 												height="1024" loading="lazy"
@@ -319,9 +320,9 @@
 												</svg></span></button>
 										<figcaption class="sk-photo-notes">
 											<ul>
-												<li>3중 고정 위치: 앞고정</li>
-												<li>윗고정</li>
-												<li>뒷고정</li>
+												<li>三重固定の位置：前方固定</li>
+												<li>上方固定</li>
+												<li>後方固定</li>
 											</ul>
 										</figcaption>
 									</figure>
@@ -330,7 +331,7 @@
 							<section class="sk-section sk-detail sk-reveal" id="detail-215">
 								<header class="sk-section-head"><span class="sk-section-no">04</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>미국산 티타늄 플레이트로 단단한 3중 고정</h3>
+										<h3>米国製チタンプレートによる強固な三重固定</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -344,23 +345,23 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>앞·위·뒤를 함께 고정</h4>
-										<p>앞쪽 고정에는 3개의 핀을 사용하고, 위쪽과 뒤쪽까지 함께 잡아주는 삼중 고정을 적용합니다.</p>
+										<h4>前方・上方・後方を固定</h4>
+										<p>前方に3本のピンを使用し、上方・後方も支える三重固定を行います。</p>
 									</article>
 									<article><svg aria-hidden="true" class="sk-icon sk-editorial-icon" fill="none"
 											stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>절골면을 밀착하는 설계</h4>
-										<p>절골한 뼈 사이의 공간과 위치를 확인하고 밀착해 고정합니다. 볼 처짐과 불유합의 가능성을 줄이는 데 중점을 둡니다.</p>
+										<h4>骨切り面を密着させる設計</h4>
+										<p>切った骨の間隙と位置を確認し、密着固定します。頬のたるみや骨癒合不全のリスク軽減を重視します。</p>
 									</article>
 								</div>
 							</section>
 							<section class="sk-section sk-detail sk-reveal" id="detail-216">
 								<header class="sk-section-head"><span class="sk-section-no">05</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>더 나은 결과와 안전한 치료를 위해</h3>
+										<h3>よりよい結果と安全な治療のために</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -368,14 +369,14 @@
 										<path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3ZM20 2v4m-2-2h4"></path>
 									</svg>
 								</header>
-								<p>끊임없이 발전하는 수술 방식</p>
+								<p>進化を続ける手術方法</p>
 								<div class="sk-copy-grid sk-illustrated-cards" style="--sk-stage-ratio:1 / 0.771667;">
 									<article>
 										<figure class="sk-figure" style="--sk-source-width:600px"><button
 												aria-label="View lateral cheekbone anatomy" class="sk-zoom"
 												data-caption="Lateral cheekbone anatomy"
 												data-gallery="contouring-gallery-2"
-												data-gallery-title="더 나은 결과와 안전한 치료를 위해"
+												data-gallery-title="よりよい結果と安全な治療のために"
 												data-image="/front/surgery/images-guides/guide-366.webp"
 												type="button"><img alt="Lateral cheekbone anatomy" decoding="async"
 													height="988" loading="lazy"
@@ -394,15 +395,15 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>1세대 - 비고정식 광대축소(퀵광대)</h4>
-										<p>광대를 일부 절골해 밀어 넣거나 갈아서 줄이는 방식으로, 수술 후 광대 축소 효과가 미비해 불유합 등 부작용 발생 확률이 높습니다.</p>
+										<h4>第1世代：非固定式頬骨縮小（クイック頬骨）</h4>
+										<p>頬骨の一部を切って内側へ移動、または削る方法です。縮小効果が限られ、骨癒合不全などのリスクがあります。</p>
 									</article>
 									<article>
 										<figure class="sk-figure" style="--sk-source-width:600px"><button
 												aria-label="View lower cheekbone anatomy" class="sk-zoom"
 												data-caption="Lower cheekbone anatomy"
 												data-gallery="contouring-gallery-2"
-												data-gallery-title="더 나은 결과와 안전한 치료를 위해"
+												data-gallery-title="よりよい結果と安全な治療のために"
 												data-image="/front/surgery/images-guides/guide-367.webp"
 												type="button"><img alt="Lower cheekbone anatomy" decoding="async"
 													height="988" loading="lazy"
@@ -421,16 +422,15 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>2세대 - L자 절골</h4>
-										<p>광대를 L자로 절골하여 고정하는 방식으로, 광대뼈를 잘라내는 양이 2~3mm로 광대 축소 효과가 미비해 볼 처짐, 볼 패임 가능성이
-											높습니다.</p>
+										<h4>第2世代：L字骨切り</h4>
+										<p>頬骨をL字に切って固定する方法です。切除量が2～3mm程度となり、縮小効果が限られ、頬のたるみやくぼみが生じる場合があります。</p>
 									</article>
 									<article>
 										<figure class="sk-figure" style="--sk-source-width:600px"><button
 												aria-label="View anterior cheekbone anatomy" class="sk-zoom"
 												data-caption="Anterior cheekbone anatomy"
 												data-gallery="contouring-gallery-2"
-												data-gallery-title="더 나은 결과와 안전한 치료를 위해"
+												data-gallery-title="よりよい結果と安全な治療のために"
 												data-image="/front/surgery/images-guides/guide-368.webp"
 												type="button"><img alt="Anterior cheekbone anatomy" decoding="async"
 													height="988" loading="lazy"
@@ -449,16 +449,15 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>3세대 - 광대회전술</h4>
-										<p>광대 안쪽만 쐐기꼴 형태로 절골한 뒤 광대를 회전해 밀어 넣는 방식입니다. 외측 부분이 미고정되어 볼 처짐, 불유합 가능성이 상대적으로
-											높습니다.</p>
+										<h4>第3世代：頬骨回転術</h4>
+										<p>内側のみをくさび形に骨切りし、回転させて内側へ移動します。外側を固定しないため、頬のたるみや骨癒合不全のリスクがあります。</p>
 									</article>
 									<article>
 										<figure class="sk-figure" style="--sk-source-width:600px"><button
 												aria-label="View oblique cheekbone anatomy" class="sk-zoom"
 												data-caption="Oblique cheekbone anatomy"
 												data-gallery="contouring-gallery-2"
-												data-gallery-title="더 나은 결과와 안전한 치료를 위해"
+												data-gallery-title="よりよい結果と安全な治療のために"
 												data-image="/front/surgery/images-guides/guide-369.webp"
 												type="button"><img alt="Oblique cheekbone anatomy" decoding="async"
 													height="988" loading="lazy"
@@ -477,16 +476,15 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>4세대 - 3D 광대회전술</h4>
-										<p>앞 광대를 사다리꼴 절골한 뒤 양방향 회전 후 상향 밀착 이중 고정하여 최대 축소 효과를 기대하고, 유지인대와 근육을 함께 올려 볼 처짐과
-											불유합 가능성을 최소화했습니다.</p>
+										<h4>第4世代：3D頬骨回転術</h4>
+										<p>前方頬骨を台形に骨切りし、二方向に回転後、上方へ密着固定します。支持靱帯と筋肉も引き上げ、縮小効果とたるみ・骨癒合不全のリスク軽減を目指します。</p>
 									</article>
 								</div>
 							</section>
 							<section class="sk-section sk-detail sk-reveal" id="detail-217">
 								<header class="sk-section-head"><span class="sk-section-no">06</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>‘광대’는 고정이 중요합니다.</h3>
+										<h3>頬骨縮小では、固定が重要です。</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -503,8 +501,8 @@
 													<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5">
 													</path>
 												</svg>
-												<h4>단단한 밀착</h4>
-												<p>절골면을 빈 공간 없이 맞추어 안정적인 고정을 도모합니다.</p>
+												<h4>しっかりと密着</h4>
+												<p>骨切り面を隙間なく合わせ、安定した固定を目指します。</p>
 											</article>
 											<article><svg aria-hidden="true" class="sk-icon sk-editorial-icon"
 													fill="none" stroke="currentColor" stroke-linecap="round"
@@ -512,8 +510,8 @@
 													<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5">
 													</path>
 												</svg>
-												<h4>플레이트의 확인</h4>
-												<p>사용하는 플레이트의 품질과 인체 적용을 위한 처리 상태를 확인합니다.</p>
+												<h4>プレートの確認</h4>
+												<p>プレートの品質と、人体への使用に適した処理状態を確認します。</p>
 											</article>
 											<article><svg aria-hidden="true" class="sk-icon sk-editorial-icon"
 													fill="none" stroke="currentColor" stroke-linecap="round"
@@ -521,8 +519,8 @@
 													<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5">
 													</path>
 												</svg>
-												<h4>개인에 맞는 비율</h4>
-												<p><strong>근육</strong>, 지방, 연부조직과 이목구비를 함께 고려하여 절제 범위와 고정 방향을 계획합니다.</p>
+												<h4>一人ひとりに合う比率</h4>
+												<p><strong>筋肉</strong>・脂肪・軟部組織と目鼻立ちを考慮し、切除範囲と固定方向を計画します。</p>
 											</article>
 										</div>
 									</div>
@@ -532,7 +530,7 @@
 													aria-label="View fixation screw structure" class="sk-zoom"
 													data-caption="Fixation screw structure"
 													data-gallery="contouring-gallery-3"
-													data-gallery-title="‘광대’는 고정이 중요합니다."
+													data-gallery-title="頬骨縮小では、固定が重要です。"
 													data-image="/front/surgery/images-guides/guide-370.webp"
 													type="button"><img alt="Fixation screw structure" decoding="async"
 														height="541" loading="lazy"
@@ -551,19 +549,19 @@
 										</div>
 									</div>
 								</div>
-								<div class="sk-story-banner"><img height="740" width="1920" alt="안면윤곽 진료를 설명하는 새김 의료진"
+								<div class="sk-story-banner"><img height="740" width="1920" alt="輪郭形成について説明するSAEKIMの医療チーム"
 										loading="lazy" src="/front/surgery/images-guides/guide-371.webp" />
 									<div class="sk-story-copy"><span class="sk-eyebrow">BALANCE, NOT EXCESS</span>
-										<h4>무조건 많이가 아닌,<br /><strong>나에게 알맞은 비율.</strong></h4>
-										<p>뼈를 다루는 안면윤곽,<br />누가 하느냐에 따라 달라집니다.</p>
-										<p>근육·지방·연부조직과 이목구비를 함께 살펴<br />얼굴 비율에 맞는 라인을 계획합니다.</p>
+										<h4>ただ多く削るのではなく、<br /><strong>ご自身に合うバランスへ。</strong></h4>
+										<p>骨を扱う輪郭形成は、<br />担当する医師によって異なります。</p>
+										<p>筋肉・脂肪・軟部組織と目鼻立ちを確認し、<br />お顔の比率に合ったラインを計画します。</p>
 									</div>
 								</div>
 							</section>
 							<section class="sk-section sk-detail sk-reveal" id="detail-218">
 								<header class="sk-section-head"><span class="sk-section-no">07</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>새김 3D 광대회전술 &amp; 삼중 밀착 고정술</h3>
+										<h3>SAEKIM 3D頬骨回転術・三重密着固定術</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -577,7 +575,7 @@
 												aria-label="View zygomatic repositioning" class="sk-zoom"
 												data-caption="Zygomatic repositioning"
 												data-gallery="contouring-gallery-4"
-												data-gallery-title="새김 3D 광대회전술 &amp; 삼중 밀착 고정술"
+												data-gallery-title="SAEKIM 3D頬骨回転術・三重密着固定術"
 												data-image="/front/surgery/images-guides/guide-372.webp"
 												type="button"><img alt="Zygomatic repositioning" decoding="async"
 													height="811" loading="lazy"
@@ -596,14 +594,14 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>1. 옆광대 제거</h4>
-										<p>사다리꼴 절골로 45도 광대뼈 일부 제거 후 옆 광대를 절골합니다.</p>
+										<h4>1. 側方頬骨の切除</h4>
+										<p>斜め45度方向の頬骨の一部を台形に切除し、側方頬骨を骨切りします。</p>
 									</article>
 									<article>
 										<figure class="sk-figure" style="--sk-source-width:600px"><button
 												aria-label="View rotational adjustment" class="sk-zoom"
 												data-caption="Rotational adjustment" data-gallery="contouring-gallery-4"
-												data-gallery-title="새김 3D 광대회전술 &amp; 삼중 밀착 고정술"
+												data-gallery-title="SAEKIM 3D頬骨回転術・三重密着固定術"
 												data-image="/front/surgery/images-guides/guide-373.webp"
 												type="button"><img alt="Rotational adjustment" decoding="async"
 													height="811" loading="lazy"
@@ -622,14 +620,14 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>2. 절단면 밀착</h4>
-										<p>절골된 광대뼈를 양방향 회전하여 절단면을 밀착합니다.</p>
+										<h4>2. 骨切り面の密着</h4>
+										<p>骨切りした頬骨を二方向に回転させ、切断面を密着させます。</p>
 									</article>
 									<article>
 										<figure class="sk-figure" style="--sk-source-width:600px"><button
 												aria-label="View plate fixation" class="sk-zoom"
 												data-caption="Plate fixation" data-gallery="contouring-gallery-4"
-												data-gallery-title="새김 3D 광대회전술 &amp; 삼중 밀착 고정술"
+												data-gallery-title="SAEKIM 3D頬骨回転術・三重密着固定術"
 												data-image="/front/surgery/images-guides/guide-374.webp"
 												type="button"><img alt="Plate fixation" decoding="async" height="811"
 													loading="lazy" src="/front/surgery/images-guides/guide-374.webp"
@@ -646,25 +644,25 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>3. 3중 고정 + 밀착고정 및 골막 재고정</h4>
-										<p>삼중고정과 함께 상향 밀착 고정, 골막 재고정을 합니다.</p>
-										<p>앞고정 시 핀 3개를 사용하여 더 높은 고정력을 확보합니다.</p>
+										<h4>3. 三重固定・密着固定・骨膜の再固定</h4>
+										<p>三重固定とともに、上方への密着固定と骨膜の再固定を行います。</p>
+										<p>前方固定には3本のピンを使用し、固定力を高めます。</p>
 									</article>
 								</div>
 							</section>
 						</article>
 						<article class="sk-tabpanel" data-panel="contouring-jaw" data-slug="jaw" id="contouring-jaw">
 							<header class="sk-procedure-hero">
-								<div class="sk-hero-photo"><img class="sk-model-image" alt="사각턱수술 모델 이미지"
+								<div class="sk-hero-photo"><img class="sk-model-image" alt="エラ縮小術 モデル写真"
 										decoding="async" height="1024" loading="lazy"
 										src="/front/surgery/images-20261014/contouring/jaw/hero.webp" width="1536"
 										srcset="/front/surgery/images-20261014/contouring/jaw/hero-768.webp 768w, /front/surgery/images-20261014/contouring/jaw/hero.webp 1536w"
 										sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1100px) 50vw, 760px"
 										style="--sk-source-width:1536px;--sk-stage-ratio:3 / 2" /></div>
 								<div class="sk-hero-copy"><span class="sk-eyebrow">FACIAL CONTOURING / 02</span>
-									<h2>사각턱수술</h2><span class="sk-fine-rule"></span>
-									<p>긴곡선 형태로 사각턱부터 옆턱까지 한 번에 절제해 비대칭 개선과 2차각 없이 세련된 맞춤 V라인을 완성하는 수술입니다.</p><a
-										class="sk-text-link" href="/contactPage">나에게 맞는 수술 상담 <svg aria-hidden="true"
+									<h2>エラ縮小術（下顎角形成術）</h2><span class="sk-fine-rule"></span>
+									<p>エラから下顎の側面まで長い曲線で一度に切除し、左右差や二次角に配慮したVラインを目指す手術です。</p><a
+										class="sk-text-link" href="/contactPage">ご自身に合った治療のご相談 <svg aria-hidden="true"
 											class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round"
 											stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M4 12h16m-6-6 6 6-6 6"></path>
@@ -675,7 +673,7 @@
 							<section class="sk-section sk-info sk-reveal" id="detail-219">
 								<header class="sk-section-head"><span class="sk-section-no">01</span>
 									<div><span class="sk-eyebrow">SURGERY GUIDE</span>
-										<h3>수술 정보</h3>
+										<h3>手術情報</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -691,61 +689,61 @@
 											<circle cx="12" cy="12" r="9"></circle>
 											<path d="M12 6v6l4 2"></path>
 										</svg>
-										<dt>수술시간</dt>
-										<dd>1시간 30분 내외</dd>
+										<dt>手術時間</dt>
+										<dd>1時間30分程度</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m14 3 7 7M16 5 5 16l3 3L19 8M5 16l-3 6m8-11 3 3"></path>
 										</svg>
-										<dt>마취방법</dt>
-										<dd>전신마취</dd>
+										<dt>麻酔方法</dt>
+										<dd>全身麻酔</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="M4 21V6h16v15M9 6V2h6v4M2 21h20M10 21v-6h4v6M9 10h6m-3-3v6"></path>
 										</svg>
-										<dt>입원치료</dt>
-										<dd>1일 입원</dd>
+										<dt>入院</dt>
+										<dd>1日入院</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m3 18 15-15 3 3L6 21H3v-3ZM9 7l8 8M5 11l8 8"></path>
 										</svg>
-										<dt>실밥제거</dt>
-										<dd>3주후 1회(입안실밥)</dd>
+										<dt>抜糸</dt>
+										<dd>3週間後に1回（口腔内の抜糸）</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="M20 7a9 9 0 1 0 1 9M20 2v5h-5M8 12l3 3 5-6"></path>
 										</svg>
-										<dt>회복기간</dt>
-										<dd>1주</dd>
+										<dt>回復期間</dt>
+										<dd>1週間</dd>
 									</div>
 								</dl>
-								<p class="sk-disclaimer">※ 수술시간과 회복기간 등은 개인의 상태 및 수술 범위에 따라 달라질 수 있습니다.</p>
+								<p class="sk-disclaimer">※手術時間・回復期間などは、患者様の状態と手術範囲により異なります。</p>
 								<div class="sk-candidates">
 									<h4><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m5 12 4 4L19 6"></path>
-										</svg>이런 경우에 고려합니다</h4>
+										</svg>このようなお悩みのある方へ</h4>
 									<ul>
-										<li>측면뿐만 아니라 정면 턱 역시 과도하게 발달되고 각진 경우</li>
-										<li>정면에서 봤을때 얼굴형 자체가 넓고 퍼져보이며 턱끝 부분이 U인 경우</li>
-										<li>귀 밑 턱이 과도하게 발달하여 정면에서도 턱이 넓고 둥글어 보이는 경우</li>
-										<li>양쪽의 턱이 비대칭인 경우</li>
+										<li>側面だけでなく正面からもエラの発達や角張りが目立つ方</li>
+										<li>正面から輪郭が横に広く見え、あご先がU字形の方</li>
+										<li>耳の下のエラが発達し、正面からもあごが広く丸く見える方</li>
+										<li>左右のあごに非対称がある方</li>
 									</ul>
 								</div>
 							</section>
 							<section class="sk-section sk-point sk-reveal" id="detail-220">
 								<header class="sk-section-head"><span class="sk-section-no">02</span>
 									<div><span class="sk-eyebrow">CHECK POINT</span>
-										<h3>새김 사각턱수술 POINT</h3>
+										<h3>SAEKIMエラ縮小術のPOINT</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -757,10 +755,10 @@
 								</header>
 								<div class="sk-point-layout sk-point-reverse">
 									<figure class="sk-figure" style="--sk-source-width:1536px"><button
-											aria-label="새김 사각턱수술 POINT 확대" class="sk-zoom" data-caption="새김 사각턱수술 POINT"
-											data-gallery="contouring-gallery-5" data-gallery-title="새김 사각턱수술 POINT"
+											aria-label="SAEKIMエラ縮小術のPOINT 拡大" class="sk-zoom" data-caption="SAEKIMエラ縮小術のPOINT"
+											data-gallery="contouring-gallery-5" data-gallery-title="SAEKIMエラ縮小術のPOINT"
 											data-image="/front/surgery/images-20261014/contouring/jaw/point.webp"
-											type="button"><img class="sk-model-image" alt="새김 사각턱수술 POINT"
+											type="button"><img class="sk-model-image" alt="SAEKIMエラ縮小術のPOINT"
 												decoding="async" height="1024" loading="lazy"
 												src="/front/surgery/images-20261014/contouring/jaw/point.webp"
 												style="--sk-source-width:1536px;--sk-stage-ratio:3 / 2" width="1536"
@@ -781,8 +779,8 @@
 													<path d="M12 1v4m0 14v4M1 12h4m14 0h4"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 01</span>
-												<h4>개인별 맞춤 V라인</h4>
-												<p>얼굴 비율과 턱 발달 정도를 고려해 자연스럽고 세련된 라인을 디자인</p>
+												<h4>一人ひとりに合わせたVライン</h4>
+												<p>顔の比率と下顎の発達を考慮し、自然なラインをデザイン</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -792,8 +790,8 @@
 													</path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 02</span>
-												<h4>비대칭 개선</h4>
-												<p>좌우 균형을 맞춰 조화로운 얼굴형 완성</p>
+												<h4>左右差の改善</h4>
+												<p>左右のバランスを整え、調和した輪郭へ</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -803,8 +801,8 @@
 													<path d="m8 12 3 3 5-6"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 03</span>
-												<h4>2차각 걱정 NO!</h4>
-												<p>사각턱부터 옆턱까지 긴곡선으로 한 번에 절제하여 2차각 발생을 최소화</p>
+												<h4>二次角の発生に配慮</h4>
+												<p>エラから側面まで長い曲線で切除し、二次角の発生を抑制</p>
 											</div>
 										</article>
 									</div>
@@ -813,7 +811,7 @@
 							<section class="sk-section sk-detail sk-reveal" id="detail-221">
 								<header class="sk-section-head"><span class="sk-section-no">03</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>새김 사각턱 축소술의 특별함</h3>
+										<h3>SAEKIMエラ縮小術の特徴</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -830,8 +828,8 @@
 													<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5">
 													</path>
 												</svg>
-												<h4>기존 사각턱축소술</h4>
-												<p>귀밑 하악각만 절제 정면 효과 미비 2차각 발생 가능성 앞턱 교정 없음</p>
+												<h4>従来のエラ縮小術</h4>
+												<p>耳の下の下顎角のみを切除。正面からの変化が限られ、二次角が生じる場合があります。あご先の修正は含みません。</p>
 											</article>
 											<article><svg aria-hidden="true" class="sk-icon sk-editorial-icon"
 													fill="none" stroke="currentColor" stroke-linecap="round"
@@ -839,8 +837,8 @@
 													<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5">
 													</path>
 												</svg>
-												<h4>새김 긴곡선사각턱축소술</h4>
-												<p>귀밑 하악각부터 옆턱 뼈를 길게 절제 정면, 측면 모든 각도에서 높은 효과 2차각 발생 사전 예방 옆턱 부위까지 한번에 교정
+												<h4>SAEKIMロングカーブエラ縮小術</h4>
+												<p>下顎角から側面まで長く切除。正面・側面の変化を目指し、二次角に配慮しながら下顎側面まで修正します。
 												</p>
 											</article>
 										</div>
@@ -851,7 +849,7 @@
 													aria-label="View mandibular anatomy" class="sk-zoom"
 													data-caption="Mandibular anatomy"
 													data-gallery="contouring-gallery-6"
-													data-gallery-title="새김 사각턱 축소술의 특별함"
+													data-gallery-title="SAEKIMエラ縮小術の特徴"
 													data-image="/front/surgery/images-guides/guide-377.webp"
 													type="button"><img alt="Mandibular anatomy" decoding="async"
 														height="670" loading="lazy"
@@ -874,7 +872,7 @@
 							<section class="sk-section sk-detail sk-reveal" id="detail-222">
 								<header class="sk-section-head"><span class="sk-section-no">04</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>신경선과 뼈 두께까지, 정밀하게.</h3>
+										<h3>神経の走行と骨の厚みまで、精密に。</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -886,12 +884,12 @@
 									<article class="sk-contour-card sk-contour-card--split">
 										<div class="sk-contour-media">
 											<button type="button" class="sk-contour-zoom"
-												aria-label="신경선의 위치를 먼저 확인 이미지 확대"
+												aria-label="まず神経の位置を確認 画像を拡大"
 												data-image="/front/surgery/images-guides/guide-378.webp"
-												data-caption="신경선의 위치를 먼저 확인" data-gallery="contouring-gallery-7"
-												data-gallery-title="신경선과 뼈 두께까지, 정밀하게.">
+												data-caption="まず神経の位置を確認" data-gallery="contouring-gallery-7"
+												data-gallery-title="神経の走行と骨の厚みまで、精密に。">
 												<img src="/front/surgery/images-guides/guide-378.webp" width="1280"
-													height="806" loading="lazy" decoding="async" alt="신경선의 위치를 먼저 확인"
+													height="806" loading="lazy" decoding="async" alt="まず神経の位置を確認"
 													style="--sk-contour-source-width:1280px">
 												<span class="sk-contour-zoom-icon"><svg aria-hidden="true"
 														viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -902,20 +900,19 @@
 											</button>
 										</div>
 										<div class="sk-contour-copy"><span class="sk-contour-badge">POINT 01</span>
-											<h4>신경선의 위치를 먼저 확인</h4>
-											<p>사각턱의 하치조신경은 감각을 담당하는 중요한 구조입니다. <strong>3D CT</strong> 분석으로 위치와 깊이를 파악한 뒤
-												신경선 아래쪽으로 절삭 범위를 계획합니다.</p>
+											<h4>まず神経の位置を確認</h4>
+											<p>下歯槽神経は、下顎の感覚を担う重要な構造です。 <strong>3D CT</strong> 分析で位置と深さを把握し、神経の下方に切削範囲を設定します。</p>
 										</div>
 									</article>
 									<article class="sk-contour-card sk-contour-card--split">
 										<div class="sk-contour-media">
 											<button type="button" class="sk-contour-zoom"
-												aria-label="피질골 두께를 고려한 디자인 이미지 확대"
+												aria-label="皮質骨の厚みを考慮したデザイン 画像を拡大"
 												data-image="/front/surgery/images-guides/guide-379.webp"
-												data-caption="피질골 두께를 고려한 디자인" data-gallery="contouring-gallery-7"
-												data-gallery-title="신경선과 뼈 두께까지, 정밀하게.">
+												data-caption="皮質骨の厚みを考慮したデザイン" data-gallery="contouring-gallery-7"
+												data-gallery-title="神経の走行と骨の厚みまで、精密に。">
 												<img src="/front/surgery/images-guides/guide-379.webp" width="1280"
-													height="807" loading="lazy" decoding="async" alt="피질골 두께를 고려한 디자인"
+													height="807" loading="lazy" decoding="async" alt="皮質骨の厚みを考慮したデザイン"
 													style="--sk-contour-source-width:1280px">
 												<span class="sk-contour-zoom-icon"><svg aria-hidden="true"
 														viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -926,8 +923,8 @@
 											</button>
 										</div>
 										<div class="sk-contour-copy"><span class="sk-contour-badge">POINT 02</span>
-											<h4>피질골 두께를 고려한 디자인</h4>
-											<p>턱 바깥층의 피질골 두께와 전체적인 부피를 함께 살펴 자연스럽게 이어지는 하관 라인을 계획합니다.</p>
+											<h4>皮質骨の厚みを考慮したデザイン</h4>
+											<p>外側の皮質骨の厚みと骨全体の量を確認し、自然につながる下顔面のラインを計画します。</p>
 										</div>
 									</article>
 								</div>
@@ -935,16 +932,16 @@
 						</article>
 						<article class="sk-tabpanel" data-panel="contouring-chin" data-slug="chin" id="contouring-chin">
 							<header class="sk-procedure-hero">
-								<div class="sk-hero-photo"><img class="sk-model-image" alt="턱끝수술 모델 이미지"
+								<div class="sk-hero-photo"><img class="sk-model-image" alt="オトガイ形成術 モデル写真"
 										decoding="async" height="1024" loading="lazy"
 										src="/front/surgery/images-20261014/contouring/chin/hero.webp" width="1536"
 										srcset="/front/surgery/images-20261014/contouring/chin/hero-768.webp 768w, /front/surgery/images-20261014/contouring/chin/hero.webp 1536w"
 										sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1100px) 50vw, 760px"
 										style="--sk-source-width:1536px;--sk-stage-ratio:3 / 2" /></div>
 								<div class="sk-hero-copy"><span class="sk-eyebrow">FACIAL CONTOURING / 03</span>
-									<h2>턱끝수술</h2><span class="sk-fine-rule"></span>
-									<p>적절하지 않은 턱끝의 크기와 위치를 개인의 얼굴 구조에 맞게 교정하여, 부드럽고 세련된 얼굴형으로 개선할 수 있는 수술입니다.</p><a
-										class="sk-text-link" href="/contactPage">나에게 맞는 수술 상담 <svg aria-hidden="true"
+									<h2>オトガイ形成術</h2><span class="sk-fine-rule"></span>
+									<p>あご先の大きさと位置を顔の構造に合わせて修正し、やわらかく整った輪郭を目指す手術です。</p><a
+										class="sk-text-link" href="/contactPage">ご自身に合った治療のご相談 <svg aria-hidden="true"
 											class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round"
 											stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M4 12h16m-6-6 6 6-6 6"></path>
@@ -955,7 +952,7 @@
 							<section class="sk-section sk-info sk-reveal" id="detail-223">
 								<header class="sk-section-head"><span class="sk-section-no">01</span>
 									<div><span class="sk-eyebrow">SURGERY GUIDE</span>
-										<h3>수술 정보</h3>
+										<h3>手術情報</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -971,61 +968,61 @@
 											<circle cx="12" cy="12" r="9"></circle>
 											<path d="M12 6v6l4 2"></path>
 										</svg>
-										<dt>수술시간</dt>
-										<dd>1시간</dd>
+										<dt>手術時間</dt>
+										<dd>1時間</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m14 3 7 7M16 5 5 16l3 3L19 8M5 16l-3 6m8-11 3 3"></path>
 										</svg>
-										<dt>마취방법</dt>
-										<dd>전신마취</dd>
+										<dt>麻酔方法</dt>
+										<dd>全身麻酔</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="M4 21V6h16v15M9 6V2h6v4M2 21h20M10 21v-6h4v6M9 10h6m-3-3v6"></path>
 										</svg>
-										<dt>입원치료</dt>
-										<dd>당일 퇴원</dd>
+										<dt>入院</dt>
+										<dd>日帰り</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m3 18 15-15 3 3L6 21H3v-3ZM9 7l8 8M5 11l8 8"></path>
 										</svg>
-										<dt>실밥제거</dt>
-										<dd>3주 후(입안실밥)</dd>
+										<dt>抜糸</dt>
+										<dd>3週間後（口腔内の抜糸）</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="M20 7a9 9 0 1 0 1 9M20 2v5h-5M8 12l3 3 5-6"></path>
 										</svg>
-										<dt>회복기간</dt>
-										<dd>약 3~4일 후</dd>
+										<dt>回復期間</dt>
+										<dd>約3～4日</dd>
 									</div>
 								</dl>
-								<p class="sk-disclaimer">※ 수술시간과 회복기간 등은 개인의 상태 및 수술 범위에 따라 달라질 수 있습니다.</p>
+								<p class="sk-disclaimer">※手術時間・回復期間などは、患者様の状態と手術範囲により異なります。</p>
 								<div class="sk-candidates">
 									<h4><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m5 12 4 4L19 6"></path>
-										</svg>이런 경우에 고려합니다</h4>
+										</svg>このようなお悩みのある方へ</h4>
 									<ul>
-										<li>턱끝이 넓고 뭉툭한 경우</li>
-										<li>앞턱이 돌출되거나 무턱인 경우</li>
-										<li>앞턱의 길이가 평균보다 길거나 짧은 경우</li>
-										<li>갸름하고 매끈한 V라인을 원하는 경우</li>
+										<li>あご先が広く、丸みが強い方</li>
+										<li>あご先が前に出ている、または後退している方</li>
+										<li>あご先の長さが平均より長い、または短い方</li>
+										<li>すっきりとなめらかなVラインをご希望の方</li>
 									</ul>
 								</div>
 							</section>
 							<section class="sk-section sk-point sk-reveal" id="detail-224">
 								<header class="sk-section-head"><span class="sk-section-no">02</span>
 									<div><span class="sk-eyebrow">CHECK POINT</span>
-										<h3>새김 턱끝수술 POINT</h3>
+										<h3>SAEKIMオトガイ形成術のPOINT</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -1037,10 +1034,10 @@
 								</header>
 								<div class="sk-point-layout">
 									<figure class="sk-figure" style="--sk-source-width:1536px"><button
-											aria-label="새김 턱끝수술 POINT 확대" class="sk-zoom" data-caption="새김 턱끝수술 POINT"
-											data-gallery="contouring-gallery-8" data-gallery-title="새김 턱끝수술 POINT"
+											aria-label="SAEKIMオトガイ形成術のPOINT 拡大" class="sk-zoom" data-caption="SAEKIMオトガイ形成術のPOINT"
+											data-gallery="contouring-gallery-8" data-gallery-title="SAEKIMオトガイ形成術のPOINT"
 											data-image="/front/surgery/images-20261014/contouring/chin/point.webp"
-											type="button"><img class="sk-model-image" alt="새김 턱끝수술 POINT"
+											type="button"><img class="sk-model-image" alt="SAEKIMオトガイ形成術のPOINT"
 												decoding="async" height="1024" loading="lazy"
 												src="/front/surgery/images-20261014/contouring/chin/point.webp"
 												style="--sk-source-width:1536px;--sk-stage-ratio:3 / 2" width="1536"
@@ -1061,8 +1058,8 @@
 													<path d="M12 1v4m0 14v4M1 12h4m14 0h4"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 01</span>
-												<h4>개인별 차별화된 수술 방법</h4>
-												<p>개인별 턱 모양에 맞춰 차별화된 수술 방법으로 균형 잡힌 턱선 완성</p>
+												<h4>一人ひとりに合わせた手術方法</h4>
+												<p>あごの形に応じた方法で、バランスの取れたラインを目指します</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -1072,8 +1069,8 @@
 													</path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 02</span>
-												<h4>안전하고 섬세하게</h4>
-												<p>신경선 위치를 고려해 섬세한 절골, 옆 턱뼈를 다듬어 이차각 가능성 예방</p>
+												<h4>安全性に配慮し、繊細に</h4>
+												<p>神経の位置を考慮して骨切りし、側面を整えて二次角のリスクを軽減</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -1083,8 +1080,8 @@
 													<path d="m8 12 3 3 5-6"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 03</span>
-												<h4>처짐은 예방하고 매끈한 라인으로</h4>
-												<p>근막층을 상향 밀착 고정하기에 이중턱이 되는 원인을 차단하여 처짐 예방과 매끈한 턱선 완성</p>
+												<h4>たるみを防ぎ、なめらかなラインへ</h4>
+												<p>筋膜層を上方に密着固定し、二重あごやたるみに配慮した下顎のラインを目指します</p>
 											</div>
 										</article>
 									</div>
@@ -1093,7 +1090,7 @@
 							<section class="sk-section sk-related sk-reveal" id="detail-225">
 								<header class="sk-section-head"><span class="sk-section-no">03</span>
 									<div><span class="sk-eyebrow">BETTER TOGETHER</span>
-										<h3>함께 하면 더 좋은 수술</h3>
+										<h3>併用を検討できる治療</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -1104,12 +1101,12 @@
 								<div class="sk-contour-grid sk-contour-grid--two">
 									<article class="sk-contour-card">
 										<div class="sk-contour-media">
-											<button type="button" class="sk-contour-zoom" aria-label="심부볼 제거 이미지 확대"
+											<button type="button" class="sk-contour-zoom" aria-label="バッカルファット除去 画像を拡大"
 												data-image="/front/surgery/images-guides/guide-384.webp"
-												data-caption="심부볼 제거" data-gallery="contouring-gallery-9"
-												data-gallery-title="함께 하면 더 좋은 수술">
+												data-caption="バッカルファット除去" data-gallery="contouring-gallery-9"
+												data-gallery-title="併用を検討できる治療">
 												<img src="/front/surgery/images-guides/guide-384.webp" width="1280"
-													height="871" loading="lazy" decoding="async" alt="심부볼 제거"
+													height="871" loading="lazy" decoding="async" alt="バッカルファット除去"
 													style="--sk-contour-source-width:1280px">
 												<span class="sk-contour-zoom-icon"><svg aria-hidden="true"
 														viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1120,19 +1117,19 @@
 											</button>
 										</div>
 										<div class="sk-contour-copy"><span class="sk-contour-badge">OPTION 01</span>
-											<h4>심부볼 제거</h4>
-											<p>입안 최소 절개를 통해 지방층보다 더 깊숙한 곳에 자리 잡고 있는 지방 덩어리를 제거하여 브이라인 효과를 극대화 시켜주는 수술
+											<h4>バッカルファット除去</h4>
+											<p>口腔内の小切開から深部の脂肪塊を除去し、Vラインを目指す手術です。
 											</p>
 										</div>
 									</article>
 									<article class="sk-contour-card">
 										<div class="sk-contour-media">
-											<button type="button" class="sk-contour-zoom" aria-label="변연절제 이미지 확대"
+											<button type="button" class="sk-contour-zoom" aria-label="下顎下縁切除 画像を拡大"
 												data-image="/front/surgery/images-guides/guide-383.webp"
-												data-caption="변연절제" data-gallery="contouring-gallery-9"
-												data-gallery-title="함께 하면 더 좋은 수술">
+												data-caption="下顎下縁切除" data-gallery="contouring-gallery-9"
+												data-gallery-title="併用を検討できる治療">
 												<img src="/front/surgery/images-guides/guide-383.webp" width="1280"
-													height="872" loading="lazy" decoding="async" alt="변연절제"
+													height="872" loading="lazy" decoding="async" alt="下顎下縁切除"
 													style="--sk-contour-source-width:1280px">
 												<span class="sk-contour-zoom-icon"><svg aria-hidden="true"
 														viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1143,18 +1140,18 @@
 											</button>
 										</div>
 										<div class="sk-contour-copy"><span class="sk-contour-badge">OPTION 02</span>
-											<h4>변연절제</h4>
-											<p>앞턱의 중심 부분은 남기고 넓은 옆 턱 부분을 절제해 정면과 측면에서도 매끈하고 갸름한 얼굴라인을 만들어주는 수술</p>
+											<h4>下顎下縁切除</h4>
+											<p>あご先の中央を残し、幅の広い下顎側面を切除して、正面・側面からすっきりした輪郭を目指す手術です。</p>
 										</div>
 									</article>
 									<article class="sk-contour-card">
 										<div class="sk-contour-media">
-											<button type="button" class="sk-contour-zoom" aria-label="턱끝 전진술 이미지 확대"
+											<button type="button" class="sk-contour-zoom" aria-label="オトガイ前方移動術 画像を拡大"
 												data-image="/front/surgery/images-guides/guide-385.webp"
-												data-caption="턱끝 전진술" data-gallery="contouring-gallery-9"
-												data-gallery-title="함께 하면 더 좋은 수술">
+												data-caption="オトガイ前方移動術" data-gallery="contouring-gallery-9"
+												data-gallery-title="併用を検討できる治療">
 												<img src="/front/surgery/images-guides/guide-385.webp" width="1280"
-													height="872" loading="lazy" decoding="async" alt="턱끝 전진술"
+													height="872" loading="lazy" decoding="async" alt="オトガイ前方移動術"
 													style="--sk-contour-source-width:1280px">
 												<span class="sk-contour-zoom-icon"><svg aria-hidden="true"
 														viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1165,19 +1162,19 @@
 											</button>
 										</div>
 										<div class="sk-contour-copy"><span class="sk-contour-badge">OPTION 03</span>
-											<h4>턱끝 전진술</h4>
-											<p>끝 부분의 뼈를 절골하여 필요한 만큼 앞으로 전진한 후, 고정하여 자연스러운 턱선을 만들어주는 수술</p>
+											<h4>オトガイ前方移動術</h4>
+											<p>あご先を骨切りし、必要な距離だけ前方へ移動・固定して自然なラインを目指す手術です。</p>
 										</div>
 									</article>
 									<article class="sk-contour-card">
 										<div class="sk-contour-media">
-											<button type="button" class="sk-contour-zoom" aria-label="턱끝 후진술 이미지 확대"
+											<button type="button" class="sk-contour-zoom" aria-label="オトガイ後方移動術 画像を拡大"
 												data-image="/front/surgery/images-20261016/contouring/chin/chin-setback.webp"
-												data-caption="턱끝 후진술" data-gallery="contouring-gallery-9"
-												data-gallery-title="함께 하면 더 좋은 수술">
+												data-caption="オトガイ後方移動術" data-gallery="contouring-gallery-9"
+												data-gallery-title="併用を検討できる治療">
 												<img src="/front/surgery/images-20261016/contouring/chin/chin-setback.webp"
 													width="1536" height="1024" loading="lazy" decoding="async"
-													alt="턱끝 후진술" style="--sk-contour-source-width:1536px">
+													alt="オトガイ後方移動術" style="--sk-contour-source-width:1536px">
 												<span class="sk-contour-zoom-icon"><svg aria-hidden="true"
 														viewBox="0 0 24 24" fill="none" stroke="currentColor"
 														stroke-width="1.6">
@@ -1187,29 +1184,29 @@
 											</button>
 										</div>
 										<div class="sk-contour-copy"><span class="sk-contour-badge">OPTION 04</span>
-											<h4>턱끝 후진술</h4>
-											<p>턱끝 부분의 뼈를 절골하여 필요한 만큼 뒤로 이동한 후, 고정하여 자연스러운 턱선을 만들어주는 수술</p>
+											<h4>オトガイ後方移動術</h4>
+											<p>あご先を骨切りし、必要な距離だけ後方へ移動・固定して自然なラインを目指す手術です。</p>
 										</div>
 									</article>
 								</div>
 							</section>
 							<div class="sk-tabs sk-nested-tabs" data-major="false" data-tabs="chin-methods">
-								<div aria-label="턱끝 절골 방법" class="sk-tablist sk-method-tabs" data-tablist=""><a
+								<div aria-label="あご先の骨切り方法" class="sk-tablist sk-method-tabs" data-tablist=""><a
 										class="sk-tab" data-tab="chin-methods-osteotomy-1"
 										href="#chin-methods-osteotomy-1" id="tab-chin-methods-osteotomy-1"><span
-											class="sk-tab-index">01</span>T절골</a><a class="sk-tab"
+											class="sk-tab-index">01</span>T字骨切り</a><a class="sk-tab"
 										data-tab="chin-methods-osteotomy-2" href="#chin-methods-osteotomy-2"
-										id="tab-chin-methods-osteotomy-2"><span class="sk-tab-index">02</span>V절골</a><a
+										id="tab-chin-methods-osteotomy-2"><span class="sk-tab-index">02</span>V字骨切り</a><a
 										class="sk-tab" data-tab="chin-methods-osteotomy-3"
 										href="#chin-methods-osteotomy-3" id="tab-chin-methods-osteotomy-3"><span
-											class="sk-tab-index">03</span>ㅅ절골</a></div>
+											class="sk-tab-index">03</span>逆V字骨切り</a></div>
 								<div class="sk-panels">
 									<article class="sk-tabpanel" data-panel="chin-methods-osteotomy-1"
 										data-slug="osteotomy-1" id="chin-methods-osteotomy-1">
 										<section class="sk-section sk-detail sk-reveal" id="detail-226">
 											<header class="sk-section-head"><span class="sk-section-no">04</span>
 												<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-													<h3>T절골</h3>
+													<h3>T字骨切り</h3>
 												</div>
 												<svg aria-hidden="true" class="sk-icon" fill="none"
 													stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -1217,14 +1214,12 @@
 													<path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3ZM20 2v4m-2-2h4"></path>
 												</svg>
 											</header>
-											<p>얼굴의 전체적인 비율에 비해서 턱이 길거나 짧은 경우도 있으며 들어간 모양, 앞으로 나온 모양 등 다양한 모양이 있는데 이를
-												전체적인 비율에 맞춰서 앞턱을 근육 박리 없이 T자 형태 또는 턱 모양에 맞춰 다양한 형태의 절제를 하여 앞턱을 V라인으로
-												만들어드립니다.</p>
+											<p>あご先の長さや前後位置を顔全体の比率に合わせて整えます。筋肉の剥離を抑え、T字など形状に応じた骨切りでVラインを目指します。</p>
 											<div class="sk-gallery sk-cols-3" style="--sk-stage-ratio:1 / 0.613333;">
 												<figure class="sk-figure" style="--sk-source-width:600px"><button
 														aria-label="View t-shaped osteotomy" class="sk-zoom"
 														data-caption="T-shaped osteotomy"
-														data-gallery="contouring-gallery-10" data-gallery-title="T절골"
+														data-gallery="contouring-gallery-10" data-gallery-title="T字骨切り"
 														data-image="/front/surgery/images-guides/guide-387.webp"
 														type="button"><img alt="T-shaped osteotomy" decoding="async"
 															height="785" loading="lazy"
@@ -1243,7 +1238,7 @@
 												<figure class="sk-figure" style="--sk-source-width:600px"><button
 														aria-label="View chin osteotomy planning" class="sk-zoom"
 														data-caption="Chin osteotomy planning"
-														data-gallery="contouring-gallery-10" data-gallery-title="T절골"
+														data-gallery="contouring-gallery-10" data-gallery-title="T字骨切り"
 														data-image="/front/surgery/images-guides/guide-388.webp"
 														type="button"><img alt="Chin osteotomy planning"
 															decoding="async" height="786" loading="lazy"
@@ -1262,7 +1257,7 @@
 												<figure class="sk-figure" style="--sk-source-width:600px"><button
 														aria-label="View modified t-shaped osteotomy" class="sk-zoom"
 														data-caption="Modified T-shaped osteotomy"
-														data-gallery="contouring-gallery-10" data-gallery-title="T절골"
+														data-gallery="contouring-gallery-10" data-gallery-title="T字骨切り"
 														data-image="/front/surgery/images-guides/guide-389.webp"
 														type="button"><img alt="Modified T-shaped osteotomy"
 															decoding="async" height="785" loading="lazy"
@@ -1283,7 +1278,7 @@
 										<section class="sk-section sk-process sk-reveal" id="detail-227">
 											<header class="sk-section-head"><span class="sk-section-no">05</span>
 												<div><span class="sk-eyebrow">HOW IT WORKS</span>
-													<h3>변형 T절골법</h3>
+													<h3>変法T字骨切り</h3>
 												</div>
 												<svg aria-hidden="true" class="sk-icon" fill="none"
 													stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -1297,7 +1292,7 @@
 														aria-label="View modified t-osteotomy planning" class="sk-zoom"
 														data-caption="Modified T-osteotomy planning"
 														data-gallery="contouring-gallery-11"
-														data-gallery-title="변형 T절골법"
+														data-gallery-title="変法T字骨切り"
 														data-image="/front/surgery/images-guides/guide-390.webp"
 														type="button"><img alt="Modified T-osteotomy planning"
 															decoding="async" height="785" loading="lazy"
@@ -1317,7 +1312,7 @@
 														aria-label="View chin segment repositioning" class="sk-zoom"
 														data-caption="Chin segment repositioning"
 														data-gallery="contouring-gallery-11"
-														data-gallery-title="변형 T절골법"
+														data-gallery-title="変法T字骨切り"
 														data-image="/front/surgery/images-guides/guide-391.webp"
 														type="button"><img alt="Chin segment repositioning"
 															decoding="async" height="785" loading="lazy"
@@ -1337,7 +1332,7 @@
 														aria-label="View chin contour refinement" class="sk-zoom"
 														data-caption="Chin contour refinement"
 														data-gallery="contouring-gallery-11"
-														data-gallery-title="변형 T절골법"
+														data-gallery-title="変法T字骨切り"
 														data-image="/front/surgery/images-guides/guide-392.webp"
 														type="button"><img alt="Chin contour refinement"
 															decoding="async" height="785" loading="lazy"
@@ -1361,7 +1356,7 @@
 										<section class="sk-section sk-detail sk-reveal" id="detail-228">
 											<header class="sk-section-head"><span class="sk-section-no">06</span>
 												<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-													<h3>V절골</h3>
+													<h3>V字骨切り</h3>
 												</div>
 												<svg aria-hidden="true" class="sk-icon" fill="none"
 													stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -1369,13 +1364,12 @@
 													<path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3ZM20 2v4m-2-2h4"></path>
 												</svg>
 											</header>
-											<p>앞턱의 중심 부분만 V자 모양으로 절제하는 기존 V절골 수술 방법에서 중심 부분부터 옆 턱까지 한 번에 길게 절제하는 변연절제술을
-												같이 진행하기에 이차각을 예방하며, 추가적으로 뼈를 다듬는 과정이 없기에 매끈한 앞턱 라인을 만들어드립니다.</p>
+											<p>中央のみをV字に切除する方法に加え、中央から側面まで長く下縁を切除します。二次角に配慮し、なめらかなあご先のラインを目指します。</p>
 											<div class="sk-gallery sk-cols-3" style="--sk-stage-ratio:1 / 0.613333;">
 												<figure class="sk-figure" style="--sk-source-width:600px"><button
 														aria-label="View v-shaped osteotomy planning" class="sk-zoom"
 														data-caption="V-shaped osteotomy planning"
-														data-gallery="contouring-gallery-12" data-gallery-title="V절골"
+														data-gallery="contouring-gallery-12" data-gallery-title="V字骨切り"
 														data-image="/front/surgery/images-guides/guide-393.webp"
 														type="button"><img alt="V-shaped osteotomy planning"
 															decoding="async" height="785" loading="lazy"
@@ -1394,7 +1388,7 @@
 												<figure class="sk-figure" style="--sk-source-width:600px"><button
 														aria-label="View v-shaped contour adjustment" class="sk-zoom"
 														data-caption="V-shaped contour adjustment"
-														data-gallery="contouring-gallery-12" data-gallery-title="V절골"
+														data-gallery="contouring-gallery-12" data-gallery-title="V字骨切り"
 														data-image="/front/surgery/images-guides/guide-394.webp"
 														type="button"><img alt="V-shaped contour adjustment"
 															decoding="async" height="785" loading="lazy"
@@ -1413,7 +1407,7 @@
 												<figure class="sk-figure" style="--sk-source-width:600px"><button
 														aria-label="View chin segment approximation" class="sk-zoom"
 														data-caption="Chin segment approximation"
-														data-gallery="contouring-gallery-12" data-gallery-title="V절골"
+														data-gallery="contouring-gallery-12" data-gallery-title="V字骨切り"
 														data-image="/front/surgery/images-guides/guide-395.webp"
 														type="button"><img alt="Chin segment approximation"
 															decoding="async" height="785" loading="lazy"
@@ -1437,7 +1431,7 @@
 										<section class="sk-section sk-detail sk-reveal" id="detail-229">
 											<header class="sk-section-head"><span class="sk-section-no">07</span>
 												<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-													<h3>ㅅ절골</h3>
+													<h3>逆V字骨切り</h3>
 												</div>
 												<svg aria-hidden="true" class="sk-icon" fill="none"
 													stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -1445,13 +1439,12 @@
 													<path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3ZM20 2v4m-2-2h4"></path>
 												</svg>
 											</header>
-											<p>앞턱을 ㅅ자 모양으로 절골한 후, 좌우 턱끝 뼈를 재배치하여 옆 부분을 부드럽게 연결하고 남은 부분을 절제하는 수술법입니다. 얼굴의
-												전체적인 균형을 고려하여 맞춤형으로 진행되며, 자연스럽고 갸름한 V라인으로 만들어드립니다.</p>
+											<p>あご先を逆V字に骨切りし、左右の骨を再配置して側面となめらかにつなぎ、余剰部分を切除します。顔全体との調和を考慮し、自然なVラインを目指します。</p>
 											<div class="sk-gallery sk-cols-3" style="--sk-stage-ratio:1 / 0.613333;">
 												<figure class="sk-figure" style="--sk-source-width:600px"><button
 														aria-label="View chin height adjustment" class="sk-zoom"
 														data-caption="Chin height adjustment"
-														data-gallery="contouring-gallery-13" data-gallery-title="ㅅ절골"
+														data-gallery="contouring-gallery-13" data-gallery-title="逆V字骨切り"
 														data-image="/front/surgery/images-guides/guide-396.webp"
 														type="button"><img alt="Chin height adjustment" decoding="async"
 															height="785" loading="lazy"
@@ -1470,7 +1463,7 @@
 												<figure class="sk-figure" style="--sk-source-width:600px"><button
 														aria-label="View wedge osteotomy planning" class="sk-zoom"
 														data-caption="Wedge osteotomy planning"
-														data-gallery="contouring-gallery-13" data-gallery-title="ㅅ절골"
+														data-gallery="contouring-gallery-13" data-gallery-title="逆V字骨切り"
 														data-image="/front/surgery/images-guides/guide-397.webp"
 														type="button"><img alt="Wedge osteotomy planning"
 															decoding="async" height="785" loading="lazy"
@@ -1489,7 +1482,7 @@
 												<figure class="sk-figure" style="--sk-source-width:600px"><button
 														aria-label="View chin segment closure" class="sk-zoom"
 														data-caption="Chin segment closure"
-														data-gallery="contouring-gallery-13" data-gallery-title="ㅅ절골"
+														data-gallery="contouring-gallery-13" data-gallery-title="逆V字骨切り"
 														data-image="/front/surgery/images-guides/guide-398.webp"
 														type="button"><img alt="Chin segment closure" decoding="async"
 															height="785" loading="lazy"
@@ -1514,7 +1507,7 @@
 						<article class="sk-tabpanel" data-panel="contouring-contour-revision"
 							data-slug="contour-revision" id="contouring-contour-revision">
 							<header class="sk-procedure-hero">
-								<div class="sk-hero-photo"><img class="sk-model-image" alt="윤곽재수술 모델 이미지"
+								<div class="sk-hero-photo"><img class="sk-model-image" alt="輪郭修正手術 モデル写真"
 										decoding="async" height="1024" loading="lazy"
 										src="/front/surgery/images-20261014/contouring/contour-revision/hero.webp"
 										width="1536"
@@ -1522,9 +1515,9 @@
 										sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1100px) 50vw, 760px"
 										style="--sk-source-width:1536px;--sk-stage-ratio:3 / 2" /></div>
 								<div class="sk-hero-copy"><span class="sk-eyebrow">FACIAL CONTOURING / 04</span>
-									<h2>윤곽재수술</h2><span class="sk-fine-rule"></span>
-									<p>첫 수술에 비해 난이도가 높고 환자의 심적 부담 역시 크므로 의료진의 풍부한 수술 경험과 노하우, 미적 감각등을 고려하여 수술을 진행합니다.
-									</p><a class="sk-text-link" href="/contactPage">나에게 맞는 수술 상담 <svg aria-hidden="true"
+									<h2>輪郭修正手術</h2><span class="sk-fine-rule"></span>
+									<p>初回手術より難易度が高く、患者様の心理的負担も大きいため、豊富な手術経験・技術・美的判断を踏まえて治療します。
+									</p><a class="sk-text-link" href="/contactPage">ご自身に合った治療のご相談 <svg aria-hidden="true"
 											class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round"
 											stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M4 12h16m-6-6 6 6-6 6"></path>
@@ -1535,7 +1528,7 @@
 							<section class="sk-section sk-info sk-reveal" id="detail-230">
 								<header class="sk-section-head"><span class="sk-section-no">01</span>
 									<div><span class="sk-eyebrow">SURGERY GUIDE</span>
-										<h3>수술 정보</h3>
+										<h3>手術情報</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -1551,62 +1544,62 @@
 											<circle cx="12" cy="12" r="9"></circle>
 											<path d="M12 6v6l4 2"></path>
 										</svg>
-										<dt>수술시간</dt>
-										<dd>2시간 내외</dd>
+										<dt>手術時間</dt>
+										<dd>2時間程度</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m14 3 7 7M16 5 5 16l3 3L19 8M5 16l-3 6m8-11 3 3"></path>
 										</svg>
-										<dt>마취방법</dt>
-										<dd>전신마취</dd>
+										<dt>麻酔方法</dt>
+										<dd>全身麻酔</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="M4 21V6h16v15M9 6V2h6v4M2 21h20M10 21v-6h4v6M9 10h6m-3-3v6"></path>
 										</svg>
-										<dt>입원치료</dt>
-										<dd>1일 입원</dd>
+										<dt>入院</dt>
+										<dd>1日入院</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m3 18 15-15 3 3L6 21H3v-3ZM9 7l8 8M5 11l8 8"></path>
 										</svg>
-										<dt>실밥제거</dt>
-										<dd>7일 후 1회(구레나룻 실밥)</dd>
-										<dd>2주 후 1회(입안 실밥)</dd>
+										<dt>抜糸</dt>
+										<dd>7日後に1回（もみあげ部分の抜糸）</dd>
+										<dd>2週間後に1回（口腔内の抜糸）</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="M20 7a9 9 0 1 0 1 9M20 2v5h-5M8 12l3 3 5-6"></path>
 										</svg>
-										<dt>회복기간</dt>
-										<dd>약 2주</dd>
+										<dt>回復期間</dt>
+										<dd>約2週間</dd>
 									</div>
 								</dl>
-								<p class="sk-disclaimer">※ 수술시간과 회복기간 등은 개인의 상태 및 수술 범위에 따라 달라질 수 있습니다.</p>
+								<p class="sk-disclaimer">※手術時間・回復期間などは、患者様の状態と手術範囲により異なります。</p>
 								<div class="sk-candidates">
 									<h4><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m5 12 4 4L19 6"></path>
-										</svg>이런 경우에 고려합니다</h4>
+										</svg>このようなお悩みのある方へ</h4>
 									<ul>
-										<li>수술 전후 차이가 거의 없는 경우</li>
-										<li>수술결과가 만족스럽지 못한 경우</li>
-										<li>얼굴이 전체적으로 부자연스러워진 경우</li>
-										<li>수술 후 비대칭이 생긴 경우</li>
+										<li>手術前後の変化がほとんどない方</li>
+										<li>手術結果にご満足いただけなかった方</li>
+										<li>輪郭全体が不自然になった方</li>
+										<li>術後に左右差が生じた方</li>
 									</ul>
 								</div>
 							</section>
 							<section class="sk-section sk-point sk-reveal" id="detail-231">
 								<header class="sk-section-head"><span class="sk-section-no">02</span>
 									<div><span class="sk-eyebrow">CHECK POINT</span>
-										<h3>새김 윤곽재수술 POINT</h3>
+										<h3>SAEKIM輪郭修正手術のPOINT</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -1618,10 +1611,10 @@
 								</header>
 								<div class="sk-point-layout sk-point-reverse">
 									<figure class="sk-figure" style="--sk-source-width:1536px"><button
-											aria-label="새김 윤곽재수술 POINT 확대" class="sk-zoom" data-caption="새김 윤곽재수술 POINT"
-											data-gallery="contouring-gallery-14" data-gallery-title="새김 윤곽재수술 POINT"
+											aria-label="SAEKIM輪郭修正手術のPOINT 拡大" class="sk-zoom" data-caption="SAEKIM輪郭修正手術のPOINT"
+											data-gallery="contouring-gallery-14" data-gallery-title="SAEKIM輪郭修正手術のPOINT"
 											data-image="/front/surgery/images-20261014/contouring/contour-revision/point.webp"
-											type="button"><img class="sk-model-image" alt="새김 윤곽재수술 POINT"
+											type="button"><img class="sk-model-image" alt="SAEKIM輪郭修正手術のPOINT"
 												decoding="async" height="1024" loading="lazy"
 												src="/front/surgery/images-20261014/contouring/contour-revision/point.webp"
 												style="--sk-source-width:1536px;--sk-stage-ratio:3 / 2" width="1536"
@@ -1642,8 +1635,8 @@
 													<path d="M12 1v4m0 14v4M1 12h4m14 0h4"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 01</span>
-												<h4>더 이상의 재수술이 없도록</h4>
-												<p>정확한 진단으로 안정적인 결과 중심의 수술 진행</p>
+												<h4>再修正を繰り返さないために</h4>
+												<p>正確な診断に基づき、安定した結果を重視した手術</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -1653,8 +1646,8 @@
 													</path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 02</span>
-												<h4>체계적인 사후관리</h4>
-												<p>수술 후 라인이 안정적으로 자리잡도록 체계적인 사후관리 운영</p>
+												<h4>体系的なアフターケア</h4>
+												<p>術後のラインが安定するよう、計画的なケアを実施</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -1664,8 +1657,8 @@
 													<path d="m8 12 3 3 5-6"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 03</span>
-												<h4>전담 의료진의 집중 케어</h4>
-												<p>수술부터 회복까지 윤곽 전문 의료진이 관리</p>
+												<h4>担当医療チームによる集中ケア</h4>
+												<p>輪郭を専門とする医療チームが手術から回復まで管理</p>
 											</div>
 										</article>
 									</div>
@@ -1674,7 +1667,7 @@
 							<section class="sk-section sk-detail sk-reveal" id="detail-232">
 								<header class="sk-section-head"><span class="sk-section-no">03</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>윤곽 재수술 케이스</h3>
+										<h3>輪郭修正手術のケース</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -1688,25 +1681,23 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>광대 · 위치와 고정 상태</h4>
-										<p>옆광대 축소 효과가 부족하거나 불유합, 좌우 비대칭이 있는 경우를 살핍니다. 뼈의 위치와 유합 상태를 분석해 얼굴의 입체감과 비율을 고려한
-											교정 방향을 정합니다.</p>
+										<h4>頬骨：位置と固定状態</h4>
+										<p>縮小不足、骨癒合不全、左右差などを確認します。骨の位置と癒合状態を分析し、立体感と比率を考慮して修正方針を決めます。</p>
 									</article>
 									<article><svg aria-hidden="true" class="sk-icon sk-editorial-icon" fill="none"
 											stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>턱라인 · 길이와 좌우 균형</h4>
-										<p>앞턱 길이의 개선이 부족하거나 2차각, 과도한 길이 변화, 비대칭이 있는 경우를 살핍니다. 이전 절제 범위와 턱끝 위치를 확인해 재수술
-											계획을 세웁니다.</p>
+										<h4>あごのライン：長さと左右のバランス</h4>
+										<p>長さの改善不足、二次角、過度な長さの変化、左右差を確認します。以前の切除範囲とあご先の位置に基づいて修正を計画します。</p>
 									</article>
 								</div>
 								<div class="sk-gallery sk-cols-3" style="--sk-stage-ratio:1 / 0.571667;">
 									<figure class="sk-figure" style="--sk-source-width:600px"><button
 											aria-label="View cheekbone revision assessment" class="sk-zoom"
 											data-caption="Cheekbone revision assessment"
-											data-gallery="contouring-gallery-15" data-gallery-title="윤곽 재수술 케이스"
+											data-gallery="contouring-gallery-15" data-gallery-title="輪郭修正手術のケース"
 											data-image="/front/surgery/images-guides/guide-401.webp" type="button"><img
 												alt="Cheekbone revision assessment" decoding="async" height="731"
 												loading="lazy" src="/front/surgery/images-guides/guide-401.webp"
@@ -1723,7 +1714,7 @@
 									<figure class="sk-figure" style="--sk-source-width:600px"><button
 											aria-label="View cheekbone contour comparison" class="sk-zoom"
 											data-caption="Cheekbone contour comparison"
-											data-gallery="contouring-gallery-15" data-gallery-title="윤곽 재수술 케이스"
+											data-gallery="contouring-gallery-15" data-gallery-title="輪郭修正手術のケース"
 											data-image="/front/surgery/images-guides/guide-402.webp" type="button"><img
 												alt="Cheekbone contour comparison" decoding="async" height="731"
 												loading="lazy" src="/front/surgery/images-guides/guide-402.webp"
@@ -1740,7 +1731,7 @@
 									<figure class="sk-figure" style="--sk-source-width:600px"><button
 											aria-label="View facial symmetry assessment" class="sk-zoom"
 											data-caption="Facial symmetry assessment"
-											data-gallery="contouring-gallery-15" data-gallery-title="윤곽 재수술 케이스"
+											data-gallery="contouring-gallery-15" data-gallery-title="輪郭修正手術のケース"
 											data-image="/front/surgery/images-guides/guide-403.webp" type="button"><img
 												alt="Facial symmetry assessment" decoding="async" height="731"
 												loading="lazy" src="/front/surgery/images-guides/guide-403.webp"
@@ -1757,7 +1748,7 @@
 									<figure class="sk-figure" style="--sk-source-width:600px"><button
 											aria-label="View chin contour assessment" class="sk-zoom"
 											data-caption="Chin contour assessment" data-gallery="contouring-gallery-15"
-											data-gallery-title="윤곽 재수술 케이스"
+											data-gallery-title="輪郭修正手術のケース"
 											data-image="/front/surgery/images-guides/guide-404.webp" type="button"><img
 												alt="Chin contour assessment" decoding="async" height="731"
 												loading="lazy" src="/front/surgery/images-guides/guide-404.webp"
@@ -1774,7 +1765,7 @@
 									<figure class="sk-figure" style="--sk-source-width:600px"><button
 											aria-label="View jawline assessment" class="sk-zoom"
 											data-caption="Jawline assessment" data-gallery="contouring-gallery-15"
-											data-gallery-title="윤곽 재수술 케이스"
+											data-gallery-title="輪郭修正手術のケース"
 											data-image="/front/surgery/images-guides/guide-405.webp" type="button"><img
 												alt="Jawline assessment" decoding="async" height="731" loading="lazy"
 												src="/front/surgery/images-guides/guide-405.webp"
@@ -1790,7 +1781,7 @@
 									<figure class="sk-figure" style="--sk-source-width:600px"><button
 											aria-label="View chin projection assessment" class="sk-zoom"
 											data-caption="Chin projection assessment"
-											data-gallery="contouring-gallery-15" data-gallery-title="윤곽 재수술 케이스"
+											data-gallery="contouring-gallery-15" data-gallery-title="輪郭修正手術のケース"
 											data-image="/front/surgery/images-guides/guide-406.webp" type="button"><img
 												alt="Chin projection assessment" decoding="async" height="731"
 												loading="lazy" src="/front/surgery/images-guides/guide-406.webp"
@@ -1807,7 +1798,7 @@
 									<figure class="sk-figure" style="--sk-source-width:600px"><button
 											aria-label="View frontal chin assessment" class="sk-zoom"
 											data-caption="Frontal chin assessment" data-gallery="contouring-gallery-15"
-											data-gallery-title="윤곽 재수술 케이스"
+											data-gallery-title="輪郭修正手術のケース"
 											data-image="/front/surgery/images-guides/guide-407.webp" type="button"><img
 												alt="Frontal chin assessment" decoding="async" height="731"
 												loading="lazy" src="/front/surgery/images-guides/guide-407.webp"
@@ -1826,7 +1817,7 @@
 							<section class="sk-section sk-detail sk-reveal" id="detail-233">
 								<header class="sk-section-head"><span class="sk-section-no">04</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>재수술 전 정밀 분석 시스템</h3>
+										<h3>修正手術前の精密分析システム</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -1843,8 +1834,8 @@
 													<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5">
 													</path>
 												</svg>
-												<h4>이전 수술의 흔적을 확인</h4>
-												<p>3D CT 분석을 통해 기존 절제 범위와 남은 뼈의 두께, 비대칭 정도를 확인합니다.</p>
+												<h4>以前の手術の状態を確認</h4>
+												<p>3D CTで、以前の切除範囲・残存骨の厚み・左右差を確認します。</p>
 											</article>
 											<article><svg aria-hidden="true" class="sk-icon sk-editorial-icon"
 													fill="none" stroke="currentColor" stroke-linecap="round"
@@ -1852,8 +1843,8 @@
 													<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5">
 													</path>
 												</svg>
-												<h4>신경선과 골 유합 상태</h4>
-												<p>신경선의 위치와 뼈의 유합 상태를 함께 살펴 재수술에서 고려해야 할 구조적인 조건을 파악합니다.</p>
+												<h4>神経の走行と骨の癒合状態</h4>
+												<p>神経の位置と骨の癒合を確認し、修正手術で考慮すべき構造的条件を把握します。</p>
 											</article>
 											<article><svg aria-hidden="true" class="sk-icon sk-editorial-icon"
 													fill="none" stroke="currentColor" stroke-linecap="round"
@@ -1861,8 +1852,8 @@
 													<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5">
 													</path>
 												</svg>
-												<h4>비율과 기능을 함께 계획</h4>
-												<p>얼굴 전체의 조화와 기능적인 문제를 함께 고려합니다. 개인의 상태에 맞춰 필요한 교정 범위를 정합니다.</p>
+												<h4>比率と機能をともに考慮</h4>
+												<p>顔全体の調和と機能面を考慮し、状態に合った修正範囲を決定します。</p>
 											</article>
 										</div>
 									</div>
@@ -1872,7 +1863,7 @@
 													aria-label="View three-dimensional revision planning"
 													class="sk-zoom" data-caption="Three-dimensional revision planning"
 													data-gallery="contouring-gallery-16"
-													data-gallery-title="재수술 전 정밀 분석 시스템"
+													data-gallery-title="修正手術前の精密分析システム"
 													data-image="/front/surgery/images-guides/guide-408.webp"
 													type="button"><img alt="Three-dimensional revision planning"
 														decoding="async" height="1177" loading="lazy"
@@ -1896,7 +1887,7 @@
 						<article class="sk-tabpanel" data-panel="contouring-chin-implant" data-slug="chin-implant"
 							id="contouring-chin-implant">
 							<header class="sk-procedure-hero">
-								<div class="sk-hero-photo"><img class="sk-model-image" alt="무턱보형물 모델 이미지"
+								<div class="sk-hero-photo"><img class="sk-model-image" alt="あごプロテーゼ モデル写真"
 										decoding="async" height="1024" loading="lazy"
 										src="/front/surgery/images-20261014/contouring/chin-implant/hero.webp"
 										width="1536"
@@ -1904,9 +1895,9 @@
 										sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1100px) 50vw, 760px"
 										style="--sk-source-width:1536px;--sk-stage-ratio:3 / 2" /></div>
 								<div class="sk-hero-copy"><span class="sk-eyebrow">FACIAL CONTOURING / 05</span>
-									<h2>무턱보형물</h2><span class="sk-fine-rule"></span>
-									<p>개인별 얼굴형에 맞는 보형물을 삽입해 턱끝에 볼륨을 더함으로써 입매 개선과 얼굴 전체의 균형을 잡아주는 수술입니다.</p><a
-										class="sk-text-link" href="/contactPage">나에게 맞는 수술 상담 <svg aria-hidden="true"
+									<h2>あごプロテーゼ</h2><span class="sk-fine-rule"></span>
+									<p>顔の形に合うプロテーゼを挿入してあご先にボリュームを補い、口元と顔全体のバランスを整える手術です。</p><a
+										class="sk-text-link" href="/contactPage">ご自身に合った治療のご相談 <svg aria-hidden="true"
 											class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round"
 											stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M4 12h16m-6-6 6 6-6 6"></path>
@@ -1917,7 +1908,7 @@
 							<section class="sk-section sk-info sk-reveal" id="detail-234">
 								<header class="sk-section-head"><span class="sk-section-no">01</span>
 									<div><span class="sk-eyebrow">SURGERY GUIDE</span>
-										<h3>수술 정보</h3>
+										<h3>手術情報</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -1933,61 +1924,61 @@
 											<circle cx="12" cy="12" r="9"></circle>
 											<path d="M12 6v6l4 2"></path>
 										</svg>
-										<dt>수술시간</dt>
-										<dd>30분내외</dd>
+										<dt>手術時間</dt>
+										<dd>30分程度</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m14 3 7 7M16 5 5 16l3 3L19 8M5 16l-3 6m8-11 3 3"></path>
 										</svg>
-										<dt>마취방법</dt>
-										<dd>수면마취</dd>
+										<dt>麻酔方法</dt>
+										<dd>静脈麻酔</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="M4 21V6h16v15M9 6V2h6v4M2 21h20M10 21v-6h4v6M9 10h6m-3-3v6"></path>
 										</svg>
-										<dt>입원치료</dt>
-										<dd>없음</dd>
+										<dt>入院</dt>
+										<dd>なし</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m3 18 15-15 3 3L6 21H3v-3ZM9 7l8 8M5 11l8 8"></path>
 										</svg>
-										<dt>실밥제거</dt>
-										<dd>2주 후(입안실밥)</dd>
+										<dt>抜糸</dt>
+										<dd>2週間後（口腔内の抜糸）</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="M20 7a9 9 0 1 0 1 9M20 2v5h-5M8 12l3 3 5-6"></path>
 										</svg>
-										<dt>회복기간</dt>
-										<dd>약 3~4일후</dd>
+										<dt>回復期間</dt>
+										<dd>約3～4日</dd>
 									</div>
 								</dl>
-								<p class="sk-disclaimer">※ 수술시간과 회복기간 등은 개인의 상태 및 수술 범위에 따라 달라질 수 있습니다.</p>
+								<p class="sk-disclaimer">※手術時間・回復期間などは、患者様の状態と手術範囲により異なります。</p>
 								<div class="sk-candidates">
 									<h4><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m5 12 4 4L19 6"></path>
-										</svg>이런 경우에 고려합니다</h4>
+										</svg>このようなお悩みのある方へ</h4>
 									<ul>
-										<li>무턱현상으로 턱선이 불분명한 경우</li>
-										<li>무턱으로 인해 돌출입으로 보이거나 턱살이 많아 보이는 경우</li>
-										<li>뼈 수술 없이 무턱을 개선하고 싶은 경우</li>
-										<li>얼굴이 짧아보이는 경우</li>
+										<li>あごの後退によりフェイスラインが不明瞭な方</li>
+										<li>あごの後退により口元が突出し、あご下の脂肪が多く見える方</li>
+										<li>骨切りをせずにあごの後退を改善したい方</li>
+										<li>顔が短く見える方</li>
 									</ul>
 								</div>
 							</section>
 							<section class="sk-section sk-detail sk-reveal" id="detail-235">
 								<header class="sk-section-head"><span class="sk-section-no">02</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>새김 무턱보형물</h3>
+										<h3>SAEKIMあごプロテーゼ</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -2001,31 +1992,31 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>옆선에 더하는 입체감</h4>
-										<p>턱끝에 볼륨을 더해 얼굴 옆라인이 자연스럽게 이어지도록 계획합니다.</p>
+										<h4>横顔に加える立体感</h4>
+										<p>あご先にボリュームを補い、横顔のラインが自然につながるよう計画します。</p>
 									</article>
 									<article><svg aria-hidden="true" class="sk-icon sk-editorial-icon" fill="none"
 											stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>이마·코·입술과의 조화</h4>
-										<p>턱 한 부위뿐 아니라 주변 이목구비와의 비율을 살펴 보형물의 형태와 크기를 결정합니다.</p>
+										<h4>額・鼻・唇との調和</h4>
+										<p>あごだけでなく周囲の目鼻立ちとの比率を確認し、プロテーゼの形と大きさを決めます。</p>
 									</article>
 									<article><svg aria-hidden="true" class="sk-icon sk-editorial-icon" fill="none"
 											stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>개인 상태에 맞는 접근</h4>
-										<p>턱뼈를 절골하는 방식과는 다른 보형물 삽입 방식입니다. 필요한 변화와 조직 상태에 따라 적합성을 판단합니다.</p>
+										<h4>状態に合ったアプローチ</h4>
+										<p>下顎骨の骨切りとは異なる、プロテーゼ挿入による方法です。必要な変化と組織の状態から適応を判断します。</p>
 									</article>
 								</div>
 							</section>
 							<section class="sk-section sk-point sk-reveal" id="detail-236">
 								<header class="sk-section-head"><span class="sk-section-no">03</span>
 									<div><span class="sk-eyebrow">CHECK POINT</span>
-										<h3>새김 무턱보형물 POINT</h3>
+										<h3>SAEKIMあごプロテーゼのPOINT</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -2039,11 +2030,11 @@
 									<div class="sk-editorial-copy">
 										<div class="sk-point-layout">
 											<figure class="sk-figure" style="--sk-source-width:1536px"><button
-													aria-label="새김 무턱보형물 POINT 확대" class="sk-zoom"
-													data-caption="새김 무턱보형물 POINT" data-gallery="contouring-gallery-17"
-													data-gallery-title="새김 무턱보형물 POINT"
+													aria-label="SAEKIMあごプロテーゼのPOINT 拡大" class="sk-zoom"
+													data-caption="SAEKIMあごプロテーゼのPOINT" data-gallery="contouring-gallery-17"
+													data-gallery-title="SAEKIMあごプロテーゼのPOINT"
 													data-image="/front/surgery/images-20261014/contouring/chin-implant/point.webp"
-													type="button"><img alt="새김 무턱보형물 POINT" decoding="async"
+													type="button"><img alt="SAEKIMあごプロテーゼのPOINT" decoding="async"
 														height="1024" loading="lazy"
 														src="/front/surgery/images-20261014/contouring/chin-implant/point.webp"
 														style="--sk-source-width:1536px;--sk-stage-ratio:3 / 2"
@@ -2059,7 +2050,7 @@
 														</svg></span></button>
 												<figcaption class="sk-photo-notes">
 													<ul>
-														<li>얼굴 비율과 턱끝의 균형</li>
+														<li>顔の比率とあご先のバランス</li>
 													</ul>
 												</figcaption>
 											</figure>
@@ -2073,8 +2064,8 @@
 															<path d="M12 1v4m0 14v4M1 12h4m14 0h4"></path>
 														</svg></span>
 													<div><span class="sk-eyebrow">POINT 01</span>
-														<h4>턱끝 볼륨으로 작은 얼굴 효과</h4>
-														<p>무턱으로 인해 돌출입처럼 보이던 현상이 개선되며 전체적으로 살아나는 입체감</p>
+														<h4>あご先のボリュームで小顔の印象へ</h4>
+														<p>後退したあごを補い、突出して見える口元と顔全体の立体感を改善</p>
 													</div>
 												</article>
 												<article><span class="sk-mini-icon"><svg aria-hidden="true"
@@ -2086,8 +2077,8 @@
 															</path>
 														</svg></span>
 													<div><span class="sk-eyebrow">POINT 02</span>
-														<h4>반영구적 효과</h4>
-														<p>보형물은 반영구적으로 효과가 지속되며 원하지 않을 시에는 제거도 가능</p>
+														<h4>長期的な維持を目指す</h4>
+														<p>プロテーゼは長期的な維持を目的とし、ご希望により除去も可能です</p>
 													</div>
 												</article>
 												<article><span class="sk-mini-icon"><svg aria-hidden="true"
@@ -2099,8 +2090,8 @@
 															<path d="m8 12 3 3 5-6"></path>
 														</svg></span>
 													<div><span class="sk-eyebrow">POINT 03</span>
-														<h4>노출된 흉터 없이 깔끔한 회복</h4>
-														<p>입안 절개로 진행을 하기 때문에 흉터가 없으며 빠른 회복도 가능</p>
+														<h4>外から見える傷跡に配慮した回復</h4>
+														<p>口腔内から切開するため、外側の傷跡を避け、回復への負担を抑えます</p>
 													</div>
 												</article>
 											</div>
@@ -2112,7 +2103,7 @@
 													aria-label="View personalized chin planning" class="sk-zoom"
 													data-caption="Personalized chin planning"
 													data-gallery="contouring-gallery-18"
-													data-gallery-title="새김 무턱보형물 POINT"
+													data-gallery-title="SAEKIMあごプロテーゼのPOINT"
 													data-image="/front/surgery/images-20261014/contouring/chin-implant/point.webp"
 													type="button"><img class="sk-model-image"
 														alt="Personalized chin planning" decoding="async" height="1024"
@@ -2139,7 +2130,7 @@
 							<section class="sk-section sk-detail sk-reveal" id="detail-237">
 								<header class="sk-section-head"><span class="sk-section-no">04</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>무턱이란?</h3>
+										<h3>あごの後退とは？</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -2147,21 +2138,20 @@
 										<path d="m12 2 3 7 7 3-7 3-3 7-3-7-7-3 7-3ZM20 2v4m-2-2h4"></path>
 									</svg>
 								</header>
-								<p class="sk-contour-intro">아래턱 뼈가 정상적으로 잘 성장하지 못해서, 턱끝이 충분히 앞으로 나오지 못하고 뒤로 들어가 보이거나 아예
-									없는 것처럼 보이는 증상을 말합니다.</p>
+								<p class="sk-contour-intro">下顎骨の成長が十分でないことなどにより、あご先が前方へ出ず、後退して見える状態です。</p>
 								<div class="sk-contour-subhead"><span class="sk-contour-kicker">CHECK LIST</span>
-									<h4>무턱 진단법</h4>
+									<h4>あごの後退の診断</h4>
 								</div>
 								<div class="sk-contour-grid">
 									<article class="sk-contour-card">
 										<div class="sk-contour-media">
 											<button type="button" class="sk-contour-zoom"
-												aria-label="아래턱 위치 및 입술 돌출 여부 이미지 확대"
+												aria-label="下顎の位置と唇の突出 画像を拡大"
 												data-image="/front/surgery/images-guides/guide-412.webp"
-												data-caption="아래턱 위치 및 입술 돌출 여부" data-gallery="contouring-gallery-19"
-												data-gallery-title="무턱 진단법">
+												data-caption="下顎の位置と唇の突出" data-gallery="contouring-gallery-19"
+												data-gallery-title="あごの後退の診断">
 												<img src="/front/surgery/images-guides/guide-412.webp" width="1280"
-													height="972" loading="lazy" decoding="async" alt="아래턱 위치 및 입술 돌출 여부"
+													height="972" loading="lazy" decoding="async" alt="下顎の位置と唇の突出"
 													style="--sk-contour-source-width:1280px">
 												<span class="sk-contour-zoom-icon"><svg aria-hidden="true"
 														viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -2172,18 +2162,18 @@
 											</button>
 										</div>
 										<div class="sk-contour-copy"><span class="sk-contour-badge">CHECK 01</span>
-											<h4>아래턱 위치 및 입술 돌출 여부</h4>
-											<p>아래턱이 들어가 있어서 윗입술이 상대적으로 돌출되어 보이는 경우</p>
+											<h4>下顎の位置と唇の突出</h4>
+											<p>下顎の後退により、上唇が相対的に突出して見える状態</p>
 										</div>
 									</article>
 									<article class="sk-contour-card">
 										<div class="sk-contour-media">
-											<button type="button" class="sk-contour-zoom" aria-label="턱 선의 명확성 이미지 확대"
+											<button type="button" class="sk-contour-zoom" aria-label="フェイスラインの明瞭さ 画像を拡大"
 												data-image="/front/surgery/images-guides/guide-413.webp"
-												data-caption="턱 선의 명확성" data-gallery="contouring-gallery-19"
-												data-gallery-title="무턱 진단법">
+												data-caption="フェイスラインの明瞭さ" data-gallery="contouring-gallery-19"
+												data-gallery-title="あごの後退の診断">
 												<img src="/front/surgery/images-guides/guide-413.webp" width="1280"
-													height="972" loading="lazy" decoding="async" alt="턱 선의 명확성"
+													height="972" loading="lazy" decoding="async" alt="フェイスラインの明瞭さ"
 													style="--sk-contour-source-width:1280px">
 												<span class="sk-contour-zoom-icon"><svg aria-hidden="true"
 														viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -2194,19 +2184,19 @@
 											</button>
 										</div>
 										<div class="sk-contour-copy"><span class="sk-contour-badge">CHECK 02</span>
-											<h4>턱 선의 명확성</h4>
-											<p>턱선과 목의 경계가 흐릿해 보이거나, 턱이 없어져 보이는 것처럼 턱 선이 명확하게 구분되지 않는 경우</p>
+											<h4>フェイスラインの明瞭さ</h4>
+											<p>あごと首の境界が曖昧で、あごの輪郭がはっきりしない状態</p>
 										</div>
 									</article>
 									<article class="sk-contour-card">
 										<div class="sk-contour-media">
 											<button type="button" class="sk-contour-zoom"
-												aria-label="입술 다물 때의 변화 이미지 확대"
+												aria-label="唇を閉じる際の変化 画像を拡大"
 												data-image="/front/surgery/images-guides/guide-414.webp"
-												data-caption="입술 다물 때의 변화" data-gallery="contouring-gallery-19"
-												data-gallery-title="무턱 진단법">
+												data-caption="唇を閉じる際の変化" data-gallery="contouring-gallery-19"
+												data-gallery-title="あごの後退の診断">
 												<img src="/front/surgery/images-guides/guide-414.webp" width="1280"
-													height="972" loading="lazy" decoding="async" alt="입술 다물 때의 변화"
+													height="972" loading="lazy" decoding="async" alt="唇を閉じる際の変化"
 													style="--sk-contour-source-width:1280px">
 												<span class="sk-contour-zoom-icon"><svg aria-hidden="true"
 														viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -2217,8 +2207,8 @@
 											</button>
 										</div>
 										<div class="sk-contour-copy"><span class="sk-contour-badge">CHECK 03</span>
-											<h4>입술 다물 때의 변화</h4>
-											<p>입술을 다물 때 턱 끝에 힘이 들어가거나, 억지로 입술을 위로 밀어 올리는 경향</p>
+											<h4>唇を閉じる際の変化</h4>
+											<p>唇を閉じる際にあご先へ力が入り、無理に唇を持ち上げる傾向</p>
 										</div>
 									</article>
 								</div>
@@ -2238,7 +2228,7 @@
 								</header>
 								<div class="sk-point-layout sk-point-reverse">
 									<figure class="sk-figure" style="--sk-source-width:1536px"><button
-											aria-label="Key point 01 확대" class="sk-zoom" data-caption="Key point 01"
+											aria-label="Key point 01 拡大" class="sk-zoom" data-caption="Key point 01"
 											data-gallery="contouring-gallery-20" data-gallery-title="Key point 01"
 											data-image="/front/surgery/images-20261014/contouring/chin-implant/point.webp"
 											type="button"><img alt="Key point 01" decoding="async" height="1024"
@@ -2256,7 +2246,7 @@
 												</svg></span></button>
 										<figcaption class="sk-photo-notes">
 											<ul>
-												<li>얼굴 비율과 턱끝의 균형</li>
+												<li>顔の比率とあご先のバランス</li>
 											</ul>
 										</figcaption>
 									</figure>
@@ -2269,8 +2259,8 @@
 													<path d="M12 1v4m0 14v4M1 12h4m14 0h4"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 01</span>
-												<h4>얼굴 윤곽과 이미지 개선에서</h4>
-												<p>턱끝의 역할이 매우 중요합니다.</p>
+												<h4>輪郭と印象を整えるうえで、</h4>
+												<p>あご先は重要な役割を担います。</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -2280,8 +2270,8 @@
 													</path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 02</span>
-												<h4>얼굴 옆라인 균형과 입체감 완성의 핵심</h4>
-												<p>세련된 인상 및 선명한 목-얼굴 경계 형성</p>
+												<h4>横顔のバランスと立体感の要</h4>
+												<p>洗練された印象と、首・顔の明瞭な境界へ</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -2290,8 +2280,8 @@
 													<path d="M20 7a9 9 0 1 0 1 9M20 2v5h-5M8 12l3 3 5-6"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 03</span>
-												<h4>무엇보다 중요한 점은</h4>
-												<p>‘맞춤형’입니다.</p>
+												<h4>何より大切なのは、</h4>
+												<p>一人ひとりに合わせることです。</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -2302,8 +2292,8 @@
 													<path d="M12 1v4m0 14v4M1 12h4m14 0h4"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 04</span>
-												<h4>맞춤형 수술 계획의 절대적 기준</h4>
-												<p>자연스럽고 조화로운 결과로 가는 핵심 과정</p>
+												<h4>手術計画で重視する基準</h4>
+												<p>自然で調和した結果のための重要な過程</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -2313,26 +2303,26 @@
 													</path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 05</span>
-												<h4>개인에 가장 잘 맞는 디자인 구현</h4>
-												<p>얼굴 뼈의 모양과 전체적인 비율을 고려해 보형물의 모양과 크기를 디자인합니다.</p>
+												<h4>ご自身に合うデザインの実現</h4>
+												<p>顔の骨の形と全体の比率を考慮し、プロテーゼの形状・サイズを設計します。</p>
 											</div>
 										</article>
 									</div>
 								</div>
 								<div class="sk-contour-method">
 									<div class="sk-contour-subhead"><span class="sk-contour-kicker">PROCEDURE</span>
-										<h4>새김 무턱보형물 수술방법</h4>
+										<h4>SAEKIMあごプロテーゼの手術方法</h4>
 									</div>
 									<ol class="sk-contour-grid sk-contour-steps">
 										<li class="sk-contour-card">
 											<div class="sk-contour-media">
 												<button type="button" class="sk-contour-zoom"
-													aria-label="입안 절개 및 골막 분리 이미지 확대"
+													aria-label="口腔内切開と骨膜の剥離 画像を拡大"
 													data-image="/front/surgery/images-guides/guide-416.webp"
-													data-caption="입안 절개 및 골막 분리" data-gallery="contouring-gallery-21"
-													data-gallery-title="새김 무턱보형물 수술방법">
+													data-caption="口腔内切開と骨膜の剥離" data-gallery="contouring-gallery-21"
+													data-gallery-title="SAEKIMあごプロテーゼの手術方法">
 													<img src="/front/surgery/images-guides/guide-416.webp" width="1280"
-														height="916" loading="lazy" decoding="async" alt="입안 절개 및 골막 분리"
+														height="916" loading="lazy" decoding="async" alt="口腔内切開と骨膜の剥離"
 														style="--sk-contour-source-width:1280px">
 													<span class="sk-contour-zoom-icon"><svg aria-hidden="true"
 															viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -2343,19 +2333,19 @@
 												</button>
 											</div>
 											<div class="sk-contour-copy"><span class="sk-contour-badge">STEP 01</span>
-												<h4>입안 절개 및 골막 분리</h4>
-												<p>입안을 절개하여 턱끝을 싸고 있는 골막을 분리합니다.</p>
+												<h4>口腔内切開と骨膜の剥離</h4>
+												<p>口腔内を切開し、あご先を覆う骨膜を剥離します。</p>
 											</div>
 										</li>
 										<li class="sk-contour-card">
 											<div class="sk-contour-media">
 												<button type="button" class="sk-contour-zoom"
-													aria-label="맞춤 보형물 삽입 이미지 확대"
+													aria-label="オーダーメイドプロテーゼの挿入 画像を拡大"
 													data-image="/front/surgery/images-guides/guide-417.webp"
-													data-caption="맞춤 보형물 삽입" data-gallery="contouring-gallery-21"
-													data-gallery-title="새김 무턱보형물 수술방법">
+													data-caption="オーダーメイドプロテーゼの挿入" data-gallery="contouring-gallery-21"
+													data-gallery-title="SAEKIMあごプロテーゼの手術方法">
 													<img src="/front/surgery/images-guides/guide-417.webp" width="1280"
-														height="916" loading="lazy" decoding="async" alt="맞춤 보형물 삽입"
+														height="916" loading="lazy" decoding="async" alt="オーダーメイドプロテーゼの挿入"
 														style="--sk-contour-source-width:1280px">
 													<span class="sk-contour-zoom-icon"><svg aria-hidden="true"
 															viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -2366,19 +2356,19 @@
 												</button>
 											</div>
 											<div class="sk-contour-copy"><span class="sk-contour-badge">STEP 02</span>
-												<h4>맞춤 보형물 삽입</h4>
-												<p>얼굴 뼈의 모양과 비율을 고려해 보형물을 디자인한 후 골막 아래에 삽입합니다.</p>
+												<h4>オーダーメイドプロテーゼの挿入</h4>
+												<p>顔の骨の形と比率に合わせて設計し、骨膜下に挿入します。</p>
 											</div>
 										</li>
 										<li class="sk-contour-card">
 											<div class="sk-contour-media">
 												<button type="button" class="sk-contour-zoom"
-													aria-label="절개 부위 봉합 이미지 확대"
+													aria-label="切開部の縫合 画像を拡大"
 													data-image="/front/surgery/images-guides/guide-418.webp"
-													data-caption="절개 부위 봉합" data-gallery="contouring-gallery-21"
-													data-gallery-title="새김 무턱보형물 수술방법">
+													data-caption="切開部の縫合" data-gallery="contouring-gallery-21"
+													data-gallery-title="SAEKIMあごプロテーゼの手術方法">
 													<img src="/front/surgery/images-guides/guide-418.webp" width="1280"
-														height="916" loading="lazy" decoding="async" alt="절개 부위 봉합"
+														height="916" loading="lazy" decoding="async" alt="切開部の縫合"
 														style="--sk-contour-source-width:1280px">
 													<span class="sk-contour-zoom-icon"><svg aria-hidden="true"
 															viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -2389,8 +2379,8 @@
 												</button>
 											</div>
 											<div class="sk-contour-copy"><span class="sk-contour-badge">STEP 03</span>
-												<h4>절개 부위 봉합</h4>
-												<p>보형물 삽입 후 입안 절개 부위를 봉합합니다.</p>
+												<h4>切開部の縫合</h4>
+												<p>プロテーゼを挿入した後、口腔内の切開部を縫合します。</p>
 											</div>
 										</li>
 									</ol>
@@ -2400,16 +2390,16 @@
 						<article class="sk-tabpanel" data-panel="contouring-paranasal" data-slug="paranasal"
 							id="contouring-paranasal">
 							<header class="sk-procedure-hero">
-								<div class="sk-hero-photo"><img class="sk-model-image" alt="귀족보형물 모델 이미지"
+								<div class="sk-hero-photo"><img class="sk-model-image" alt="鼻翼基部プロテーゼ モデル写真"
 										decoding="async" height="1024" loading="lazy"
 										src="/front/surgery/images-20261014/contouring/paranasal/hero.webp" width="1536"
 										srcset="/front/surgery/images-20261014/contouring/paranasal/hero-768.webp 768w, /front/surgery/images-20261014/contouring/paranasal/hero.webp 1536w"
 										sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1100px) 50vw, 760px"
 										style="--sk-source-width:1536px;--sk-stage-ratio:3 / 2" /></div>
 								<div class="sk-hero-copy"><span class="sk-eyebrow">FACIAL CONTOURING / 06</span>
-									<h2>귀족보형물</h2><span class="sk-fine-rule"></span>
-									<p>팔자주름 옆 꺼진 부위를 보형물로 채워 입가의 음영을 완화하고 어려 보이는 인상을 만들어주는 수술입니다.</p><a
-										class="sk-text-link" href="/contactPage">나에게 맞는 수술 상담 <svg aria-hidden="true"
+									<h2>鼻翼基部プロテーゼ</h2><span class="sk-fine-rule"></span>
+									<p>ほうれい線の横のくぼみにプロテーゼを挿入し、口元の影を和らげ、若々しい印象を目指す手術です。</p><a
+										class="sk-text-link" href="/contactPage">ご自身に合った治療のご相談 <svg aria-hidden="true"
 											class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round"
 											stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M4 12h16m-6-6 6 6-6 6"></path>
@@ -2420,7 +2410,7 @@
 							<section class="sk-section sk-info sk-reveal" id="detail-239">
 								<header class="sk-section-head"><span class="sk-section-no">01</span>
 									<div><span class="sk-eyebrow">SURGERY GUIDE</span>
-										<h3>수술 정보</h3>
+										<h3>手術情報</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -2436,61 +2426,61 @@
 											<circle cx="12" cy="12" r="9"></circle>
 											<path d="M12 6v6l4 2"></path>
 										</svg>
-										<dt>수술시간</dt>
-										<dd>30분내외</dd>
+										<dt>手術時間</dt>
+										<dd>30分程度</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m14 3 7 7M16 5 5 16l3 3L19 8M5 16l-3 6m8-11 3 3"></path>
 										</svg>
-										<dt>마취방법</dt>
-										<dd>수면마취</dd>
+										<dt>麻酔方法</dt>
+										<dd>静脈麻酔</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="M4 21V6h16v15M9 6V2h6v4M2 21h20M10 21v-6h4v6M9 10h6m-3-3v6"></path>
 										</svg>
-										<dt>입원치료</dt>
-										<dd>없음</dd>
+										<dt>入院</dt>
+										<dd>なし</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m3 18 15-15 3 3L6 21H3v-3ZM9 7l8 8M5 11l8 8"></path>
 										</svg>
-										<dt>실밥제거</dt>
-										<dd>2주 후(입안 실밥)</dd>
+										<dt>抜糸</dt>
+										<dd>2週間後（口腔内の抜糸）</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="M20 7a9 9 0 1 0 1 9M20 2v5h-5M8 12l3 3 5-6"></path>
 										</svg>
-										<dt>회복기간</dt>
-										<dd>약 7일 후</dd>
+										<dt>回復期間</dt>
+										<dd>約7日</dd>
 									</div>
 								</dl>
-								<p class="sk-disclaimer">※ 수술시간과 회복기간 등은 개인의 상태 및 수술 범위에 따라 달라질 수 있습니다.</p>
+								<p class="sk-disclaimer">※手術時間・回復期間などは、患者様の状態と手術範囲により異なります。</p>
 								<div class="sk-candidates">
 									<h4><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m5 12 4 4L19 6"></path>
-										</svg>이런 경우에 고려합니다</h4>
+										</svg>このようなお悩みのある方へ</h4>
 									<ul>
-										<li>코 옆 부분이 깊게 패여 나이 들어 보이는 경우</li>
-										<li>팔자주름이 남들보다 깊은 경우</li>
-										<li>나이 들어 보이며 얼굴이 평면적인 경우</li>
-										<li>얼굴의 볼륨감이 없는 경우</li>
+										<li>小鼻の横の深いくぼみで老けて見える方</li>
+										<li>ほうれい線が深い方</li>
+										<li>立体感が乏しく、老けて見える方</li>
+										<li>顔のボリュームが不足している方</li>
 									</ul>
 								</div>
 							</section>
 							<section class="sk-section sk-detail sk-reveal" id="detail-240">
 								<header class="sk-section-head"><span class="sk-section-no">02</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>새김 귀족보형물</h3>
+										<h3>SAEKIM鼻翼基部プロテーゼ</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -2507,8 +2497,8 @@
 													<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5">
 													</path>
 												</svg>
-												<h4>얼굴 중심부의 입체감</h4>
-												<p>코 주변의 꺼진 부위를 보완해 얼굴 중심선에 볼륨을 더하는 방향으로 계획합니다.</p>
+												<h4>顔の中央の立体感</h4>
+												<p>鼻周囲のくぼみを補い、顔の中央にボリュームを加える方針を計画します。</p>
 											</article>
 											<article><svg aria-hidden="true" class="sk-icon sk-editorial-icon"
 													fill="none" stroke="currentColor" stroke-linecap="round"
@@ -2516,8 +2506,8 @@
 													<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5">
 													</path>
 												</svg>
-												<h4>주변 부위와의 균형</h4>
-												<p>코와 입술, 볼의 연결을 함께 살펴 보형물의 크기와 위치를 결정합니다.</p>
+												<h4>周囲とのバランス</h4>
+												<p>鼻・唇・頬のつながりを確認し、プロテーゼの大きさと位置を決めます。</p>
 											</article>
 											<article><svg aria-hidden="true" class="sk-icon sk-editorial-icon"
 													fill="none" stroke="currentColor" stroke-linecap="round"
@@ -2525,8 +2515,8 @@
 													<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5">
 													</path>
 												</svg>
-												<h4>부드럽게 이어지는 인상</h4>
-												<p>꺼짐으로 생기는 팔자 부위의 음영을 살피고 주변 라인과 자연스럽게 연결되도록 계획합니다.</p>
+												<h4>やわらかくつながる印象</h4>
+												<p>くぼみによるほうれい線の影を確認し、周囲のラインへ自然につながるよう計画します。</p>
 											</article>
 										</div>
 									</div>
@@ -2535,7 +2525,7 @@
 											<figure class="sk-figure" style="--sk-source-width:1536px"><button
 													aria-label="View paranasal implant planning" class="sk-zoom"
 													data-caption="Paranasal implant planning"
-													data-gallery="contouring-gallery-22" data-gallery-title="새김 귀족보형물"
+													data-gallery="contouring-gallery-22" data-gallery-title="SAEKIM鼻翼基部プロテーゼ"
 													data-image="/front/surgery/images-20261014/contouring/paranasal/intro.webp"
 													type="button"><img class="sk-model-image"
 														alt="Paranasal implant planning" decoding="async" height="1024"
@@ -2562,7 +2552,7 @@
 							<section class="sk-section sk-point sk-reveal" id="detail-241">
 								<header class="sk-section-head"><span class="sk-section-no">03</span>
 									<div><span class="sk-eyebrow">CHECK POINT</span>
-										<h3>새김 귀족보형물 POINT</h3>
+										<h3>SAEKIM鼻翼基部プロテーゼのPOINT</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -2574,10 +2564,10 @@
 								</header>
 								<div class="sk-point-layout">
 									<figure class="sk-figure" style="--sk-source-width:1536px"><button
-											aria-label="새김 귀족보형물 POINT 확대" class="sk-zoom" data-caption="새김 귀족보형물 POINT"
-											data-gallery="contouring-gallery-23" data-gallery-title="새김 귀족보형물 POINT"
+											aria-label="SAEKIM鼻翼基部プロテーゼのPOINT 拡大" class="sk-zoom" data-caption="SAEKIM鼻翼基部プロテーゼのPOINT"
+											data-gallery="contouring-gallery-23" data-gallery-title="SAEKIM鼻翼基部プロテーゼのPOINT"
 											data-image="/front/surgery/images-20261014/contouring/paranasal/point.webp"
-											type="button"><img class="sk-model-image" alt="새김 귀족보형물 POINT"
+											type="button"><img class="sk-model-image" alt="SAEKIM鼻翼基部プロテーゼのPOINT"
 												decoding="async" height="1024" loading="lazy"
 												src="/front/surgery/images-20261014/contouring/paranasal/point.webp"
 												style="--sk-source-width:1536px;--sk-stage-ratio:3 / 2" width="1536"
@@ -2598,8 +2588,8 @@
 													<path d="M12 1v4m0 14v4M1 12h4m14 0h4"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 01</span>
-												<h4>동안효과</h4>
-												<p>팔자주름 부위의 입체감으로 어려보이는 결과</p>
+												<h4>若々しい印象へ</h4>
+												<p>ほうれい線周囲の立体感で若々しい印象を目指します</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -2609,8 +2599,8 @@
 													</path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 02</span>
-												<h4>입매 교정 효과</h4>
-												<p>팔자주름 부위에 입체감이 형성되면서 상대적으로 튀어나온 입매가 교정되는 결과</p>
+												<h4>口元のバランスを改善</h4>
+												<p>ほうれい線周囲に立体感を補い、相対的に突出して見える口元を整えます</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -2620,8 +2610,8 @@
 													<path d="m8 12 3 3 5-6"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 03</span>
-												<h4>영구적인 결과</h4>
-												<p>보형물로 인해 일반적인 시술보다 영구적인 효과</p>
+												<h4>長期的な変化</h4>
+												<p>プロテーゼにより、一般的な注入治療より長期の維持を目指します</p>
 											</div>
 										</article>
 									</div>
@@ -2630,7 +2620,7 @@
 							<section class="sk-section sk-detail sk-reveal" id="detail-242">
 								<header class="sk-section-head"><span class="sk-section-no">04</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>귀족수술과 비순각수술의 차이</h3>
+										<h3>鼻翼基部形成と鼻唇角形成の違い</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -2642,31 +2632,31 @@
 									<table>
 										<thead>
 											<tr>
-												<th scope="col">코 밑 비순각 부위 (코끝과 윗입술 사이 각도)</th>
-												<th scope="col">수술 부위</th>
-												<th scope="col">팔자주름 옆 꺼진 부위 (코 옆~입가 사이)</th>
+												<th scope="col">鼻唇角形成（鼻柱と上唇のなす角度を調整）</th>
+												<th scope="col">手術部位</th>
+												<th scope="col">ほうれい線横のくぼみ（小鼻の横～口元）</th>
 											</tr>
 										</thead>
 										<tbody>
 											<tr>
-												<th scope="row">입술이 들려보이는 코 밑 각도 개선, 부드럽고 세련된 입매</th>
-												<td>수술 목적</td>
-												<td>팔자주름 완화, 입가 꺼짐 개선, 어려 보이는 인상</td>
+												<th scope="row">鼻の下の角度を整え、やわらかく洗練された口元へ</th>
+												<td>手術の目的</td>
+												<td>ほうれい線と口元のくぼみを改善し、若々しい印象へ</td>
 											</tr>
 											<tr>
-												<th scope="row">비순각각도를 재조정하거나 보형물 삽입</th>
-												<td>수술 방법</td>
-												<td>보형물 또는 지방이식으로 꺼진 부위 볼륨 보완</td>
+												<th scope="row">鼻唇角の調整、またはプロテーゼの挿入</th>
+												<td>手術方法</td>
+												<td>プロテーゼまたは脂肪注入でくぼみを補います</td>
 											</tr>
 											<tr>
-												<th scope="row">코 밑이 자연스럽게 열리며 입이 덜 돌출되고 입술 라인이 세련되어 보임</th>
-												<td>인상 변화 포인트</td>
-												<td>입가의 음영이 사라지고 볼륨이 살아남 → 생기 있고 부드러운 인상</td>
+												<th scope="row">鼻の下が自然に開き、口元の突出感を抑えて唇のラインを整えます</th>
+												<td>印象の変化のポイント</td>
+												<td>口元の影とボリューム不足を改善し、生き生きとしたやわらかい印象へ</td>
 											</tr>
 											<tr>
-												<th scope="row">코끝–입술–턱 라인의 각도를 맞춰 옆모습의 밸런스 개선</th>
-												<td>조화 포인트</td>
-												<td>볼–팔자–턱 라인을 연결해 얼굴 중심부 입체감 강화</td>
+												<th scope="row">鼻先・唇・あごの角度を整え、横顔のバランスを改善</th>
+												<td>調和のポイント</td>
+												<td>頬・ほうれい線・あごのつながりを整え、顔の中央の立体感を補います</td>
 											</tr>
 										</tbody>
 									</table>
@@ -2675,7 +2665,7 @@
 									<figure class="sk-figure" style="--sk-source-width:600px"><button
 											aria-label="View paranasal augmentation area" class="sk-zoom"
 											data-caption="Paranasal augmentation area"
-											data-gallery="contouring-gallery-24" data-gallery-title="귀족수술과 비순각수술의 차이"
+											data-gallery="contouring-gallery-24" data-gallery-title="鼻翼基部形成と鼻唇角形成の違い"
 											data-image="/front/surgery/images-guides/guide-422.webp" type="button"><img
 												alt="Paranasal augmentation area" decoding="async" height="804"
 												loading="lazy" src="/front/surgery/images-guides/guide-422.webp"
@@ -2692,7 +2682,7 @@
 									<figure class="sk-figure" style="--sk-source-width:600px"><button
 											aria-label="View nasolabial angle augmentation area" class="sk-zoom"
 											data-caption="Nasolabial angle augmentation area"
-											data-gallery="contouring-gallery-24" data-gallery-title="귀족수술과 비순각수술의 차이"
+											data-gallery="contouring-gallery-24" data-gallery-title="鼻翼基部形成と鼻唇角形成の違い"
 											data-image="/front/surgery/images-guides/guide-423.webp" type="button"><img
 												alt="Nasolabial angle augmentation area" decoding="async" height="804"
 												loading="lazy" src="/front/surgery/images-guides/guide-423.webp"
@@ -2711,7 +2701,7 @@
 							<section class="sk-section sk-detail sk-reveal" id="detail-243">
 								<header class="sk-section-head"><span class="sk-section-no">05</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>새김 귀족보형물 수술방법</h3>
+										<h3>SAEKIM鼻翼基部プロテーゼの手術方法</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -2724,7 +2714,7 @@
 										<figure class="sk-figure" style="--sk-source-width:600px"><button
 												aria-label="View paranasal contour assessment" class="sk-zoom"
 												data-caption="Paranasal contour assessment"
-												data-gallery="contouring-gallery-25" data-gallery-title="새김 귀족보형물 수술방법"
+												data-gallery="contouring-gallery-25" data-gallery-title="SAEKIM鼻翼基部プロテーゼの手術方法"
 												data-image="/front/surgery/images-guides/guide-424.webp"
 												type="button"><img alt="Paranasal contour assessment" decoding="async"
 													height="785" loading="lazy"
@@ -2743,14 +2733,14 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>1. 개인 맞춤 진단</h4>
-										<p>개인별 팔자주름 부위의 상태를 파악</p>
+										<h4>1. 一人ひとりに合わせた診断</h4>
+										<p>ほうれい線周囲の状態を確認</p>
 									</article>
 									<article>
 										<figure class="sk-figure" style="--sk-source-width:600px"><button
 												aria-label="View paranasal implant placement" class="sk-zoom"
 												data-caption="Paranasal implant placement"
-												data-gallery="contouring-gallery-25" data-gallery-title="새김 귀족보형물 수술방법"
+												data-gallery="contouring-gallery-25" data-gallery-title="SAEKIM鼻翼基部プロテーゼの手術方法"
 												data-image="/front/surgery/images-guides/guide-425.webp"
 												type="button"><img alt="Paranasal implant placement" decoding="async"
 													height="785" loading="lazy"
@@ -2769,14 +2759,14 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>2. 보형물 삽입</h4>
-										<p>입안 절개를 통해 팔자 주름 부위에 보형물 삽입</p>
+										<h4>2. プロテーゼの挿入</h4>
+										<p>口腔内切開からほうれい線周囲にプロテーゼを挿入</p>
 									</article>
 									<article>
 										<figure class="sk-figure" style="--sk-source-width:600px"><button
 												aria-label="View paranasal contour illustration" class="sk-zoom"
 												data-caption="Paranasal contour illustration"
-												data-gallery="contouring-gallery-25" data-gallery-title="새김 귀족보형물 수술방법"
+												data-gallery="contouring-gallery-25" data-gallery-title="SAEKIM鼻翼基部プロテーゼの手術方法"
 												data-image="/front/surgery/images-guides/guide-426.webp"
 												type="button"><img alt="Paranasal contour illustration" decoding="async"
 													height="785" loading="lazy"
@@ -2795,8 +2785,8 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>3. 녹는 실 봉합</h4>
-										<p>녹는 실을 이용해 봉합</p>
+										<h4>3. 吸収糸による縫合</h4>
+										<p>吸収糸で縫合します</p>
 									</article>
 								</div>
 							</section>
@@ -2804,7 +2794,7 @@
 						<article class="sk-tabpanel" data-panel="contouring-forehead-implant"
 							data-slug="forehead-implant" id="contouring-forehead-implant">
 							<header class="sk-procedure-hero">
-								<div class="sk-hero-photo"><img class="sk-model-image" alt="이마보형물 모델 이미지"
+								<div class="sk-hero-photo"><img class="sk-model-image" alt="額プロテーゼ モデル写真"
 										decoding="async" height="1024" loading="lazy"
 										src="/front/surgery/images-20261014/contouring/forehead-implant/hero.webp"
 										width="1536"
@@ -2812,9 +2802,9 @@
 										sizes="(max-width: 760px) calc(100vw - 36px), (max-width: 1100px) 50vw, 760px"
 										style="--sk-source-width:1536px;--sk-stage-ratio:3 / 2" /></div>
 								<div class="sk-hero-copy"><span class="sk-eyebrow">FACIAL CONTOURING / 07</span>
-									<h2>이마보형물</h2><span class="sk-fine-rule"></span>
-									<p>얼굴이 평면적이고 납작할 경우, 이마보형물을 이용하여 입체적이고 어려 보이는 동안 효과를 볼 수 있는 수술입니다.</p><a
-										class="sk-text-link" href="/contactPage">나에게 맞는 수술 상담 <svg aria-hidden="true"
+									<h2>額プロテーゼ</h2><span class="sk-fine-rule"></span>
+									<p>平坦なお顔に額プロテーゼを挿入し、立体感のある若々しい印象を目指す手術です。</p><a
+										class="sk-text-link" href="/contactPage">ご自身に合った治療のご相談 <svg aria-hidden="true"
 											class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round"
 											stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M4 12h16m-6-6 6 6-6 6"></path>
@@ -2825,7 +2815,7 @@
 							<section class="sk-section sk-info sk-reveal" id="detail-244">
 								<header class="sk-section-head"><span class="sk-section-no">01</span>
 									<div><span class="sk-eyebrow">SURGERY GUIDE</span>
-										<h3>수술 정보</h3>
+										<h3>手術情報</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -2841,61 +2831,61 @@
 											<circle cx="12" cy="12" r="9"></circle>
 											<path d="M12 6v6l4 2"></path>
 										</svg>
-										<dt>수술시간</dt>
-										<dd>30분내외</dd>
+										<dt>手術時間</dt>
+										<dd>30分程度</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m14 3 7 7M16 5 5 16l3 3L19 8M5 16l-3 6m8-11 3 3"></path>
 										</svg>
-										<dt>마취방법</dt>
-										<dd>수면마취</dd>
+										<dt>麻酔方法</dt>
+										<dd>静脈麻酔</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="M4 21V6h16v15M9 6V2h6v4M2 21h20M10 21v-6h4v6M9 10h6m-3-3v6"></path>
 										</svg>
-										<dt>입원치료</dt>
-										<dd>없음</dd>
+										<dt>入院</dt>
+										<dd>なし</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m3 18 15-15 3 3L6 21H3v-3ZM9 7l8 8M5 11l8 8"></path>
 										</svg>
-										<dt>실밥제거</dt>
-										<dd>2주 후</dd>
+										<dt>抜糸</dt>
+										<dd>2週間後</dd>
 									</div>
 									<div><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="M20 7a9 9 0 1 0 1 9M20 2v5h-5M8 12l3 3 5-6"></path>
 										</svg>
-										<dt>회복기간</dt>
-										<dd>약 7일 후</dd>
+										<dt>回復期間</dt>
+										<dd>約7日</dd>
 									</div>
 								</dl>
-								<p class="sk-disclaimer">※ 수술시간과 회복기간 등은 개인의 상태 및 수술 범위에 따라 달라질 수 있습니다.</p>
+								<p class="sk-disclaimer">※手術時間・回復期間などは、患者様の状態と手術範囲により異なります。</p>
 								<div class="sk-candidates">
 									<h4><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 											stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 											viewBox="0 0 24 24">
 											<path d="m5 12 4 4L19 6"></path>
-										</svg>이런 경우에 고려합니다</h4>
+										</svg>このようなお悩みのある方へ</h4>
 									<ul>
-										<li>이마가 납작한 경우</li>
-										<li>이마가 좁은 경우</li>
-										<li>이마가 넓은 경우</li>
-										<li>나이들어 보이며 얼굴이 평면적인 경우</li>
+										<li>額が平坦な方</li>
+										<li>額が狭い方</li>
+										<li>額が広い方</li>
+										<li>立体感が乏しく、老けて見える方</li>
 									</ul>
 								</div>
 							</section>
 							<section class="sk-section sk-detail sk-reveal" id="detail-245">
 								<header class="sk-section-head"><span class="sk-section-no">02</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>새김 이마보형물</h3>
+										<h3>SAEKIM額プロテーゼ</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -2912,8 +2902,8 @@
 													<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5">
 													</path>
 												</svg>
-												<h4>개인에게 맞춘 곡선</h4>
-												<p>개인의 이마 형태를 바탕으로 보형물을 설계하여 필요한 볼륨과 곡선을 계획합니다.</p>
+												<h4>一人ひとりに合わせた曲線</h4>
+												<p>額の形に基づいてプロテーゼを設計し、必要なボリュームと曲線を計画します。</p>
 											</article>
 											<article><svg aria-hidden="true" class="sk-icon sk-editorial-icon"
 													fill="none" stroke="currentColor" stroke-linecap="round"
@@ -2921,8 +2911,8 @@
 													<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5">
 													</path>
 												</svg>
-												<h4>얼굴 전체와 어울리는 비율</h4>
-												<p>이마에서 코와 턱으로 이어지는 옆선을 함께 살펴 얼굴 전체의 균형을 고려합니다.</p>
+												<h4>顔全体と調和する比率</h4>
+												<p>額から鼻・あごへ続く横顔のラインを確認し、全体のバランスを考慮します。</p>
 											</article>
 											<article><svg aria-hidden="true" class="sk-icon sk-editorial-icon"
 													fill="none" stroke="currentColor" stroke-linecap="round"
@@ -2930,8 +2920,8 @@
 													<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5">
 													</path>
 												</svg>
-												<h4>절개 위치까지 세심하게</h4>
-												<p>모발선 안쪽의 절개 위치와 범위를 계획하고 봉합합니다. 회복 과정과 흉터 양상은 개인에 따라 달라질 수 있습니다.</p>
+												<h4>切開位置にも細やかな配慮</h4>
+												<p>生え際の内側で切開範囲を計画し、縫合します。回復や傷跡には個人差があります。</p>
 											</article>
 										</div>
 									</div>
@@ -2940,7 +2930,7 @@
 											<figure class="sk-figure" style="--sk-source-width:1536px"><button
 													aria-label="View forehead implant planning" class="sk-zoom"
 													data-caption="Forehead implant planning"
-													data-gallery="contouring-gallery-26" data-gallery-title="새김 이마보형물"
+													data-gallery="contouring-gallery-26" data-gallery-title="SAEKIM額プロテーゼ"
 													data-image="/front/surgery/images-20261014/contouring/forehead-implant/intro.webp"
 													type="button"><img class="sk-model-image"
 														alt="Forehead implant planning" decoding="async" height="1024"
@@ -2967,7 +2957,7 @@
 							<section class="sk-section sk-point sk-reveal" id="detail-246">
 								<header class="sk-section-head"><span class="sk-section-no">03</span>
 									<div><span class="sk-eyebrow">CHECK POINT</span>
-										<h3>새김 이마보형물 POINT</h3>
+										<h3>SAEKIM額プロテーゼのPOINT</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -2979,10 +2969,10 @@
 								</header>
 								<div class="sk-point-layout sk-point-reverse">
 									<figure class="sk-figure" style="--sk-source-width:1536px"><button
-											aria-label="새김 이마보형물 POINT 확대" class="sk-zoom" data-caption="새김 이마보형물 POINT"
-											data-gallery="contouring-gallery-27" data-gallery-title="새김 이마보형물 POINT"
+											aria-label="SAEKIM額プロテーゼのPOINT 拡大" class="sk-zoom" data-caption="SAEKIM額プロテーゼのPOINT"
+											data-gallery="contouring-gallery-27" data-gallery-title="SAEKIM額プロテーゼのPOINT"
 											data-image="/front/surgery/images-20261014/contouring/forehead-implant/point.webp"
-											type="button"><img class="sk-model-image" alt="새김 이마보형물 POINT"
+											type="button"><img class="sk-model-image" alt="SAEKIM額プロテーゼのPOINT"
 												decoding="async" height="1024" loading="lazy"
 												src="/front/surgery/images-20261014/contouring/forehead-implant/point.webp"
 												style="--sk-source-width:1536px;--sk-stage-ratio:3 / 2" width="1536"
@@ -3003,8 +2993,8 @@
 													<path d="M12 1v4m0 14v4M1 12h4m14 0h4"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 01</span>
-												<h4>흉터 최소화로 걱정 NO</h4>
-												<p>두피의 가르마 방향을 따라 미세절개하기에 흉터 걱정 없음</p>
+												<h4>傷跡を抑えるための工夫</h4>
+												<p>頭皮の分け目に沿った小切開で、傷跡に配慮します</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -3014,8 +3004,8 @@
 													</path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 02</span>
-												<h4>볼륨감으로 작아진 얼굴</h4>
-												<p>이마에 볼륨감이 생기면서 전체적으로 얼굴이 작아보이는 효과</p>
+												<h4>ボリュームで小顔の印象へ</h4>
+												<p>額にボリュームを補い、顔全体を小さく見せる効果を目指します</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -3025,8 +3015,8 @@
 													<path d="m8 12 3 3 5-6"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 03</span>
-												<h4>영구적인 결과</h4>
-												<p>박리를 최소화하여 근육, 지방 등 연부조직을 상향 밀착 고정</p>
+												<h4>長期的な変化</h4>
+												<p>剥離を抑え、筋肉・脂肪などの軟部組織を上方に密着固定</p>
 											</div>
 										</article>
 										<article><span class="sk-mini-icon"><svg aria-hidden="true" class="sk-icon"
@@ -3035,8 +3025,8 @@
 													<path d="M20 7a9 9 0 1 0 1 9M20 2v5h-5M8 12l3 3 5-6"></path>
 												</svg></span>
 											<div><span class="sk-eyebrow">POINT 04</span>
-												<h4>빠른 회복 기간</h4>
-												<p>보형물로 인해 일반적인 시술보다 영구적인 효과</p>
+												<h4>回復期間への配慮</h4>
+												<p>プロテーゼにより、一般的な注入治療より長期の維持を目指します</p>
 											</div>
 										</article>
 									</div>
@@ -3045,7 +3035,7 @@
 							<section class="sk-section sk-detail sk-reveal" id="detail-247">
 								<header class="sk-section-head"><span class="sk-section-no">04</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>필러 vs 지방이식 vs 맞춤보형물</h3>
+										<h3>フィラー vs 脂肪注入 vs オーダーメイドプロテーゼ</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -3058,7 +3048,7 @@
 										<figure class="sk-figure" style="--sk-source-width:600px"><button
 												aria-label="View filler materials" class="sk-zoom"
 												data-caption="Filler materials" data-gallery="contouring-gallery-28"
-												data-gallery-title="필러 vs 지방이식 vs 맞춤보형물"
+												data-gallery-title="フィラー vs 脂肪注入 vs オーダーメイドプロテーゼ"
 												data-image="/front/surgery/images-guides/guide-430.webp"
 												type="button"><img alt="Filler materials" decoding="async" height="360"
 													loading="lazy" src="/front/surgery/images-guides/guide-430.webp"
@@ -3075,15 +3065,15 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>이마 필러</h4>
-										<p>주입 방식으로 볼륨을 보완하며 미세한 조정에 활용됩니다. 유지기간과 적용 범위는 사용하는 제품과 개인 상태에 따라 달라집니다.</p>
+										<h4>額のフィラー注入</h4>
+										<p>注入でボリュームを補い、細かな調整に用います。持続期間と適応は製品や状態により異なります。</p>
 									</article>
 									<article>
 										<figure class="sk-figure" style="--sk-source-width:600px"><button
 												aria-label="View fat grafting approach" class="sk-zoom"
 												data-caption="Fat grafting approach"
 												data-gallery="contouring-gallery-28"
-												data-gallery-title="필러 vs 지방이식 vs 맞춤보형물"
+												data-gallery-title="フィラー vs 脂肪注入 vs オーダーメイドプロテーゼ"
 												data-image="/front/surgery/images-guides/guide-431.webp"
 												type="button"><img alt="Fat grafting approach" decoding="async"
 													height="360" loading="lazy"
@@ -3102,8 +3092,8 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>자가지방이식</h4>
-										<p>본인의 지방을 채취해 필요한 부위에 이식합니다. 얼굴 전체의 균형을 고려해 볼륨을 계획하며, 생착 정도에 따라 유지 양상이 달라집니다.
+										<h4>自家脂肪注入</h4>
+										<p>ご自身の脂肪を採取して必要な部位に注入します。顔全体のバランスを考慮し、生着の程度により持続性が異なります。
 										</p>
 									</article>
 									<article>
@@ -3111,7 +3101,7 @@
 												aria-label="View custom forehead implant" class="sk-zoom"
 												data-caption="Custom forehead implant"
 												data-gallery="contouring-gallery-28"
-												data-gallery-title="필러 vs 지방이식 vs 맞춤보형물"
+												data-gallery-title="フィラー vs 脂肪注入 vs オーダーメイドプロテーゼ"
 												data-image="/front/surgery/images-guides/guide-432.webp"
 												type="button"><img alt="Custom forehead implant" decoding="async"
 													height="360" loading="lazy"
@@ -3130,15 +3120,15 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>이마 맞춤 보형물</h4>
-										<p>개인의 이마 구조를 바탕으로 제작한 보형물을 삽입합니다. 이마·코·턱의 조화를 고려해 형태와 입체감을 계획합니다.</p>
+										<h4>額のオーダーメイドプロテーゼ</h4>
+										<p>額の構造に基づくプロテーゼを挿入します。額・鼻・あごの調和を考慮し、形と立体感を計画します。</p>
 									</article>
 								</div>
 							</section>
 							<section class="sk-section sk-detail sk-reveal" id="detail-248">
 								<header class="sk-section-head"><span class="sk-section-no">05</span>
 									<div><span class="sk-eyebrow">SAEKIM DETAIL</span>
-										<h3>새김 이마보형물 수술방법</h3>
+										<h3>SAEKIM額プロテーゼの手術方法</h3>
 									</div>
 									<svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor"
 										stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
@@ -3151,7 +3141,7 @@
 										<figure class="sk-figure" style="--sk-source-width:600px"><button
 												aria-label="View forehead contour assessment" class="sk-zoom"
 												data-caption="Forehead contour assessment"
-												data-gallery="contouring-gallery-29" data-gallery-title="새김 이마보형물 수술방법"
+												data-gallery="contouring-gallery-29" data-gallery-title="SAEKIM額プロテーゼの手術方法"
 												data-image="/front/surgery/images-guides/guide-433.webp"
 												type="button"><img alt="Forehead contour assessment" decoding="async"
 													height="785" loading="lazy"
@@ -3170,14 +3160,14 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>1.이마 상태 맞춤 진단</h4>
-										<p>개인별 이마 상태 파악</p>
+										<h4>1. 額の状態に合わせた診断</h4>
+										<p>一人ひとりの額の状態を確認</p>
 									</article>
 									<article>
 										<figure class="sk-figure" style="--sk-source-width:600px"><button
 												aria-label="View forehead implant placement" class="sk-zoom"
 												data-caption="Forehead implant placement"
-												data-gallery="contouring-gallery-29" data-gallery-title="새김 이마보형물 수술방법"
+												data-gallery="contouring-gallery-29" data-gallery-title="SAEKIM額プロテーゼの手術方法"
 												data-image="/front/surgery/images-guides/guide-434.webp"
 												type="button"><img alt="Forehead implant placement" decoding="async"
 													height="785" loading="lazy"
@@ -3196,14 +3186,14 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>2.두피 미세절개 및 보형물 삽입</h4>
-										<p>두피 가르마 방향을 따라 미세절개하여 맞춤 보형물을 삽입</p>
+										<h4>2. 頭皮の小切開とプロテーゼ挿入</h4>
+										<p>分け目に沿った頭皮の小切開から、オーダーメイドプロテーゼを挿入します</p>
 									</article>
 									<article>
 										<figure class="sk-figure" style="--sk-source-width:600px"><button
 												aria-label="View forehead contour illustration" class="sk-zoom"
 												data-caption="Forehead contour illustration"
-												data-gallery="contouring-gallery-29" data-gallery-title="새김 이마보형물 수술방법"
+												data-gallery="contouring-gallery-29" data-gallery-title="SAEKIM額プロテーゼの手術方法"
 												data-image="/front/surgery/images-guides/guide-435.webp"
 												type="button"><img alt="Forehead contour illustration" decoding="async"
 													height="785" loading="lazy"
@@ -3222,8 +3212,8 @@
 											stroke-width="1.45" viewBox="0 0 24 24">
 											<path d="M5 3v8c0 5 4 9 7 11 3-2 7-6 7-11V3M8 7h8M8 11l4 5 4-5"></path>
 										</svg>
-										<h4>3.흉터 최소화 봉합</h4>
-										<p>흉터가 보이지 않도록 헤어라인 절개부위를 꼼꼼하게 봉합</p>
+										<h4>3. 傷跡に配慮した縫合</h4>
+										<p>生え際の切開部を丁寧に縫合し、傷跡に配慮します</p>
 									</article>
 								</div>
 							</section>
@@ -3232,14 +3222,14 @@
 				</div>
 				<section class="sk-explore sk-reveal">
 					<div class="sk-explore-heading"><span class="sk-eyebrow">FIND YOUR DETAIL</span>
-						<h2>입체적인 얼굴선.<br /><span>조화로운 비율을 찾아서.</span></h2>
+						<h2>立体的なフェイスライン。<br /><span>調和する比率を求めて。</span></h2>
 					</div>
 					<div class="sk-carousel" data-carousel="">
-						<div aria-label="수술별 자세히 보기" class="sk-rail sk-related-links" tabindex="0"><a
+						<div aria-label="手術別の詳細を見る" class="sk-rail sk-related-links" tabindex="0"><a
 								class="sk-slide-card sk-discovery-card" href="/contouringSurgeryPage#cheekbone">
 								<div class="sk-slide-copy"><span class="sk-eyebrow">EXPLORE SAEKIM</span>
-									<h4>3D 광대축소술</h4>
-									<p>광대의 크기를 줄이고 재배치하여 부드럽고 입체적인 얼굴형으로 개선할 수 있는 수술입니다.</p>
+									<h4>3D頬骨縮小術</h4>
+									<p>頬骨を縮小・再配置し、やわらかく立体的な輪郭を目指す手術です。</p>
 								</div><img class="sk-model-image" height="1024" width="1536" alt="" loading="lazy"
 									src="/front/surgery/images-20261014/contouring/cheekbone/hero.webp"
 									srcset="/front/surgery/images-20261014/contouring/cheekbone/hero-768.webp 768w, /front/surgery/images-20261014/contouring/cheekbone/hero.webp 1536w"
@@ -3248,8 +3238,8 @@
 									class="sk-card-open">↗</span>
 							</a><a class="sk-slide-card sk-discovery-card" href="/contouringSurgeryPage#jaw">
 								<div class="sk-slide-copy"><span class="sk-eyebrow">EXPLORE SAEKIM</span>
-									<h4>사각턱수술</h4>
-									<p>긴곡선 형태로 사각턱부터 옆턱까지 한 번에 절제해 비대칭 개선과 2차각 없이 세련된 맞춤 V라인을 완성하는 수술입니다.</p>
+									<h4>エラ縮小術</h4>
+									<p>エラから下顎の側面まで長い曲線で一度に切除し、左右差や二次角に配慮したVラインを目指す手術です。</p>
 								</div><img class="sk-model-image" height="1024" width="1536" alt="" loading="lazy"
 									src="/front/surgery/images-20261014/contouring/jaw/hero.webp"
 									srcset="/front/surgery/images-20261014/contouring/jaw/hero-768.webp 768w, /front/surgery/images-20261014/contouring/jaw/hero.webp 1536w"
@@ -3258,8 +3248,8 @@
 									class="sk-card-open">↗</span>
 							</a><a class="sk-slide-card sk-discovery-card" href="/contouringSurgeryPage#chin">
 								<div class="sk-slide-copy"><span class="sk-eyebrow">EXPLORE SAEKIM</span>
-									<h4>턱끝수술</h4>
-									<p>적절하지 않은 턱끝의 크기와 위치를 개인의 얼굴 구조에 맞게 교정하여, 부드럽고 세련된 얼굴형으로 개선할 수 있는 수술입니다.</p>
+									<h4>オトガイ形成術</h4>
+									<p>あご先の大きさと位置を顔の構造に合わせて修正し、やわらかく整った輪郭を目指す手術です。</p>
 								</div><img class="sk-model-image" height="1024" width="1536" alt="" loading="lazy"
 									src="/front/surgery/images-20261014/contouring/chin/hero.webp"
 									srcset="/front/surgery/images-20261014/contouring/chin/hero-768.webp 768w, /front/surgery/images-20261014/contouring/chin/hero.webp 1536w"
@@ -3269,8 +3259,8 @@
 							</a><a class="sk-slide-card sk-discovery-card"
 								href="/contouringSurgeryPage#contour-revision">
 								<div class="sk-slide-copy"><span class="sk-eyebrow">EXPLORE SAEKIM</span>
-									<h4>윤곽재수술</h4>
-									<p>첫 수술에 비해 난이도가 높고 환자의 심적 부담 역시 크므로 의료진의 풍부한 수술 경험과 노하우, 미적 감각등을 고려하여 수술을 진행합니다.
+									<h4>輪郭修正手術</h4>
+									<p>初回手術より難易度が高く、患者様の心理的負担も大きいため、豊富な手術経験・技術・美的判断を踏まえて治療します。
 									</p>
 								</div><img class="sk-model-image" height="1024" width="1536" alt="" loading="lazy"
 									src="/front/surgery/images-20261014/contouring/contour-revision/hero.webp"
@@ -3280,8 +3270,8 @@
 									class="sk-card-open">↗</span>
 							</a><a class="sk-slide-card sk-discovery-card" href="/contouringSurgeryPage#chin-implant">
 								<div class="sk-slide-copy"><span class="sk-eyebrow">EXPLORE SAEKIM</span>
-									<h4>무턱보형물</h4>
-									<p>개인별 얼굴형에 맞는 보형물을 삽입해 턱끝에 볼륨을 더함으로써 입매 개선과 얼굴 전체의 균형을 잡아주는 수술입니다.</p>
+									<h4>あごプロテーゼ</h4>
+									<p>顔の形に合うプロテーゼを挿入してあご先にボリュームを補い、口元と顔全体のバランスを整える手術です。</p>
 								</div><img class="sk-model-image" height="1024" width="1536" alt="" loading="lazy"
 									src="/front/surgery/images-20261014/contouring/chin-implant/hero.webp"
 									srcset="/front/surgery/images-20261014/contouring/chin-implant/hero-768.webp 768w, /front/surgery/images-20261014/contouring/chin-implant/hero.webp 1536w"
@@ -3290,8 +3280,8 @@
 									class="sk-card-open">↗</span>
 							</a><a class="sk-slide-card sk-discovery-card" href="/contouringSurgeryPage#paranasal">
 								<div class="sk-slide-copy"><span class="sk-eyebrow">EXPLORE SAEKIM</span>
-									<h4>귀족보형물</h4>
-									<p>팔자주름 옆 꺼진 부위를 보형물로 채워 입가의 음영을 완화하고 어려 보이는 인상을 만들어주는 수술입니다.</p>
+									<h4>鼻翼基部プロテーゼ</h4>
+									<p>ほうれい線の横のくぼみにプロテーゼを挿入し、口元の影を和らげ、若々しい印象を目指す手術です。</p>
 								</div><img class="sk-model-image" height="1024" width="1536" alt="" loading="lazy"
 									src="/front/surgery/images-20261014/contouring/paranasal/hero.webp"
 									srcset="/front/surgery/images-20261014/contouring/paranasal/hero-768.webp 768w, /front/surgery/images-20261014/contouring/paranasal/hero.webp 1536w"
@@ -3301,8 +3291,8 @@
 							</a><a class="sk-slide-card sk-discovery-card"
 								href="/contouringSurgeryPage#forehead-implant">
 								<div class="sk-slide-copy"><span class="sk-eyebrow">EXPLORE SAEKIM</span>
-									<h4>이마보형물</h4>
-									<p>얼굴이 평면적이고 납작할 경우, 이마보형물을 이용하여 입체적이고 어려 보이는 동안 효과를 볼 수 있는 수술입니다.</p>
+									<h4>額プロテーゼ</h4>
+									<p>平坦なお顔に額プロテーゼを挿入し、立体感のある若々しい印象を目指す手術です。</p>
 								</div><img class="sk-model-image" height="1024" width="1536" alt="" loading="lazy"
 									src="/front/surgery/images-20261014/contouring/forehead-implant/hero.webp"
 									srcset="/front/surgery/images-20261014/contouring/forehead-implant/hero-768.webp 768w, /front/surgery/images-20261014/contouring/forehead-implant/hero.webp 1536w"
@@ -3311,42 +3301,41 @@
 									class="sk-card-open">↗</span>
 							</a></div>
 						<div class="sk-rail-controls">
-							<p>※ 옆으로 넘겨 수술별 특징을 살펴보세요.</p><button aria-label="이전 수술" data-slide="-1"
-								type="button">←</button><button aria-label="다음 수술" data-slide="1"
+							<p>※横にスワイプすると、各手術の特徴をご覧いただけます。</p><button aria-label="前へ 手術" data-slide="-1"
+								type="button">←</button><button aria-label="次へ 手術" data-slide="1"
 								type="button">→</button>
 						</div>
 					</div>
 				</section>
 				<aside class="sk-consult">
 					<div><span class="sk-eyebrow">YOUR OWN BALANCE</span>
-						<h2>나에게 어울리는 변화,<br />충분한 상담에서 시작됩니다.</h2>
-						<p>수술 방법과 적합 여부는 개인의 상태를 확인한 후 의료진과 상담하여 결정합니다.</p>
+						<h2>ご自身らしい変化は、<br />丁寧なカウンセリングから始まります。</h2>
+						<p>手術方法と適応は、状態を確認したうえで医師とのご相談により決定します。</p>
 					</div>
-					<a href="/contactPage">상담 문의 <svg aria-hidden="true" class="sk-icon" fill="none"
+					<a href="/contactPage">カウンセリングのお問い合わせ <svg aria-hidden="true" class="sk-icon" fill="none"
 							stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45"
 							viewBox="0 0 24 24">
 							<path d="M4 12h16m-6-6 6 6-6 6"></path>
 						</svg></a>
 				</aside>
-				<p class="sk-end-note">※ 수술 및 시술 결과에는 개인차가 있습니다. 수술에 따라 출혈, 감염, 붓기, 흉터, 비대칭 등의 부작용이 발생할 수 있으므로 의료진의 충분한
-					설명을 확인해 주세요.</p>
+				<p class="sk-end-note">※手術・施術の結果には個人差があります。出血・感染・腫れ・傷跡・左右差などが生じる場合があります。医療チームの説明を十分にご確認ください。</p>
 			</div>
-			<dialog aria-label="수술 설명 이미지 확대" aria-labelledby="sk-viewer-title" class="sk-image-dialog">
+			<dialog aria-label="手術説明の画像を拡大" aria-labelledby="sk-viewer-title" class="sk-image-dialog">
 				<div class="sk-viewer-top">
 					<div><span class="sk-eyebrow">IMAGE GALLERY</span>
 						<h2 id="sk-viewer-title"></h2>
-					</div><button aria-label="이미지 보기 닫기" class="sk-dialog-close" type="button">×</button>
+					</div><button aria-label="画像表示を閉じる" class="sk-dialog-close" type="button">×</button>
 				</div>
 				<div aria-busy="false" class="sk-viewer-stage"><img alt="" class="sk-viewer-image" />
-					<p class="sk-viewer-error" hidden="">※ 이미지를 불러오지 못했습니다. 다른 이미지를 선택하거나 다시 열어 주세요.</p>
+					<p class="sk-viewer-error" hidden="">※画像を読み込めませんでした。別の画像を選ぶか、もう一度開いてください。</p>
 				</div>
-				<div class="sk-viewer-bottom"><button aria-label="이전 이미지" class="sk-viewer-prev"
+				<div class="sk-viewer-bottom"><button aria-label="前の画像" class="sk-viewer-prev"
 						type="button">←</button>
 					<div aria-live="polite" class="sk-viewer-caption"><span class="sk-viewer-count"></span>
 						<p></p>
-					</div><button aria-label="다음 이미지" class="sk-viewer-next" type="button">→</button>
+					</div><button aria-label="次の画像" class="sk-viewer-next" type="button">→</button>
 				</div>
-				<p class="sk-viewer-hint">※ 좌우 버튼 · 키보드 방향키 · 좌우 스와이프로 같은 항목의 이미지를 확인하세요.</p>
+				<p class="sk-viewer-hint">※左右のボタン・キーボードの矢印キー・左右のスワイプで、同じ項目の画像をご覧いただけます。</p>
 			</dialog>
 		</main>
 		<footer th:replace="~{fragments/front/common :: commonFooter}"></footer>

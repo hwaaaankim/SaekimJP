@@ -36,7 +36,7 @@ public class ContactInquiryApiControllerAdvice {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleException(Exception e) {
         Map<String, Object> body = new HashMap<>();
-        body.put("message", "처리 중 오류가 발생했습니다.");
+        body.put("message", com.dev.SaeKimJP.util.UiLanguage.text("처리 중 오류가 발생했습니다.", "処理中にエラーが発生しました。"));
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(body);
     }
 }

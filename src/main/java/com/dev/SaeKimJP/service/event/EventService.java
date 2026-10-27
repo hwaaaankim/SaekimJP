@@ -188,33 +188,33 @@ public class EventService {
 
     private Event getEvent(Long id) {
         return eventRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("이벤트를 찾을 수 없습니다. id=" + id));
+                .orElseThrow(() -> new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("이벤트를 찾을 수 없습니다. id=", "イベントが見つかりません。id=") + id));
     }
 
     private void validateRequest(AdminEventSaveRequest request, boolean createMode) {
         if (request == null) {
-            throw new IllegalArgumentException("요청값이 없습니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("요청값이 없습니다.", "リクエストの値がありません。"));
         }
 
         if (!StringUtils.hasText(request.getTitle())) {
-            throw new IllegalArgumentException("제목은 필수입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("제목은 필수입니다.", "タイトルは必須です。"));
         }
 
         if (!StringUtils.hasText(request.getContent())) {
-            throw new IllegalArgumentException("목록용 내용은 필수입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("목록용 내용은 필수입니다.", "一覧用の概要は必須です。"));
         }
 
         if (createMode && (request.getImageFile() == null || request.getImageFile().isEmpty())) {
-            throw new IllegalArgumentException("대표 이미지는 필수입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("대표 이미지는 필수입니다.", "メイン画像は必須です。"));
         }
 
         if (request.isPeriodLimited()) {
             if (request.getStartDate() == null || request.getEndDate() == null) {
-                throw new IllegalArgumentException("기간한정 이벤트는 시작일과 종료일이 모두 필요합니다.");
+                throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("기간한정 이벤트는 시작일과 종료일이 모두 필요합니다.", "期間限定イベントには開始日と終了日が必要です。"));
             }
 
             if (request.getStartDate().isAfter(request.getEndDate())) {
-                throw new IllegalArgumentException("시작일은 종료일보다 늦을 수 없습니다.");
+                throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("시작일은 종료일보다 늦을 수 없습니다.", "開始日は終了日以前にしてください。"));
             }
         }
     }
@@ -225,7 +225,7 @@ public class EventService {
 
     private StoredImageInfo storeMainImage(Long eventId, MultipartFile imageFile) {
         if (eventId == null) {
-            throw new IllegalArgumentException("이벤트 ID가 없습니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("이벤트 ID가 없습니다.", "イベントIDがありません。"));
         }
 
         return storeImage(
@@ -245,7 +245,7 @@ public class EventService {
 
     private StoredImageInfo storeImage(MultipartFile imageFile, Path directory, String urlPrefix) {
         if (imageFile == null || imageFile.isEmpty()) {
-            throw new IllegalArgumentException("업로드할 이미지가 없습니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("업로드할 이미지가 없습니다.", "アップロードする画像がありません。"));
         }
 
         validateImageFile(imageFile);
@@ -266,7 +266,7 @@ public class EventService {
                     originalName == null ? storedName : originalName
             );
         } catch (IOException e) {
-            throw new IllegalStateException("이벤트 이미지를 저장하지 못했습니다.", e);
+            throw new IllegalStateException(com.dev.SaeKimJP.util.UiLanguage.text("이벤트 이미지를 저장하지 못했습니다.", "イベント画像を保存できませんでした。"), e);
         }
     }
 
@@ -274,7 +274,7 @@ public class EventService {
         String contentType = imageFile.getContentType();
 
         if (StringUtils.hasText(contentType) && !contentType.toLowerCase().startsWith("image/")) {
-            throw new IllegalArgumentException("이미지 파일만 업로드할 수 있습니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("이미지 파일만 업로드할 수 있습니다.", "画像ファイルのみアップロードできます。"));
         }
 
         getSafeExtension(imageFile.getOriginalFilename());
@@ -282,18 +282,18 @@ public class EventService {
 
     private String getSafeExtension(String originalFilename) {
         if (!StringUtils.hasText(originalFilename)) {
-            throw new IllegalArgumentException("파일명이 올바르지 않습니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("파일명이 올바르지 않습니다.", "ファイル名が正しくありません。"));
         }
 
         int idx = originalFilename.lastIndexOf(".");
         if (idx < 0) {
-            throw new IllegalArgumentException("확장자가 없는 이미지는 업로드할 수 없습니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("확장자가 없는 이미지는 업로드할 수 없습니다.", "拡張子のない画像はアップロードできません。"));
         }
 
         String extension = originalFilename.substring(idx).toLowerCase();
 
         if (!ALLOWED_IMAGE_EXTENSIONS.contains(extension)) {
-            throw new IllegalArgumentException("jpg, jpeg, png, gif, webp 이미지만 업로드할 수 있습니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("jpg, jpeg, png, gif, webp 이미지만 업로드할 수 있습니다.", "jpg, jpeg, png, gif, webpの画像のみアップロードできます。"));
         }
 
         return extension;

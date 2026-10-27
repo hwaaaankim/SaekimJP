@@ -50,7 +50,7 @@ public class MainPopupService {
         validatePeriod(request);
 
         if (request.getImage() == null || request.getImage().isEmpty()) {
-            throw new IllegalArgumentException("팝업 이미지는 필수입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("팝업 이미지는 필수입니다.", "ポップアップ画像は必須です。"));
         }
 
         MainPopup entity = new MainPopup();
@@ -81,7 +81,7 @@ public class MainPopupService {
         validatePeriod(request);
 
         MainPopup entity = mainPopupRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("팝업을 찾을 수 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("팝업을 찾을 수 없습니다.", "ポップアップが見つかりません。")));
 
         entity.setLinkUrl(FrontPagePathUtils.normalizeInternalPagePath(request.getLinkUrl()));
         entity.setUseDisplayPeriod(Boolean.TRUE.equals(request.getUseDisplayPeriod()));
@@ -113,7 +113,7 @@ public class MainPopupService {
 
     public void delete(Long id) {
         MainPopup entity = mainPopupRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("팝업을 찾을 수 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("팝업을 찾을 수 없습니다.", "ポップアップが見つかりません。")));
 
         fileStorageService.deleteByUrl(entity.getImageUrl());
 
@@ -178,11 +178,11 @@ public class MainPopupService {
         }
 
         if (request.getDisplayStartDate() == null || request.getDisplayEndDate() == null) {
-            throw new IllegalArgumentException("노출 날짜 지정을 사용하는 경우 시작일과 종료일은 필수입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("노출 날짜 지정을 사용하는 경우 시작일과 종료일은 필수입니다.", "表示期間を指定する場合、開始日と終了日は必須です。"));
         }
 
         if (request.getDisplayEndDate().isBefore(request.getDisplayStartDate())) {
-            throw new IllegalArgumentException("종료일은 시작일보다 빠를 수 없습니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("종료일은 시작일보다 빠를 수 없습니다.", "終了日は開始日以降にしてください。"));
         }
     }
 

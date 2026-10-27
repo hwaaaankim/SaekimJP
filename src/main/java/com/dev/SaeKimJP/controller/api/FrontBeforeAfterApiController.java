@@ -27,7 +27,7 @@ public class FrontBeforeAfterApiController {
     ) {
         try {
             return ResponseEntity.ok(
-                    ApiResponse.ok("전후사진 목록입니다.", beforeAfterService.getFrontList(category, offset, limit))
+                    ApiResponse.ok(com.dev.SaeKimJP.util.UiLanguage.text("전후사진 목록입니다.", "症例写真の一覧です。"), beforeAfterService.getFrontList(category, offset, limit))
             );
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(ApiResponse.fail(e.getMessage()));

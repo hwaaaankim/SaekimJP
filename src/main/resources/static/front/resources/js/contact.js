@@ -52,43 +52,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const data = await parseResponse(response);
 
-            alert(data.message || '문의가 완료 되었습니다. 빠르게 연락드리도록 하겠습니다.');
+            alert(data.message || 'お問い合わせを受け付けました。順次ご連絡いたします。');
             location.href = '/index';
         } catch (error) {
-            alert(error.message || '문의 접수 중 오류가 발생했습니다.');
+            alert(error.message || 'お問い合わせの送信中にエラーが発生しました。');
         }
     });
 
     function validateForm() {
         if (!nameEl.value.trim()) {
             nameEl.focus();
-            return '이름을 입력해 주세요.';
+            return '氏名を入力してください。';
         }
 
         const digits = phoneEl.value.replace(/\D/g, '');
         if (!digits) {
             phoneEl.focus();
-            return '연락처를 입력해 주세요.';
+            return '電話番号を入力してください。';
         }
 
         if (!(digits.length === 9 || digits.length === 10 || digits.length === 11)) {
             phoneEl.focus();
-            return '연락처 형식이 올바르지 않습니다.';
+            return '電話番号の形式が正しくありません。';
         }
 
         if (emailEl.value.trim() && !isValidEmail(emailEl.value.trim())) {
             emailEl.focus();
-            return '이메일 형식이 올바르지 않습니다.';
+            return 'メールアドレスの形式が正しくありません。';
         }
 
         if (!agree1El.checked) {
             agree1El.focus();
-            return '개인정보수집 및 이용 동의(필수)는 반드시 체크해 주세요.';
+            return '個人情報の収集・利用への同意（必須）にチェックを入れてください。';
         }
 
         if (!agree2El.checked) {
             agree2El.focus();
-            return '개인정보 제3자 제공 동의(필수)는 반드시 체크해 주세요.';
+            return '個人情報の第三者提供への同意（必須）にチェックを入れてください。';
         }
 
         return '';
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         if (!response.ok) {
-            throw new Error(data.message || '처리 중 오류가 발생했습니다.');
+            throw new Error(data.message || '処理中にエラーが発生しました。');
         }
 
         return data;
@@ -151,6 +151,9 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        content.style.display = content.style.display === 'none' || !content.style.display ? 'block' : 'none';
+        const expanded = content.style.display === 'none' || !content.style.display;
+        content.style.display = expanded ? 'block' : 'none';
+        item.classList.toggle('active', expanded);
+        anchorEl.setAttribute('aria-expanded', String(expanded));
     };
 });

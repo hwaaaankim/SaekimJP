@@ -1,10 +1,10 @@
 package com.dev.SaeKimJP.enums.surgery;
 
 public enum SurgeryGroupType {
-    EYE("눈"),
-    NOSE("코"),
-    YOUNG("동안"),
-    CONTOURING("윤곽");
+    EYE("目元"),
+    NOSE("鼻"),
+    YOUNG("エイジングケア"),
+    CONTOURING("輪郭");
 
     private final String label;
 
@@ -13,6 +13,6 @@ public enum SurgeryGroupType {
     }
 
     public String getLabel() {
-        return label;
+        return com.dev.SaeKimJP.util.UiLanguage.label(label);
     }
 }

@@ -1,23 +1,24 @@
 @charset "utf-8";
-@import url("https://fonts.googleapis.com/css2?family=Hi+Melody&family=Noto+Sans+KR:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+JP:wght@200..900&display=swap");
+@import url("/front/surgery/fonts-jp.css");
 html,
 body {
   min-width: 320px;
 }
 body * {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "Saekim Noto JP", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   box-sizing: border-box;
-  letter-spacing: -0.04em;
-  word-break: keep-all;
-  -webkit-text-size-adjust: none;
+  letter-spacing: normal;
+  word-break: normal;
+  line-break: strict;
+  -webkit-text-size-adjust: 100%;
 }
 .noto {
-  font-family: "Noto Sans KR" !important;
+  font-family: "Saekim Noto JP" !important;
 }
 .pretendard * {
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "Saekim Noto JP", sans-serif;
   letter-spacing: -0.02em;
 }
 button {
@@ -235,7 +236,7 @@ body.open {
   display: inline-block;
   width: 22px;
   height: 22px;
-  background-image: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-chevron-right-wh.svg);
+  background-image: url(/front/resources/icons/i-chevron-right-wh.svg);
   background-repeat: no-repeat;
   background-size: 100% auto;
 }
@@ -648,7 +649,7 @@ footer > .inner {
   z-index: 100;
 }
 .btn_top > s {
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-arrow-up.svg)
+  background: url(/front/resources/icons/i-arrow-up.svg)
     center center no-repeat;
   width: 26px;
   height: 26px;
@@ -792,13 +793,13 @@ footer > .inner {
   position: absolute;
 }
 .notice-pagination .arrow > a.prev:before {
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-prev.svg)
+  background: url(/front/resources/icons/i-prev.svg)
     center center no-repeat;
   background-size: 100%;
   left: 0;
 }
 .notice-pagination .arrow > a.next:before {
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-next.svg)
+  background: url(/front/resources/icons/i-next.svg)
     center center no-repeat;
   background-size: 100%;
   right: 0;
@@ -843,22 +844,22 @@ footer > .inner {
   height: 24px;
 }
 .arrow a.first {
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-first.svg)
+  background: url(/front/resources/icons/i-first.svg)
     center center no-repeat;
   background-size: 100%;
 }
 .arrow a.prev {
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-prev.svg)
+  background: url(/front/resources/icons/i-prev.svg)
     center center no-repeat;
   background-size: 100%;
 }
 .arrow a.next {
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-next.svg)
+  background: url(/front/resources/icons/i-next.svg)
     center center no-repeat;
   background-size: 100%;
 }
 .arrow a.last {
-  background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-last.svg)
+  background: url(/front/resources/icons/i-last.svg)
     center center no-repeat;
   background-size: 100%;
 }
@@ -1181,3 +1182,7 @@ footer > .inner {
   word-break: keep-all;
   line-height: 1.4;
 }
+
+/* Japanese line breaking and readable long labels. */
+html[lang="ja"] body *{word-break:normal;line-break:strict;overflow-wrap:break-word}
+html[lang="ja"] input,html[lang="ja"] select,html[lang="ja"] textarea,html[lang="ja"] button{font-family:"Saekim Noto JP",sans-serif}

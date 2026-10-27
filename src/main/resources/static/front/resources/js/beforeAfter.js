@@ -12,29 +12,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const appendLimit = parseInt(page.dataset.appendLimit || '8', 10);
 
     const categoryMap = {
-        all: '전체',
-        eye: '눈',
-        young: '동안',
-        contour: '윤곽',
-        nose: '코'
+        all: 'すべて',
+        eye: '目元',
+        young: 'エイジングケア',
+        contour: '輪郭',
+        nose: '鼻'
     };
 
     const VIEW_SLOTS = [
         {
             key: 'front',
-            label: '정면',
+            label: '正面',
             beforeUrlField: 'beforeFrontImageUrl',
             afterUrlField: 'afterFrontImageUrl'
         },
         {
             key: 'angle45',
-            label: '45도',
+            label: '45度',
             beforeUrlField: 'beforeAngle45ImageUrl',
             afterUrlField: 'afterAngle45ImageUrl'
         },
         {
             key: 'angle90',
-            label: '90도',
+            label: '90度',
             beforeUrlField: 'beforeAngle90ImageUrl',
             afterUrlField: 'afterAngle90ImageUrl'
         }
@@ -98,11 +98,11 @@ document.addEventListener('DOMContentLoaded', function() {
         try {
             data = await response.json();
         } catch (error) {
-            throw new Error('전후사진 응답을 확인하지 못했습니다.');
+            throw new Error('症例写真の応答を確認できませんでした。');
         }
 
         if (!response.ok || !data.success) {
-            throw new Error(data.message || '전후사진 데이터를 불러오지 못했습니다.');
+            throw new Error(data.message || '症例写真のデータを読み込めませんでした。');
         }
 
         return data.data;
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .filter(function(prepared) {
                 if (prepared.viewCount < 1 || prepared.viewCount > 3) {
-                    console.warn('표시 가능한 Before·After 이미지 쌍이 없는 항목을 제외했습니다.', prepared.item);
+                    console.warn('表示できるBefore・Afterの画像が揃っていない項目を除外しました。', prepared.item);
                     return false;
                 }
 
@@ -237,7 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     decoding="async"
                     data-before-after-image>
                 <div class="before-after-card-image-error" aria-hidden="true">
-                    이미지를 불러올 수 없습니다.
+                    画像を読み込めません。
                 </div>
                 <span class="before-after-card-label">${escapeHtml(label)}</span>
             </div>
@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function createViewBlock(item, view) {
         const beforeUrl = item[view.beforeUrlField];
         const afterUrl = item[view.afterUrlField];
-        const title = item.title || '전후사진';
+        const title = item.title || '症例写真';
         const safeViewLabel = escapeHtml(view.label);
 
         return `
@@ -257,7 +257,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="before-after-card-toggle-wrap">
                     <button type="button"
                         class="before-after-card-toggle is-before"
-                        aria-label="${safeViewLabel} 전후사진 전환"
+                        aria-label="${safeViewLabel} Before・Afterを切り替え"
                         aria-pressed="false">
                         <span class="before-after-card-toggle-indicator"></span>
                         <span class="before-after-card-toggle-text before-after-before-label">Before</span>
@@ -345,7 +345,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <p class="before-after-card-sub">${escapeHtml(item.description || '')}</p>
 
                     <div class="before-after-card-meta">
-                        <span>등록일 ${escapeHtml(item.createdDateText || '-')}</span>
+                        <span>登録日 ${escapeHtml(item.createdDateText || '-')}</span>
                     </div>
                 </div>
             </article>
@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function renderEmpty(message) {
         grid.innerHTML = `
-            <div class="before-after-empty">${escapeHtml(message || '현재 선택한 분류의 전후사진이 없습니다.')}</div>
+            <div class="before-after-empty">${escapeHtml(message || '選択したカテゴリーの症例写真はありません。')}</div>
         `;
     }
 
@@ -373,7 +373,7 @@ document.addEventListener('DOMContentLoaded', function() {
         grid.innerHTML = '';
 
         if (preparedItems.length === 0) {
-            renderEmpty('현재 선택한 분류의 전후사진이 없습니다.');
+            renderEmpty('選択したカテゴリーの症例写真はありません。');
             return;
         }
 
@@ -417,12 +417,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (hasNext) {
             loadMoreBtn.disabled = false;
-            loadMoreBtn.textContent = '다음 전후사진 더 보기';
+            loadMoreBtn.textContent = '症例写真をさらに見る';
         } else {
             loadMoreBtn.disabled = true;
             loadMoreBtn.textContent = totalCount > 0
-                ? '모든 전후사진을 확인하셨습니다'
-                : '표시할 전후사진이 없습니다';
+                ? 'すべての症例写真を表示しました'
+                : '表示する症例写真がありません';
         }
     }
 
@@ -488,7 +488,7 @@ document.addEventListener('DOMContentLoaded', function() {
             renderLoadedItems();
 
             if (totalCountEl) {
-                totalCountEl.textContent = `총 ${data.totalCount || 0}건`;
+                totalCountEl.textContent = `全${data.totalCount || 0}件`;
             }
 
             nextOffset = data.nextOffset || 0;
@@ -498,7 +498,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.error(error);
 
             if (reset) {
-                renderEmpty(error.message || '전후사진을 불러오지 못했습니다.');
+                renderEmpty(error.message || '症例写真を読み込めませんでした。');
             }
         } finally {
             loading = false;

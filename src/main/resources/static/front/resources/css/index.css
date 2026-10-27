@@ -75,3 +75,36 @@
 		padding-left:0px !important;
 	}
 }
+/* Japanese main-banner copy: two levels, independent of Korean line breaks. */
+html[lang="ja"] #main #index-main-banner-swiper .index-main-banner-heading {
+  display: grid;
+  gap: 12px;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  padding: 0;
+  font-family: "Saekim Noto JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  line-height: 1.55;
+  letter-spacing: normal;
+  word-break: normal;
+  line-break: strict;
+  overflow-wrap: break-word;
+  text-wrap: pretty;
+  text-align: center;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, .3);
+}
+html[lang="ja"] #main #index-main-banner-swiper .index-main-banner-lead {
+  display: block;
+  font-size: clamp(20px, 2.2vw, 32px);
+  font-weight: 400;
+  line-height: 1.6;
+}
+html[lang="ja"] #main #index-main-banner-swiper .index-main-banner-emphasis {
+  display: block;
+  font-size: clamp(28px, 3.2vw, 48px);
+  font-weight: 600;
+  line-height: 1.5;
+}
+@media (max-width: 767px) {
+  html[lang="ja"] #main #index-main-banner-swiper .index-main-banner-heading { gap: 10px; }
+  html[lang="ja"] #main #index-main-banner-swiper .index-dynamic-main-banner-text-wrap { padding: 24px; }
+}

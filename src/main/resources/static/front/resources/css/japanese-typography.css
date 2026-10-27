@@ -1,0 +1,258 @@
+/* Japanese typography — loaded after shared and page component styles. */
+:root {
+  --jp-font-sans: "Saekim Noto JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+  --jp-body-size: 16px;
+  --jp-body-leading: 1.75;
+}
+html[lang="ja"] { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+html[lang="ja"] body {
+  font-family: var(--jp-font-sans);
+  font-size: var(--jp-body-size);
+  line-height: var(--jp-body-leading);
+  font-weight: 400;
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: break-word;
+  letter-spacing: normal;
+  font-kerning: normal;
+}
+/* The original universal rule assigned Korean tracking to every inline span. */
+html[lang="ja"] body :where(div, section, article, aside, nav, header, footer, main, p, h1, h2, h3, h4, h5, h6, span, a, strong, b, em, u, label, input, select, textarea, button, li, dt, dd, th, td, figcaption, summary) {
+  font-family: var(--jp-font-sans);
+  letter-spacing: normal;
+  word-break: normal;
+  line-break: strict;
+  overflow-wrap: break-word;
+}
+html[lang="ja"] :is(input, select, textarea, button) { font-family: var(--jp-font-sans); }
+html[lang="ja"] :is(p, h1, h2, h3, h4, h5, h6) { text-wrap: pretty; }
+html[lang="ja"] :is(h1, h2, h3, h4, h5, h6) { font-weight: 600; }
+html[lang="ja"] .pretendard * { font-family: var(--jp-font-sans); letter-spacing: normal; }
+/* Navigation: labels need room for Japanese, rather than one fixed line box. */
+html[lang="ja"] #header .gnb-menu_link > span { font-size: 15px; line-height: 1.5; }
+html[lang="ja"] #header .snb-menu_link { line-height: 1.5; padding-top: 8px; padding-bottom: 8px; }
+html[lang="ja"] .mobile-gnb-wrap .moblieSnb-menu_link { white-space: normal; line-height: 1.6; }
+/* Main, clinic introduction and shared subpage headers. */
+html[lang="ja"] .bsc_container .title { font-size: clamp(25px, 2.4vw, 36px); line-height: 1.55; font-weight: 600; }
+html[lang="ja"] .bsc_container .sub-txt { display: block; font-size: 16px; line-height: 1.75; margin-top: 16px; }
+html[lang="ja"] .subtit-wrap .title { font-size: clamp(28px, 3.1vw, 44px); line-height: 1.45; }
+html[lang="ja"] .subtit-wrap .sub-txt { max-width: 46em; margin: 16px auto 0; }
+html[lang="ja"] .title-wrap.sub .title { font-size: clamp(24px, 2.4vw, 34px); line-height: 1.5; }
+html[lang="ja"] .title-wrap.sub .sub-txt { font-size: 16px; line-height: 1.75; }
+html[lang="ja"] .certification_bsc .certi_cnt01 .title { font-size: clamp(26px, 3.2vw, 44px); line-height: 1.55; }
+html[lang="ja"] .certification_bsc .certi_cnt01 .sub-txt { font-size: 17px; line-height: 1.75; }
+html[lang="ja"] .system_cnt02 .timeline-list_item.tl-info .info-box > h4 { font-size: clamp(26px, 3vw, 40px); line-height: 1.5; }
+html[lang="ja"] .system_cnt02 .timeline-list_item.tl-info .info-box > p { font-size: 16px; line-height: 1.75; }
+html[lang="ja"] .circle_progress_wrap .value { font-size: clamp(19px, 2.2vw, 30px); line-height: 1.5; max-width: 88%; }
+html[lang="ja"] .system_bsc .system_cnt01 .syc-list_item > p { font-size: 16px; line-height: 1.65; }
+html[lang="ja"] .system_bsc .system_cnt03 .ilTBox li > h5 { font-size: 21px; line-height: 1.5; margin-bottom: 12px; }
+html[lang="ja"] .system_bsc .system_cnt03 .ilTBox li > p { font-size: 16px; line-height: 1.75; }
+html[lang="ja"] .subTit_wrap .subSTit { font-size: 20px; line-height: 1.55; }
+html[lang="ja"] .subTit_wrap .subTxt { font-size: 16px; line-height: 1.75; }
+html[lang="ja"] .system_bsc .system_cnt04 .sysTab_in .imgBox-list_item .comment { font-size: 16px; line-height: 1.6; }
+html[lang="ja"] .half-list .txtBox :is(.tit, .subtxt),
+html[lang="ja"] .equal-list__item .eq-txtBox :is(.tit, .subtxt) { line-height: 1.75; }
+html[lang="ja"] .half-list .txtBox .tit { font-size: 21px; line-height: 1.5; margin-bottom: 14px; }
+html[lang="ja"] .half-list .txtBox .subtxt { font-size: 16px; }
+html[lang="ja"] .saekim-about-doctor-name { font-size: 23px; line-height: 1.5; }
+html[lang="ja"] .saekim-about-doctor-career li { font-size: 15px; line-height: 1.7; }
+html[lang="ja"] .saekim-about-doctor-modal-title { font-size: clamp(22px, 2vw, 28px); line-height: 1.5; padding-right: 32px; }
+html[lang="ja"] .saekim-about-doctor-modal-list li { font-size: 15px; line-height: 1.75; }
+html[lang="ja"] :is(.saekim-about-doctor-more, .about-doctor-more) { line-height: 1.5; }
+html[lang="ja"] #main .mainv_container .mainv-slide h2 { font-size: clamp(27px, 3.2vw, 46px); line-height: 1.5; }
+html[lang="ja"] #main .mainv_container .mainv-slide h2 strong { font-size: inherit; line-height: inherit; }
+/* FAQ / notices: allow a long question and topic badge to wrap independently. */
+html[lang="ja"] .faq-question { gap: 16px; padding: 24px 0; }
+html[lang="ja"] :is(.faq-question__icon, .faq-answer__icon) { width: 76px; flex: 0 0 76px; font-size: 16px; line-height: 1.5; }
+html[lang="ja"] .faq-question__text { min-width: 0; padding: 0; font-size: 17px; line-height: 1.65; flex-wrap: wrap; gap: 4px 8px; }
+html[lang="ja"] .faq-question__text > span { margin-right: 0; }
+html[lang="ja"] .faq-question .faq-open-close { flex: 0 0 32px; }
+html[lang="ja"] .faq-answer__wrap { gap: 16px; }
+html[lang="ja"] .faq-answer__box { min-width: 0; padding: 0; font-size: 15px; line-height: 1.75; }
+html[lang="ja"] .faq-page .faq-answer__content { word-break: normal; overflow-wrap: break-word; line-height: 1.75; }
+html[lang="ja"] .faq-page .faq-topic-filter__item { font-size: 14px; line-height: 1.5; padding: 9px 18px; }
+html[lang="ja"] .notice-list__item { padding: 24px 0; }
+html[lang="ja"] .notice-title { min-width: 0; font-size: 17px; line-height: 1.6; }
+html[lang="ja"] .notice-list-panel__title { font-size: 18px; line-height: 1.55; }
+html[lang="ja"] :is(.notice-list-panel__content, .notice-body__con) { font-size: 15px; line-height: 1.75; overflow-wrap: break-word; }
+/* Case and event lists, their empty/loading states and detail content. */
+html[lang="ja"] :is(.before-after-filter-title, .event-added-top-title) { font-size: 19px; line-height: 1.55; }
+html[lang="ja"] :is(.before-after-filter-desc, .event-added-top-desc) { font-size: 15px; line-height: 1.75; }
+html[lang="ja"] :is(.before-after-filter-pill, .before-after-load-more-btn, .event-added-load-more-btn) { font-size: 14px; line-height: 1.5; height: auto; min-height: 44px; padding-top: 10px; padding-bottom: 10px; }
+html[lang="ja"] :is(.before-after-meta-text, .before-after-meta-scroll-guide, .event-added-meta-text, .event-added-meta-guide) { font-size: 13px; line-height: 1.6; }
+html[lang="ja"] .event-page-second-detail-title { font-size: clamp(24px, 2.5vw, 36px); line-height: 1.5; }
+html[lang="ja"] .event-page-second-html-content { font-size: 16px; line-height: 1.75; overflow-wrap: break-word; }
+html[lang="ja"] .event-page-second-html-content :is(p, li) { line-height: 1.75; }
+/* Consultation form: long Japanese consent labels are not single-line controls. */
+html[lang="ja"] .cs-infoBox > strong { font-size: 23px; line-height: 1.5; }
+html[lang="ja"] .cs-infoBox > p { font-size: 14px; line-height: 1.65; }
+html[lang="ja"] .form-item dl.clone dt label { display: block; font-size: 16px; line-height: 1.6; }
+html[lang="ja"] :is(.input-area input, .select-area select, .contact-textarea) { font-size: 16px; line-height: 1.6; }
+html[lang="ja"] :is(.radio-area input[type="radio"] + label, .checkbox-area input[type="checkbox"] + label) { font-size: 15px; line-height: 1.65; }
+html[lang="ja"] .checkbox-cont { font-size: 14px; line-height: 1.75; }
+html[lang="ja"] .checkbox-cont strong { font-size: 14px; line-height: 1.6; }
+html[lang="ja"] .checkbox-cont :is(p, strong + p, p > strong, span) { font-size: 14px; line-height: 1.75; }
+html[lang="ja"] .moduleBtn > a { display: flex; align-items: center; justify-content: center; min-height: 52px; height: auto; padding: 12px 20px; font-size: 16px; line-height: 1.5; }
+/* Footer / legal and fee dialogs: use paragraph leading rather than fixed px. */
+html[lang="ja"] footer .footer1 > ul > li { display: flex; flex-wrap: wrap; gap: 12px 26px; }
+html[lang="ja"] footer .footer1 > ul > li > a { margin: 0; padding: 0; font-size: 14px; line-height: 1.6; }
+html[lang="ja"] footer .footer2 > ul > li { gap: 8px 20px; }
+html[lang="ja"] footer .footer2 > ul > li > span { margin: 0; padding: 0; font-size: 13px; font-weight: 400; line-height: 1.7; }
+html[lang="ja"] footer .footer2 > ul > li + li { margin-top: 14px; }
+html[lang="ja"] footer .footer2 > ul > li.copy { font-size: 12px; line-height: 1.6; }
+html[lang="ja"] .common-bottom-menu-title { font-size: clamp(22px, 2vw, 30px) !important; line-height: 1.5 !important; letter-spacing: normal !important; }
+html[lang="ja"] .common-bottom-menu-content { font-size: 15px; line-height: 1.75; }
+html[lang="ja"] .common-bottom-menu-content :is(p, li, dd) { line-height: 1.75; letter-spacing: normal; }
+html[lang="ja"] .common-bottom-menu-content :is(h3, h4) { line-height: 1.5; letter-spacing: normal; }
+html[lang="ja"] .common-bottom-menu-table-scroll :is(th, td) { font-size: 13px; line-height: 1.6; letter-spacing: normal; }
+/* Surgery: less condensed headings, comfortable copy, and flexible tab height. */
+html[lang="ja"] .sk-surgery { font-size: 16px; line-height: 1.75; }
+html[lang="ja"] .sk-surgery :is(h1, h2, h3, h4) { font-weight: 600; line-height: 1.5; letter-spacing: normal; }
+html[lang="ja"] .sk-surgery .sk-page-heading h1 { font-size: clamp(28px, 3.4vw, 50px); line-height: 1.45; gap: 14px; }
+html[lang="ja"] .sk-page-heading h1 > span { flex: 0 0 48px; width: 48px; height: 48px; }
+html[lang="ja"] .sk-surgery .sk-page-heading p { font-size: 15px; line-height: 1.75; }
+html[lang="ja"] .sk-surgery .sk-tab { height: auto; min-height: 58px; font-size: 14px; line-height: 1.55; gap: 10px; padding: 12px 14px; white-space: normal; }
+html[lang="ja"] .sk-tab > span:not(.sk-tab-index) { min-width: 0; }
+html[lang="ja"] .sk-tab-index { flex-shrink: 0; }
+html[lang="ja"] .sk-surgery .sk-hero-copy h2 { font-size: clamp(27px, 2.7vw, 40px); line-height: 1.5; }
+html[lang="ja"] .sk-surgery .sk-hero-copy p { font-size: 16px; line-height: 1.75; max-width: 34em; }
+html[lang="ja"] .sk-surgery .sk-section-head { align-items: flex-start; gap: 16px; }
+html[lang="ja"] .sk-surgery .sk-section-head h3 { font-size: clamp(23px, 2.1vw, 32px); line-height: 1.5; min-width: 0; }
+html[lang="ja"] .sk-surgery :is(.sk-section > p, .sk-editorial-copy > p, .sk-editorial-copy > ul, .sk-editorial-copy .sk-copy-grid p, .sk-story-copy p, .sk-point-list p, .sk-case-grid p, .sk-material-grid p, .sk-ratio-copy > p) { font-size: 16px; line-height: 1.75; }
+html[lang="ja"] .sk-surgery :is(.sk-copy-grid, .sk-point-list, .sk-case-grid, .sk-material-grid) h4 { font-size: 21px; line-height: 1.5; }
+html[lang="ja"] .sk-surgery :is(.sk-candidates li, .sk-steps p, .sk-thread-grid li, .sk-explained-list p, .sk-feature-list li) { font-size: 15px; line-height: 1.7; }
+html[lang="ja"] .sk-surgery .sk-facts dt { font-size: 13px; line-height: 1.5; margin-bottom: 6px; }
+html[lang="ja"] .sk-surgery .sk-facts dd { font-size: 18px; line-height: 1.55; }
+html[lang="ja"] .sk-surgery :is(.sk-disclaimer, .sk-end-note) { font-size: 12px !important; line-height: 1.7 !important; }
+html[lang="ja"] .sk-surgery .sk-figure figcaption { font-size: 13px; line-height: 1.65; }
+html[lang="ja"] .sk-surgery .sk-figure .sk-image-caption { font-size: 16px; line-height: 1.55; }
+html[lang="ja"] .sk-surgery .sk-slide-copy h4 { font-size: 23px; line-height: 1.5; }
+html[lang="ja"] .sk-surgery .sk-consult h2 { font-size: clamp(24px, 2.4vw, 32px); line-height: 1.5; }
+html[lang="ja"] .sk-surgery .sk-consult p { font-size: 15px; line-height: 1.7; }
+html[lang="ja"] .sk-surgery .sk-consult > a { white-space: normal; line-height: 1.5; text-align: center; }
+html[lang="ja"] :is(#young-lifting-2030, #young-lifting-4050) .sk-lift-copy h4 { font-size: 21px; line-height: 1.5; min-height: 0; }
+html[lang="ja"] :is(#young-lifting-2030, #young-lifting-4050) :is(.sk-lift-checks li, .sk-lift-copy p, .sk-lift-plan p) { font-size: 15px; line-height: 1.7; }
+html[lang="ja"] #young-lifting-4050 .sk-lift-plan h4 { font-size: 21px; line-height: 1.5; }
+@media (max-width: 1100px) and (min-width: 641px) {
+  html[lang="ja"] .sk-theme-eye .sk-primary-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  html[lang="ja"] .sk-theme-contouring .sk-primary-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 767px) {
+  :root { --jp-body-size: 15px; }
+  html[lang="ja"] .bsc_container .title { font-size: 25px; }
+  html[lang="ja"] .bsc_container .sub-txt { font-size: 15px; margin-top: 12px; }
+  html[lang="ja"] .subtit-wrap .title { font-size: 29px; }
+  html[lang="ja"] .certification_bsc .certi_cnt01 .title { font-size: 26px; }
+  html[lang="ja"] .certification_bsc .certi_cnt01 .sub-txt { font-size: 15px; }
+  html[lang="ja"] .bsc_container .title-wrap :is(.title, .sub-txt) br,
+  html[lang="ja"] .half-list .txtBox .subtxt br { display: none; }
+  html[lang="ja"] .system_bsc .system_cnt01 .syc-list_item > p { font-size: 14px; }
+  html[lang="ja"] .system_bsc .system_cnt04 .sysTab_in .imgBox-list_item .comment { font-size: 14px; }
+  html[lang="ja"] .half-list .txtBox .subtxt { font-size: 15px; }
+  html[lang="ja"] .faq-question { gap: 10px; padding: 20px 0; }
+  html[lang="ja"] :is(.faq-question__icon, .faq-answer__icon) { width: 52px; flex-basis: 52px; font-size: 13px; }
+  html[lang="ja"] .faq-question__text { font-size: 15px; }
+  html[lang="ja"] .faq-answer { padding: 0 12px 24px 0; }
+  html[lang="ja"] .faq-answer__wrap { gap: 10px; }
+  html[lang="ja"] .faq-answer__box { font-size: 15px; }
+  html[lang="ja"] .notice-title { font-size: 15px; }
+  html[lang="ja"] .cs-infoBox > strong { font-size: 21px; }
+  html[lang="ja"] footer .footer1 > ul > li { gap: 10px 18px; }
+  html[lang="ja"] footer .footer1 > ul > li > a { font-size: 13px; }
+  html[lang="ja"] .sk-surgery .sk-tab { font-size: 13px; padding: 11px 10px; gap: 8px; }
+  html[lang="ja"] .sk-surgery .sk-hero-copy h2 { font-size: 28px; }
+  html[lang="ja"] .sk-surgery .sk-hero-copy p { font-size: 15px; }
+  html[lang="ja"] .sk-surgery :is(.sk-hero-copy, .sk-consult) :is(h2, p) br { display: none; }
+  html[lang="ja"] .sk-surgery :is(.sk-section > p, .sk-editorial-copy > p, .sk-editorial-copy > ul, .sk-editorial-copy .sk-copy-grid p, .sk-story-copy p, .sk-point-list p, .sk-case-grid p, .sk-material-grid p, .sk-ratio-copy > p) { font-size: 15px; }
+  html[lang="ja"] .sk-surgery :is(.sk-copy-grid, .sk-point-list, .sk-case-grid, .sk-material-grid) h4 { font-size: 20px; }
+  html[lang="ja"] .sk-surgery .sk-facts dd { font-size: 16px; }
+  html[lang="ja"] .sk-surgery .sk-page-heading h1 { font-size: 29px; }
+  html[lang="ja"] .sk-page-heading h1 > span { flex-basis: 36px; width: 36px; height: 36px; }
+}
+@media (max-width: 480px) {
+  html[lang="ja"] .sk-surgery .sk-page-heading h1 { font-size: 26px; gap: 10px; }
+  html[lang="ja"] .sk-surgery .sk-hero-copy h2 { font-size: 26px; }
+  html[lang="ja"] .sk-surgery .sk-section-head h3 { font-size: 22px; }
+  html[lang="ja"] .sk-theme-young .sk-primary-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* Legal documents have legacy !important title rules; override them explicitly. */
+html[lang="ja"] .common-bottom-menu-document-main-title {
+  font-size: clamp(23px, 2.6vw, 34px) !important;
+  line-height: 1.5 !important;
+  letter-spacing: normal !important;
+}
+html[lang="ja"] .common-bottom-menu-section-title {
+  font-size: 18px !important; line-height: 1.55 !important; letter-spacing: normal !important;
+}
+html[lang="ja"] .common-bottom-menu-policy-section { padding: 24px; margin-top: 26px; }
+html[lang="ja"] .common-bottom-menu-document-summary { font-size: 15px !important; line-height: 1.75 !important; }
+html[lang="ja"] .faq-question__meta { flex-basis: 100%; font-size: 12px; line-height: 1.6; margin-top: 4px; }
+html[lang="ja"] .jp-case-heading { margin-top: 24px; }
+/* Keep text legible over the clinic photograph. */
+html[lang="ja"] .certification_bsc .certi_cnt01 { position: relative; isolation: isolate; }
+html[lang="ja"] .certification_bsc .certi_cnt01::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(90deg, rgba(255,255,255,.93), rgba(255,255,255,.72) 48%, rgba(255,255,255,.08));
+}
+@media (max-width: 767px) {
+  html[lang="ja"] .common-bottom-menu-policy-section { padding: 18px; margin-top: 20px; }
+  html[lang="ja"] .common-bottom-menu-content { padding: 24px 16px 40px; }
+  html[lang="ja"] .common-bottom-menu-section-title { font-size: 17px !important; }
+  html[lang="ja"] .certification_bsc .certi_cnt01::before { background: rgba(255,255,255,.78); }
+}
+/* Compact category navigation without orphaned Japanese syllables. */
+html[lang="ja"] .cs-infoBox > strong { flex: 0 0 auto; }
+html[lang="ja"] body:not(.jp-page-about):not(.jp-page-index) #header .ham > a > span { background: #172b49; }
+@media (max-width: 640px) {
+  html[lang="ja"] .sk-surgery .sk-category-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  html[lang="ja"] .sk-surgery .sk-category-nav a { flex-direction: row; justify-content: flex-start; min-width: 0; min-height: 48px; padding: 10px 12px; gap: 8px; font-size: 12px; line-height: 1.5; }
+  html[lang="ja"] .sk-surgery .sk-category-nav a .sk-icon { flex-shrink: 0; width: 18px; height: 18px; }
+  html[lang="ja"] .cs-infoBox { align-items: flex-start; flex-direction: column; gap: 8px; }
+  html[lang="ja"] .cs-infoBox > p { text-align: left; margin: 0; }
+}
+html[lang="ja"] .jp-fee-scroll-hint { font-size: 13px; line-height: 1.6; color: #6c635c; margin: 18px 0 8px; }
+html[lang="ja"] .jp-fee-table-scroll { margin-top: 8px; scrollbar-width: auto; }
+html[lang="ja"] .jp-fee-table-scroll:focus-visible { outline: 2px solid #a58d69; outline-offset: 3px; }
+html[lang="ja"] .sk-surgery em { font-style: normal; }
+
+/* Japanese treatment timeline: measurable highlights and one shared visual stage. */
+html[lang="ja"] .system_cnt02 .timeline-wrap { height: auto; max-height: none; overflow: visible; }
+html[lang="ja"] .system_cnt02 .timeline-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 4vw, 60px); padding: 0; margin: 0; }
+html[lang="ja"] .system_cnt02 .timeline-list_item { width: auto; min-height: 0; }
+html[lang="ja"] .system_cnt02 .timeline-list_item.tl-info { position: relative; padding: clamp(28px, 3.2vw, 50px) clamp(20px, 2.8vw, 42px); justify-content: center; gap: 28px; }
+html[lang="ja"] .system_cnt02 .info-box { width: 100%; min-width: 0; }
+html[lang="ja"] .system_cnt02 .timeline-list_item.tl-info .info-box > h4 { display: flex; flex-direction: column; align-items: center; gap: .22em; font-size: clamp(22px, 2.25vw, 34px); line-height: 1.5; margin: 20px 0 0; }
+html[lang="ja"] .system_cnt02 .info-box .timeline-clinic-name { display: block; color: white; }
+html[lang="ja"] .system_cnt02 .timeline-list_item.tl-info .info-box > h4 > span.txtBg { display: inline-block; padding: 0 .15em; color: #151515; }
+html[lang="ja"] .system_cnt02 .timeline-list_item.tl-info .info-box > h4 > span.txtBg::before { width: 100%; height: 100%; }
+html[lang="ja"] .system_cnt02 .timeline-list_item.tl-info .tl-circle { position: static; width: min(340px, 100%); margin: 0 auto; }
+html[lang="ja"] .system_cnt02 .circle_progress_wrap { width: 100%; height: auto; aspect-ratio: 1; }
+html[lang="ja"] .system_cnt02 .circle_progress { display: block; width: 100%; height: 100%; }
+html[lang="ja"] .system_cnt02 .circle_progress :is(.frame, .bar) { cx: 200px; cy: 200px; r: 170px; stroke-width: 55px; }
+html[lang="ja"] .system_cnt02 .circle_progress_wrap .value { inset: 24% 16%; max-width: none; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: .1em; font-size: clamp(17px, 1.65vw, 25px); line-height: 1.6; text-align: center; }
+html[lang="ja"] .system_cnt02 .value > span { display: block; }
+html[lang="ja"] .system_cnt02 .bg-list { height: 100%; min-height: 100%; margin: 0; padding: 0; }
+html[lang="ja"] .system_cnt02 .bg-list_item { min-height: 100%; border-radius: 0; }
+html[lang="ja"] .system_cnt02 .timeline-list_item.tl-bg::after { display: none; }
+/* Keep the original caption content visible without legacy external artwork. */
+html[lang="ja"] .system_bsc .system_cnt04 :is(#sysTab1, #sysTab2).sysTab_in .imgBox-list_item .comment { top: auto; bottom: 20px; left: 50%; transform: translateX(-50%); width: max-content; max-width: 90%; height: auto; margin: 0; padding: 8px 16px; border-radius: 24px; background: #094bad; line-height: 1.5; text-align: center; }
+@media (max-width: 1023px) {
+ html[lang="ja"] .system_cnt02 .timeline-list { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+ html[lang="ja"] .system_cnt02 .timeline-list_item.tl-info { gap: 24px; }
+ html[lang="ja"] .system_cnt02 .timeline-list_item.tl-info .info-box > h4 { font-size: clamp(22px, 3.8vw, 32px); }
+ html[lang="ja"] .system_cnt02 .timeline-list_item.tl-bg { height: clamp(260px, 62vw, 480px); }
+ html[lang="ja"] .system_cnt02 .timeline-list_item.tl-info .tl-circle { width: min(300px, 100%); }
+ html[lang="ja"] .system_cnt02 .circle_progress_wrap .value { font-size: clamp(17px, 3.7vw, 23px); }
+}
+@media (prefers-reduced-motion: reduce) {
+ html[lang="ja"] .system_cnt02 .bg-list_item .bg-pic { transition-duration: .01ms; }
+}
+
+/* All original highlighted phrases need a measurable inline box in Japanese. */
+html[lang="ja"] :is(.subTit_wrap .subSTit, .certification_bsc .certi_cnt01 .title) > span.txtBg { display: inline-block; max-width: 100%; }
+
+html[lang="ja"] .system_cnt02 .timeline-intro { display: flex; flex-wrap: wrap; justify-content: center; gap: 0 .6em; text-wrap: balance; }
+html[lang="ja"] .system_cnt02 .timeline-intro > span { display: inline-block; white-space: nowrap; }
+@media (max-width: 767px) {
+ html[lang="ja"] .system_cnt02 .timeline-list_item.tl-info .info-box > p { font-size: 13px; line-height: 1.8; text-wrap: balance; }
+}

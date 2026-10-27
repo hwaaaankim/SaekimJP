@@ -86,12 +86,12 @@ public class NoticeService {
     public void updateOrder(AdminNoticeOrderUpdateRequest request) {
         List<Long> requestedIds = request.noticeIds();
         if (requestedIds == null || requestedIds.isEmpty()) {
-            throw new IllegalArgumentException("순서 저장 대상이 없습니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("순서 저장 대상이 없습니다.", "表示順を保存する対象がありません。"));
         }
 
         List<Notice> currentList = noticeRepository.findAllByOrderByDisplayIndexAscIdDesc();
         if (currentList.size() != requestedIds.size()) {
-            throw new IllegalArgumentException("공지사항 개수가 일치하지 않습니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("공지사항 개수가 일치하지 않습니다.", "お知らせの件数が一致しません。"));
         }
 
         Map<Long, Notice> noticeMap = new HashMap<>();
@@ -101,7 +101,7 @@ public class NoticeService {
 
         for (Long requestedId : requestedIds) {
             if (!noticeMap.containsKey(requestedId)) {
-                throw new IllegalArgumentException("존재하지 않는 공지사항이 포함되어 있습니다. id=" + requestedId);
+                throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("존재하지 않는 공지사항이 포함되어 있습니다. id=", "存在しないお知らせが含まれています。id=") + requestedId);
             }
         }
 
@@ -131,7 +131,7 @@ public class NoticeService {
 
     private Notice getNoticeOrThrow(Long id) {
         return noticeRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("공지사항을 찾을 수 없습니다. id=" + id));
+                .orElseThrow(() -> new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("공지사항을 찾을 수 없습니다. id=", "お知らせが見つかりません。id=") + id));
     }
 
     private void resequence(List<Notice> notices) {
@@ -146,14 +146,14 @@ public class NoticeService {
 
     private String normalizeTitle(String title) {
         if (!StringUtils.hasText(title)) {
-            throw new IllegalArgumentException("제목은 필수입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("제목은 필수입니다.", "タイトルは必須です。"));
         }
         return title.trim();
     }
 
     private String normalizeContent(String content) {
         if (!StringUtils.hasText(content) || isEditorContentEmpty(content)) {
-            throw new IllegalArgumentException("내용은 필수입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("내용은 필수입니다.", "内容は必須です。"));
         }
         return content;
     }

@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const result = await response.json();
 
             if (!response.ok) {
-                throw new Error('이벤트 목록을 불러오지 못했습니다.');
+                throw new Error('イベント一覧を読み込めませんでした。');
             }
 
             const items = Array.isArray(result.items) ? result.items : [];
@@ -88,7 +88,7 @@ document.addEventListener('DOMContentLoaded', function () {
             state.cursorId = result.nextCursor || null;
             state.initialized = true;
 
-            countEl.textContent = '총 ' + state.totalCount + '건';
+            countEl.textContent = '全 ' + state.totalCount + '件';
             bindReveal();
         } catch (error) {
             if (!state.initialized) {
@@ -96,8 +96,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="col-12">
                         <div class="event-added-card event-added-visible">
                             <div class="event-added-card-body">
-                                <h3 class="event-added-title">이벤트를 불러오지 못했습니다.</h3>
-                                <p class="event-added-summary">잠시 후 다시 시도해 주세요.</p>
+                                <h3 class="event-added-title">イベントを読み込めませんでした。</h3>
+                                <p class="event-added-summary">しばらくしてから、もう一度お試しください。</p>
                             </div>
                         </div>
                     </div>
@@ -115,8 +115,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="col-12">
                     <article class="event-added-card event-added-visible">
                         <div class="event-added-card-body">
-                            <h3 class="event-added-title">등록된 이벤트가 없습니다.</h3>
-                            <p class="event-added-summary">현재 선택한 조건에 해당하는 이벤트가 없습니다.</p>
+                            <h3 class="event-added-title">登録済みのイベントがありません。</h3>
+                            <p class="event-added-summary">条件に一致するイベントがありません。</p>
                         </div>
                     </article>
                 </div>
@@ -131,14 +131,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function createCardHtml(item) {
         const isEnded = item.displayStatus === 'ended';
         const badgeClass = isEnded ? 'event-added-ended' : 'event-added-ongoing';
-        const badgeText = isEnded ? '종료' : '진행중';
+        const badgeText = isEnded ? '終了' : '開催中';
 
         const contentHtml = escapeHtml(item.content || '').replace(/\n/g, '<br>');
         const detailUrl = item.detailPageUrl || ('/eventDetailPage/' + item.id);
 
         const linkHtml = item.hasLink
-            ? `<a href="${escapeAttribute(item.linkUrl)}" class="event-page-second-action-btn event-page-second-link-btn">링크 이동</a>`
-            : `<span class="event-page-second-action-empty">링크 없음</span>`;
+            ? `<a href="${escapeAttribute(item.linkUrl)}" class="event-page-second-action-btn event-page-second-link-btn">リンク先へ</a>`
+            : `<span class="event-page-second-action-empty">リンクなし</span>`;
 
         return `
             <div class="col-12 col-md-6 col-lg-4 event-added-col">
@@ -152,14 +152,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     <div class="event-added-card-body">
                         <h3 class="event-added-title">${escapeHtml(item.title)}</h3>
-                        <p class="event-added-date">${escapeHtml(item.periodText)} · 등록 ${escapeHtml(item.createdAtText)}</p>
+                        <p class="event-added-date">${escapeHtml(item.periodText)} · 登録 ${escapeHtml(item.createdAtText)}</p>
                         <p class="event-added-summary">${contentHtml}</p>
 
                         <div class="event-added-action event-page-second-action-wrap">
                             <div class="event-page-second-action-grid">
                                 ${linkHtml}
                                 <a href="${escapeAttribute(detailUrl)}" class="event-page-second-action-btn event-page-second-detail-btn">
-                                    상세보기
+                                    詳しく見る
                                 </a>
                             </div>
                         </div>
@@ -172,18 +172,18 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateLoadMoreButton() {
         if (state.loading) {
             loadMoreBtn.disabled = true;
-            loadMoreBtn.textContent = '불러오는 중...';
+            loadMoreBtn.textContent = '読み込み中...';
             return;
         }
 
         if (!state.hasNext) {
             loadMoreBtn.disabled = true;
-            loadMoreBtn.textContent = '모든 이벤트를 확인하셨습니다';
+            loadMoreBtn.textContent = 'すべてのイベントを表示しました';
             return;
         }
 
         loadMoreBtn.disabled = false;
-        loadMoreBtn.textContent = '다음 이벤트 더 보기';
+        loadMoreBtn.textContent = 'イベントをさらに見る';
     }
 
     function bindReveal() {

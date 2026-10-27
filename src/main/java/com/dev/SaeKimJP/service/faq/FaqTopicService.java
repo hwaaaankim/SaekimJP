@@ -46,11 +46,11 @@ public class FaqTopicService {
 
     public FaqTopic getTopicOrThrow(Long topicId) {
         if (topicId == null) {
-            throw new IllegalArgumentException("FAQ 주제를 선택해주세요.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("FAQ 주제를 선택해주세요.", "FAQテーマを選択してください。"));
         }
 
         return faqTopicRepository.findById(topicId)
-                .orElseThrow(() -> new NoSuchElementException("FAQ 주제를 찾을 수 없습니다. id=" + topicId));
+                .orElseThrow(() -> new NoSuchElementException(com.dev.SaeKimJP.util.UiLanguage.text("FAQ 주제를 찾을 수 없습니다. id=", "FAQテーマが見つかりません。id=") + topicId));
     }
 
     @Transactional
@@ -72,7 +72,7 @@ public class FaqTopicService {
     @Transactional
     public void updateTopic(Long topicId, FaqTopicSaveRequest request) {
         FaqTopic topic = faqTopicRepository.findById(topicId)
-                .orElseThrow(() -> new NoSuchElementException("FAQ 주제를 찾을 수 없습니다. id=" + topicId));
+                .orElseThrow(() -> new NoSuchElementException(com.dev.SaeKimJP.util.UiLanguage.text("FAQ 주제를 찾을 수 없습니다. id=", "FAQテーマが見つかりません。id=") + topicId));
 
         String name = normalizeName(request.getName());
         validateDuplicateName(name, topicId);
@@ -84,10 +84,10 @@ public class FaqTopicService {
     @Transactional
     public void deleteTopic(Long topicId) {
         FaqTopic topic = faqTopicRepository.findById(topicId)
-                .orElseThrow(() -> new NoSuchElementException("FAQ 주제를 찾을 수 없습니다. id=" + topicId));
+                .orElseThrow(() -> new NoSuchElementException(com.dev.SaeKimJP.util.UiLanguage.text("FAQ 주제를 찾을 수 없습니다. id=", "FAQテーマが見つかりません。id=") + topicId));
 
         if (faqRepository.existsByTopic_Id(topicId)) {
-            throw new IllegalStateException("해당 주제를 사용 중인 FAQ가 있어 삭제할 수 없습니다. 먼저 FAQ의 주제를 변경하거나 FAQ를 삭제해주세요.");
+            throw new IllegalStateException(com.dev.SaeKimJP.util.UiLanguage.text("해당 주제를 사용 중인 FAQ가 있어 삭제할 수 없습니다. 먼저 FAQ의 주제를 변경하거나 FAQ를 삭제해주세요.", "このテーマを使うFAQがあるため削除できません。先にFAQのテーマを変更するか、FAQを削除してください。"));
         }
 
         faqTopicRepository.delete(topic);
@@ -95,12 +95,12 @@ public class FaqTopicService {
 
     private String normalizeName(String value) {
         if (!StringUtils.hasText(value)) {
-            throw new IllegalArgumentException("주제명은 필수입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("주제명은 필수입니다.", "テーマ名は必須です。"));
         }
 
         String normalized = value.trim();
         if (normalized.length() > 80) {
-            throw new IllegalArgumentException("주제명은 80자 이하로 입력해주세요.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("주제명은 80자 이하로 입력해주세요.", "テーマ名は80文字以内で入力してください。"));
         }
         return normalized;
     }
@@ -113,11 +113,11 @@ public class FaqTopicService {
         }
 
         if (value == null) {
-            throw new IllegalArgumentException("노출 순서를 입력해주세요.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("노출 순서를 입력해주세요.", "表示順を入力してください。"));
         }
 
         if (value < 0) {
-            throw new IllegalArgumentException("노출 순서는 0 이상이어야 합니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("노출 순서는 0 이상이어야 합니다.", "表示順は0以上にしてください。"));
         }
 
         return value;
@@ -126,7 +126,7 @@ public class FaqTopicService {
     private void validateDuplicateName(String name, Long currentId) {
         faqTopicRepository.findByNameIgnoreCase(name).ifPresent(existing -> {
             if (currentId == null || !existing.getId().equals(currentId)) {
-                throw new IllegalArgumentException("이미 등록된 FAQ 주제명입니다.");
+                throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("이미 등록된 FAQ 주제명입니다.", "このFAQテーマ名は登録済みです。"));
             }
         });
     }

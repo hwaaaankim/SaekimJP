@@ -32,7 +32,7 @@ public class FrontFaqApiController {
             data.put("faqId", faqId);
             data.put("viewCount", viewCount);
 
-            return ResponseEntity.ok(ApiResponse.of(true, "조회수가 증가되었습니다.", data));
+            return ResponseEntity.ok(ApiResponse.of(true, com.dev.SaeKimJP.util.UiLanguage.text("조회수가 증가되었습니다.", "閲覧数を更新しました。"), data));
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body(ApiResponse.of(false, e.getMessage(), null));

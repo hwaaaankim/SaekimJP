@@ -23,11 +23,6 @@
 		}
 
 		var config = {
-			ko: {
-				terms: { title: '이용약관', eyebrow: 'GUIDE', templateId: 'common-bottom-menu-template-terms' },
-				privacy: { title: '개인정보처리방침', eyebrow: 'PRIVACY POLICY', templateId: 'common-bottom-menu-template-privacy' },
-				nonpayment: { title: '비급여항목수가표', eyebrow: 'NON-COVERED MEDICAL FEES', templateId: 'common-bottom-menu-template-nonpayment' }
-			},
 			ja: {
 				terms: { title: '利用規約', eyebrow: 'GUIDE', templateId: 'common-bottom-menu-template-terms-ja' },
 				privacy: { title: 'プライバシーポリシー', eyebrow: 'PRIVACY POLICY', templateId: 'common-bottom-menu-template-privacy-ja' },
@@ -39,15 +34,15 @@
 		var openFrame = null;
 		var closeTimer = null;
 		var isOpen = false;
-		var activeLanguage = 'ko';
+		var activeLanguage = 'ja';
 
 
 		function getLanguage(trigger) {
 			var forced = trigger ? trigger.getAttribute('data-common-bottom-menu-lang') : '';
-			var htmlLang = document.documentElement.getAttribute('lang') || 'ko';
+			var htmlLang = document.documentElement.getAttribute('lang') || 'ja';
 			var language = (forced || htmlLang).toLowerCase();
 
-			return language.indexOf('ja') === 0 ? 'ja' : 'ko';
+			return 'ja';
 		}
 
 		function getFocusableElements() {
@@ -69,7 +64,7 @@
 			if (!template || !template.content) {
 				var errorBox = document.createElement('div');
 				errorBox.className = 'common-bottom-menu-note';
-				errorBox.textContent = activeLanguage === 'ja' ? '表示する内容が見つかりません。' : '표시할 내용을 찾을 수 없습니다.';
+				errorBox.textContent = activeLanguage === 'ja' ? '表示する内容が見つかりません。' : '表示する内容が見つかりません。';
 				content.appendChild(errorBox);
 				return;
 			}
@@ -92,7 +87,7 @@
 					message.className = 'common-bottom-menu-note';
 					message.textContent = activeLanguage === 'ja'
 						? '料金表の画像が見つかりません。画像パスを確認してください: ' + image.getAttribute('src')
-						: '수가표 이미지를 찾을 수 없습니다. 이미지 경로를 확인해 주세요: ' + image.getAttribute('src');
+						: '料金表の画像を読み込めませんでした。: ' + image.getAttribute('src');
 					wrapper.replaceChildren(message);
 				}, { once: true });
 			});
@@ -113,7 +108,7 @@
 			lastFocusedElement = trigger || document.activeElement;
 			title.textContent = selected.title;
 			eyebrow.textContent = selected.eyebrow;
-			closeButton.setAttribute('aria-label', activeLanguage === 'ja' ? 'ポップアップを閉じる' : '팝업 닫기');
+			closeButton.setAttribute('aria-label', activeLanguage === 'ja' ? 'ポップアップを閉じる' : '閉じる');
 			dialog.setAttribute('lang', activeLanguage);
 			renderTemplate(selected.templateId);
 			scrollArea.scrollTop = 0;

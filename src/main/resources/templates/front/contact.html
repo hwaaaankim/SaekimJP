@@ -1,8 +1,8 @@
-<html id="hamHtml" lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html id="hamHtml" lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="fragments/front/common :: commonHead"></head>
 
-<body id="hamBody" class="" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
+<body id="hamBody" class=" jp-page-contact" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
 	<div id="container">
 		<th:block th:replace="~{fragments/front/common :: commonHeader(white=${false}, dark=${true})}"></th:block>
 		<main id="main">
@@ -10,8 +10,8 @@
 				<section class="bsc_container">
 					<section class="subtit-wrap">
 						<div class="inner w1280 mt-3">
-							<p class="title">수술 상담 문의</p>
-							<span class="sub-txt">신청 양식을 작성하여 주시면 빠른 시일에 연락 드리겠습니다.</span>
+							<p class="title">手術・施術のご相談</p>
+							<span class="sub-txt">フォームにご記入いただきましたら、順次ご連絡いたします。</span>
 						</div>
 					</section>
 
@@ -21,35 +21,35 @@
 								<section class="consulting-wrap">
 									<div class="consulting-cont">
 										<div class="cs-infoBox">
-											<strong>개인정보</strong>
-											<p><span class="essential">*</span>는 필수 입력 항목입니다.</p>
+											<strong>個人情報</strong>
+											<p><span class="essential">*</span>は必須入力項目です。</p>
 										</div>
 										<div class="cs-formBox">
 											<div class="form">
 												<div class="form-item">
 													<dl class="clone">
 														<dt>
-															<label for="contact-name">이름<span
+															<label for="contact-name">氏名<span
 																	class="essential">*</span></label>
 														</dt>
 														<dd>
 															<div class="input-area">
 																<input type="text" id="contact-name" name="name"
-																	title="이름을 입력하세요." placeholder="이름을 입력하세요.">
+																	title="氏名を入力してください。" placeholder="氏名を入力してください。">
 															</div>
 														</dd>
 													</dl>
 
 													<dl class="clone">
 														<dt>
-															<label for="contact-phone">연락처<span
+															<label for="contact-phone">電話番号<span
 																	class="essential">*</span></label>
 														</dt>
 														<dd>
 															<div class="input-area">
 																<input type="text" id="contact-phone" name="phone"
 																	inputmode="numeric" maxlength="13"
-																	title="연락처를 입력하세요." placeholder="연락처를 입력하세요.">
+																	title="電話番号を入力してください。" placeholder="電話番号を入力してください。">
 															</div>
 														</dd>
 													</dl>
@@ -58,17 +58,17 @@
 												<div class="form-item">
 													<dl class="clone">
 														<dt>
-															<label for="contact-preferred-date">상담 희망 일시</label>
+															<label for="contact-preferred-date">ご相談希望日時</label>
 														</dt>
 														<dd style="display:flex; gap:12px;">
 															<div class="input-area" style="flex:1;">
 																<input type="date" id="contact-preferred-date"
-																	name="preferredDate" title="상담 희망일자를 선택하세요.">
+																	name="preferredDate" title="ご相談希望日を選択してください。">
 															</div>
 															<div class="select-area half" style="flex:1;">
 																<select name="preferredTime"
 																	id="contact-preferred-time">
-																	<option value="">희망시간</option>
+																	<option value="">ご希望の時間</option>
 																	<option value="09:00">09:00</option>
 																	<option value="10:00">10:00</option>
 																	<option value="11:00">11:00</option>
@@ -86,12 +86,12 @@
 
 													<dl class="clone">
 														<dt>
-															<label for="contact-email">이메일</label>
+															<label for="contact-email">メールアドレス</label>
 														</dt>
 														<dd>
 															<div class="input-area">
 																<input type="email" id="contact-email" name="email"
-																	title="이메일을 입력하세요." placeholder="이메일을 입력하세요.">
+																	title="メールアドレスを入力してください。" placeholder="メールアドレスを入力してください。">
 															</div>
 														</dd>
 													</dl>
@@ -102,15 +102,15 @@
 
 									<div class="consulting-cont">
 										<div class="cs-infoBox">
-											<strong>기타정보</strong>
-											<p>선택 사항은 입력하지 않아도 정상 접수됩니다.</p>
+											<strong>その他の情報</strong>
+											<p>任意項目は未入力でもお申し込みいただけます。</p>
 										</div>
 
 										<div class="cs-formBox">
 											<div class="form">
 												<div class="form-item">
 													<dl class="clone">
-														<dt><label for="contact-surgery-experience-true">수술 경험</label>
+														<dt><label for="contact-surgery-experience-true">手術歴</label>
 														</dt>
 														<dd>
 															<div class="radio-wrap">
@@ -120,7 +120,7 @@
 																		name="surgeryExperience" value="true"
 																		class="chk_radio">
 																	<label
-																		for="contact-surgery-experience-true">있다</label>
+																		for="contact-surgery-experience-true">あり</label>
 																</div>
 																<div class="radio-area">
 																	<input type="radio"
@@ -128,14 +128,14 @@
 																		name="surgeryExperience" value="false"
 																		class="chk_radio" checked="checked">
 																	<label
-																		for="contact-surgery-experience-false">없다</label>
+																		for="contact-surgery-experience-false">なし</label>
 																</div>
 															</div>
 														</dd>
 													</dl>
 
 													<dl class="clone">
-														<dt><label for="contact-revision-surgery-true">재수술 여부</label>
+														<dt><label for="contact-revision-surgery-true">修正手術のご希望</label>
 														</dt>
 														<dd>
 															<div class="radio-wrap">
@@ -145,7 +145,7 @@
 																		name="revisionSurgery" value="true"
 																		class="chk_radio">
 																	<label
-																		for="contact-revision-surgery-true">있다</label>
+																		for="contact-revision-surgery-true">あり</label>
 																</div>
 																<div class="radio-area">
 																	<input type="radio"
@@ -153,7 +153,7 @@
 																		name="revisionSurgery" value="false"
 																		class="chk_radio" checked="checked">
 																	<label
-																		for="contact-revision-surgery-false">없다</label>
+																		for="contact-revision-surgery-false">なし</label>
 																</div>
 															</div>
 														</dd>
@@ -164,11 +164,11 @@
 											<div class="form">
 												<div class="form-item">
 													<dl class="clone" style="width:100%;">
-														<dt><label for="contact-customer-memo">기타남김말</label></dt>
+														<dt><label for="contact-customer-memo">その他のご要望</label></dt>
 														<dd>
 															<textarea class="contact-textarea"
 																id="contact-customer-memo" name="customerMemo"
-																placeholder="기타 메모를 입력하세요."></textarea>
+																placeholder="その他のご要望を入力してください。"></textarea>
 														</dd>
 													</dl>
 												</div>
@@ -183,18 +183,17 @@
 													<div class="checkbox-area">
 														<input type="checkbox" id="agree_1"
 															name="privacyAgreementRequired">
-														<label for="agree_1">개인정보수집 및 이용 동의 (필수) <span
+														<label for="agree_1">個人情報の収集・利用への同意（必須） <span
 																class="essential">*</span></label>
 													</div>
-													<a href="javascript:void(0);" title="내용 열기"
+													<a href="javascript:void(0);" title="内容を開く"
 														onclick="openPrivate(this)"><s></s></a>
 												</div>
 												<div class="checkbox-cont" style="display:none;">
-													<span>※ 개인정보 수집 및 이용에 동의하지 않을 수 있으며, 동의를 거부할 경우 상담이 제한될 수
-														있습니다.</span>
-													<strong>수집 목적</strong>
-													<strong>수집 항목</strong>
-													<strong>보유 및 이용기간</strong>
+													<span>※収集・利用への同意は任意ですが、同意いただけない場合はご相談をお受けできないことがあります。</span>
+													<strong>収集の目的</strong>
+													<strong>収集する項目</strong>
+													<strong>保有・利用期間</strong>
 												</div>
 											</li>
 
@@ -203,19 +202,18 @@
 													<div class="checkbox-area">
 														<input type="checkbox" id="agree_2"
 															name="thirdPartyAgreementRequired">
-														<label for="agree_2">개인정보 제 3자 제공 동의 (필수) <span
+														<label for="agree_2">個人情報の第三者提供への同意（必須） <span
 																class="essential">*</span></label>
 													</div>
-													<a href="javascript:void(0);" title="내용 열기"
+													<a href="javascript:void(0);" title="内容を開く"
 														onclick="openPrivate(this)"><s></s></a>
 												</div>
 												<div class="checkbox-cont" style="display:none;">
-													<span>※ 개인정보 제3자 제공에 동의하지 않을 수 있으며, 동의를 거부할 경우 상담이 제한될 수
-														있습니다.</span>
-													<strong>제공받는 자</strong>
-													<strong>이용 목적</strong>
-													<strong>제공 정보</strong>
-													<strong>보유 및 이용 기간</strong>
+													<span>※第三者提供への同意は任意ですが、同意いただけない場合はご相談をお受けできないことがあります。</span>
+													<strong>提供先</strong>
+													<strong>利用目的</strong>
+													<strong>提供する情報</strong>
+													<strong>保有・利用期間</strong>
 												</div>
 											</li>
 
@@ -224,16 +222,16 @@
 													<div class="checkbox-area">
 														<input type="checkbox" id="agree_3"
 															name="privacyAgreementOptional">
-														<label for="agree_3">개인정보수집 및 이용 동의 (선택)</label>
+														<label for="agree_3">個人情報の収集・利用への同意（任意）</label>
 													</div>
-													<a href="javascript:void(0);" title="내용 열기"
+													<a href="javascript:void(0);" title="内容を開く"
 														onclick="openPrivate(this)"><s></s></a>
 												</div>
 												<div class="checkbox-cont" style="display:none;">
-													<span>※ 수집 및 이용에 동의하지 않으실 수 있으며, 동의를 거부하셔도 서비스를 이용할 수 있습니다.</span>
-													<strong>수집 목적</strong>
-													<strong>수집 항목</strong>
-													<strong>보유 및 이용 기간</strong>
+													<span>※収集・利用に同意いただけない場合でも、サービスをご利用いただけます。</span>
+													<strong>収集の目的</strong>
+													<strong>収集する項目</strong>
+													<strong>保有・利用期間</strong>
 												</div>
 											</li>
 										</ul>
@@ -242,7 +240,7 @@
 									<div class="goBtn_wrap">
 										<div class="goBtn goBtn--blue">
 											<a href="javascript:void(0);" onclick="goRegi();">
-												<span>상담 신청하기</span>
+												<span>カウンセリングを申し込む</span>
 												<i></i>
 											</a>
 										</div>
@@ -259,7 +257,7 @@
 	</div>
 
 	<th:block th:replace="fragments/front/common :: commonScript"></th:block>
-	<script src="/front/resources/js/contact.js"></script>
+	<script src="/front/resources/js/contact.js?v=20261027-effects-2"></script>
 </body>
 
 </html>

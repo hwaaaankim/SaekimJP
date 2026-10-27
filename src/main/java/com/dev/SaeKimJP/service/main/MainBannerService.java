@@ -56,7 +56,7 @@ public class MainBannerService {
         MultipartFile mobileImage = request.getMobileImage();
 
         if (pcImage == null || pcImage.isEmpty()) {
-            throw new IllegalArgumentException("PC용 이미지는 필수입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("PC용 이미지는 필수입니다.", "PC用画像は必須です。"));
         }
 
         MainBanner entity = new MainBanner();
@@ -99,13 +99,13 @@ public class MainBannerService {
         } catch (Exception e) {
             safeDeleteByUrl(storedPcUrl);
             safeDeleteByUrl(storedMobileUrl);
-            throw new IllegalStateException("메인배너 저장 중 오류가 발생했습니다.", e);
+            throw new IllegalStateException(com.dev.SaeKimJP.util.UiLanguage.text("메인배너 저장 중 오류가 발생했습니다.", "メインバナーの保存中にエラーが発生しました。"), e);
         }
     }
 
     public MainBannerAdminResponse update(Long id, MainBannerUpsertRequest request) {
         MainBanner entity = mainBannerRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("메인배너를 찾을 수 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("메인배너를 찾을 수 없습니다.", "メインバナーが見つかりません。")));
 
         entity.setGeneralText(trimToNull(request.getGeneralText()));
         entity.setStrongText(trimToNull(request.getStrongText()));
@@ -148,7 +148,7 @@ public class MainBannerService {
 
     public void delete(Long id) {
         MainBanner entity = mainBannerRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("메인배너를 찾을 수 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("메인배너를 찾을 수 없습니다.", "メインバナーが見つかりません。")));
 
         safeDeleteByUrl(entity.getPcImageUrl());
         safeDeleteByUrl(entity.getMobileImageUrl());

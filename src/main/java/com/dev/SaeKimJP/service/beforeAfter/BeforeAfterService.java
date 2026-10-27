@@ -158,7 +158,7 @@ public class BeforeAfterService {
 
             applyUpdatePair(
                     entity,
-                    "정면",
+                    com.dev.SaeKimJP.util.UiLanguage.text("정면", "正面"),
                     request.isRemoveFrontView(),
                     request.getBeforeFrontImageFile(),
                     request.getAfterFrontImageFile(),
@@ -169,7 +169,7 @@ public class BeforeAfterService {
             );
             applyUpdatePair(
                     entity,
-                    "45도",
+                    com.dev.SaeKimJP.util.UiLanguage.text("45도", "45度"),
                     request.isRemoveAngle45View(),
                     request.getBeforeAngle45ImageFile(),
                     request.getAfterAngle45ImageFile(),
@@ -180,7 +180,7 @@ public class BeforeAfterService {
             );
             applyUpdatePair(
                     entity,
-                    "90도",
+                    com.dev.SaeKimJP.util.UiLanguage.text("90도", "90度"),
                     request.isRemoveAngle90View(),
                     request.getBeforeAngle90ImageFile(),
                     request.getAfterAngle90ImageFile(),
@@ -216,23 +216,23 @@ public class BeforeAfterService {
         int selectedPairCount = 0;
 
         selectedPairCount += validateCreatePair(
-                "정면",
+                com.dev.SaeKimJP.util.UiLanguage.text("정면", "正面"),
                 request.getBeforeFrontImageFile(),
                 request.getAfterFrontImageFile()
         );
         selectedPairCount += validateCreatePair(
-                "45도",
+                com.dev.SaeKimJP.util.UiLanguage.text("45도", "45度"),
                 request.getBeforeAngle45ImageFile(),
                 request.getAfterAngle45ImageFile()
         );
         selectedPairCount += validateCreatePair(
-                "90도",
+                com.dev.SaeKimJP.util.UiLanguage.text("90도", "90度"),
                 request.getBeforeAngle90ImageFile(),
                 request.getAfterAngle90ImageFile()
         );
 
         if (selectedPairCount < 1) {
-            throw new IllegalArgumentException("정면, 45도, 90도 중 하나 이상의 Before·After 이미지 쌍을 등록해 주세요.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("정면, 45도, 90도 중 하나 이상의 Before·After 이미지 쌍을 등록해 주세요.", "正面・45度・90度のうち、一組以上のBefore・After画像を登録してください。"));
         }
     }
 
@@ -241,7 +241,7 @@ public class BeforeAfterService {
         boolean hasAfter = hasFile(afterFile);
 
         if (hasBefore != hasAfter) {
-            throw new IllegalArgumentException(label + " 이미지는 Before와 After를 모두 등록해야 합니다.");
+            throw new IllegalArgumentException(label + com.dev.SaeKimJP.util.UiLanguage.text(" 이미지는 Before와 After를 모두 등록해야 합니다.", "の画像はBeforeとAfterを両方登録してください。"));
         }
 
         return hasBefore ? 1 : 0;
@@ -275,7 +275,7 @@ public class BeforeAfterService {
             List<String> newlyStoredPaths
     ) {
         if (removeView && (hasFile(beforeFile) || hasFile(afterFile))) {
-            throw new IllegalArgumentException(label + " 시점은 삭제와 이미지 변경을 동시에 처리할 수 없습니다.");
+            throw new IllegalArgumentException(label + com.dev.SaeKimJP.util.UiLanguage.text(" 시점은 삭제와 이미지 변경을 동시에 처리할 수 없습니다.", "の角度は削除と画像変更を同時に行えません。"));
         }
 
         if (removeView) {
@@ -310,25 +310,25 @@ public class BeforeAfterService {
     private void validateFinalViewState(BeforeAfter entity) {
         validatePairState(
                 entity,
-                "정면",
+                com.dev.SaeKimJP.util.UiLanguage.text("정면", "正面"),
                 BeforeAfterImageSlot.BEFORE_FRONT,
                 BeforeAfterImageSlot.AFTER_FRONT
         );
         validatePairState(
                 entity,
-                "45도",
+                com.dev.SaeKimJP.util.UiLanguage.text("45도", "45度"),
                 BeforeAfterImageSlot.BEFORE_ANGLE45,
                 BeforeAfterImageSlot.AFTER_ANGLE45
         );
         validatePairState(
                 entity,
-                "90도",
+                com.dev.SaeKimJP.util.UiLanguage.text("90도", "90度"),
                 BeforeAfterImageSlot.BEFORE_ANGLE90,
                 BeforeAfterImageSlot.AFTER_ANGLE90
         );
 
         if (calculateViewCount(entity) < 1) {
-            throw new IllegalArgumentException("정면, 45도, 90도 중 하나 이상의 Before·After 이미지 쌍이 필요합니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("정면, 45도, 90도 중 하나 이상의 Before·After 이미지 쌍이 필요합니다.", "正面・45度・90度のうち、一組以上のBefore・After画像が必要です。"));
         }
     }
 
@@ -342,7 +342,7 @@ public class BeforeAfterService {
         boolean hasAfter = hasStoredImage(entity, afterSlot);
 
         if (hasBefore != hasAfter) {
-            throw new IllegalArgumentException(label + " 이미지는 Before와 After가 모두 있어야 합니다.");
+            throw new IllegalArgumentException(label + com.dev.SaeKimJP.util.UiLanguage.text(" 이미지는 Before와 After가 모두 있어야 합니다.", "の画像はBeforeとAfterの両方が必要です。"));
         }
     }
 
@@ -560,24 +560,24 @@ public class BeforeAfterService {
 
     private BeforeAfter getEntity(Long id) {
         return beforeAfterRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("전후사진 데이터를 찾을 수 없습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("전후사진 데이터를 찾을 수 없습니다.", "症例写真のデータが見つかりません。")));
     }
 
     private void validateCommonFields(String title, String description, String category) {
         if (!StringUtils.hasText(title)) {
-            throw new IllegalArgumentException("수술명을 입력해 주세요.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("수술명을 입력해 주세요.", "手術名を入力してください。"));
         }
 
         if (!StringUtils.hasText(description)) {
-            throw new IllegalArgumentException("간단한 설명문구를 입력해 주세요.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("간단한 설명문구를 입력해 주세요.", "短い説明文を入力してください。"));
         }
 
         if (title.trim().length() > 150) {
-            throw new IllegalArgumentException("수술명은 150자 이내로 입력해 주세요.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("수술명은 150자 이내로 입력해 주세요.", "手術名は150文字以内で入力してください。"));
         }
 
         if (description.trim().length() > 500) {
-            throw new IllegalArgumentException("간단한 설명문구는 500자 이내로 입력해 주세요.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("간단한 설명문구는 500자 이내로 입력해 주세요.", "説明文は500文字以内で入力してください。"));
         }
 
         BeforeAfterCategory.fromCode(category);

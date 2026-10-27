@@ -18,6 +18,6 @@ public class MainPageAdminApiExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<Map<String, String>> handleRuntime(RuntimeException e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(Map.of("message", "처리 중 오류가 발생했습니다."));
+                .body(Map.of("message", com.dev.SaeKimJP.util.UiLanguage.text("처리 중 오류가 발생했습니다.", "処理中にエラーが発生しました。")));
     }
 }

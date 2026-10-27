@@ -1,189 +1,136 @@
-// ===== 엘리먼트 참조 =====
-const topbarFill = document.querySelector('#main .mainv_container .progress-topbar__fill');
-const progressCircle = document.querySelector('#main .mainv_container .autoplay-progress svg');
-const progressContent = document.querySelector('#main .mainv_container .autoplay-progress span');
-
-// ===== 타이밍 =====
-const AUTOPLAY_DELAY = 5000; // 5초
-const SPEED_MS = 800;  // 페이드 전환 속도
-
-// ===== Swiper 초기화 =====
-const mySwiper = new Swiper('.mySwiper', {
-	slidesPerView: 1,
-	spaceBetween: 30,
-	centeredSlides: true,
-
-	effect: 'fade',
-	fadeEffect: { crossFade: true },
-	speed: SPEED_MS,
-
-	autoplay: {
-		delay: AUTOPLAY_DELAY,
-		// disableOnInteraction: false,
-	},
-
-	on: {
-		init(s) {
-			resetAllKB(s);
-			// 초기 표시: 경과 0 → 숫자 1, 원형 0%, 상단바 0%
-			updateTopbar(0);
-			updateCircular(0);
-			updateCountUp(0);
-		},
-		slideChangeTransitionStart(s) {
-			resetAllKB(s);
-			// 새 사이클 시작점 초기화
-			updateTopbar(0);
-			updateCircular(0);
-			updateCountUp(0);
-		},
-		autoplayTimeLeft(s, time, progress) {
-			// Swiper가 주는 time=남은 ms, progress=경과 비율(0→1)
-			const elapsedMs = Math.max(0, AUTOPLAY_DELAY - time);
-			const ratio = Math.max(0, Math.min(1, elapsedMs / AUTOPLAY_DELAY)); // 0→1 (경과)
-
-			// 상단바/원형/숫자 모두 '경과' 기준으로 업데이트
-			updateTopbar(ratio);      // 0→1로 차오름
-			updateCircular(ratio);    // 시계방향으로 채워짐
-			updateCountUp(elapsedMs); // 1→5로 증가
-
-			// Ken Burns: 0→1로 증가 → scale 1→1.2
-			const active = s.slides[s.activeIndex];
-			if (active) {
-				const bg = active.querySelector('.kb-bg');
-				if (bg) bg.style.setProperty('--kb', ratio.toFixed(4));
-			}
-		},
-	},
-});
-
-// ===== 헬퍼 =====
-function resetAllKB(s) {
-	s.slides.forEach(sl => {
-		const bg = sl.querySelector('.kb-bg');
-		if (bg) bg.style.setProperty('--kb', '0');
-	});
-}
-
-
-// 원형: 0~1 (시계방향 채움)
-function updateCircular(ratio01) {
-	if (!progressCircle) return;
-	// CSS에서 stroke-dashoffset이 (1 - --progress)로 계산되므로, 0→1로 증가시키면 채워집니다.
-	progressCircle.style.setProperty('--progress', ratio01);
-}
-
-// 숫자: 1 → 5 증가 (경과 기준)
-function updateCountUp(elapsedMs) {
-	if (!progressContent) return;
-	// 경과 초를 0~5로 환산해 1~5로 보여줌
-	// 0ms~999ms => 1, 1000ms~1999ms => 2, ..., 4000ms~ => 5
-	const sec = Math.min(5, Math.max(1, 1 + Math.floor(elapsedMs / 1000)));
-	progressContent.textContent = String(sec);
-}
-
-// 상단바: 0~1
-function updateTopbar(ratio01) {
-	if (!topbarFill) return;
-	topbarFill.style.width = (ratio01 * 100).toFixed(2) + '%';
-}
-
-(function() {
-	const headerEl = document.querySelector('header');
-	const topbarEl = document.querySelector('#main .mainv_container .progress-topbar');
-	if (!headerEl || !topbarEl) return;
-
-	function syncTopbarVisibility() {
-		const hide = headerEl.classList.contains('scroll');
-		topbarEl.classList.toggle('is-hidden', hide);
-	}
-
-	// 1) 초기 상태 반영
-	syncTopbarVisibility();
-
-	// 2) header class 변경 감시 (가장 정확)
-	const mo = new MutationObserver(syncTopbarVisibility);
-	mo.observe(headerEl, { attributes: true, attributeFilter: ['class'] });
-
-	// 3) 혹시 모를 누락 대비(스크롤 이벤트로도 한 번 더 동기화)
-	window.addEventListener('scroll', syncTopbarVisibility, { passive: true });
+/* Main banner: one Swiper owns the fade, progress and Ken Burns effects. */
+(function () {
+    'use strict';
+    const el = document.getElementById('index-main-banner-swiper');
+    if (!el || typeof Swiper === 'undefined' || el.swiper) return;
+    const count = el.querySelectorAll('.swiper-slide').length;
+    const fill = document.querySelector('#main .progress-topbar__fill');
+    const circle = el.querySelector('.autoplay-progress svg');
+    const number = el.querySelector('.autoplay-progress span');
+    const progressWrap = el.querySelector('.autoplay-progress');
+    const duration = 5000;
+    if (count <= 1) {
+        if (progressWrap) progressWrap.hidden = true;
+        if (fill) fill.style.width = '100%';
+    }
+    function update(swiper, time) {
+        const ratio = Math.max(0, Math.min(1, (duration - time) / duration));
+        if (fill) fill.style.width = (ratio * 100) + '%';
+        if (circle) circle.style.setProperty('--progress', ratio);
+        if (number) number.textContent = String(Math.max(1, Math.ceil(time / 1000)));
+        const active = swiper.slides[swiper.activeIndex];
+        const bg = active && active.querySelector('.kb-bg');
+        if (bg) bg.style.setProperty('--kb', String(ratio));
+    }
+    new Swiper(el, {
+        slidesPerView: 1,
+        loop: count > 1,
+        effect: 'fade',
+        fadeEffect: { crossFade: true },
+        speed: 800,
+        allowTouchMove: count > 1,
+        autoplay: count > 1 ? { delay: duration, disableOnInteraction: false } : false,
+        on: {
+            init(swiper) { update(swiper, count > 1 ? duration : 0); },
+            slideChangeTransitionStart(swiper) {
+                swiper.slides.forEach(slide => {
+                    const bg = slide.querySelector('.kb-bg');
+                    if (bg) bg.style.setProperty('--kb', '0');
+                });
+                update(swiper, duration);
+            },
+            autoplayTimeLeft(swiper, time) { update(swiper, time); }
+        }
+    });
 })();
 
-/* ===== 기존 변수/로직 유지 ===== */
-var control = document.getElementById('control');
-var bar = document.querySelector('.bar');
-var value = document.querySelector('.value');
+/* Pause one shared clock when hidden; resume without overlapping intervals. */
+(function () {
+    'use strict';
+    const root = document.querySelector('.system_cnt02 .timeline-wrap');
+    if (!root) return;
+    const bar = root.querySelector('.circle_progress .bar');
+    const value = root.querySelector('.value');
+    const backgrounds = root.querySelector('.bg-list_item');
+    const control = root.querySelector('#control');
+    if (!bar || !value || !backgrounds) return;
 
-var RADIUS = 170;
-var CIRCUMFERENCE = 2 * Math.PI * RADIUS;
+    const stages = [
+        { label: '担当医による1:1カウンセリング', lines: ['担当医による', '1:1カウンセリング'] },
+        { label: '一人ひとりに合わせた治療計画', lines: ['一人ひとりに合わせた', '治療計画'] },
+        { label: '手術の実施', lines: ['手術の実施'] },
+        { label: '回復期のケア', lines: ['回復期のケア'] },
+        { label: 'アフターケア', lines: ['アフターケア'] }
+    ];
+    const circumference = 2 * Math.PI * 170;
+    const activeDuration = 8000;
+    const cycleDuration = 9000;
+    let elapsed = 0;
+    let lastTime = null;
+    let frame = null;
+    let currentStage = -1;
+    bar.style.strokeDasharray = String(circumference);
 
-/* 진행률 갱신 */
-function progress(per) {
-	var progress = per / 100;
-	var dashoffset = CIRCUMFERENCE * (1 - progress);
-
-	/* 우측 배경: 기존 클래스 로직 보존 + 페이드용 data-stage 동기화 */
-	if (per == 1) {
-		$(".bg-list_item").removeClass("tl-bg2 tl-bg3 tl-bg4 tl-bg5").attr("data-stage", "1");
-		value.innerHTML = "담당의 상담";
-	} else if (per == 20) {
-		$(".bg-list_item").addClass("tl-bg2").attr("data-stage", "2");
-		value.innerHTML = "맞춤 전략수립";
-	} else if (per == 40) {
-		$(".bg-list_item").addClass("tl-bg3").attr("data-stage", "3");
-		value.innerHTML = "수술 진행";
-	} else if (per == 60) {
-		$(".bg-list_item").addClass("tl-bg4").attr("data-stage", "4");
-		value.innerHTML = "회복 관리";
-	} else if (per == 80) {
-		$(".bg-list_item").addClass("tl-bg5").attr("data-stage", "5");
-		value.innerHTML = "사후 관리";
-	}
-
-	bar.style.strokeDashoffset = dashoffset;
-}
-
-/* range 이벤트 (표시는 숨김 상태) */
-control.addEventListener('input', e => progress(e.target.valueAsNumber));
-control.addEventListener('change', e => progress(e.target.valueAsNumber));
-
-/* 초기 설정 */
-bar.style.strokeDasharray = CIRCUMFERENCE;
-progress(0);
-move();
-
-/* 자동 순환 */
-var dayStudy = setInterval(move, 9000);
-function handleVisibilityChange() {
-	if (document.hidden) { clearInterval(dayStudy); return; }
-}
-document.addEventListener("visibilitychange", handleVisibilityChange, false);
-
-function move() {
-	var start = 0, end = 100;
-	var id = setInterval(function frame() {
-		if (start >= end) { clearInterval(id); }
-		else {
-			if (document.hidden) return;
-			start += 1;
-			progress(start);
-		}
-	}, 80);
-}
+    function render() {
+        const ratio = Math.min(elapsed / activeDuration, 1);
+        const stage = Math.min(stages.length - 1, Math.floor(ratio * stages.length));
+        bar.style.strokeDashoffset = String(circumference * (1 - ratio));
+        if (control) control.value = String(Math.round(ratio * 100));
+        if (stage === currentStage) return;
+        currentStage = stage;
+        root.dataset.timelineStage = String(stage + 1);
+        backgrounds.dataset.stage = String(stage + 1);
+        backgrounds.classList.remove('tl-bg2', 'tl-bg3', 'tl-bg4', 'tl-bg5');
+        for (let i = 2; i <= stage + 1; i++) backgrounds.classList.add('tl-bg' + i);
+        backgrounds.querySelectorAll('.bg-pic').forEach((pic, i) => {
+            pic.setAttribute('aria-hidden', i === stage ? 'false' : 'true');
+        });
+        value.setAttribute('aria-label', stages[stage].label);
+        value.replaceChildren(...stages[stage].lines.map(line => {
+            const span = document.createElement('span');
+            span.textContent = line;
+            return span;
+        }));
+        if (value.animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            value.getAnimations().forEach(animation => animation.cancel());
+            value.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'translateY(0)' }],
+                { duration: 400, easing: 'ease-out' });
+        }
+    }
+    function tick(now) {
+        frame = null;
+        if (document.hidden) { lastTime = null; return; }
+        if (lastTime !== null) elapsed = (elapsed + now - lastTime) % cycleDuration;
+        lastTime = now;
+        render();
+        frame = requestAnimationFrame(tick);
+    }
+    function resume() {
+        lastTime = null;
+        if (frame === null && !document.hidden) frame = requestAnimationFrame(tick);
+    }
+    function pause() {
+        if (frame !== null) cancelAnimationFrame(frame);
+        frame = null;
+        lastTime = null;
+    }
+    if (control) {
+        function seek() {
+            const percent = Math.max(0, Math.min(100, control.valueAsNumber || 0));
+            elapsed = percent / 100 * activeDuration;
+            lastTime = null;
+            render();
+        }
+        control.addEventListener('input', seek);
+        control.addEventListener('change', seek);
+    }
+    document.addEventListener('visibilitychange', () => document.hidden ? pause() : resume());
+    window.addEventListener('pagehide', pause);
+    window.addEventListener('pageshow', resume);
+    render();
+    resume();
+})();
 
 /* 원본에 있던 도우미 함수들 필요 시 그대로 사용 */
-function sampleMessage() { alert('연결 페이지를 지정할 수 있습니다.'); }
+function sampleMessage() { alert('リンク先のページを指定できます。'); }
 
-document.querySelectorAll('.index-morebtn').forEach($btn => {
-	$btn.addEventListener('click', () => {
-		const key = $btn.getAttribute('data-target');
-		const map = {
-			eyes: '/front/service/eyes',
-			contour: '/front/service/contour',
-			nose: '/front/service/nose',
-			lifting: '/front/service/lifting',
-		};
-		const url = map[key] || '#';
-		if (url && url !== '#') location.href = url;
-	});
-});

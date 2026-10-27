@@ -625,15 +625,15 @@ html {
 }
 
 .onepage-pagination li:first-child .opg-bullet:before {
-	content: "수업 시스템";
+	content: "授業システム";
 }
 
 .onepage-pagination li:nth-child(2) .opg-bullet:before {
-	content: "커리큘럼";
+	content: "カリキュラム";
 }
 
 .onepage-pagination li:last-child .opg-bullet:before {
-	content: "영어 인증평가";
+	content: "英語認定試験";
 }
 
 .onepage-pagination li .opg-bullet.on {
@@ -853,7 +853,7 @@ input[type="radio"]:checked {
 }
 
 .system_cnt02 .bg-list_item .pic5 {
-	background-image: url(/front/images/main/section03/5.png);
+	background-image: url(/front/images/main/section03/5.png?v=20261027-ja-2);
 }
 
 /* data-stage 값에 맞는 레이어만 표시 */
@@ -1179,7 +1179,7 @@ input[type="radio"]:checked {
 	min-width: 20px;
 	height: 20px;
 	background-size: 100% auto;
-	background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-chevron-right.svg) center center no-repeat;
+	background: url(/front/resources/icons/i-chevron-right.svg) center center no-repeat;
 }
 
 .system_bsc .system_cnt05 .iceM-list {
@@ -1854,7 +1854,7 @@ footer .footer2>ul>li>span>s {
 	vertical-align: middle;
 	width: 14px;
 	height: 14px;
-	background-image: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-call.svg);
+	background-image: url(/front/resources/icons/i-call.svg);
 	background-repeat: no-repeat;
 	background-size: 100% auto;
 	background-position: center center;
@@ -2156,7 +2156,7 @@ footer .footer2 .family .family-box .family-list__link:hover>s {
 
 	.mobile-gnb-wrap .mobile-gnb_link:after {
 		content: "";
-		background: url(https://upsisa.ybmnet.co.kr/new_business/ybmengloo_com_PHP/images/common/i-chevron-down-bk.svg);
+		background: url(/front/resources/icons/i-chevron-down-bk.svg);
 		display: inline-block;
 		position: static;
 		width: 16px;

@@ -34,7 +34,7 @@ public class SurgeryFileStorageService {
 
     private StoredSurgeryFile store(SurgeryGroupType groupType, String folder, MultipartFile file) {
         if (file == null || file.isEmpty()) {
-            throw new IllegalArgumentException("업로드 파일이 비어 있습니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("업로드 파일이 비어 있습니다.", "アップロードファイルが空です。"));
         }
 
         String originalName = StringUtils.hasText(file.getOriginalFilename())
@@ -59,7 +59,7 @@ public class SurgeryFileStorageService {
             Files.createDirectories(dir);
             file.transferTo(target.toFile());
         } catch (IOException e) {
-            throw new IllegalStateException("파일 저장에 실패했습니다.", e);
+            throw new IllegalStateException(com.dev.SaeKimJP.util.UiLanguage.text("파일 저장에 실패했습니다.", "ファイルを保存できませんでした。"), e);
         }
 
         String relativePath = (relativeDir + "/" + saveName).replace("\\", "/");

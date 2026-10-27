@@ -22,7 +22,7 @@ body.sk-surgery-page #header .ham>a>span {
 
 body.sk-surgery-page #header,
 body.sk-surgery-page #header * {
-	font-family: 'Saekim Noto KR', 'Saekim Noto JP', sans-serif
+	font-family: var(--jp-font-sans, 'Saekim Noto JP'), sans-serif
 }
 
 .sk-surgery {
@@ -41,9 +41,10 @@ body.sk-surgery-page #header * {
 
 .sk-surgery * {
 	box-sizing: border-box;
-	font-family: 'Saekim Noto KR', 'Saekim Noto JP', sans-serif;
-	letter-spacing: -.035em;
-	word-break: keep-all;
+	font-family: var(--jp-font-sans, 'Saekim Noto JP'), sans-serif;
+	letter-spacing: normal;
+	word-break: normal;
+	line-break: strict;
 	overflow-wrap: anywhere
 }
 
@@ -2185,7 +2186,7 @@ body.sk-surgery-page .btn_top:hover>s {
 
 body.sk-surgery-page #footer,
 body.sk-surgery-page #footer * {
-	font-family: 'Saekim Noto KR', 'Saekim Noto JP', sans-serif
+	font-family: var(--jp-font-sans, 'Saekim Noto JP'), sans-serif
 }
 
 /* Whole-image rendering and semantic diagrams. Motion is defined below. */
@@ -2993,7 +2994,7 @@ body.sk-surgery-page #footer * {
 }
 
 .sk-viewer-stage[aria-busy=true]::after {
-	content: '이미지를 불러오는 중…';
+	content: '画像を読み込んでいます…';
 	position: absolute;
 	bottom: 22px;
 	background: #fffefc;
@@ -3527,7 +3528,8 @@ body.sk-surgery-page .btn_top>s {
 	margin: 0;
 	padding-left: 21px;
 	line-height: 1.65;
-	word-break: keep-all;
+	word-break: normal;
+	line-break: strict;
 	overflow-wrap: anywhere;
 }
 
@@ -3538,7 +3540,8 @@ body.sk-surgery-page .btn_top>s {
 
 .sk-surgery :is(.sk-viewer-hint, .sk-rail-controls p) {
 	line-height: 1.65;
-	word-break: keep-all;
+	word-break: normal;
+	line-break: strict;
 }
 
 @media (max-width: 760px) {
@@ -3834,7 +3837,7 @@ body.sk-surgery-page .btn_top>s {
 }
 
 .sk-surgery .sk-viewer-stage[aria-busy=true]::after {
-	content: '※ 이미지를 불러오는 중…';
+	content: '※ 画像を読み込んでいます…';
 }
 
 @media (max-width: 1100px) {
@@ -4364,3 +4367,7 @@ body.sk-surgery-page .btn_top>s {
 		padding: 6px 10px;
 	}
 }
+/* Japanese copy: allow natural wrapping without oversized fixed frames. */
+html[lang="ja"] .sk-shell{line-break:strict;word-break:normal;overflow-wrap:break-word}
+html[lang="ja"] .sk-tab{white-space:normal;line-height:1.5}
+

@@ -23,7 +23,7 @@ public class MainPopupAdminResponse {
     public static MainPopupAdminResponse from(MainPopup entity) {
         return MainPopupAdminResponse.builder()
                 .id(entity.getId())
-                .imageUrl(hasText(entity.getImageUrl()) ? entity.getImageUrl() : "/front/sample/450-700.png")
+                .imageUrl(hasText(entity.getImageUrl()) ? entity.getImageUrl() : "/front/resources/images/placeholder-450-700.svg")
                 .linkUrl(FrontPagePathUtils.normalizeInternalPagePath(entity.getLinkUrl()))
                 .displayOrder(entity.getDisplayOrder())
                 .useDisplayPeriod(Boolean.TRUE.equals(entity.getUseDisplayPeriod()))

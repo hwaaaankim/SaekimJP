@@ -17,7 +17,7 @@ public class FrontMainPopupResponse {
     public static FrontMainPopupResponse from(MainPopup entity) {
         return FrontMainPopupResponse.builder()
                 .id(entity.getId())
-                .imageUrl(hasText(entity.getImageUrl()) ? entity.getImageUrl() : "/front/sample/450-700.png")
+                .imageUrl(hasText(entity.getImageUrl()) ? entity.getImageUrl() : "/front/resources/images/placeholder-450-700.svg")
                 .linkUrl(FrontPagePathUtils.normalizeInternalPagePath(entity.getLinkUrl()))
                 .displayOrder(entity.getDisplayOrder())
                 .build();

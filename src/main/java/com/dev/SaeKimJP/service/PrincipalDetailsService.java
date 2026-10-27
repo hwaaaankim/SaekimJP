@@ -20,7 +20,7 @@ public class PrincipalDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Member member = memberRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("사용자를 찾을 수 없습니다. username=" + username));
+                .orElseThrow(() -> new UsernameNotFoundException(com.dev.SaeKimJP.util.UiLanguage.text("사용자를 찾을 수 없습니다. username=", "ユーザーが見つかりません。username=") + username));
 
         return new PrincipalDetails(member);
     }

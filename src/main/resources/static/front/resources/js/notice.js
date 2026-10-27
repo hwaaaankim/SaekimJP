@@ -16,13 +16,13 @@
                 <div class="notice-text-wrap">
                     <div class="notice-list-meta">
                         <span class="notice-list-meta__date">
-                            등록일 : <span data-field="date">-</span>
+                            登録日： <span data-field="date">-</span>
                         </span> |
                         <span class="notice-list-meta__date">
-                            조회수 : <span data-field="viewCount">0</span> 회
+                            閲覧数： <span data-field="viewCount">0</span> 回
                         </span>
                     </div>
-                    <h3 class="notice-list-panel__title" data-field="title">제목</h3>
+                    <h3 class="notice-list-panel__title" data-field="title">タイトル</h3>
                     <div class="notice-list-panel__content" data-field="content"></div>
                 </div>
             </div>
@@ -116,7 +116,7 @@
 				const result = await response.json();
 
 				if (!response.ok) {
-					throw new Error(result.message || '공지사항 상세를 불러오지 못했습니다.');
+					throw new Error(result.message || 'お知らせの詳細を読み込めませんでした。');
 				}
 
 				setPanelData({
@@ -140,7 +140,7 @@
 				openPanel(li);
 			} catch (error) {
 				animating = false;
-				alert(error.message || '공지사항 상세 조회 중 오류가 발생했습니다.');
+				alert(error.message || 'お知らせの詳細取得中にエラーが発生しました。');
 			}
 		});
 

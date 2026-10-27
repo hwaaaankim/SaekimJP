@@ -1,8 +1,8 @@
-<html id="hamHtml" lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html id="hamHtml" lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{fragments/front/common :: commonHead}"></head>
 
-<body id="hamBody" class="" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
+<body id="hamBody" class=" jp-page-index" data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
 	<div id="container">
 		<th:block th:replace="~{fragments/front/common :: commonHeader(white=${true}, dark=${false})}"></th:block>
 		<main id="main">
@@ -20,10 +20,9 @@
 								</div>
 
 								<div class="index-dynamic-main-banner-text-wrap">
-									<h2 data-aos="fade-up" data-aos-duration="1000">
-										<span th:text="${banner.generalText}">TITLE MESSAGE AREA,</span><br
-											class="pc_hide">
-										<strong th:text="${banner.strongText}">STRONG TEXT</strong>
+									<h2 class="index-main-banner-heading" data-aos="fade-up" data-aos-duration="1000">
+										<span class="index-main-banner-lead" th:text="${banner.generalText}">美しさを刻む</span>
+										<strong class="index-main-banner-emphasis" th:text="${banner.strongText}">SAEKIM美容外科</strong>
 									</h2>
 								</div>
 							</li>
@@ -44,34 +43,34 @@
 						<div class="system_cnt01 bsc_ly">
 							<div class="inner">
 								<div class="title-wrap">
-									<p class="title">다양한 분야의 협진을 통해<br class="pc_show">
-										개인별 맞춤 의료 서비스를 제공합니다.</p>
-									<span class="sub-txt">각 분야의 전문 의료진의 세밀한 분석과 풍부한 임상 경험을 바탕으로<br class="pc_show"> 조화롭고 완성도 높은 결과를 약속드립니다.</span>
+									<p class="title">専門分野を超えた連携で、<br class="pc_show">
+										お一人おひとりに合わせた医療をご提供します。</p>
+									<span class="sub-txt">各分野の医療チームによる緻密な分析と豊富な臨床経験に基づき、<br class="pc_show"> 調和の取れた、完成度の高い結果を目指します。</span>
 								</div>
 								<div class="article-wrap">
 									<ul class="syc-list">
 										<li class="syc-list_item aos-init" data-aos="fade-up" data-aos-duration="1000">
-											<p>분야별 진료 시스템<br>(개인별 맞춤 의료 서비스)</p>
+											<p>診療分野ごとの診療体制<br>（一人ひとりに合わせた医療）</p>
 										</li>
 										<li class="syc-list_item aos-init" data-aos="fade-up" data-aos-duration="1000"
 											data-aos-delay="300">
-											<p>안전 시스템<br>(실시간 모니터링 시스템)</p>
+											<p>安全管理体制<br>（リアルタイム監視体制）</p>
 										</li>
 										<li class="syc-list_item aos-init" data-aos="fade-up" data-aos-duration="1000"
 											data-aos-delay="600">
-											<p>담당의 책임 시스템<br>(수술 후 케어까지)</p>
+											<p>担当医による責任診療体制<br>（術後のケアまで）</p>
 										</li>
 										<li class="syc-list_item aos-init" data-aos="fade-up" data-aos-duration="1000"
 											data-aos-delay="900">
-											<p>친절한 상담(친절하게 자세하게)</p>
+											<p>丁寧なカウンセリング（詳しくわかりやすく）</p>
 										</li>
 										<li class="syc-list_item aos-init" data-aos="fade-up" data-aos-duration="1000"
 											data-aos-delay="1200">
-											<p>안심마취 시스템<br>(마취통증의학과 전문의상주)</p>
+											<p>安心に配慮した麻酔管理<br>（麻酔科専門医が常駐）</p>
 										</li>
 										<li class="syc-list_item aos-init" data-aos="fade-up" data-aos-duration="1000"
 											data-aos-delay="1400">
-											<p>맞춤 사후관리 시스템(1:1 애프터케어)</p>
+											<p>個別の術後管理（1:1アフターケア）</p>
 										</li>
 									</ul>
 								</div>
@@ -84,10 +83,10 @@
 										<li class="timeline-list_item tl-info">
 											<div class="info-box">
 												<p>
-													세밀한 분석, 풍부한 임상 경험, 각 분야의 협진<br>
-													새김성형외과가 특별할 수 밖에 없는 이유.
+													<span class="timeline-intro"><span>緻密な分析・豊富な臨床経験</span><span>専門分野の連携</span></span>
+													SAEKIM美容外科が選ばれる理由。
 												</p>
-												<h4>새김성형외과의 <span class="txtBg">안전수술</span></h4>
+												<h4><span class="timeline-clinic-name">SAEKIM美容外科の</span><span class="txtBg">安全に配慮した手術</span></h4>
 											</div>
 
 											<div class="tl-circle">
@@ -112,8 +111,8 @@
 															style="stroke-dasharray: 1068.14; stroke-dashoffset: 0;">
 														</circle>
 													</svg>
-													<input id="control" type="range" value="" style="opacity:0">
-													<strong class="value">1:1상담</strong>
+													<input id="control" type="range" min="0" max="100" value="0" hidden aria-hidden="true" tabindex="-1">
+													<strong class="value" aria-label="担当医による1:1カウンセリング"><span>担当医による</span><span>1:1カウンセリング</span></strong>
 												</div>
 											</div>
 										</li>
@@ -139,9 +138,8 @@
 						<div class="system_cnt03 bsc_ly">
 							<div class="inner">
 								<div class="title-wrap">
-									<p class="title color01">새김성형외과의 끊임 없는 노력.</p>
-									<span class="sub-txt">시간이 지나도 자연스럽고 안전한 수술을 제공할 수 있도록, <br class="pc_show">다년간의 노하우를
-										지닌 새김성형외과 전문의는 언제나 연구와 수술에 대한 개발을 끊임없이 진행합니다.</span>
+									<p class="title color01">SAEKIM美容外科の継続的な取り組み。</p>
+									<span class="sub-txt">時間が経過しても自然な結果と、安全に配慮した手術をご提供するために、 <br class="pc_show">長年の経験を持つ専門医が、研究と手術技術の開発を続けています。</span>
 								</div>
 								<div class="article-wrap">
 									<ul class="il-list">
@@ -151,17 +149,17 @@
 											<div class="img"><img src="/front/images/main/section04/1.png" alt=""></div>
 											<ul class="ilTBox">
 												<li>
-													<h5>눈 성형</h5>
+													<h5>目元形成</h5>
 												</li>
 												<li>
-													<p>나의 눈 상태에 알맞은 수술방법,<br class="pc_show"> 선명하고 또렷한 눈매 만들기</p>
+													<p>目の状態に合う手術方法で、<br class="pc_show"> はっきりとした目元へ</p>
 												</li>
 											</ul>
 
 											<!-- 더보기 버튼 -->
-											<a href="javascript:void(0)" class="index-morebtn" data-target="eyes">
+											<a href="/eyeSurgeryPage" class="index-morebtn" data-target="eyes">
 												<span class="index-morebtn__wrap">
-													<span class="index-morebtn__label">자세히보기</span>
+													<span class="index-morebtn__label">詳しく見る</span>
 													<span class="index-morebtn__icon" aria-hidden="true">→</span>
 												</span>
 											</a>
@@ -173,15 +171,15 @@
 											<div class="img"><img src="/front/images/main/section04/2.png" alt=""></div>
 											<ul class="ilTBox">
 												<li>
-													<h5>안면 윤곽</h5>
+													<h5>輪郭形成</h5>
 												</li>
 												<li>
-													<p>매끄러운 광대라인,<br class="pc_show"> 부드럽고 세련된 인상으로</p>
+													<p>なめらかな頬骨のラインで、<br class="pc_show"> やわらかく洗練された印象へ</p>
 												</li>
 											</ul>
-											<a href="javascript:void(0)" class="index-morebtn" data-target="contour">
+											<a href="/contouringSurgeryPage" class="index-morebtn" data-target="contour">
 												<span class="index-morebtn__wrap">
-													<span class="index-morebtn__label">자세히보기</span>
+													<span class="index-morebtn__label">詳しく見る</span>
 													<span class="index-morebtn__icon" aria-hidden="true">→</span>
 												</span>
 											</a>
@@ -193,15 +191,15 @@
 											<div class="img"><img src="/front/images/main/section04/3.png" alt=""></div>
 											<ul class="ilTBox">
 												<li>
-													<h5>코 수술</h5>
+													<h5>鼻の手術</h5>
 												</li>
 												<li>
-													<p>밋밋한 얼굴의 주범 낮은콧대,<br class="pc_show"> 이상적인 높이의 콧대라인 완성</p>
+													<p>立体感を左右する鼻筋を、<br class="pc_show"> バランスのよい高さとラインへ</p>
 												</li>
 											</ul>
-											<a href="javascript:void(0)" class="index-morebtn" data-target="nose">
+											<a href="/noseSurgeryPage" class="index-morebtn" data-target="nose">
 												<span class="index-morebtn__wrap">
-													<span class="index-morebtn__label">자세히보기</span>
+													<span class="index-morebtn__label">詳しく見る</span>
 													<span class="index-morebtn__icon" aria-hidden="true">→</span>
 												</span>
 											</a>
@@ -213,15 +211,15 @@
 											<div class="img"><img src="/front/images/main/section04/4.png" alt=""></div>
 											<ul class="ilTBox">
 												<li>
-													<h5>리프팅/동안</h5>
+													<h5>リフトアップ・エイジングケア</h5>
 												</li>
 												<li>
-													<p>뼈수술 없이,<br class="pc_show"> 매끈한 브이라인을 얻자</p>
+													<p>骨切りを行わずに、<br class="pc_show"> なめらかなVラインへ</p>
 												</li>
 											</ul>
-											<a href="javascript:void(0)" class="index-morebtn" data-target="lifting">
+											<a href="/youngSurgeryPage" class="index-morebtn" data-target="lifting">
 												<span class="index-morebtn__wrap">
-													<span class="index-morebtn__label">자세히보기</span>
+													<span class="index-morebtn__label">詳しく見る</span>
 													<span class="index-morebtn__icon" aria-hidden="true">→</span>
 												</span>
 											</a>
@@ -235,30 +233,30 @@
 							<div class="tab_style orange">
 								<ul class="inner">
 									<li id="li_systab1" onclick="javascript:systab_Click('suup','1');"
-										class="focus sysTab1" data-tab="sysTab1">새김 안전시스템</li>
+										class="focus sysTab1" data-tab="sysTab1">SAEKIM安全管理体制</li>
 									<li id="li_systab2" onclick="javascript:systab_Click('suup','2');" class="sysTab2"
-										data-tab="sysTab2">새김 안심시스템</li>
+										data-tab="sysTab2">SAEKIM安心サポート体制</li>
 								</ul>
 							</div>
 							<section id="sysTab1" class="sub_pad sysTab_in focus">
 								<div class="inner">
 									<div class="subTit_wrap">
-										<p class="subSTit">새김성형외과만의 <span class="txtBg">안전시스템</span></p>
-										<h3 class="subTit">첨단 시스템을 통한 안전한 수술을 진행합니다.</h3>
-										<p class="subTxt">모든 수술실에 환자의 안심을 위한 수술실 CCTV 설치는 물론 실시간 모니터링 시스템,<br
+										<p class="subSTit">SAEKIM美容外科独自の <span class="txtBg">安全管理体制</span></p>
+										<h3 class="subTit">先進的な設備により、安全性に配慮した手術を行います。</h3>
+										<p class="subTxt">手術室CCTVとリアルタイム監視体制を備え、<br
 												class="pc_show">
-											무정전 시스템(UPS)를 통해 갑작스러운 천재지변도 대처가 가능합니다.</p>
+											無停電電源装置（UPS）により、突然の停電などに備えています。</p>
 									</div>
 									<div class="img_wrap">
 										<ul class="imgBox-list">
 											<li class="imgBox-list_item">
-												<p class="comment">수술실 CCTV</p>
+												<p class="comment">手術室CCTV</p>
 											</li>
 											<li class="imgBox-list_item">
-												<p class="comment">모니터링시스템</p>
+												<p class="comment">監視体制</p>
 											</li>
 											<li class="imgBox-list_item">
-												<p class="comment">무정전시스템</p>
+												<p class="comment">無停電電源システム</p>
 											</li>
 										</ul>
 									</div>
@@ -268,22 +266,22 @@
 							<section id="sysTab2" class="sub_pad sysTab_in">
 								<div class="inner">
 									<div class="subTit_wrap">
-										<p class="subSTit">새김성형외과의 <span class="txtBg">안심시스템</span></p>
-										<h3 class="subTit">환자의 안심을 위한 시스템</h3>
-										<p class="subTxt">마취통증의학과 전문의 상주로 수술 중 안전한 상태관리를 진행하며, 첨단 정밀 진단 기기와<br
+										<p class="subSTit">SAEKIM美容外科の <span class="txtBg">安心サポート体制</span></p>
+										<h3 class="subTit">患者様の安心を支える仕組み</h3>
+										<p class="subTxt">常駐の麻酔科専門医が術中の状態を管理し、精密診断機器と<br
 												class="pc_show">
-											4단계의 일일 멸균소독시스템으로 안전한 수술을 진행합니다.</p>
+											4段階の日常的な滅菌・消毒体制で、安全性に配慮した手術を行います。</p>
 									</div>
 									<div class="img_wrap">
 										<ul class="imgBox-list">
 											<li class="imgBox-list_item">
-												<p class="comment">안심마취 시스템</p>
+												<p class="comment">安心に配慮した麻酔管理</p>
 											</li>
 											<li class="imgBox-list_item">
-												<p class="comment">첨단 수술설비</p>
+												<p class="comment">先進的な手術設備</p>
 											</li>
 											<li class="imgBox-list_item">
-												<p class="comment">4단계 멸균소독시스템</p>
+												<p class="comment">4段階の滅菌・消毒体制</p>
 											</li>
 										</ul>
 									</div>
@@ -293,15 +291,15 @@
 						<div class="system_cnt05 bsc_ly">
 							<div class="inner">
 								<div class="title-wrap">
-									<p class="title color03">새김성형외과의 특별한 EVENT!</p>
+									<p class="title color03">SAEKIM美容外科の特別なEVENT！</p>
 									<span class="sub-txt">
-										새김성형외과는 늘 고객분들에게 풍성한 혜택을 드리기 위해,
-										<br class="pc_show">다양한 혜택을 드리고 있으니 꼭 참여해 보세요!
+										患者様にさまざまな特典をご提供できるよう、
+										<br class="pc_show">各種イベントをご用意しています。ぜひご覧ください。
 									</span>
 								</div>
 
 								<div class="article-wrap">
-									<a href="/eventPage" class="iceM-go">이벤트 전체 보기<s></s></a>
+									<a href="/eventPage" class="iceM-go">すべてのイベントを見る<s></s></a>
 
 									<ul class="iceM-list" style="padding-left:0px;"
 										th:if="${!#lists.isEmpty(indexEvents)}">
@@ -311,7 +309,7 @@
 													<img th:src="${event.imageUrl}" th:alt="${event.title}">
 												</p>
 												<div class="iceMImg-txt">
-													<span th:text="${event.title}">이벤트 제목</span>
+													<span th:text="${event.title}">イベントタイトル</span>
 												</div>
 											</a>
 										</li>
@@ -322,10 +320,10 @@
 										<li class="iceM-list_item" th:each="i : ${#numbers.sequence(1, 5)}">
 											<a th:href="@{/eventPage}">
 												<p class="iceMImg-wrap">
-													<img src="/front/sample/400-600.png" alt="이벤트 준비중">
+													<img src="/front/resources/images/placeholder-400-600.svg" alt="イベント準備中">
 												</p>
 												<div class="iceMImg-txt">
-													<span>이벤트 준비중</span>
+													<span>イベント準備中</span>
 												</div>
 											</a>
 										</li>
@@ -339,10 +337,9 @@
 						<div class="certi_cnt01">
 							<div class="inner">
 								<div class="title-wrap aos-init" data-aos="fade-right" data-aos-duration="1000">
-									<p class="title">새김성형외과는 <span class="txtBg">아름다움은 물론</span></p>
-									<p class="title"><span class="txtBg">환자의 안전까지</span> 준비합니다.</p>
-									<span class="sub-txt">기간이 지날수록 자연스럽게 유지되는 아름다움과,<br class="pc_show">부작용을 최소화하는
-										안전한 수술만을 제공합니다.</span>
+									<p class="title">SAEKIM美容外科は、 <span class="txtBg">美しさはもちろん、</span></p>
+									<p class="title"><span class="txtBg">患者様の安全にも</span> 配慮しています。</p>
+									<span class="sub-txt">時を重ねても自然な美しさを大切にし、<br class="pc_show">合併症のリスク軽減に努めた手術をご提供します。</span>
 								</div>
 							</div>
 						</div>
@@ -354,37 +351,34 @@
 		<footer th:replace="~{fragments/front/common :: commonFooter}"></footer>
 	</div>
 	<th:block th:replace="~{fragments/front/common :: commonScript}"></th:block>
-	<script type="module">
-		import Swiper from '/front/common/js/swiper-bundle.esm.browser.min.js'
-	</script>
-	<script src="/front/resources/js/index.js"></script>
+	<script src="/front/resources/js/index.js?v=20261027-effects-2"></script>
 	<div id="common-popup-root" th:if="${!#lists.isEmpty(visiblePopups)}">
 		<div class="common-popup-overlay" id="common-popup-overlay" aria-hidden="true"></div>
 
 		<div class="common-popup-wrap" id="common-popup-wrap" role="dialog" aria-modal="true" aria-hidden="true">
 			<div class="common-popup-inner">
-				<button type="button" class="common-popup-close" id="common-popup-close" aria-label="팝업 닫기">
+				<button type="button" class="common-popup-close" id="common-popup-close" aria-label="ポップアップを閉じる">
 					<svg class="common-popup-icon" viewBox="0 0 24 24" aria-hidden="true">
 						<path d="M6 6 L18 18 M18 6 L6 18" stroke="#fff" stroke-width="2.5" stroke-linecap="round" />
 					</svg>
 				</button>
 
-				<div class="common-popup-swiper swiper" id="common-popup-swiper" aria-label="프로모션 이미지 슬라이더">
+				<div class="common-popup-swiper swiper" id="common-popup-swiper" aria-label="プロモーション画像スライダー">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide" th:each="popup : ${visiblePopups}"
 							th:attr="data-link=${popup.linkUrl}">
-							<img th:src="${popup.imageUrl}" alt="프로모션 팝업 이미지">
+							<img th:src="${popup.imageUrl}" alt="プロモーションのポップアップ画像">
 						</div>
 					</div>
 
-					<button class="common-popup-nav common-popup-prev swiper-button-prev" aria-label="이전 슬라이드"
+					<button class="common-popup-nav common-popup-prev swiper-button-prev" aria-label="前へ スライド"
 						type="button">
 						<svg class="common-popup-icon" viewBox="0 0 24 24" aria-hidden="true">
 							<path d="M15 6 L9 12 L15 18" stroke="#fff" stroke-width="3" stroke-linecap="round"
 								stroke-linejoin="round" fill="none" />
 						</svg>
 					</button>
-					<button class="common-popup-nav common-popup-next swiper-button-next" aria-label="다음 슬라이드"
+					<button class="common-popup-nav common-popup-next swiper-button-next" aria-label="次へ スライド"
 						type="button">
 						<svg class="common-popup-icon" viewBox="0 0 24 24" aria-hidden="true">
 							<path d="M9 6 L15 12 L9 18" stroke="#fff" stroke-width="3" stroke-linecap="round"
@@ -398,17 +392,17 @@
 				<div class="common-popup-controls">
 					<label class="common-popup-check" for="common-popup-hide-7">
 						<input type="checkbox" id="common-popup-hide-7">
-						<span>7일간 보지 않기</span>
+						<span>7日間表示しない</span>
 					</label>
 
 					<div class="common-popup-actions">
 						<button type="button" class="common-popup-btn common-popup-btn--ghost"
 							id="common-popup-btn-close">
-							닫기
+							閉じる
 						</button>
 						<button type="button" class="common-popup-btn common-popup-btn--primary"
 							id="common-popup-btn-link">
-							링크이동
+							リンク先へ
 						</button>
 					</div>
 				</div>
@@ -419,51 +413,8 @@
 
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
-			initIndexMainBanner();
 			initIndexPopup();
 		});
-
-		function initIndexMainBanner() {
-			const el = document.querySelector('#index-main-banner-swiper');
-			if (!el || typeof Swiper === 'undefined') return;
-
-			const slideCount = el.querySelectorAll('.swiper-slide').length;
-			const progressFill = document.querySelector('.progress-topbar__fill');
-			const progressWrap = el.querySelector('.autoplay-progress');
-			const progressText = progressWrap ? progressWrap.querySelector('span') : null;
-			const progressSvg = progressWrap ? progressWrap.querySelector('svg') : null;
-
-			if (slideCount <= 1) {
-				if (progressWrap) progressWrap.style.display = 'none';
-				if (progressFill) progressFill.style.width = '100%';
-			}
-
-			new Swiper(el, {
-				loop: slideCount > 1,
-				effect: 'fade',
-				speed: 800,
-				allowTouchMove: slideCount > 1,
-				autoplay: slideCount > 1 ? {
-					delay: 5000,
-					disableOnInteraction: false
-				} : false,
-				on: {
-					autoplayTimeLeft: function (swiper, time, progress) {
-						if (progressFill) {
-							progressFill.style.width = ((1 - progress) * 100) + '%';
-						}
-
-						if (progressText) {
-							progressText.textContent = Math.ceil(time / 1000);
-						}
-
-						if (progressSvg) {
-							progressSvg.style.setProperty('--progress', 1 - progress);
-						}
-					}
-				}
-			});
-		}
 
 		function initIndexPopup() {
 			const root = document.getElementById('common-popup-root');

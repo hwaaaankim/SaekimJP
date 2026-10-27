@@ -185,11 +185,11 @@ public class Event {
 
     public String getPeriodText() {
         if (!this.periodLimited) {
-            return "무기한";
+            return com.dev.SaeKimJP.util.UiLanguage.text("무기한", "無期限");
         }
 
         if (this.startDate == null || this.endDate == null) {
-            return "기간 미지정";
+            return com.dev.SaeKimJP.util.UiLanguage.text("기간 미지정", "期間未指定");
         }
 
         return this.startDate.format(PERIOD_FORMATTER) + " ~ " + this.endDate.format(PERIOD_FORMATTER);

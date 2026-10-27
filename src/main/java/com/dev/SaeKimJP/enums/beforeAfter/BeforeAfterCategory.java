@@ -11,10 +11,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum BeforeAfterCategory {
 
-    EYE("eye", "눈"),
-    YOUNG("young", "동안"),
-    NOSE("nose", "코"),
-    CONTOUR("contour", "윤곽");
+    EYE("eye", "目元"),
+    YOUNG("young", "エイジングケア"),
+    NOSE("nose", "鼻"),
+    CONTOUR("contour", "輪郭");
 
     private final String code;
     private final String label;
@@ -31,7 +31,7 @@ public enum BeforeAfterCategory {
                         item.code.equalsIgnoreCase(normalized)
                         || item.name().equalsIgnoreCase(normalized))
                 .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("전후사진 분류값이 올바르지 않습니다."));
+                .orElseThrow(() -> new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("전후사진 분류값이 올바르지 않습니다.", "症例写真のカテゴリーが正しくありません。")));
     }
 
     public static BeforeAfterCategory fromFilter(String value) {
@@ -39,5 +39,9 @@ public enum BeforeAfterCategory {
             return null;
         }
         return fromCode(value);
+    }
+
+    public String getLabel() {
+        return com.dev.SaeKimJP.util.UiLanguage.label(label);
     }
 }

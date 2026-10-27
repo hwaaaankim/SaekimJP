@@ -16,7 +16,7 @@ public class FrontMainBannerResponse {
     private Integer displayOrder;
 
     public static FrontMainBannerResponse from(MainBanner entity) {
-        String resolvedPc = hasText(entity.getPcImageUrl()) ? entity.getPcImageUrl() : "/front/sample/1920-970.png";
+        String resolvedPc = hasText(entity.getPcImageUrl()) ? entity.getPcImageUrl() : "/front/resources/images/placeholder-1920-970.svg";
         String resolvedMobile = hasText(entity.getMobileImageUrl()) ? entity.getMobileImageUrl() : resolvedPc;
 
         return FrontMainBannerResponse.builder()
@@ -32,8 +32,8 @@ public class FrontMainBannerResponse {
     public static FrontMainBannerResponse fallback() {
         return FrontMainBannerResponse.builder()
                 .id(0L)
-                .pcImageUrl("/front/sample/1920-970.png")
-                .mobileImageUrl("/front/sample/1920-970.png")
+                .pcImageUrl("/front/resources/images/placeholder-1920-970.svg")
+                .mobileImageUrl("/front/resources/images/placeholder-1920-970.svg")
                 .generalText("TITLE MESSAGE AREA,")
                 .strongText("STRONG TEXT")
                 .displayOrder(1)

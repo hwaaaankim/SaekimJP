@@ -552,3 +552,9 @@
   #detail-189 .sk-young-feature-list > li { grid-template-columns: minmax(0, 1fr); gap: 10px; padding: 16px; }
   #detail-189 .sk-young-feature-list p { font-size: 15px; }
 }
+
+/* Full-width comparison: preserve the original diagram proportions. */
+#detail-175 .sk-smas-comparison{grid-template-columns:minmax(0,1fr);width:100%;max-width:none}
+#detail-175 .sk-smas-comparison .sk-figure{width:100%;max-width:none}
+#detail-175 .sk-smas-comparison .sk-zoom{display:block;width:100%;height:auto;aspect-ratio:auto}
+#detail-175 .sk-smas-comparison img{display:block;width:100%;height:auto;max-height:none;object-fit:contain}

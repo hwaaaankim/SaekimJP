@@ -783,3 +783,5 @@ body.common-bottom-menu-open {
 	word-break: normal;
 	line-break: strict;
 }
+
+.jp-fee-table-scroll{overflow:auto;max-width:100%;margin:24px 0;border:1px solid #ddd6cf;border-radius:12px}.jp-fee-table{border-collapse:collapse;width:100%;min-width:1080px;font-size:13px;line-height:1.65}.jp-fee-table caption{text-align:left;padding:16px;font-size:17px;font-weight:700;color:#302b27}.jp-fee-table th,.jp-fee-table td{padding:10px 12px;border:1px solid #e4dfda;vertical-align:middle}.jp-fee-table thead th{background:#ede6df;color:#302b27;position:sticky;top:0;z-index:1;white-space:nowrap}.jp-fee-table tbody th{font-weight:500;min-width:260px}.jp-fee-table tbody tr:nth-child(even){background:#faf8f5}.jp-fee-table td:nth-child(3),.jp-fee-table td:nth-child(4),.jp-fee-table td:nth-child(5){white-space:nowrap;text-align:right;font-variant-numeric:tabular-nums}.jp-fee-table td:nth-child(6),.jp-fee-table td:nth-child(7){text-align:center}.jp-fee-table td:last-child{white-space:nowrap}

@@ -16,7 +16,7 @@ public class MainBannerAdminResponse {
     private Integer displayOrder;
 
     public static MainBannerAdminResponse from(MainBanner entity) {
-        String resolvedPc = hasText(entity.getPcImageUrl()) ? entity.getPcImageUrl() : "/front/sample/1920-970.png";
+        String resolvedPc = hasText(entity.getPcImageUrl()) ? entity.getPcImageUrl() : "/front/resources/images/placeholder-1920-970.svg";
         String resolvedMobile = hasText(entity.getMobileImageUrl()) ? entity.getMobileImageUrl() : resolvedPc;
 
         return MainBannerAdminResponse.builder()

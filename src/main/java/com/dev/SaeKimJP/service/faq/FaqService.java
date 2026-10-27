@@ -30,8 +30,8 @@ public class FaqService {
     @Transactional
     public Long createFaq(FaqSaveRequest request) {
         FaqTopic topic = faqTopicService.getTopicOrThrow(request.getTopicId());
-        String title = normalizeRequired(request.getTitle(), "제목");
-        String answer = normalizeRequired(request.getAnswer(), "답변");
+        String title = normalizeRequired(request.getTitle(), com.dev.SaeKimJP.util.UiLanguage.text("제목", "タイトル"));
+        String answer = normalizeRequired(request.getAnswer(), com.dev.SaeKimJP.util.UiLanguage.text("답변", "回答"));
         boolean linkEnabled = Boolean.TRUE.equals(request.getLinkEnabled());
         String linkUrl = FrontPagePathUtils.normalizeInternalPagePath(request.getLinkUrl());
 
@@ -56,7 +56,7 @@ public class FaqService {
 
     public FaqAdminDetailResponse getAdminFaqDetail(Long faqId) {
         Faq faq = faqRepository.findById(faqId)
-                .orElseThrow(() -> new NoSuchElementException("FAQ를 찾을 수 없습니다. id=" + faqId));
+                .orElseThrow(() -> new NoSuchElementException(com.dev.SaeKimJP.util.UiLanguage.text("FAQ를 찾을 수 없습니다. id=", "FAQが見つかりません。id=") + faqId));
 
         return FaqAdminDetailResponse.fromEntity(faq);
     }
@@ -64,11 +64,11 @@ public class FaqService {
     @Transactional
     public void updateFaq(Long faqId, FaqSaveRequest request) {
         Faq faq = faqRepository.findById(faqId)
-                .orElseThrow(() -> new NoSuchElementException("FAQ를 찾을 수 없습니다. id=" + faqId));
+                .orElseThrow(() -> new NoSuchElementException(com.dev.SaeKimJP.util.UiLanguage.text("FAQ를 찾을 수 없습니다. id=", "FAQが見つかりません。id=") + faqId));
 
         FaqTopic topic = faqTopicService.getTopicOrThrow(request.getTopicId());
-        String title = normalizeRequired(request.getTitle(), "제목");
-        String answer = normalizeRequired(request.getAnswer(), "답변");
+        String title = normalizeRequired(request.getTitle(), com.dev.SaeKimJP.util.UiLanguage.text("제목", "タイトル"));
+        String answer = normalizeRequired(request.getAnswer(), com.dev.SaeKimJP.util.UiLanguage.text("답변", "回答"));
         boolean linkEnabled = Boolean.TRUE.equals(request.getLinkEnabled());
         String linkUrl = FrontPagePathUtils.normalizeInternalPagePath(request.getLinkUrl());
 
@@ -86,7 +86,7 @@ public class FaqService {
     @Transactional
     public void deleteFaq(Long faqId) {
         Faq faq = faqRepository.findById(faqId)
-                .orElseThrow(() -> new NoSuchElementException("FAQ를 찾을 수 없습니다. id=" + faqId));
+                .orElseThrow(() -> new NoSuchElementException(com.dev.SaeKimJP.util.UiLanguage.text("FAQ를 찾을 수 없습니다. id=", "FAQが見つかりません。id=") + faqId));
 
         faqRepository.delete(faq);
     }
@@ -99,7 +99,7 @@ public class FaqService {
     @Transactional
     public long increaseViewCount(Long faqId) {
         Faq faq = faqRepository.findById(faqId)
-                .orElseThrow(() -> new NoSuchElementException("FAQ를 찾을 수 없습니다. id=" + faqId));
+                .orElseThrow(() -> new NoSuchElementException(com.dev.SaeKimJP.util.UiLanguage.text("FAQ를 찾을 수 없습니다. id=", "FAQが見つかりません。id=") + faqId));
 
         faq.increaseViewCount();
         return faq.getViewCount();
@@ -124,7 +124,7 @@ public class FaqService {
 
     private String normalizeRequired(String value, String fieldName) {
         if (!StringUtils.hasText(value)) {
-            throw new IllegalArgumentException(fieldName + "은(는) 필수입니다.");
+            throw new IllegalArgumentException(fieldName + com.dev.SaeKimJP.util.UiLanguage.text("은(는) 필수입니다.", "は必須です。"));
         }
         return value.trim();
     }
@@ -138,7 +138,7 @@ public class FaqService {
 
     private void validateLink(boolean linkEnabled, String linkUrl) {
         if (linkEnabled && !StringUtils.hasText(linkUrl)) {
-            throw new IllegalArgumentException("링크 사용이 활성화된 경우 링크를 반드시 입력해야 합니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("링크 사용이 활성화된 경우 링크를 반드시 입력해야 합니다.", "リンクを使用する場合は、リンク先を入力してください。"));
         }
     }
 }

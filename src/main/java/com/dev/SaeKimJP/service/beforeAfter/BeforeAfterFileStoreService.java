@@ -50,14 +50,14 @@ public class BeforeAfterFileStoreService {
             BufferedImage sourceImage = ImageIO.read(file.getInputStream());
 
             if (sourceImage == null) {
-                throw new IllegalArgumentException("이미지 파일을 읽을 수 없습니다.");
+                throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("이미지 파일을 읽을 수 없습니다.", "画像ファイルを読み込めません。"));
             }
 
             BufferedImage resizedImage = resizeToTarget(sourceImage);
             boolean written = ImageIO.write(resizedImage, "jpg", targetPath.toFile());
 
             if (!written) {
-                throw new RuntimeException("전후사진 이미지 저장 형식을 처리할 수 없습니다.");
+                throw new RuntimeException(com.dev.SaeKimJP.util.UiLanguage.text("전후사진 이미지 저장 형식을 처리할 수 없습니다.", "症例写真の保存形式を処理できません。"));
             }
 
             String url = "/upload/before-after/" + beforeAfterId + "/" + datePath + "/" + savedFileName;
@@ -68,7 +68,7 @@ public class BeforeAfterFileStoreService {
                     url
             );
         } catch (IOException e) {
-            throw new RuntimeException("전후사진 이미지 저장 중 오류가 발생했습니다.", e);
+            throw new RuntimeException(com.dev.SaeKimJP.util.UiLanguage.text("전후사진 이미지 저장 중 오류가 발생했습니다.", "症例写真の保存中にエラーが発生しました。"), e);
         }
     }
 
@@ -124,13 +124,13 @@ public class BeforeAfterFileStoreService {
 
     private void validateImageFile(MultipartFile file) {
         if (file == null || file.isEmpty()) {
-            throw new IllegalArgumentException("이미지 파일이 비어 있습니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("이미지 파일이 비어 있습니다.", "画像ファイルが空です。"));
         }
 
         String contentType = file.getContentType();
 
         if (!StringUtils.hasText(contentType) || !contentType.startsWith("image/")) {
-            throw new IllegalArgumentException("이미지 파일만 업로드할 수 있습니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("이미지 파일만 업로드할 수 있습니다.", "画像ファイルのみアップロードできます。"));
         }
     }
 

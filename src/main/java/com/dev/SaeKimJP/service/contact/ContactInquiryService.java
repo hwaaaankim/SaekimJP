@@ -39,7 +39,7 @@ public class ContactInquiryService {
         validateCreateRequest(request);
 
         ContactInquiry entity = ContactInquiry.builder()
-                .name(normalizeRequired(request.getName(), "이름"))
+                .name(normalizeRequired(request.getName(), com.dev.SaeKimJP.util.UiLanguage.text("이름", "氏名")))
                 .phone(formatPhone(request.getPhone()))
                 .preferredDate(normalizeOptional(request.getPreferredDate()))
                 .preferredTime(normalizeOptional(request.getPreferredTime()))
@@ -58,7 +58,7 @@ public class ContactInquiryService {
 
         return new ContactInquiryCreateResponse(
                 saved.getId(),
-                "문의가 완료 되었습니다. 빠르게 연락드리도록 하겠습니다."
+                com.dev.SaeKimJP.util.UiLanguage.text("문의가 완료 되었습니다. 빠르게 연락드리도록 하겠습니다.", "お問い合わせを受け付けました。順次ご連絡いたします。")
         );
     }
 
@@ -95,7 +95,7 @@ public class ContactInquiryService {
 
         validateUpdateRequest(request);
 
-        entity.setName(normalizeRequired(request.getName(), "이름"));
+        entity.setName(normalizeRequired(request.getName(), com.dev.SaeKimJP.util.UiLanguage.text("이름", "氏名")));
         entity.setPhone(formatPhone(request.getPhone()));
         entity.setPreferredDate(normalizeOptional(request.getPreferredDate()));
         entity.setPreferredTime(normalizeOptional(request.getPreferredTime()));
@@ -117,7 +117,7 @@ public class ContactInquiryService {
 
     private ContactInquiry getEntity(Long id) {
         return contactInquiryRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("존재하지 않는 문의입니다."));
+                .orElseThrow(() -> new EntityNotFoundException(com.dev.SaeKimJP.util.UiLanguage.text("존재하지 않는 문의입니다.", "お問い合わせが見つかりません。")));
     }
 
     private Specification<ContactInquiry> buildSearchSpecification(String searchType, String keyword) {
@@ -148,19 +148,19 @@ public class ContactInquiryService {
 
     private void validateCreateRequest(ContactInquiryCreateRequest request) {
         if (request == null) {
-            throw new IllegalArgumentException("잘못된 요청입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("잘못된 요청입니다.", "リクエストが正しくありません。"));
         }
         if (!StringUtils.hasText(request.getName())) {
-            throw new IllegalArgumentException("이름은 필수입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("이름은 필수입니다.", "氏名は必須です。"));
         }
         if (!StringUtils.hasText(request.getPhone())) {
-            throw new IllegalArgumentException("연락처는 필수입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("연락처는 필수입니다.", "電話番号は必須です。"));
         }
         if (!Boolean.TRUE.equals(request.getPrivacyAgreementRequired())) {
-            throw new IllegalArgumentException("개인정보수집 및 이용 동의(필수)에 체크해 주세요.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("개인정보수집 및 이용 동의(필수)에 체크해 주세요.", "個人情報の収集・利用への同意（必須）にチェックを入れてください。"));
         }
         if (!Boolean.TRUE.equals(request.getThirdPartyAgreementRequired())) {
-            throw new IllegalArgumentException("개인정보 제3자 제공 동의(필수)에 체크해 주세요.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("개인정보 제3자 제공 동의(필수)에 체크해 주세요.", "個人情報の第三者提供への同意（必須）にチェックを入れてください。"));
         }
 
         formatPhone(request.getPhone());
@@ -169,13 +169,13 @@ public class ContactInquiryService {
 
     private void validateUpdateRequest(ContactInquiryAdminUpdateRequest request) {
         if (request == null) {
-            throw new IllegalArgumentException("잘못된 요청입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("잘못된 요청입니다.", "リクエストが正しくありません。"));
         }
         if (!StringUtils.hasText(request.getName())) {
-            throw new IllegalArgumentException("이름은 필수입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("이름은 필수입니다.", "氏名は必須です。"));
         }
         if (!StringUtils.hasText(request.getPhone())) {
-            throw new IllegalArgumentException("연락처는 필수입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("연락처는 필수입니다.", "電話番号は必須です。"));
         }
 
         formatPhone(request.getPhone());
@@ -191,7 +191,7 @@ public class ContactInquiryService {
 
     private String normalizeRequired(String value, String fieldName) {
         if (!StringUtils.hasText(value)) {
-            throw new IllegalArgumentException(fieldName + "은(는) 필수입니다.");
+            throw new IllegalArgumentException(fieldName + com.dev.SaeKimJP.util.UiLanguage.text("은(는) 필수입니다.", "は必須です。"));
         }
         return value.trim();
     }
@@ -210,14 +210,14 @@ public class ContactInquiryService {
 
         String normalized = email.trim();
         if (!SIMPLE_EMAIL_PATTERN.matcher(normalized).matches()) {
-            throw new IllegalArgumentException("이메일 형식이 올바르지 않습니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("이메일 형식이 올바르지 않습니다.", "メールアドレスの形式が正しくありません。"));
         }
         return normalized;
     }
 
     private String formatPhone(String rawPhone) {
         if (!StringUtils.hasText(rawPhone)) {
-            throw new IllegalArgumentException("연락처는 필수입니다.");
+            throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("연락처는 필수입니다.", "電話番号は必須です。"));
         }
 
         String digits = rawPhone.replaceAll("[^0-9]", "");
@@ -237,6 +237,6 @@ public class ContactInquiryService {
             return digits.replaceFirst("(\\d{2})(\\d{3})(\\d{4})", "$1-$2-$3");
         }
 
-        throw new IllegalArgumentException("연락처 형식이 올바르지 않습니다.");
+        throw new IllegalArgumentException(com.dev.SaeKimJP.util.UiLanguage.text("연락처 형식이 올바르지 않습니다.", "電話番号の形式が正しくありません。"));
     }
 }
