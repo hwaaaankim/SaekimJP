@@ -109,15 +109,15 @@ html[lang="ja"] #main #index-main-banner-swiper .index-main-banner-emphasis {
   html[lang="ja"] #main #index-main-banner-swiper .index-dynamic-main-banner-text-wrap { padding: 24px; }
 }
 
-/* Bright hero photography: a white veil and local text halo retain contrast. */
+/* Keep photographs unchanged; contrast support follows only the text. */
 body.jp-page-index #header { background:rgba(255,255,255,.9); backdrop-filter:blur(16px); border-bottom:1px solid #e9edf2; }
 body.jp-page-index #header .gnb-menu_link>span { color:#17202b; }
 body.jp-page-index #header .ham>a>span { background:#17202b; }
 body.jp-page-index #header.scroll { background:rgba(255,255,255,.97); }
-body.jp-page-index #index-main-banner-swiper .index-dynamic-main-banner-text-wrap { background:linear-gradient(90deg,rgba(255,255,255,.30),rgba(255,255,255,.62) 50%,rgba(255,255,255,.30)); }
+body.jp-page-index #index-main-banner-swiper .index-dynamic-main-banner-text-wrap { background:transparent; }
 html[lang="ja"] #main #index-main-banner-swiper .index-main-banner-heading,
 html[lang="ja"] #main #index-main-banner-swiper .index-main-banner-heading span,
-html[lang="ja"] #main #index-main-banner-swiper .index-main-banner-heading strong { color:#111820; text-shadow:0 1px 3px #fff,0 0 22px rgba(255,255,255,.95); }
+html[lang="ja"] #main #index-main-banner-swiper .index-main-banner-heading strong { color:#111820; text-shadow:0 0 2px #fff,0 0 6px #fff,0 0 12px rgba(255,255,255,.95),0 0 20px rgba(255,255,255,.8); }
 @media(max-width:1024px) {
  body.sk-surgery-page #header.scroll, body.jp-page-index #header.scroll { height:64px; }
  body.sk-surgery-page #header .header-logo, body.jp-page-index #header .header-logo { height:100%; }

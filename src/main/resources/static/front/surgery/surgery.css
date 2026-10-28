@@ -1243,7 +1243,8 @@ body.sk-surgery-page #header * {
 	color: #bfcadd
 }
 
-.sk-consult>a {
+.sk-consult>a,
+.sk-consult>.sk-copy-link-wrap>a {
 	display: flex;
 	align-items: center;
 	gap: 42px;
@@ -1255,7 +1256,8 @@ body.sk-surgery-page #header * {
 	transition: background var(--sk-hover-duration), transform var(--sk-hover-duration) var(--sk-ease)
 }
 
-.sk-consult>a:hover {
+.sk-consult>a:hover,
+.sk-consult>.sk-copy-link-wrap>a:hover {
 	background: #ffffff20;
 	transform: translateY(-3px)
 }
@@ -2000,7 +2002,8 @@ body.sk-surgery-page .btn_top:hover>s {
 		font-size: 12px
 	}
 
-	.sk-consult>a {
+	.sk-consult>a,
+.sk-consult>.sk-copy-link-wrap>a {
 		margin-top: 21px;
 		justify-content: space-between;
 		padding: 14px 20px;

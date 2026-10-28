@@ -1,14 +1,13 @@
 /* Shared public header: the same readable palette in every initial/scroll state. */
 html[lang="ja"] body #header {
- --front-header-height:110px;
- height:var(--front-header-height);
+ height:110px;
  background:rgba(255,255,255,.94);
  border-bottom:1px solid #e3e8ef;
  backdrop-filter:blur(16px);
  -webkit-backdrop-filter:blur(16px);
- transition:height .25s ease,background-color .25s ease;
+ transition:height .4s cubic-bezier(.22,.61,.36,1), background-color .3s ease, border-color .3s ease;
 }
-html[lang="ja"] body #header.scroll { --front-header-height:80px; background:rgba(255,255,255,.98); }
+html[lang="ja"] body #header:is(.scroll, .on, .open) { height:80px; background:#fff; }
 html[lang="ja"] body #header .header-inner { height:100%; }
 html[lang="ja"] body #header .gnb-menu_link > span,
 html[lang="ja"] body.sk-surgery-page #header .gnb-menu_link > span { color:#17202b; }
@@ -21,10 +20,40 @@ html[lang="ja"] body #header .snb-menu-bg { top:100%; }
 html[lang="ja"] body #header .snb-menu_link { color:#17202b; }
 html[lang="ja"] body #header .snb-menu_link:hover { color:#094bad; }
 @media(max-width:1024px) {
- html[lang="ja"] body #header { --front-header-height:80px; }
- html[lang="ja"] body #header.scroll { --front-header-height:64px; }
+ html[lang="ja"] body #header { height:80px; }
+ html[lang="ja"] body #header:is(.scroll, .on, .open) { height:64px; }
  html[lang="ja"] body #header .header-logo { height:100%; }
 }
-@media(prefers-reduced-motion:reduce) {
- html[lang="ja"] body #header { transition:none; }
+
+/* Photo heroes: transparent at the top, white after scrolling. */
+html[lang="ja"] body:is(.jp-page-index, .jp-page-about) #header:not(.scroll):not(.on):not(.open) {
+ background:transparent;
+ border-bottom-color:transparent;
+ backdrop-filter:none;
+ -webkit-backdrop-filter:none;
+}
+html[lang="ja"] body:is(.jp-page-index, .jp-page-about) #header.scroll {
+ background:#fff;
+}
+
+/* The upper bar and expanded menu share one opaque surface. */
+html[lang="ja"] body #header:is(.on, .open) {
+ background:#fff;
+ border-bottom-color:#e3e8ef;
+}
+/* Follow the animated header bottom without a second, lagging top transition. */
+html[lang="ja"] body #header .snb-menu {
+ height:270px;
+ clip-path:inset(0 0 100% 0);
+ transform:translateY(-10px);
+ transition:opacity .35s ease, transform .4s cubic-bezier(.22,.61,.36,1), clip-path .4s cubic-bezier(.22,.61,.36,1);
+}
+
+html[lang="ja"] body #header.on .snb-menu {
+ clip-path:inset(0);
+ transform:translateY(0);
+}
+html[lang="ja"] body #header .snb-menu-bg,
+html[lang="ja"] body #header.on .snb-menu-bg {
+ transition:height .4s cubic-bezier(.22,.61,.36,1);
 }

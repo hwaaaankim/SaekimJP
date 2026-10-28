@@ -24,3 +24,11 @@ html[lang="ja"] .sk-surgery .sk-heading-side .sk-script { font-size:clamp(22px,2
  .sk-surgery .sk-tablist > .sk-copy-link-wrap > .sk-copy-controls,
  .sk-surgery .sk-category-nav > .sk-copy-link-wrap > .sk-copy-controls { align-self:flex-end; margin:2px 0 4px; }
 }
+
+/* Preserve the original rail flex item and image layout for logged-in editors. */
+.sk-surgery .sk-copy-card-link { position:absolute; inset:0; z-index:3; border-radius:inherit; }
+.sk-surgery .sk-copy-card-link:focus-visible { outline:3px solid #1460bb; outline-offset:-4px; }
+.sk-surgery .sk-copy-card .sk-copy-controls { position:relative; z-index:4; pointer-events:auto; }
+.sk-surgery .sk-copy-card .sk-slide-copy { z-index:4; pointer-events:none; }
+.sk-surgery .sk-copy-card .sk-card-open { pointer-events:none; }
+.sk-surgery .sk-copy-card .sk-copy-input { min-width:0; width:100%; }
