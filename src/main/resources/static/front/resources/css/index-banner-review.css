@@ -1,0 +1,80 @@
+/* PPT 2026-10-28: main-banner typography only. Header/Swiper motion stays unchanged. */
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .index-main-banner-heading {
+  font-family: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-weight: 400;
+  width: fit-content;
+  max-width: 100%;
+  gap: clamp(12px, 1.4vw, 24px);
+  text-wrap: pretty;
+  text-shadow: 0 0 3px rgba(255,255,255,.95), 0 0 12px rgba(255,255,255,.7);
+}
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .index-main-banner-lead {
+  color: #59636B;
+  font: inherit;
+  font-size: clamp(16px, 1.3vw, 24px);
+  line-height: 1.8;
+  letter-spacing: .12em;
+  text-shadow: inherit;
+}
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .index-main-banner-emphasis,
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .index-main-banner-emphasis .index-banner-line {
+  color: #36414A;
+  font-family: inherit;
+  font-weight: 400;
+  font-size: clamp(30px, 3.4vw, 64px);
+  line-height: 1.5;
+  letter-spacing: .08em;
+  text-shadow: inherit;
+}
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .index-banner-line { display:block; }
+/* Only the three messages identified in the PPT receive a new placement.
+   Unrelated/admin-added banners retain their existing centered layout. */
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper :is(.mainv-slide--consultation,.mainv-slide--safety) .index-dynamic-main-banner-text-wrap {
+  inset: 110px 52% 32% 6%;
+  padding: 0;
+  justify-content: flex-start;
+  text-align: left;
+}
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper :is(.mainv-slide--consultation,.mainv-slide--safety) .index-main-banner-heading {
+  margin: 0;
+  text-align: left;
+}
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .mainv-slide--safety .index-main-banner-emphasis {
+  font-size: clamp(26px, 2.5vw, 46px);
+  letter-spacing: .03em;
+}
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .mainv-slide--team .index-dynamic-main-banner-text-wrap {
+  inset: 50% 6% 22%;
+  padding: 0;
+  align-items: center;
+}
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .mainv-slide--team .index-main-banner-emphasis {
+  font-size: clamp(30px, 3vw, 56px);
+  letter-spacing: .14em;
+}
+@media (max-width:1024px) and (min-width:768px) {
+  html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper :is(.mainv-slide--consultation,.mainv-slide--safety) .index-dynamic-main-banner-text-wrap {
+    inset:80px 48% 32% 5%;
+  }
+}
+/* Portrait mobile photos: keep copy below the face instead of squeezing it beside it. */
+@media (max-width:767px) {
+  html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper :is(.mainv-slide--consultation,.mainv-slide--safety,.mainv-slide--team) .index-dynamic-main-banner-text-wrap {
+    inset: auto 24px max(12%, env(safe-area-inset-bottom)) 24px;
+    padding: 0;
+    align-items: flex-end;
+    justify-content: flex-start;
+  }
+  html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .mainv-slide--team .index-dynamic-main-banner-text-wrap { justify-content:center; }
+  html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .index-main-banner-lead {
+    font-size: clamp(14px, 3.5vw, 18px);
+    letter-spacing:.06em;
+  }
+  html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .index-main-banner-emphasis,
+  html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .index-main-banner-emphasis .index-banner-line {
+    font-size:clamp(26px, 6.5vw, 36px);
+    letter-spacing:.04em;
+  }
+  html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .mainv-slide--team .index-main-banner-emphasis { font-size:clamp(25px, 6.4vw, 34px); }
+  html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .mainv-slide--safety .index-main-banner-emphasis { font-size:clamp(25px, 6.3vw, 34px); }
+}

@@ -4,7 +4,7 @@
 <head>
 <th:block th:replace="~{fragments/front/common :: surgeryHead('鼻形成')}"></th:block>
 <link href="/front/resources/css/japanese-typography.css?v=20261027-effects-2" rel="stylesheet"/>
-<link href="/front/surgery/inline-editor.css?v=20261028-cardfix" rel="stylesheet"/></head>
+<link href="/front/surgery/inline-editor.css?v=20261029-ppt-review" rel="stylesheet"/></head>
 <body class="sk-surgery-page jp-page-nose" id="hamBody">
 <div id="container">
 <th:block th:replace="~{fragments/front/common :: commonHeader(white=${false}, dark=${true})}"></th:block>
@@ -28,7 +28,7 @@
 </svg></span></h1>
 <p><sk-copy data-copy-key="nose.0007" th:attr="data-copy-version=${surgeryVersions['nose.0007']}" th:text="${surgeryCopy.containsKey('nose.0007') ? surgeryCopy['nose.0007'] : 'どの角度からも調和するライン'}">どの角度からも調和するライン</sk-copy></p>
 </div>
-<div class="sk-heading-side"><span class="sk-script" lang="ja">どの角度からも調和のとれた美しさ。</span>
+<div class="sk-heading-side"><span class="sk-script" lang="ja">どの角度から見ても調和のとれた美しさ</span>
 <p><sk-copy data-copy-key="nose.0008" th:attr="data-copy-version=${surgeryVersions['nose.0008']}" th:text="${surgeryCopy.containsKey('nose.0008') ? surgeryCopy['nose.0008'] : '高さだけでなく、長さ・角度・顔の比率を考慮した鼻形成をご案内します。'}">高さだけでなく、長さ・角度・顔の比率を考慮した鼻形成をご案内します。</sk-copy></p>
 </div>
 </header>
@@ -509,66 +509,73 @@
 </svg>
 </header>
 <p><sk-copy data-copy-key="nose.0119" th:attr="data-copy-version=${surgeryVersions['nose.0119']}" th:text="${surgeryCopy.containsKey('nose.0119') ? surgeryCopy['nose.0119'] : 'CASE 01 軽度のハンプの場合'}">CASE 01 軽度のハンプの場合</sk-copy></p>
-<ol class="sk-steps" style="--sk-step-cols:2;">
-<li><span class="sk-step-number">STEP 01</span>
-<p><sk-copy data-copy-key="nose.0120" th:attr="data-copy-version=${surgeryVersions['nose.0120']}" th:text="${surgeryCopy.containsKey('nose.0120') ? surgeryCopy['nose.0120'] : 'ハンプの程度を確認します。'}">ハンプの程度を確認します。</sk-copy></p>
-</li>
-<li><span class="sk-step-number">STEP 02</span>
-<p><sk-copy data-copy-key="nose.0121" th:attr="data-copy-version=${surgeryVersions['nose.0121']}" th:text="${surgeryCopy.containsKey('nose.0121') ? surgeryCopy['nose.0121'] : '突出部を削る、または骨切りします。'}">突出部を削る、または骨切りします。</sk-copy></p>
-</li>
-</ol>
-<p class="jp-case-heading"><sk-copy data-copy-key="nose.0122" th:attr="data-copy-version=${surgeryVersions['nose.0122']}" th:text="${surgeryCopy.containsKey('nose.0122') ? surgeryCopy['nose.0122'] : 'CASE 02 高度のハンプの場合'}">CASE 02 高度のハンプの場合</sk-copy></p>
-<ol class="sk-steps" style="--sk-step-cols:2;">
-<li><span class="sk-step-number">STEP 01</span>
-<p><sk-copy data-copy-key="nose.0123" th:attr="data-copy-version=${surgeryVersions['nose.0123']}" th:text="${surgeryCopy.containsKey('nose.0123') ? surgeryCopy['nose.0123'] : 'ハンプの程度を確認します。'}">ハンプの程度を確認します。</sk-copy></p>
-</li>
-<li><span class="sk-step-number">STEP 02</span>
-<p><sk-copy data-copy-key="nose.0124" th:attr="data-copy-version=${surgeryVersions['nose.0124']}" th:text="${surgeryCopy.containsKey('nose.0124') ? surgeryCopy['nose.0124'] : '突出したハンプ部分を削る、または骨切りします。'}">突出したハンプ部分を削る、または骨切りします。</sk-copy></p>
-</li>
-</ol>
-<div class="sk-gallery sk-cols-3" style="--sk-stage-ratio:1 / 0.570000;">
+<div class="sk-case-grid sk-hump-steps" style="--sk-stage-ratio:1 / 0.570000;">
+<article><span class="sk-step-number">STEP 01</span>
 <figure class="sk-figure" style="--sk-source-width:600px"><button aria-label="鼻筋の側面像を拡大" class="sk-zoom" data-caption="鼻筋の側面像" data-gallery="nose-gallery-6" data-gallery-title="セギム整形外科鷲鼻修正の手術方法" data-image="/front/surgery/images-guides/guide-148.webp" type="button"><img alt="鼻筋の側面像" decoding="async" height="729" loading="lazy" src="/front/surgery/images-guides/guide-148.webp" style="--sk-source-width:1280px" width="1280"/><span><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 <circle cx="10" cy="10" r="7"></circle>
 <path d="m15 15 6 6M7 10h6m-3-3v6"></path>
 </svg></span></button>
-<figcaption class="sk-image-caption" lang="ja">鼻筋の側面像</figcaption>
+
 </figure>
+<p><sk-copy data-copy-key="nose.0120" th:attr="data-copy-version=${surgeryVersions['nose.0120']}" th:text="${surgeryCopy.containsKey('nose.0120') ? surgeryCopy['nose.0120'] : 'ハンプの程度を確認します。'}">ハンプの程度を確認します。</sk-copy></p>
+</article>
+<article><span class="sk-step-number">STEP 02</span>
 <figure class="sk-figure" style="--sk-source-width:600px"><button aria-label="鼻背の輪郭設計を拡大" class="sk-zoom" data-caption="鼻背の輪郭設計" data-gallery="nose-gallery-6" data-gallery-title="セギム整形外科鷲鼻修正の手術方法" data-image="/front/surgery/images-guides/guide-149.webp" type="button"><img alt="鼻背の輪郭設計" decoding="async" height="729" loading="lazy" src="/front/surgery/images-guides/guide-149.webp" style="--sk-source-width:1280px" width="1280"/><span><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 <circle cx="10" cy="10" r="7"></circle>
 <path d="m15 15 6 6M7 10h6m-3-3v6"></path>
 </svg></span></button>
-<figcaption class="sk-image-caption" lang="ja">鼻背の輪郭設計</figcaption>
+
 </figure>
+<p><sk-copy data-copy-key="nose.0121" th:attr="data-copy-version=${surgeryVersions['nose.0121']}" th:text="${surgeryCopy.containsKey('nose.0121') ? surgeryCopy['nose.0121'] : '突出部を削る、または骨切りします。'}">突出部を削る、または骨切りします。</sk-copy></p>
+</article>
+<article><span class="sk-step-number">STEP 03</span>
 <figure class="sk-figure" style="--sk-source-width:600px"><button aria-label="鼻の横顔の模式図を拡大" class="sk-zoom" data-caption="鼻の横顔の模式図" data-gallery="nose-gallery-6" data-gallery-title="セギム整形外科鷲鼻修正の手術方法" data-image="/front/surgery/images-guides/guide-150.webp" type="button"><img alt="鼻の横顔の模式図" decoding="async" height="730" loading="lazy" src="/front/surgery/images-guides/guide-150.webp" style="--sk-source-width:1280px" width="1280"/><span><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 <circle cx="10" cy="10" r="7"></circle>
 <path d="m15 15 6 6M7 10h6m-3-3v6"></path>
 </svg></span></button>
-<figcaption class="sk-image-caption" lang="ja">鼻の横顔の模式図</figcaption>
+
 </figure>
+<p class="sk-hump-diagram-label">鼻の横顔の模式図</p>
+</article>
+</div>
+<p class="jp-case-heading"><sk-copy data-copy-key="nose.0122" th:attr="data-copy-version=${surgeryVersions['nose.0122']}" th:text="${surgeryCopy.containsKey('nose.0122') ? surgeryCopy['nose.0122'] : 'CASE 02 高度のハンプの場合'}">CASE 02 高度のハンプの場合</sk-copy></p>
+<div class="sk-case-grid sk-hump-steps" style="--sk-stage-ratio:1 / 0.570000;">
+<article><span class="sk-step-number">STEP 01</span>
 <figure class="sk-figure" style="--sk-source-width:600px"><button aria-label="鼻筋と鼻先のバランスを拡大" class="sk-zoom" data-caption="鼻筋と鼻先のバランス" data-gallery="nose-gallery-6" data-gallery-title="セギム整形外科鷲鼻修正の手術方法" data-image="/front/surgery/images-guides/guide-151.webp" type="button"><img alt="鼻筋と鼻先のバランス" decoding="async" height="729" loading="lazy" src="/front/surgery/images-guides/guide-151.webp" style="--sk-source-width:1280px" width="1280"/><span><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 <circle cx="10" cy="10" r="7"></circle>
 <path d="m15 15 6 6M7 10h6m-3-3v6"></path>
 </svg></span></button>
-<figcaption class="sk-image-caption" lang="ja">鼻筋と鼻先のバランス</figcaption>
+
 </figure>
+<p><sk-copy data-copy-key="nose.0123" th:attr="data-copy-version=${surgeryVersions['nose.0123']}" th:text="${surgeryCopy.containsKey('nose.0123') ? surgeryCopy['nose.0123'] : 'ハンプの程度を確認します。'}">ハンプの程度を確認します。</sk-copy></p>
+</article>
+<article><span class="sk-step-number">STEP 02</span>
 <figure class="sk-figure" style="--sk-source-width:600px"><button aria-label="鼻背の隆起を削る方法を拡大" class="sk-zoom" data-caption="鼻背の隆起を削る方法" data-gallery="nose-gallery-6" data-gallery-title="セギム整形外科鷲鼻修正の手術方法" data-image="/front/surgery/images-guides/guide-152.webp" type="button"><img alt="鼻背の隆起を削る方法" decoding="async" height="729" loading="lazy" src="/front/surgery/images-guides/guide-152.webp" style="--sk-source-width:1280px" width="1280"/><span><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 <circle cx="10" cy="10" r="7"></circle>
 <path d="m15 15 6 6M7 10h6m-3-3v6"></path>
 </svg></span></button>
-<figcaption class="sk-image-caption" lang="ja">鼻背の隆起を削る方法</figcaption>
+
 </figure>
+<p><sk-copy data-copy-key="nose.0124" th:attr="data-copy-version=${surgeryVersions['nose.0124']}" th:text="${surgeryCopy.containsKey('nose.0124') ? surgeryCopy['nose.0124'] : '突出したハンプ部分を削る、または骨切りします。'}">突出したハンプ部分を削る、または骨切りします。</sk-copy></p>
+</article>
+<article><span class="sk-step-number">STEP 03</span>
 <figure class="sk-figure" style="--sk-source-width:600px"><button aria-label="鼻筋と鼻先の支持を拡大" class="sk-zoom" data-caption="鼻筋と鼻先の支持" data-gallery="nose-gallery-6" data-gallery-title="セギム整形外科鷲鼻修正の手術方法" data-image="/front/surgery/images-guides/guide-153.webp" type="button"><img alt="鼻筋と鼻先の支持" decoding="async" height="729" loading="lazy" src="/front/surgery/images-guides/guide-153.webp" style="--sk-source-width:1280px" width="1280"/><span><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 <circle cx="10" cy="10" r="7"></circle>
 <path d="m15 15 6 6M7 10h6m-3-3v6"></path>
 </svg></span></button>
-<figcaption class="sk-image-caption" lang="ja">鼻筋と鼻先の支持</figcaption>
+
 </figure>
+<p class="sk-hump-diagram-label">鼻筋と鼻先の支持</p>
+</article>
+<article><span class="sk-step-number">STEP 04</span>
 <figure class="sk-figure" style="--sk-source-width:600px"><button aria-label="整えた横顔の模式図を拡大" class="sk-zoom" data-caption="整えた横顔の模式図" data-gallery="nose-gallery-6" data-gallery-title="セギム整形外科鷲鼻修正の手術方法" data-image="/front/surgery/images-guides/guide-154.webp" type="button"><img alt="整えた横顔の模式図" decoding="async" height="729" loading="lazy" src="/front/surgery/images-guides/guide-154.webp" style="--sk-source-width:1280px" width="1280"/><span><svg aria-hidden="true" class="sk-icon" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.45" viewBox="0 0 24 24">
 <circle cx="10" cy="10" r="7"></circle>
 <path d="m15 15 6 6M7 10h6m-3-3v6"></path>
 </svg></span></button>
-<figcaption class="sk-image-caption" lang="ja">整えた横顔の模式図</figcaption>
+
 </figure>
+<p class="sk-hump-diagram-label">整えた横顔の模式図</p>
+</article>
 </div>
 </section>
 </article>

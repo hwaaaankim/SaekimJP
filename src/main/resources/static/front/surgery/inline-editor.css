@@ -11,7 +11,7 @@
 .sk-surgery .sk-copy-link-wrap > a,.sk-surgery .sk-copy-link-wrap > button { flex:1; min-width:0; }
 .sk-surgery .sk-edit-notice { margin:12px auto; width:min(1440px,calc(100% - 40px)); padding:10px 14px; border:1px solid #bed0e8; border-radius:8px; background:#f2f7ff; color:#184477; font:14px/1.7 'Saekim Noto JP',sans-serif; }
 
-@font-face { font-family:'Surgery Yomogi'; src:url('./fonts/yomogi-japanese.woff2') format('woff2'); font-style:normal; font-weight:400; font-display:swap; }
+@font-face { font-family:'Surgery Yomogi'; src:url('./fonts/yomogi-japanese-v3.woff2') format('woff2'); font-style:normal; font-weight:400; font-display:swap; }
 html[lang="ja"] .sk-surgery .sk-figure .sk-image-caption,
 html[lang="ja"] .sk-surgery .sk-heading-side .sk-script { font-family:'Surgery Yomogi',cursive !important; font-weight:400 !important; font-style:normal; line-height:1.6; }
 

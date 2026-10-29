@@ -14,7 +14,9 @@
 
 					<div class="swiper mySwiper swiper-fade" id="index-main-banner-swiper">
 						<ul class="swiper-wrapper" aria-live="off">
-							<li class="swiper-slide mainv-slide" th:each="banner : ${mainBanners}">
+							<li class="swiper-slide mainv-slide" th:each="banner : ${mainBanners}"
+                                th:with="bannerText=${#strings.trim(banner.strongText)}"
+                                th:classappend="${bannerText == 'セギム整形外科' or bannerText == 'SAEKIM美容外科' ? 'mainv-slide--team' : (bannerText == '代表院長が一貫して担当' ? 'mainv-slide--consultation' : (bannerText == '万全の体制で手術を実施' ? 'mainv-slide--safety' : ''))}">
 								<div class="kb-bg index-dynamic-main-banner-bg"
 									th:style="|--main-banner-pc:url('${banner.pcImageUrl}'); --main-banner-mo:url('${banner.mobileImageUrl}');|">
 								</div>
@@ -22,7 +24,7 @@
 								<div class="index-dynamic-main-banner-text-wrap">
 									<h2 class="index-main-banner-heading" data-aos="fade-up" data-aos-duration="1000">
 										<span class="index-main-banner-lead" th:text="${banner.generalText}">美しさを刻む</span>
-										<strong class="index-main-banner-emphasis" th:text="${banner.strongText}">セギム整形外科</strong>
+										<strong class="index-main-banner-emphasis"><th:block th:if="${bannerText == '代表院長が一貫して担当'}"><span class="index-banner-line">代表院長が</span><span class="index-banner-line">一貫して担当</span></th:block><th:block th:unless="${bannerText == '代表院長が一貫して担当'}" th:text="${banner.strongText}">セギム整形外科</th:block></strong>
 									</h2>
 								</div>
 							</li>
