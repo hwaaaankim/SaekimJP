@@ -6,8 +6,8 @@ html[lang="ja"] body:is(.jp-page-index, .jp-page-about) {
 }
 html[lang="ja"] body:is(.jp-page-index, .jp-page-about) :is(h1,h2,h3,h4,h5,h6,strong,b,.title,.subTit,.subSTit,.gnb-menu_link) { font-weight:500; }
 html[lang="ja"] body:is(.jp-page-index, .jp-page-about) :is(p,.sub-txt,.subtxt) { font-weight:400; }
-html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper :is(.index-main-banner-heading,.index-main-banner-lead,.index-main-banner-emphasis,.index-banner-line) { font-family:var(--jp-font-sans); }
-html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper :is(.index-main-banner-emphasis,.index-banner-line) { font-weight:500; }
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper :is(.index-main-banner-heading,.index-main-banner-lead,.index-main-banner-emphasis,.index-banner-line) { font-family:"Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif; font-weight:400; }
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper :is(.index-main-banner-emphasis,.index-banner-line) { font-weight:400; }
 html[lang="ja"] body:is(.jp-page-index, .jp-page-about) .certification_bsc .certi_cnt01 .title-wrap { text-align:left; }
 html[lang="ja"] body:is(.jp-page-index, .jp-page-about) .certification_bsc .certi_cnt01 .title {
   font-family:var(--jp-font-sans);font-weight:500;color:#333333;line-height:1.75;
@@ -66,4 +66,11 @@ html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .mainv-slide-
   opacity:1;
   transform:none;
   transition:none;
+}
+
+/* PPT 10–12 reference proportions; mobile retains its existing fitted sizes. */
+@media(min-width:768px) {
+ html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .index-main-banner-lead { font-size:clamp(16px,1.6vw,30px); }
+ html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .mainv-slide--consultation :is(.index-main-banner-emphasis,.index-banner-line) { font-size:clamp(30px,4.3vw,80px); }
+ html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .mainv-slide--safety .index-main-banner-emphasis { font-size:clamp(26px,3vw,56px); }
 }
