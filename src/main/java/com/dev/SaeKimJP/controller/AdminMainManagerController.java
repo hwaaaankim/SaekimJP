@@ -27,6 +27,11 @@ public class AdminMainManagerController {
         return "administration/main/mainBannerManager";
     }
 
+    @GetMapping("/aboutBannerManager")
+    public String aboutBannerManager() {
+        return "administration/main/aboutBannerManager";
+    }
+
     @GetMapping("/popupManager")
     public String popupManager() {
         return "administration/main/popupManager";

@@ -33,6 +33,7 @@ import lombok.RequiredArgsConstructor;
 public class IndexController {
 
     private final MainBannerService mainBannerService;
+    private final com.dev.SaeKimJP.service.main.AboutBannerService aboutBannerService;
     private final MainPopupService mainPopupService;
     private final NoticeService noticeService;
     private final FaqService faqService;
@@ -134,7 +135,8 @@ public class IndexController {
     }
 
     @GetMapping("/aboutPage")
-    public String about() {
+    public String about(Model model) {
+        model.addAttribute("aboutBanner", aboutBannerService.get());
         return "front/about";
     }
 

@@ -93,6 +93,10 @@ public class MainPageFileStorageService {
         }
     }
 
+    public StoredFile storeAboutBanner(MultipartFile file) {
+        return store("about-banner", 1L, file);
+    }
+
     private StoredFile store(String category, Long ownerId, MultipartFile file) {
         validateFile(file);
 

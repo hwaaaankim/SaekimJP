@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg"
+	data-sidebar-image="none" data-preloader="disable" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:replace="fragments/administration/common :: adminHead"></head>
+
+<body>
+	<div id="layout-wrapper">
+		<header id="page-topbar" th:replace="fragments/administration/common :: adminHeader"></header>
+		<div class="app-menu navbar-menu" th:replace="fragments/administration/common :: adminNav"></div>
+		<div class="vertical-overlay"></div>
+
+		<div class="main-content">
+			<div class="page-content">
+                <div class="container-fluid">
+                    <h3>병원소개 상단 배너관리</h3>
+                    <p>about 페이지의 상단 배너를 관리합니다. 이미지 한 장과 큰 문구·작은 문구를 저장할 수 있습니다.</p>
+                    <div id="about-banner-status" class="alert alert-info" role="status" aria-live="polite">불러오는 중입니다.</div>
+                    <form id="about-banner-form" enctype="multipart/form-data">
+                        <fieldset id="about-banner-fields" disabled>
+                        <div class="row g-4">
+                            <div class="col-lg-6"><div class="card"><div class="card-body">
+                                <label for="about-banner-title" class="form-label">위쪽 큰 문구</label>
+                                <textarea id="about-banner-title" name="titleText" class="form-control" rows="4" maxlength="2000"></textarea>
+                                <div class="form-text mb-4">최대 2,000자. Enter로 입력한 줄바꿈이 화면에도 적용됩니다. 비워서 저장하면 표시되지 않습니다.</div>
+                                <label for="about-banner-body" class="form-label">아래쪽 작은 문구</label>
+                                <textarea id="about-banner-body" name="bodyText" class="form-control" rows="4" maxlength="4000"></textarea>
+                                <div class="form-text mb-4">최대 4,000자. HTML 태그 없이 내용만 입력해 주세요.</div>
+                                <label for="about-banner-image" class="form-label">배너 이미지 한 장</label>
+                                <input id="about-banner-image" type="file" name="image" class="form-control" accept="image/jpeg,image/png,image/webp">
+                                <div class="form-text">JPG·PNG·WEBP / 10MB 이하. 새 파일을 선택하고 저장하면 기존 이미지가 교체됩니다.</div>
+                                <div class="form-check my-3">
+                                    <input id="about-banner-remove" type="checkbox" class="form-check-input">
+                                    <label for="about-banner-remove" class="form-check-label">등록 이미지 삭제 후 기본 이미지 사용</label>
+                                </div>
+                                <p id="about-banner-image-info" class="text-muted"></p>
+                                <div class="d-flex flex-wrap gap-2">
+                                    <button type="submit" class="btn btn-primary">변경사항 저장</button>
+                                    <button type="button" id="about-banner-reload" class="btn btn-outline-secondary">저장된 내용 다시 조회</button>
+                                    <a href="/aboutPage" target="_blank" rel="noopener" class="btn btn-outline-primary">실제 페이지 보기</a>
+                                </div>
+                            </div></div></div>
+                            <div class="col-lg-6"><div class="card"><div class="card-body">
+                                <h5>입력 내용 미리보기</h5>
+                                <p class="text-muted">저장 전 미리보기입니다. 실제 페이지는 화면 크기에 따라 이미지가 잘리는 범위와 줄 배치가 달라집니다.</p>
+                                <div class="about-admin-preview">
+                                    <img id="about-banner-preview-image" src="/front/images/main/6.png" alt="배너 이미지 미리보기">
+                                    <div class="about-admin-preview-copy"><p id="about-banner-preview-title"></p><p id="about-banner-preview-body"></p></div>
+                                </div>
+                            </div></div></div>
+                        </div>
+                        </fieldset>
+                    </form>
+                </div>
+			</div>
+
+			<th:block th:replace="fragments/administration/common :: adminFooter"></th:block>
+		</div>
+	</div>
+
+	<th:block th:replace="fragments/administration/common :: adminBottom"></th:block>
+	<th:block th:replace="fragments/administration/common :: adminScript"></th:block>
+
+	<link rel="stylesheet" href="/front/resources/fonts/zen-kaku-gothic-new/font.css?v=20261109">
+    <link rel="stylesheet" href="/administration/assets/css/about-banner-manager.css?v=20261109">
+	<script src="/administration/assets/js/page/aboutBannerManager.js?v=20261109"></script>
+</body>
+
+</html>

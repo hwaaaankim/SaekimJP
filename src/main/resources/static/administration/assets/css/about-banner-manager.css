@@ -1,0 +1,6 @@
+.about-admin-preview { position:relative; min-height:300px; isolation:isolate; border-radius:8px;overflow:hidden; }
+.about-admin-preview > img { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1; }
+.about-admin-preview-copy {padding:55px 24px;font-family:"Zen Kaku Gothic New",sans-serif;color:#333;text-align:left;text-shadow:0 0 3px #fff,0 0 12px #fff;}
+.about-admin-preview-copy p {white-space:pre-wrap;overflow-wrap:anywhere;}
+#about-banner-preview-title {font-size:24px;line-height:1.75;font-weight:500;}
+#about-banner-preview-body {font-size:15px;line-height:1.9;font-weight:400;}

@@ -75,7 +75,10 @@ public class WebSecurityConfig {
             )
             .exceptionHandling(exceptions -> exceptions.defaultAuthenticationEntryPointFor(
                 new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED),
-                new AntPathRequestMatcher("/admin/api/surgery-page-copy/**")
+                new org.springframework.security.web.util.matcher.OrRequestMatcher(
+                    new AntPathRequestMatcher("/admin/api/surgery-page-copy/**"),
+                    new AntPathRequestMatcher("/admin/api/about-banner/**"),
+                    new AntPathRequestMatcher("/admin/api/about-banner"))
             ))
             .formLogin(form -> form
                 .loginPage("/loginForm")

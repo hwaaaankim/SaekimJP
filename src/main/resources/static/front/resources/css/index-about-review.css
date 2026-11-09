@@ -1,0 +1,69 @@
+/* PPT 13–16: scope typography to index/about; retain component layout and motion. */
+html[lang="ja"] body:is(.jp-page-index, .jp-page-about) {
+  --jp-font-sans: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-family: var(--jp-font-sans);
+  font-weight: 400;
+}
+html[lang="ja"] body:is(.jp-page-index, .jp-page-about) :is(h1,h2,h3,h4,h5,h6,strong,b,.title,.subTit,.subSTit,.gnb-menu_link) { font-weight:500; }
+html[lang="ja"] body:is(.jp-page-index, .jp-page-about) :is(p,.sub-txt,.subtxt) { font-weight:400; }
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper :is(.index-main-banner-heading,.index-main-banner-lead,.index-main-banner-emphasis,.index-banner-line) { font-family:var(--jp-font-sans); }
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper :is(.index-main-banner-emphasis,.index-banner-line) { font-weight:500; }
+html[lang="ja"] body:is(.jp-page-index, .jp-page-about) .certification_bsc .certi_cnt01 .title-wrap { text-align:left; }
+html[lang="ja"] body:is(.jp-page-index, .jp-page-about) .certification_bsc .certi_cnt01 .title {
+  font-family:var(--jp-font-sans);font-weight:500;color:#333333;line-height:1.75;
+}
+html[lang="ja"] body:is(.jp-page-index, .jp-page-about) .certification_bsc .certi_cnt01 .sub-txt {
+  font-weight:400;color:#333333;line-height:1.9;
+}
+html[lang="ja"] body:is(.jp-page-index, .jp-page-about) .certification_bsc .certi_cnt01 .txtBg { background:none; }
+html[lang="ja"] body:is(.jp-page-index, .jp-page-about) .certification_bsc .certi_cnt01 .txtBg::before { content:none; }
+html[lang="ja"] body.jp-page-about .certification_bsc .about-managed-banner {
+  position:relative;isolation:isolate;background:none; height:auto;min-height:100vh;
+  padding-block:140px 70px;
+}
+.about-managed-banner .about-banner-image { position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;z-index:-1; }
+.about-managed-banner > .inner { position:relative;width:100%; }
+html[lang="ja"] body.jp-page-about .about-managed-banner :is(.about-banner-title,.about-banner-body) {
+  white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%;
+}
+@media(max-width:767px) {
+  html[lang="ja"] body.jp-page-about .certification_bsc .about-managed-banner {padding-block:110px 48px;min-height:100svh;}
+}
+/* Keep the copy inset from the viewport, including 1025–1450px screens. */
+html[lang="ja"] body:is(.jp-page-index, .jp-page-about) .certification_bsc .certi_cnt01 > .inner {
+  width:calc(100% - 12%);max-width:1450px;margin-inline:auto;
+}
+html[lang="ja"] body:is(.jp-page-index, .jp-page-about) .certification_bsc .certi_cnt01 .title-wrap {
+  position:relative;isolation:isolate;width:fit-content;max-width:100%;
+}
+html[lang="ja"] body:is(.jp-page-index, .jp-page-about) .certification_bsc .certi_cnt01 .title-wrap::before {
+  content:"";position:absolute;inset:-24px -32px;z-index:-1;pointer-events:none;
+  background:radial-gradient(ellipse at 35% 50%,rgba(255,255,255,.65),rgba(255,255,255,.32) 50%,transparent 75%);
+  filter:blur(16px);
+}
+html[lang="ja"] body:is(.jp-page-index, .jp-page-about) .certification_bsc .certi_cnt01 :is(.title,.sub-txt) {
+  text-shadow:0 1px 8px rgba(255,255,255,.85);
+}
+@media(max-width:767px) {
+  html[lang="ja"] body:is(.jp-page-index, .jp-page-about) .certification_bsc .certi_cnt01 > .inner {width:calc(100% - 32px);}
+  html[lang="ja"] body:is(.jp-page-index, .jp-page-about) .certification_bsc .certi_cnt01 .title-wrap::before {inset:-16px -8px;}
+}
+
+/* Doctor-group banner: keep both lines below the faces, above the bottom edge. */
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .mainv-slide--team .index-dynamic-main-banner-text-wrap {
+  inset:auto 6% max(8%, env(safe-area-inset-bottom)) 6%;
+  padding:0;
+  align-items:flex-end;
+  justify-content:center;
+}
+@media(max-width:767px) {
+  html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .mainv-slide--team .index-dynamic-main-banner-text-wrap {
+    inset:auto 24px max(6%, env(safe-area-inset-bottom)) 24px;
+  }
+}
+/* Swiper supplies the slide fade. AOS's scroll offset can strand low copy off-screen. */
+html[lang="ja"] body.jp-page-index #main #index-main-banner-swiper .mainv-slide--team .index-main-banner-heading {
+  opacity:1;
+  transform:none;
+  transition:none;
+}
