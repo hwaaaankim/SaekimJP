@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<th:block th:fragment="seoHead(fallbackTitle)"
+ th:with="s=${saekimSeo},
+ titleText=${s != null ? s['title'] : (fallbackTitle != null ? fallbackTitle + ' | セギム整形外科' : 'セギム整形外科｜韓国ソウルに位置する美容外科【日本語サイト】')},
+ descriptionText=${s != null ? s['description'] : '韓国・ソウル江南区に位置するセギム整形外科（SAEKIM）の日本語サイト。目・鼻・輪郭形成・リフトアップの手術・施術、症例写真、医院情報をご案内します。'}">
+ <title th:text="${titleText}">セギム整形外科</title>
+ <meta name="description" th:content="${descriptionText}">
+ <meta name="author" content="セギム整形外科（SAEKIM Plastic Surgery）">
+ <meta name="application-name" content="セギム整形外科">
+ <!-- keywords는 참고용입니다. Google 검색 순위에 영향을 주지 않습니다. -->
+ <meta name="keywords" content="セギム整形外科,SAEKIM,韓国美容整形,ソウル美容外科,江南,狎鴎亭,目元整形,二重整形,鼻整形,輪郭形成,リフトアップ">
+ <meta name="robots" th:content="${s != null ? s['robots'] : 'noindex, nofollow'}">
+ <meta name="theme-color" content="#ffffff">
+ <link rel="canonical" th:if="${s != null and s['canonical'] != null}" th:href="${s['canonical']}">
+ <meta property="og:type" content="website">
+ <meta property="og:locale" content="ja_JP">
+ <meta property="og:site_name" content="セギム整形外科">
+ <meta property="og:title" th:content="${titleText}">
+ <meta property="og:description" th:content="${descriptionText}">
+ <meta property="og:url" th:if="${s != null and s['canonical'] != null}" th:content="${s['canonical']}">
+ <th:block th:if="${s != null}">
+  <meta property="og:image" th:content="${s['image']}">
+  <meta property="og:image:secure_url" th:content="${s['image']}">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="セギム整形外科（SAEKIM）日本語サイト">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" th:content="${titleText}">
+  <meta name="twitter:description" th:content="${descriptionText}">
+  <meta name="twitter:image" th:content="${s['image']}">
+  <meta name="twitter:image:alt" content="セギム整形外科（SAEKIM）日本語サイト">
+  <meta name="google-site-verification" th:if="${s['googleVerification'] != ''}" th:content="${s['googleVerification']}">
+  <meta name="naver-site-verification" th:if="${s['naverVerification'] != ''}" th:content="${s['naverVerification']}">
+  <!-- JSON은 서버에서 직렬화 후 HTML 안전 문자로 치환합니다. -->
+  <script type="application/ld+json" th:if="${s['jsonLd'] != null}" th:utext="${s['jsonLd']}"></script>
+ </th:block>
+ <link rel="icon" type="image/x-icon" href="/front/seo/favicon/favicon.ico">
+ <link rel="icon" type="image/png" sizes="32x32" href="/front/seo/favicon/favicon-32x32.png">
+ <link rel="icon" type="image/png" sizes="48x48" href="/front/seo/favicon/favicon-48x48.png">
+ <link rel="icon" type="image/png" sizes="192x192" href="/front/seo/favicon/favicon-192x192.png">
+ <link rel="apple-touch-icon" sizes="180x180" href="/front/seo/favicon/apple-touch-icon.png">
+</th:block>
+</head>
+</html>
